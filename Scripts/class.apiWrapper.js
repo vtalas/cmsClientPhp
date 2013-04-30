@@ -8,8 +8,7 @@ var ApiWrapper = (function () {
 	}
 
 	ApiWrapper.prototype.getPage = function (link) {
-		var self = this,
-			deferred = $.Deferred();
+		var deferred = $.Deferred();
 
 		this.cmsApi.getPage({id:link}, function (data) {
 			deferred.resolve(data);
@@ -18,8 +17,7 @@ var ApiWrapper = (function () {
 	};
 
 	ApiWrapper.prototype.getPages = function () {
-		var self = this,
-			deferred = $.Deferred();
+		var deferred = $.Deferred();
 
 		this.cmsApi.getPages(function (data) {
 			deferred.resolve(data);
@@ -27,6 +25,34 @@ var ApiWrapper = (function () {
 		return deferred;
 	};
 
+	ApiWrapper.prototype.getAlbum = function (albumId) {
+		var deferred = $.Deferred();
+
+		if (albumId === null) {
+			deferred.resolve(null);
+			return deferred;
+		}
+		this.cmsApi.getAlbum({id: albumId }, function (data) {
+			deferred.resolve(data);
+		});
+		return deferred;
+	};
+	ApiWrapper.prototype.getAlbumPhotos = function (albumId) {
+		var deferred = $.Deferred();
+
+		this.cmsApi.getAlbumPhotos({id: albumId }, function (data) {
+			deferred.resolve(data);
+		});
+		return deferred;
+	};
+	ApiWrapper.prototype.getAlbums = function () {
+		var deferred = $.Deferred();
+
+		this.cmsApi.getAlbums(function (data) {
+			deferred.resolve(data);
+		});
+		return deferred;
+	};
 
 	return ApiWrapper;
 }());

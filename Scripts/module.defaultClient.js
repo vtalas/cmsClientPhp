@@ -23,6 +23,9 @@ module.directive("gridelement", function ($compile, $templateCache	) {
 	return directiveDefinitionObject;
 });
 
+module.directive("ngcGdataAlbum", ngcGdataAlbumDirective);
+module.directive("ngcLazyImage", ngcLazyImage);
+
 
 
 

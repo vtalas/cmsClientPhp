@@ -1,19 +1,35 @@
-{{page.Home}}
-{{page.GridElements.length}}
+<style>
+	.box {
+		height: 200px;
+		width: 400px;
+		float:left;
+		background-color: yellowgreen;
+		margin: 1px;
+	}
+
+
+</style>
 
 <div ng-repeat="gridelement in page.GridElements">
+	<div  class="box">
 	<div gridelement="gridelement" ></div>
-	............
+	<div>&nbsp;</div>
+	</div>
 </div>
 
 <script id="text.thtml" type="text/ng-template"><div>
+	template TEXT :
 	{{gridelement.Resources.text.Value}}
 	</div>
 </script>
 
 <script id="gdataalbum.thtml" type="text/ng-template"><div>
-	{{gridelement.Resources.text.Value}}
-	{{gridelement.Content}}
+		<div ng-controller="gridelementGdataAlbumCtrl" style="float:left">
+			{{gridelement.Resources.text.Value}}
+			<div>
+				<img ngc-lazy-image="gdataAlbum.Thumbnail.PhotoUri" />
+			</div>
+		</div>
 	</div>
 </script>
 
