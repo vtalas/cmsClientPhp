@@ -3,25 +3,21 @@ function gridelementGdataAlbumCtrl($scope, cmsApi, $routeParams) {
 
 
 	$scope.gdataAlbumId = getAlbumId();
-	$scope.gdataAlbum = getAlbumId();
+	$scope.gdataAlbumPhotos = getAlbumId();
 
 	function getAlbumId() {
 		var x = JSON.parse($scope.gridelement.Content);
 		return x !== null ? x.gdataAlbumId : null;
 	}
 
-	api.getAlbum($scope.gdataAlbumId).then(function (data) {
-		$scope.gdataAlbum = data;
+	api.getAlbumPhotos($scope.gdataAlbumId).then(function (data) {
+		$scope.firstPhoto = data.splice(0, 1)[0];
+		console.log($scope.firstPhoto)
+		$scope.gdataAlbumPhotos = data;
+
 		console.log($scope.gdataAlbumId, data)
 	});
 
-//	console.log($scope.gridelement.Content, $scope.gdataAlbumId);
-	$scope.link = $routeParams.link;
-
-//	api.getPage($scope.link).then(function (data) {
-//		$scope.page = data;
-//		console.log(data)
-//	});
 
 
 }

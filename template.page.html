@@ -1,12 +1,17 @@
 <style>
 	.box {
-		height: 200px;
-		width: 400px;
-		float:left;
 		background-color: yellowgreen;
 		margin: 1px;
 	}
-
+	.gdata-album h1{
+		margin-bottom: 0px;
+	}
+	.gdata-album h3{
+		margin-top: 0px;
+	}
+	.gdata-album .first-image{
+		border: 1px solid red;
+	}
 
 </style>
 
@@ -23,11 +28,18 @@
 	</div>
 </script>
 
+
 <script id="gdataalbum.thtml" type="text/ng-template"><div>
-		<div ng-controller="gridelementGdataAlbumCtrl" style="float:left">
-			{{gridelement.Resources.text.Value}}
-			<div>
-				<img ngc-lazy-image="gdataAlbum.Thumbnail.PhotoUri" />
+		<div class="gdata-album" ng-controller="gridelementGdataAlbumCtrl" >
+			<h1>{{gridelement.Resources.header.Value}}</h1>
+			<h3>{{gridelement.Resources.text.Value}}</h3>
+			<div class="first-image">
+				<img ngc-lazy-image="firstPhoto.Large.PhotoUri" />
+			</div>
+			<div style="height:410px">
+			<span ng-repeat="photo in gdataAlbumPhotos">
+				<img ngc-lazy-image="photo.Small.PhotoUri" />
+			</span>
 			</div>
 		</div>
 	</div>
