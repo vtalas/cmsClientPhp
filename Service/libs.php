@@ -44,4 +44,30 @@ function curPageURL() {
 	return $pageURL;
 }
 
+
+function getContent($url, $method, $formcontent=null)
+{
+	$opts = array(
+
+		'http'=>array(
+			'method'=>
+				$method,
+			'header'=>
+				'Accept:application/json, text/plain, */*\r\n'
+			)
+		);
+
+	if ($formcontent != null && $method == "POST"){
+		$opts['http']['content'] = $formcontent;
+	}
+
+	///print_r($opts);	print_r($url);
+	$context = stream_context_create($opts);
+
+	if (!$file = @file_get_contents($url, false, $context)) {
+		throw new Exception("Error Processing Request", 1);
+	}
+	return $file;
+}
+
 ?>
