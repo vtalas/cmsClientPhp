@@ -24,7 +24,7 @@ function getContent($url)
 				'Accept-Charset:windows-1250,utf-8;q=0.7,*;q=0.3'.
 				'Content-Type: application/x-www-form-urlencoded',
 			'content'=>
-				'UserName=admin&Password=a'
+				'UserName=admin&Password=axx'
 			)
 		);
 

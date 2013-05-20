@@ -12,6 +12,11 @@ var ApiWrapper = (function () {
 
 		this.cmsApi.getPage({id:link}, function (data) {
 			deferred.resolve(data);
+		},
+		function (err){
+			var returnUrl = (window.location);
+			var hash = (window.location.hash);
+			window.location.hash = "login?returnuccrl=" + hash;
 		});
 		return deferred;
 	};
