@@ -5,6 +5,7 @@ require  'config.php';
 try {
 	$username = isset($_POST["username"]) ? $_POST["username"] : null ;
 	$password = isset($_POST["password"]) ? $_POST["password"] : null ;
+				'UserName=admin&Password=a'
 	
 	if ($username == null || $password == null){
 		$rs['success'] = false;
