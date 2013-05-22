@@ -44,7 +44,6 @@ function curPageURL() {
 	return $pageURL;
 }
 
-
 function getContent($url, $method, $formcontent=null)
 {
 	$opts = array(
@@ -61,13 +60,22 @@ function getContent($url, $method, $formcontent=null)
 		$opts['http']['content'] = $formcontent;
 	}
 
-	///print_r($opts);	print_r($url);
 	$context = stream_context_create($opts);
 
 	if (!$file = @file_get_contents($url, false, $context)) {
-		throw new Exception("Error Processing Request", 1);
+		header($http_response_header[0]);
 	}
 	return $file;
+}
+
+
+function resolve($baseurl, $action, $id=null)
+{
+	$baseurl = $baseurl."/".$action;
+	if ($id != null) {
+		$baseurl = $baseurl."/".$id;
+	}
+	return $baseurl;
 }
 
 ?>
