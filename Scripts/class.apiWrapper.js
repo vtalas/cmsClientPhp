@@ -16,7 +16,7 @@ var ApiWrapper = (function () {
 		function (err){
 			var returnUrl = (window.location);
 			var hash = (window.location.hash);
-			window.location.hash = "login?returnuccrl=" + hash;
+			window.location.hash = "login";//?returnuccrl=" + hash;
 		});
 		return deferred;
 	};

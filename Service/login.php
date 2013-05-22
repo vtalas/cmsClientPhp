@@ -1,6 +1,9 @@
 <?php 
 require  'libs.php';
 require  'config.php';
+require  'CmsOAuthToken.php';
+session_start();
+
 try {
 	$data = json_decode(file_get_contents('php://input'));
 
@@ -12,7 +15,9 @@ try {
 		return;
 	}
 	$u = resolve(BASE_URL, 'postLogin');
-	echo getContent($u, 'POST', 'UserName='.$username.'&Password='.$password);
+	$rs = getContent($u, 'POST', 'UserName='.$username.'&Password='.$password);
+
+	$_SESSION["oauth"] = json_decode($rs);
 }
 
 catch(Exception $ex) {

@@ -20,18 +20,27 @@ function loginController($scope, cmsApi, $routeParams, $location) {
 //		return assoc;
 //	}
 
+	var loading = function(type) {
+		if (type) {
+			$scope.message = null;
+		}
+		$scope.loading = type || false;
+	};
 	$scope.submit = function () {
+		loading(true);
 		var x = {};
 		x.UserName = $scope.UserName;
 		x.Password = $scope.Password;
 		x.RequestToken = $scope.RequestToken;
 
 		cmsApi.login(x, function (data) {
-			window.location.hash = "home"
+			window.location.hash = "home";
 			console.log(data);
+			loading();
 		},
 		function(){
-			console.log("401");
+			$scope.message = "Špatné heslo nebo login";
+			loading();
 		});
 	}
 

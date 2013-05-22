@@ -1,13 +1,18 @@
-
 <div>
-	login
-	<input ng-model="UserName"/>
-</div>
-<div>
-	heslo
-	<input ng-model="Password" type="password"/>
+	<div>{{message}}</div>
 </div>
 
-<input ng-model="RequestToken" />
+<form>
+	<div>
+		login
+		<input ng-model="UserName" ng-disabled="loading"/>
+	</div>
+	<div>
+		heslo
+		<input ng-model="Password" type="password" ng-disabled="loading"/>
+	</div>
+	<input ng-model="RequestToken"/>
+	<button type="submit" ng-click="submit()" ng-disabled="loading">login</button>
+</form>
 
-<button type="submit" ng-click="submit()">login</button>
+<a href="#/home">home</a>

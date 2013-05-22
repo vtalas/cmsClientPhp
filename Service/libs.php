@@ -44,7 +44,7 @@ function curPageURL() {
 	return $pageURL;
 }
 
-function getContent($url, $method, $formcontent=null)
+function getContent($url, $method, $formcontent=null, $cookies=null)
 {
 	$opts = array(
 
@@ -52,12 +52,15 @@ function getContent($url, $method, $formcontent=null)
 			'method'=>
 				$method,
 			'header'=>
-				'Accept:application/json, text/plain, */*\r\n'
+				"Accept:application/json, text/plain, */*\r\n"
 			)
 		);
 
 	if ($formcontent != null && $method == "POST"){
 		$opts['http']['content'] = $formcontent;
+	}
+	if ($cookies != null){
+		$opts['http']['header'] .= $cookies;
 	}
 
 	$context = stream_context_create($opts);
