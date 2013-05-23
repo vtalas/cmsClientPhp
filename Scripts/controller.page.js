@@ -8,4 +8,11 @@ function pageController($scope, cmsApi, $routeParams) {
 		console.log(data)
 	});
 
+
+	$scope.post = function(){
+		cmsApi.putUserData( {data:{hvahsd:"kjbaskdjas", hjvashd: "kjabsdkjas"}}, function(data) {
+			console.log(data);
+		})
+	} ;
+
 }

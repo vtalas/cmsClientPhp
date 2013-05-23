@@ -10,7 +10,8 @@
 				getPages: { method: 'GET', isArray: true, params: {action: "getPages"} },
 				getAlbums: { method: 'GET', isArray: true, params: {action: "getAlbums"} },
 				getAlbum: { method: 'GET', isArray: false, params: {action: "getAlbum"} },
-				getAlbumPhotos: { method: 'GET', isArray: true, params: {action: "getAlbumPhotos"} }
+				getAlbumPhotos: { method: 'GET', isArray: true, params: {action: "getAlbumPhotos"} },
+				putUserData: { method: 'PUT', isArray: false, params: {action: "getAlbumPhotos",  service: "postData.php"} }
 			});
 
 		return api;

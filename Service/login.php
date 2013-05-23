@@ -1,7 +1,6 @@
 <?php 
 require  'libs.php';
 require  'config.php';
-require  'CmsOAuthToken.php';
 session_start();
 
 try {

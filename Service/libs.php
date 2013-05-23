@@ -1,4 +1,6 @@
 <?php
+require  'CmsOAuthToken.php';
+
 if (!function_exists("preprint")) { 
 	function preprint($s, $return=false) { 
 		$x = "<pre>"; 
@@ -44,19 +46,22 @@ function curPageURL() {
 	return $pageURL;
 }
 
-function getContent($url, $method, $formcontent=null, $cookies=null)
+function getContent($url, $method, $formcontent=null)
 {
+	$cookies = getCookieFromSession();
+
 	$opts = array(
 
 		'http'=>array(
 			'method'=>
-				$method,
+			$method,
 			'header'=>
-				"Accept:application/json, text/plain, */*\r\n"
+			"Accept:application/json, text/plain, */*\r\n".
+			"Content-Type:application/json;charset=UTF-8\r\n"
 			)
 		);
 
-	if ($formcontent != null && $method == "POST"){
+	if ($formcontent != null && ($method == "POST" || $method == "PUT")){
 		$opts['http']['content'] = $formcontent;
 	}
 	if ($cookies != null){
@@ -81,4 +86,24 @@ function resolve($baseurl, $action, $id=null)
 	return $baseurl;
 }
 
+
+function getCookieFromSession()
+{
+
+	$oauth = isset($_SESSION["oauth"]) ? $_SESSION["oauth"] : null;
+	$cookie = null;
+
+
+	if ($oauth){
+		$x = new CmsOAuthToken($oauth);
+
+		if ($x->isAccessExpired()){
+    //todo refresh token 
+    //return;
+		}
+		$cookie = "Cookie: oauth_token=".$x->accessToken."\r\n ";
+	}
+
+	return $cookie;
+}
 ?>
