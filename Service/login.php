@@ -6,16 +6,16 @@ session_start();
 try {
 	$data = json_decode(file_get_contents('php://input'));
 
-	$username = isset($data->{"UserName"}) ? $data->{"UserName"} : null;
-	$password = isset($data->{"Password"}) ? $data->{"Password"} : null;
-	
-	if ($username == null || $password == null){
+	$request["UserName"] = isset($data->{"UserName"}) ? $data->{"UserName"} : null;
+	$request["Password"] = isset($data->{"Password"}) ? $data->{"Password"} : null;
+	$request["RequestToken"] = isset($data->{"RequestToken"}) ? $data->{"RequestToken"} : null;
+
+	if ($request["UserName"] == null || $request["Password"] == null){
 		header($_SERVER["SERVER_PROTOCOL"]." 401 Unauthorized");
 		return;
 	}
 	$u = resolve(BASE_URL, 'postLogin');
-	$rs = getContent($u, 'POST', 'UserName='.$username.'&Password='.$password);
-
+	$rs = getContent($u, 'POST', json_encode($request));
 	$_SESSION["oauth"] = json_decode($rs);
 }
 

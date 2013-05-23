@@ -56,8 +56,8 @@ function getContent($url, $method, $formcontent=null)
 			'method'=>
 			$method,
 			'header'=>
-			"Accept:application/json, text/plain, */*\r\n".
-			"Content-Type:application/json;charset=UTF-8\r\n"
+			"Accept:application/json, text/plain, */*\r\n"
+			."Content-Type:application/json;charset=UTF-8\r\n"
 			)
 		);
 
@@ -70,7 +70,7 @@ function getContent($url, $method, $formcontent=null)
 
 	$context = stream_context_create($opts);
 
-	if (!$file = @file_get_contents($url, false, $context)) {
+	if (!$file = file_get_contents($url, false, $context)) {
 		header($http_response_header[0]);
 	}
 	return $file;

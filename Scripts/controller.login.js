@@ -1,8 +1,19 @@
 function loginController($scope, cmsApi, $routeParams, $location) {
 	var api = new ApiWrapper(cmsApi);
 
+	var loading = function (type) {
+		if (type) {
+			$scope.message = null;
+		}
+		$scope.loading = type === null || typeof type === "undefined" ? true : type;
+	};
+	loading();
+
 	cmsApi.getRequestToken(function (data) {
 		$scope.RequestToken = data.RequestToken;
+		loading(false);
+	}, function () {
+		$scope.message = "Přihlašovací službe je nedostupná.";
 	});
 
 //	function getQueryStrings() {
@@ -20,28 +31,39 @@ function loginController($scope, cmsApi, $routeParams, $location) {
 //		return assoc;
 //	}
 
-	var loading = function(type) {
-		if (type) {
-			$scope.message = null;
+	var parserStatus = function (status) {
+		var message;
+
+		switch (status) {
+			case 401:
+				message = "Špatné heslo nebo login";
+				break;
+			case 400:
+			case 500:
+				message = ".";
+				break;
+			default :
+				message = "Vyskytla se neznámá chyba ".status;
 		}
-		$scope.loading = type || false;
+		return message;
 	};
+
 	$scope.submit = function () {
-		loading(true);
+		loading();
 		var x = {};
 		x.UserName = $scope.UserName;
 		x.Password = $scope.Password;
 		x.RequestToken = $scope.RequestToken;
 
 		cmsApi.login(x, function (data) {
-			window.location.hash = "home";
-			console.log(data);
-			loading();
-		},
-		function(){
-			$scope.message = "Špatné heslo nebo login";
-			loading();
-		});
+				window.location.hash = "home";
+				console.log(data);
+				loading(false);
+			},
+			function (err) {
+				$scope.message = parserStatus(err.status);
+				loading(false);
+			});
 	}
 
 }

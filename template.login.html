@@ -1,11 +1,5 @@
-<div class="middle-container">
-	<div class="alert alert-error">
-		<button type="button" class="close" data-dismiss="alert">×</button>
-		<b>Chyba:</b>
-		{{message}}sdsjkasbdjkasbd
-	</div>
-
-	<form class="form-horizontal" ng-submit="submit()">
+<div class="middle-container" >
+		<form class="form-horizontal" ng-submit="submit()">
 		<div class="control-group">
 			<label class="control-label" for="inputEmail">Login</label>
 
@@ -29,7 +23,15 @@
 		<input ng-model="RequestToken" type="hidden"/>
 
 	</form>
+	<div class="alert alert-error" ng-show="message">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<b>Chyba:</b>
+		{{message}}
+	</div>
+
 	<a href="#/home">home</a>
+
+
 	request token :{{RequestToken}}
 </div>
 
