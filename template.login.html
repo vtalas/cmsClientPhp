@@ -1,18 +1,35 @@
-<div>
-	<div>{{message}}</div>
+<div class="middle-container">
+	<div class="alert alert-error">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<b>Chyba:</b>
+		{{message}}sdsjkasbdjkasbd
+	</div>
+
+	<form class="form-horizontal" ng-submit="submit()">
+		<div class="control-group">
+			<label class="control-label" for="inputEmail">Login</label>
+
+			<div class="controls">
+				<input type="text" id="inputEmail" placeholder="login" ng-model="UserName" ng-disabled="loading">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputPassword">Heslo</label>
+
+			<div class="controls">
+				<input type="password" id="inputPassword" ng-model="Password" placeholder="heslo" ng-disabled="loading">
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<button type="submit"  ng-disabled="loading" class="btn">Přihlásit</button>
+			</div>
+		</div>
+
+		<input ng-model="RequestToken" type="hidden"/>
+
+	</form>
+	<a href="#/home">home</a>
+	request token :{{RequestToken}}
 </div>
 
-<form>
-	<div>
-		login
-		<input ng-model="UserName" ng-disabled="loading"/>
-	</div>
-	<div>
-		heslo
-		<input ng-model="Password" type="password" ng-disabled="loading"/>
-	</div>
-	<input ng-model="RequestToken"/>
-	<button type="submit" ng-click="submit()" ng-disabled="loading">login</button>
-</form>
-
-<a href="#/home">home</a>
