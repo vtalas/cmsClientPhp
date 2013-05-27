@@ -6,7 +6,7 @@
 class CmsOAuthToken
 {
 	public $accessToken;
-	//timestamp in miliseconds
+	//timestamp in seconds
 	public $expires;
 	private $refreshToken;
 	
@@ -25,7 +25,7 @@ class CmsOAuthToken
 
 	public function expireInSeconds()
 	{
-		return ceil($this->expires / 1000 - time());
+		return ceil($this->expires - time());
 	}
 
 }
