@@ -16,7 +16,10 @@
 
 	}
 
-	.xxx{
+	ul li {
+		display: block;
+		float: left;
+		margin-left: 30px;
 	}
 </style>
 
@@ -28,15 +31,67 @@
 	</div>
 </div>
 
-		<div>
-			bsjdbj
-			<button ng-click="post()">post</button>
+<div>
 
-		</div>
+<ul>
+	<li>
+		<form name="myForm" ng-controller="userDataForm" ng-submit="post()">
+			<h3>1</h3>
+			<div>
+				<input type="text" name="key" ng-model="key" placeholder="key" value="bjkasdjkb">
+			</div>
+			<div>
+				<input type="text" name="keywords" ng-model="data.jmeno" placeholder="jmeno" required> *
+			</div>
+			<div>
+				<input type="text" name="desc" ng-model="data.prijmeni" placeholder="prijmeni">
+			</div>
+			<button type="submit">Ok</button>
+			<button ng-click="xx()">xxx</button>
+		</form>
+	</li>
+	<li>
+		<h3>2</h3>
+		<form ng-controller="userDataForm" ng-submit="post()">
+			<div>
+				<input type="text" name="key" ng-model="key" placeholder="key" value="dalsi form ">
+			</div>
+			<div>
+				<input type="text" name="keywords" ng-model="data.keywords">
+			</div>
+			<div>
+				<input type="text" name="keywords" ng-model="data.keywords">
+			</div>
+			<div>
+				<input type="text" name="keywords" ng-model="data.keywords">
+			</div>
+			<div>
+				<input type="checkbox" name="desc" ng-model="data.checkbox">
+			</div>
+			<button type="submit">Ok</button>
+		</form>
+	</li>
+	<li>
+		<h3>3</h3>
+		<form ng-controller="userDataForm" ng-submit="post()">
+			<div>
+				<input type="text" name="key" ng-model="key" placeholder="key">
+			</div>
+			<div>
+				<input type="text" name="keywords" ng-model="data.keywords">
+			</div>
+			<div>
+				<input type="text" name="desc" ng-model="data.desc">
+			</div>
+			<button type="submit">Ok</button>
+		</form>
+	</li>
 
+</ul>
+
+</div>
 
 <script id="text.thtml" type="text/ng-template"><div>
-		template TEXT :
 		{{gridelement.Resources.text.Value}}
 	</div>
 </script>
@@ -50,7 +105,7 @@
 			<div class="first-image grid_3 xxx" class="">
 				<img ngc-lazy-image="firstPhoto.Large.PhotoUri"/>
 			</div>
-			<div class="grid_9 xxx" >
+			<div class="grid_9 xxx">
 				<span ng-repeat="photo in gdataAlbumPhotos">
 					<img ngc-lazy-image="photo.Small.PhotoUri"/>
 				</span>
