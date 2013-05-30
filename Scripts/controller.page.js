@@ -8,4 +8,7 @@ function pageController($scope, cmsApi, $routeParams) {
 		console.log(data)
 	});
 
+	$scope.$on("set-message", function(e, message) {
+	    $scope.message = message;
+	});
 }
