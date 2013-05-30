@@ -15,7 +15,7 @@ try {
 		return;
 	}
 	$u = resolve(BASE_URL, 'postLogin');
-	$rs = getContent($u, 'POST', json_encode($request));
+	$rs = getContent($u, CURLOPT_POST, json_encode($request));
 	$_SESSION["oauth"] = json_decode($rs);
 }
 

@@ -46,7 +46,32 @@ function curPageURL() {
 	return $pageURL;
 }
 
-function getContent($url, $method, $formcontent=null)
+function getContent($url, $method=CURLOPT_HTTPGET, $formcontent=null) {
+	$oauthCookie = getCookieFromSession();
+
+	$ch = curl_init();
+	$timeout = 5;
+
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+	curl_setopt($ch, CURLINFO_HEADER_OUT, 1);
+	curl_setopt($ch, $method, 1);
+
+	if ($oauthCookie !=  null) {
+		curl_setopt($ch, CURLOPT_COOKIE, $oauthCookie);
+	}
+
+	$data = curl_exec($ch);
+	$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	$header = curl_getinfo($ch, CURLINFO_HEADER_OUT);
+
+	header($_SERVER["SERVER_PROTOCOL"]." ".$http_status);
+	curl_close($ch);
+	return $data;
+}
+
+function getContentXX($url, $method, $formcontent=null)
 {
 	$cookies = getCookieFromSession();
 
@@ -93,7 +118,6 @@ function getCookieFromSession()
 	$oauth = isset($_SESSION["oauth"]) ? $_SESSION["oauth"] : null;
 	$cookie = null;
 
-
 	if ($oauth){
 		$x = new CmsOAuthToken($oauth);
 
@@ -101,7 +125,7 @@ function getCookieFromSession()
     //todo refresh token 
     //return;
 		}
-		$cookie = "Cookie: oauth_token=".$x->accessToken."\r\n ";
+		$cookie = "oauth_token=".$x->accessToken;
 	}
 
 	return $cookie;

@@ -17,7 +17,7 @@ try {
 	$u = resolve(BASE_URL, 'PutUserData', $key);
 	
 	$xx = json_encode(json_encode($userdata));
-	echo $rs = json_decode(getContent($u, 'PUT', $xx));
+	echo $rs = json_decode(getContent($u, CURLOPT_PUT, $xx));
 }
 
 catch(Exception $ex) {
