@@ -8,10 +8,10 @@ try {
 	$action = isset($_GET["action"]) ? $_GET["action"] : null ;
 	$id = isset($_GET["id"]) ? $_GET["id"] : null ;
 	$u = resolve(BASE_URL, $action, $id);
-	echo getContent($u);
+	
+	echo getContent($u)["content"];
 }
 catch(Exception $ex) {
 	echo ExceptionToJson($ex, error_get_last());
 }
-
 ?>

@@ -15,8 +15,12 @@ try {
 		return;
 	}
 	$u = resolve(BASE_URL, 'postLogin');
+
 	$rs = getContent($u, CURLOPT_POST, json_encode($request));
-	$_SESSION["oauth"] = json_decode($rs);
+
+	if ($rs["status"] == 200) {
+		$_SESSION["oauth"] = json_decode($rs["content"]);
+	}
 }
 
 catch(Exception $ex) {

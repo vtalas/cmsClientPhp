@@ -46,7 +46,7 @@ function curPageURL() {
 	return $pageURL;
 }
 
-function getContent($url, $method=CURLOPT_HTTPGET, $formcontent=null) {
+function getContent($url, $method=CURLOPT_HTTPGET, $formdata=null) {
 	$oauthCookie = getCookieFromSession();
 
 	$ch = curl_init();
@@ -57,10 +57,17 @@ function getContent($url, $method=CURLOPT_HTTPGET, $formcontent=null) {
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 	curl_setopt($ch, CURLINFO_HEADER_OUT, 1);
 	curl_setopt($ch, $method, 1);
+	
+	if ($formdata != null) {
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json;charset=UTF-8')); 
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $formdata);
+	}
 
 	if ($oauthCookie !=  null) {
 		curl_setopt($ch, CURLOPT_COOKIE, $oauthCookie);
 	}
+
+//preprint(curl_getinfo($ch, CURLOPT_POSTFIELDS));
 
 	$data = curl_exec($ch);
 	$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -68,7 +75,9 @@ function getContent($url, $method=CURLOPT_HTTPGET, $formcontent=null) {
 
 	header($_SERVER["SERVER_PROTOCOL"]." ".$http_status);
 	curl_close($ch);
-	return $data;
+	$response["content"] = $data;
+	$response["status"] = $http_status;
+	return $response;
 }
 
 function getContentXX($url, $method, $formcontent=null)
