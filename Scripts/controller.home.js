@@ -3,9 +3,5 @@ function homeController($scope, cmsApi) {
 
 	api.getPages().then(function (data) {
    		$scope.pages = data;
-		console.log(data)
 	});
-
-
-
 }

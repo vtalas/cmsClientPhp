@@ -16,6 +16,10 @@ module.directive("gridelement", function ($compile, $templateCache	) {
 	var directiveDefinitionObject = {
 		scope: { grid: "=", gridelement: "=" },
 		link: function (scope, iElement, tAttrs, controller) {
+			scope.getGridElement = function (){
+				return scope.gridelement;
+			};
+
 			var skin = scope.gridelement.Skin || "";
 			var template = $templateCache.get(scope.gridelement.Type + skin+".thtml");
 			var compiled = $compile(template)(scope);
