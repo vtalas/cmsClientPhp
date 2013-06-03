@@ -20,8 +20,8 @@ try {
 
 	if ($rs["status"] == 200) {
 		$_SESSION["oauth"] = json_decode($rs["content"]);
-		$_SESSION["oauth"]["username"] = $request["UserName"];
 	}
+
 }
 
 catch(Exception $ex) {

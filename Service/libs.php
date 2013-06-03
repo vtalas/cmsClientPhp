@@ -67,16 +67,18 @@ function getContent($url, $method=CURLOPT_HTTPGET, $formdata=null) {
 		curl_setopt($ch, CURLOPT_COOKIE, $oauthCookie);
 	}
 
-//preprint(curl_getinfo($ch, CURLOPT_POSTFIELDS));
 
 	$data = curl_exec($ch);
 	$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 	$header = curl_getinfo($ch, CURLINFO_HEADER_OUT);
 
 	header($_SERVER["SERVER_PROTOCOL"]." ".$http_status);
+//preprint(curl_error ($ch ));
+
 	curl_close($ch);
 	$response["content"] = $data;
 	$response["status"] = $http_status;
+	//preprint($response);
 	return $response;
 }
 
