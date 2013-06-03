@@ -57,7 +57,6 @@ function loginController($scope, cmsApi, $routeParams, $location) {
 
 		cmsApi.login(x, function (data) {
 				window.location.hash = "home";
-				console.log(data);
 				loading(false);
 			},
 			function (err) {
