@@ -18,19 +18,13 @@ function userDataForm($scope, cmsApi, $routeParams) {
 		}
 		return message;
 	};
-	console.log($scope);
-
 
 	$scope.post = function () {
 		cmsApi.putUserData({data: $scope.data, key: $scope.key}, function (data) {
-			console.log(data);
 		}, function (err) {
 			$scope.$emit("set-message", parserStatus(err.status));
 
 		});
-	};
-	$scope.xx = function () {
-		console.log($scope.myForm)
 	};
 
 	$scope.serialized = function () {

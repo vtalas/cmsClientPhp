@@ -7,7 +7,6 @@ function ngcGdataAlbumDirective(cmsApi) {
 			return function (scope, element, attrs) {
 
 				api.getAlbum(scope.ngcGdataAlbum).then(function (data) {
-					console.log(scope.ngcGdataAlbum, data)
 				});
 			};
 		}

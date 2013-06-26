@@ -1,6 +1,6 @@
 ﻿angular.module('apiModule', ['ngResource', 'appConfigModule'])
-	.factory('cmsApi', ['$resource', 'appConfig', function ($resource) {
-		var api = $resource('Service/:service',
+	.factory('cmsApi', ['$resource', function ($resource) {
+		var api = $resource('Service/cmsClientPHPService/:service',
 			{ service: "serverProxy.php" },
 			{
 				getPage: { method: 'GET', isArray: false, params: {action: "getPage"} },
