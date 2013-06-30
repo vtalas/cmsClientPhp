@@ -1,0 +1,163 @@
+<script id="text.thtml" type="text/ng-template"><div>
+		{{gridelement.Resources.text.Value}}
+	</div>
+</script>
+
+<script id="simplehtml.thtml" type="text/ng-template"><div ng-controller="simplehtml">
+	<div ng-bind-html-unsafe="ContentToHtml()"></div>
+	</div>
+</script>
+
+<script id="clientspecificpostdataform.thtml" type="text/ng-template"><div>
+	<ul>
+		<li>
+			<form name="myForm" ng-controller="userDataForm" ng-submit="post()">
+				<h3>1</h3>
+				<div>
+					<input type="text" name="key" ng-model="key" placeholder="key" value="bjkasdjkb">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.jmeno" placeholder="jmeno" required> *
+				</div>
+				<div>
+					<input type="text" name="desc" ng-model="data.prijmeni" placeholder="prijmeni">
+				</div>
+				<button type="submit">Ok</button>
+				<button ng-click="xx()">xxx</button>
+			</form>
+		</li>
+		<li>
+			<h3>2</h3>
+			<form ng-controller="userDataForm" ng-submit="post()">
+				<div>
+					<input type="text" name="key" ng-model="key" placeholder="key" value="dalsi form ">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.keywords">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.keywords">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.keywords">
+				</div>
+				<div>
+					<input type="checkbox" name="desc" ng-model="data.checkbox">
+				</div>
+				<button type="submit">Ok</button>
+			</form>
+		</li>
+		<li>
+			<h3>3</h3>
+			<form ng-controller="userDataForm" ng-submit="post()">
+				<div>
+					<input type="text" name="key" ng-model="key" placeholder="key">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.keywords">
+				</div>
+				<div>
+					<input type="text" name="desc" ng-model="data.desc">
+				</div>
+				<button type="submit">Ok</button>
+			</form>
+		</li>
+
+	</ul>
+	<div class="clearfix"></div>
+	</div>
+</script>
+
+
+<style>
+	.gdata-album h1 {
+		margin-bottom: 0px;
+	}
+
+	.gdata-album h3 {
+		margin-top: 0px;
+	}
+
+	.gdata-album .first-image {
+
+	}
+
+	ul li {
+		display: block;
+		float: left;
+		margin-left: 30px;
+	}
+	.image-small {
+		display: inline-block;
+		padding: 0 10px 10px 0;
+	}
+</style>
+<style>
+	.dumbBoxWrap { /* The div that shows/hides. */
+		z-index:40001; /* High z-index to ensure it appears above all content */
+		position: absolute;
+		top:0;
+		left:0;
+	}
+	.dumbBoxOverlay { /* Shades out background when selector is active */
+		position:fixed;
+		width:100%;
+		height:100%;
+		background-color:black;
+		opacity:.8; /* Sets opacity so it's partly transparent */
+		-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; /* IE transparency */
+		filter:alpha(opacity=80); /* More IE transparency */
+		z-index:40001;
+	}
+	.vertical-offset { /* Fixed position to provide the vertical offset */
+		position:fixed;
+		width:100%;
+		z-index:40002; /* ensures box appears above overlay */
+	}
+	.dumbBox { /* The actual box, centered in the fixed-position div */
+		width:405px; /* Whatever width you want the box to be */
+		position:relative;
+		margin:0 auto;
+
+		background-color:white;
+		padding:10px;
+		border:1px solid black;
+	}
+
+</style>
+
+<script id="gdataalbum.thtml" type="text/ng-template"><div>
+
+	<div class="gdata-album" ng-controller="gridelementGdataAlbumCtrl">
+
+			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" >
+				<img ngc-lazy-image="firstPhoto.Large.PhotoUri"/>
+			</div>
+		<div class="grid_12">
+				<div ng-repeat="photo in gdataAlbumPhotos" class="image-small">
+					<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link"><img  ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
+				</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+</script>
+
+<script id="gdataalbum_Single.thtml" type="text/ng-template"><div>
+
+	<div class="gdata-album" ng-controller="gridelementGdataAlbumCtrl">
+
+		<h1>{{gridelement.Resources.header.Value}}</h1>
+			<h3>{{gridelement.Resources.text.Value}}</h3>
+			<div class="first-image grid_3 btn-link" ng-click="showImage(gdataAlbumId, 0)" >
+				<img ngc-lazy-image="firstPhoto.Thumbnails[1].PhotoUri"/>
+			</div>
+		<div class="grid_9">
+				<div ng-repeat="photo in gdataAlbumPhotos" class="image-small">
+					<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link"><img  ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
+				</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+</script>

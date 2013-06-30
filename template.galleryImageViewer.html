@@ -1,0 +1,52 @@
+<style>
+	.dumbBoxWrap { /* The div that shows/hides. */
+		z-index:40001; /* High z-index to ensure it appears above all content */
+		position: absolute;
+		top:0;
+		left:0;
+	}
+	.dumbBoxOverlay { /* Shades out background when selector is active */
+		position:absolute;
+		width:100%;
+		height:100%;
+		background-color:black;
+		opacity:.8;
+		min-width: 1020px;
+		-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+		filter:alpha(opacity=80);
+		z-index:40001;
+	}
+	.vertical-offset { /* Fixed position to provide the vertical offset */
+		position:absolute;
+		z-index:40002; /* ensures box appears above overlay */
+	}
+	.dumbBox { /* The actual box, centered in the fixed-position div */
+		width:405px; /* Whatever width you want the box to be */
+		position:relative;
+		margin:0 auto;
+
+		background-color:white;
+		padding:10px;
+		border:1px solid black;
+	}
+
+</style>
+
+<div class="dumbBoxWrap" ng-controller="galleryImageViewerController" ng-show="gallery" >
+	<div class="dumbBoxOverlay">
+		&nbsp;
+	</div>
+	<div class="vertical-offset"  >
+		<div >
+			<button ng-click="prev()" class="btn btn-link" tooltip="předchozí (kurzor doleva)" tooltip-placement="right"><b class="icon icon-chevron-left icon-white">&nbsp</b></button>
+			<button ng-click="next()" class="btn btn-link" tooltip="další (kurzor doprava)" tooltip-placement="right"><b class="icon icon-chevron-right icon-white">&nbsp</b></button>
+			<button ng-click="close()" class="btn btn-link" tooltip="zavřít (Esc)" tooltip-placement="bottom"><b class="icon icon-remove icon-white">&nbsp</b></button>
+			<span style="color: white" ng-show="skipping > 0" >...přeskakujem.....</span>
+			<div ng-show="loading" style="float:right"><img src="horizontalloadersmall_white.gif"></div>
+		</div>
+
+		<ngc-responsive-image gallery-image="image" />
+
+	</div>
+</div>
+

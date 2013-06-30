@@ -1,23 +1,25 @@
-function gridelementGdataAlbumCtrl($scope, cmsApi, $routeParams) {
-	var api = new ApiWrapper(cmsApi);
-
-
+function gridelementGdataAlbumCtrl($scope, test, $routeParams, $location,$rootScope) {
 	$scope.gdataAlbumId = getAlbumId();
-	$scope.gdataAlbumPhotos = getAlbumId();
+	$scope.route = {
+		link: $routeParams.link
+	};
 
 	function getAlbumId() {
-		var x = JSON.parse($scope.gridelement.Content);
+		var x = $scope.gridelement.Content;
 		return x !== null ? x.gdataAlbumId : null;
 	}
 
-	api.getAlbumPhotos($scope.gdataAlbumId).then(function (data) {
-		$scope.firstPhoto = data.splice(0, 1)[0];
-		console.log($scope.firstPhoto)
-		$scope.gdataAlbumPhotos = data;
-
-		console.log($scope.gdataAlbumId, data)
+	test.getAlbumPhotos($scope.gdataAlbumId).then(function (data) {
+		var copy = data.slice();
+		$scope.firstPhoto = copy.splice(0, 1)[0];
+		$scope.gdataAlbumPhotos = copy;
+		$scope.gdataAlbumPhotosAll = data;
 	});
 
-
+	$scope.showImage = function (galleryId, imageIndex ) {
+		$location.search("i", imageIndex);
+		$location.search("g", galleryId);
+		$rootScope.$broadcast("getAlbumPhotosSuccess", $scope.gdataAlbumPhotosAll, imageIndex);
+	};
 
 }

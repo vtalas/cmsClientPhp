@@ -1,3 +1,67 @@
-<div ng-repeat="grid in pages">
-	<h3><a href="#/page/{{grid.Link}}">{{grid.Name}}</a></h3>
+<style>
+
+	.handwritten {
+		font-family: 'Advent Pro', sans-serif;
+	}
+
+	.home {
+		height: 240px;;
+	}
+
+	.homeimage {
+		height: 230px;;
+		width: 230px;;
+		border: 1px solid gray;
+	}
+
+	.right {
+		padding-bottom: 10px;
+		border-right: 15px solid black;
+	}
+
+	.jara {
+		margin-right: 10px;
+		text-align: right;
+	}
+
+	.jara h1 {
+		font-size: 4em;
+		margin-bottom: 0px;
+		margin-top: 0px;
+	}
+
+	.jara h3 {
+		margin-top: 0px;
+	}
+</style>
+<div class="grid_3" ng-repeat="image in homeImagesBegin" >
+	<div class="home">
+		<div class="homeimage">
+			<a href="#/p/gallery_1/0"> <img src="{{image.Thumbnails[1].PhotoUri}}"/></a>
+		</div>
+	</div>
 </div>
+<div class="grid_6">
+	<div class="home jara">
+		<h1 class="handwritten">jara tomka </h1>
+		<h3 class="handwritten">umelecky rezbar </h3>
+	</div>
+</div>
+<div class="grid_3" ng-repeat="image in homeImagesEnd">
+	<div class="home">
+		<div class="homeimage">
+			<img src="{{image.Thumbnails[1].PhotoUri}}" />
+		</div>
+	</div>
+</div>
+
+
+<div class="xxx">
+
+
+	<div ng-repeat="grid in pages">
+		<h3><a href="#/page/{{grid.Link}}">{{grid.Name}}</a></h3>
+	</div>
+
+</div>
+

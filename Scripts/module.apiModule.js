@@ -1,6 +1,6 @@
 ﻿angular.module('apiModule', ['ngResource', 'appConfigModule'])
-	.factory('cmsApi', ['$resource', 'appConfig', function ($resource) {
-		var api = $resource('Service/:service',
+	.factory('cmsApi', ['$resource', function ($resource) {
+		var api = $resource('Service/cmsClientPHPService/:service',
 			{ service: "serverProxy.php" },
 			{
 				getPage: { method: 'GET', isArray: false, params: {action: "getPage"} },
@@ -11,6 +11,7 @@
 				getAlbums: { method: 'GET', isArray: true, params: {action: "getAlbums"} },
 				getAlbum: { method: 'GET', isArray: false, params: {action: "getAlbum"} },
 				getAlbumPhotos: { method: 'GET', isArray: true, params: {action: "getAlbumPhotos"} },
+				getPhotos: { method: 'GET', isArray: true, params: {action: "getPhotos"} },
 				putUserData: { method: 'PUT', isArray: false, params: {service: "postData.php"} }
 			});
 

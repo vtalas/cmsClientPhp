@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="cs">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>d3js</title>
+
+	<script type="text/javascript" src="Scripts/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="Scripts/libs/d3.v3.js"></script>
+	<script type="text/javascript" src="Scripts/libs/aa.js"></script>
+
+<style>
+	.xxx{
+		position: relative;
+		z-index: 1000;
+	}
+</style>
+</head>
+<body>
+
+<div id="viz" style="border: 1px solid red"></div>
+<script type="text/javascript">
+	var x = new Animator("#viz");
+</script>
+
+<script src="Scripts/libs/watcher.js"></script>
+<script src="Scripts/libs/collector.js"></script>
+<script>
+	(function () {
+		var watcher = new FileWatcher(),
+			resources = ResourceCollector.collect();
+
+		watcher.addListener(function (url) {
+			if (url.match(/(js|html)$/)) {
+				location.reload();
+			}
+		});
+
+		watcher.watch(resources);
+	}());</script>
+</body>
+</html>
+

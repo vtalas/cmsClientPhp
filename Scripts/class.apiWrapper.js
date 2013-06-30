@@ -4,20 +4,38 @@ var ApiWrapper = (function () {
 	function ApiWrapper(cmsApiImpl, cache) {
 		this.cmsApi = cmsApiImpl;
 		this.cache = cache;
-		//this.converter = new RawDataConverter();
 	}
 
-	ApiWrapper.prototype.getPage = function (link) {
-		var deferred = $.Deferred();
+	ApiWrapper.prototype.chuj = function (key, deferred, callback) {
+		var response = this.cache.get(key);
 
-		this.cmsApi.getPage({id:link}, function (data) {
-			deferred.resolve(data);
-		},
-		function (err){
-			var returnUrl = (window.location);
-			var hash = (window.location.hash);
-			window.location.hash = "login";//?returnuccrl=" + hash;
+		if (response) {
+			deferred.resolve(response);
+			return deferred;
+		}
+
+		callback();
+
+		return deferred;
+	};
+
+	ApiWrapper.prototype.getPage = function (link) {
+		var deferred = $.Deferred(),
+			key = "getPage_" + link,
+			self = this;
+
+		this.chuj(key, deferred, function () {
+			self.cmsApi.getPage({id: link}, function (data) {
+					self.cache.put(key, data);
+					deferred.resolve(data);
+				},
+				function (err) {
+					var returnUrl = (window.location);
+					var hash = (window.location.hash);
+					window.location.hash = "login";//?returnuccrl=" + hash;
+				});
 		});
+
 		return deferred;
 	};
 
@@ -43,12 +61,46 @@ var ApiWrapper = (function () {
 		return deferred;
 	};
 	ApiWrapper.prototype.getAlbumPhotos = function (albumId) {
-		var deferred = $.Deferred();
+		var deferred = $.Deferred(),
+			key = albumId + "getAlbumPhotos",
+			response = this.cache.get(key),
+			self = this;
+
+		if (response) {
+			deferred.resolve(response);
+			return deferred;
+		}
 
 		this.cmsApi.getAlbumPhotos({id: albumId }, function (data) {
+			self.cache.put(key, data);
 			deferred.resolve(data);
 		});
+
 		return deferred;
+	};
+	ApiWrapper.prototype.getPhotos = function () {
+		var deferred = $.Deferred(),
+			key = "getAlbumPhotosStream",
+			response = this.cache.get(key),
+			self = this;
+
+		if (response) {
+			deferred.resolve(response);
+			return deferred;
+		}
+
+		this.cmsApi.getPhotos(function (data) {
+			self.cache.put(key, data);
+			deferred.resolve(data);
+		});
+
+		return deferred;
+	};
+
+	ApiWrapper.prototype.getImageFromAlbum = function (albumId, imageIndex) {
+		return this.getAlbumPhotos(albumId).then(function (data) {
+			return data[imageIndex];
+		})
 	};
 	ApiWrapper.prototype.getAlbums = function () {
 		var deferred = $.Deferred();
