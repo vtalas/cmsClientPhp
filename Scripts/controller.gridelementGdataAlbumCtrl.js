@@ -9,6 +9,8 @@ function gridelementGdataAlbumCtrl($scope, test, $routeParams, $location,$rootSc
 		return x !== null ? x.gdataAlbumId : null;
 	}
 
+	console.log($scope.gdataAlbumId);
+
 	test.getAlbumPhotos($scope.gdataAlbumId).then(function (data) {
 		var copy = data.slice();
 		$scope.firstPhoto = copy.splice(0, 1)[0];

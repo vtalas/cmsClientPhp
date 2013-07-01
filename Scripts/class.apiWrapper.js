@@ -63,17 +63,18 @@ var ApiWrapper = (function () {
 	ApiWrapper.prototype.getAlbumPhotos = function (albumId) {
 		var deferred = $.Deferred(),
 			key = albumId + "getAlbumPhotos",
-			response = this.cache.get(key),
 			self = this;
 
-		if (response) {
-			deferred.resolve(response);
+		if (!albumId) {
+			deferred.resolve([]);
 			return deferred;
 		}
 
-		this.cmsApi.getAlbumPhotos({id: albumId }, function (data) {
-			self.cache.put(key, data);
-			deferred.resolve(data);
+		this.chuj(key, deferred, function () {
+			self.cmsApi.getAlbumPhotos({id: albumId }, function (data) {
+				self.cache.put(key, data);
+				deferred.resolve(data);
+			});
 		});
 
 		return deferred;

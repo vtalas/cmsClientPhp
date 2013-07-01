@@ -2,8 +2,19 @@ function pController($scope, test, $routeParams, $location) {
 	$scope.link = $routeParams.link;
 
 	var getIndex = function () {
-		var index = $routeParams.elementIndex;
-		return isNaN(index) ? 0 : index;
+		var search = $location.search().g,
+			elemIndex = $routeParams.elementIndex,
+			index;
+			
+		index = !isNaN(elemIndex) ? elemIndex : 0;
+
+		console.log(isNaN(search), search)
+		if (!isNaN(search)) {
+			console.log("kasbdjkas", search)
+			index = search;
+		}
+
+		return index;
 	};
 
 	test.getPage($scope.link).then(function (data) {
@@ -11,10 +22,9 @@ function pController($scope, test, $routeParams, $location) {
 		$scope.currentGridElement = $scope.page.GridElements[getIndex()];
 	});
 
-
 	var setNewLocation = function (index) {
-		var base = "/p/" + $scope.link + "/";
-		$location.path(base + index);
+		$location.search("g", index);
+		$scope.currentGridElement = $scope.page.GridElements[index];
 	};
 
 
