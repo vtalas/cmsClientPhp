@@ -92,6 +92,11 @@
 		padding-left: 0px;
 		padding-right: 10px;
 	}
+	.gdata-album-list .first-image {
+		max-height: 460px;
+		overflow: hidden;
+		padding-top: 10px;
+	}
 	.gdata-album-list .image-small.last {
 		padding-right: 0px;
 	}
@@ -132,13 +137,11 @@
 		padding:10px;
 		border:1px solid black;
 	}
-
 </style>
 
 <script id="gdataalbum.thtml" type="text/ng-template"><div>
 
 	<div class="gdata-album-list" ng-controller="gridelementGdataAlbumCtrl">
-
 			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto">
 				<div style="padding-right:10px">
 				<img ngc-lazy-image="firstPhoto.Large.PhotoUri"/>
@@ -154,7 +157,6 @@
 </script>
 
 <script id="gdataalbum_Single.thtml" type="text/ng-template"><div>
-
 	<div class="gdata-album" ng-controller="gridelementGdataAlbumCtrl">
 
 		<h1>{{gridelement.Resources.header.Value}}</h1>

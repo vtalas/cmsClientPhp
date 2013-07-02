@@ -1,8 +1,28 @@
-<ul>
+<style>
+	.navigation {
+		margin-left: 20px;
+		position: fixed;
+		z-index: 10;
+		width: 100%;
+		background-color: red;
+	}
+	.navigation li {
+		margin: 0;
+		padding: 0;
+	}
+</style>
+
+<!--<div class="btn-group">-->
+	<!--<a class="btn" href="#/home">home</a>-->
+<!--</div>-->
+
+<ul class="navigation">
 	<li><button ng-click="prev()">prev</button></li>
 	<li><button ng-click="next()">next</button></li>
 </ul>
+
 <div class="clear"></div>
+
 <div gridelement="currentGridElement"></div>
 
 <div ng-include="'template.galleryImageViewer.html'"></div>

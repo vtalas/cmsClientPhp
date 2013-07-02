@@ -11,4 +11,5 @@ function homeController($scope, test) {
 		$scope.homeImagesBegin = data.slice(0, 6);
 		$scope.homeImagesEnd = data.slice(7, 11);
 	});
+
 }
