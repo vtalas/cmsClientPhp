@@ -1,4 +1,8 @@
-var module = angular.module("defaultClient", ["apiModule", "ui.keypress", "ui.event", "ui.bootstrap"]);
+angular.module('HashBangURLs', []).config(['$locationProvider', function($location) {
+	$location.hashPrefix('!');
+}]);
+
+var module = angular.module("defaultClient", ["apiModule", "ui.keypress", "ui.event", "ui.bootstrap", "HashBangURLs"]);
 
 module.factory('cache', ['$cacheFactory', function ($cacheFactory) {
 	return $cacheFactory("jarda");

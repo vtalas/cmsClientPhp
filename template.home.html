@@ -33,11 +33,12 @@
 	.jara h3 {
 		margin-top: 0px;
 	}
+
 </style>
 <div class="grid_3" ng-repeat="image in homeImagesBegin" >
 	<div class="home">
 		<div class="homeimage">
-			<a href="#/p/gallery_1/0"> <img src="{{image.Thumbnails[1].PhotoUri}}"/></a>
+			<a href="#!/p/gallery_1/0"> <img src="{{image.Thumbnails[1].PhotoUri}}"/></a>
 		</div>
 	</div>
 </div>
@@ -60,7 +61,7 @@
 
 
 	<div ng-repeat="grid in pages">
-		<h3><a href="#/page/{{grid.Link}}">{{grid.Name}}</a></h3>
+		<h3><a href="#!/page/{{grid.Link}}">{{grid.Name}}</a></h3>
 	</div>
 
 </div>
