@@ -112,5 +112,15 @@ var ApiWrapper = (function () {
 		return deferred;
 	};
 
+	ApiWrapper.prototype.snapshot = function (pageContent) {
+		var deferred = $.Deferred();
+
+		this.cmsApi.putSnapshot({data: pageContent}, function (data) {
+			deferred.resolve(data);
+		});
+
+		return deferred.promise();
+	};
+
 	return ApiWrapper;
 }());

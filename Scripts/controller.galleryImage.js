@@ -83,7 +83,7 @@ function galleryImageViewerController($scope, $routeParams, test, $location) {
 	}
 
 	$scope.close = function () {
-		location.hash = $location.path();
+		location.hash = "!" + $location.path();
 	};
 
 	$scope.next = function () {

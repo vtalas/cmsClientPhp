@@ -12,7 +12,8 @@
 				getAlbum: { method: 'GET', isArray: false, params: {action: "getAlbum"} },
 				getAlbumPhotos: { method: 'GET', isArray: true, params: {action: "getAlbumPhotos"} },
 				getPhotos: { method: 'GET', isArray: true, params: {action: "getPhotos"} },
-				putUserData: { method: 'PUT', isArray: false, params: {service: "postData.php"} }
+				putUserData: { method: 'PUT', isArray: false, params: {service: "postData.php"} },
+				putSnapshot: { method: 'PUT', isArray: false, params: {service: "snapshot.php"} }
 			});
 
 		return api;

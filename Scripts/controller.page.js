@@ -4,4 +4,6 @@ function pageController($scope, test, $routeParams) {
 	test.getPage($scope.link).then(function (data) {
 		$scope.page = data;
 	});
+
+
 }

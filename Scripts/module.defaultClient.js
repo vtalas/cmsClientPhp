@@ -60,7 +60,7 @@ module.directive("ngcGdataAlbum", ngcGdataAlbumDirective);
 module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
-module.controller("appController", function ($scope) {
+module.controller("appController", function ($scope, test, $location) {
 
 	$scope.globalKeydown = function (event) {
 		$scope.$broadcast("global-keydown", event);
@@ -68,6 +68,15 @@ module.controller("appController", function ($scope) {
 
 	$scope.$on("set-message", function(e, message) {
 		$scope.message = message;
+	});
+
+	$scope.$on("page-loaded", function(e) {
+		var pageContent = $("html").html();
+
+		console.log($location.path());
+		test.snapshot(pageContent, $location.path()).then( function(data){
+			//console.log("data", data);
+		});
 	});
 });
 
