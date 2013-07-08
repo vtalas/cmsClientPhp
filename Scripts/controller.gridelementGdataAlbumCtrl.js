@@ -1,4 +1,4 @@
-function gridelementGdataAlbumCtrl($scope, test, $routeParams, $location,$rootScope) {
+var gridelementGdataAlbumCtrl =  ["$scope", "test", "$routeParams", "$location", "$rootScope", function ($scope, test, $routeParams, $location, $rootScope) {
 	$scope.gdataAlbumId = getAlbumId();
 	$scope.route = {
 		link: $routeParams.link
@@ -11,17 +11,18 @@ function gridelementGdataAlbumCtrl($scope, test, $routeParams, $location,$rootSc
 
 	console.log($scope.gdataAlbumId);
 
-	test.getAlbumPhotos($scope.gdataAlbumId).then(function (data) {
-		var copy = data.slice();
-		$scope.firstPhoto = copy.splice(0, 1)[0];
-		$scope.gdataAlbumPhotos = copy;
-		$scope.gdataAlbumPhotosAll = data;
-	});
+	test.getAlbumPhotos($scope.gdataAlbumId)
+		.then(function (data) {
+			var copy = data.data.slice();
+			$scope.firstPhoto = copy.splice(0, 1)[0];
+			$scope.gdataAlbumPhotos = copy;
+			$scope.gdataAlbumPhotosAll = data;
+		});
 
-	$scope.showImage = function (galleryId, imageIndex ) {
+	$scope.showImage = function (galleryId, imageIndex) {
 		$location.search("i", imageIndex);
 		$location.search("g", galleryId);
 		$rootScope.$broadcast("getAlbumPhotosSuccess", $scope.gdataAlbumPhotosAll, imageIndex);
 	};
 
-}
+}];

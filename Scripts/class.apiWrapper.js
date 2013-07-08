@@ -45,6 +45,7 @@ var ApiWrapper = (function () {
 		this.cmsApi.getPages(function (data) {
 			deferred.resolve(data);
 		});
+
 		return deferred;
 	};
 
@@ -58,8 +59,10 @@ var ApiWrapper = (function () {
 		this.cmsApi.getAlbum({id: albumId }, function (data) {
 			deferred.resolve(data);
 		});
+
 		return deferred;
 	};
+
 	ApiWrapper.prototype.getAlbumPhotos = function (albumId) {
 		var deferred = $.Deferred(),
 			key = albumId + "getAlbumPhotos",
@@ -79,30 +82,21 @@ var ApiWrapper = (function () {
 
 		return deferred;
 	};
+
 	ApiWrapper.prototype.getPhotos = function () {
 		var deferred = $.Deferred(),
 			key = "getAlbumPhotosStream",
-			response = this.cache.get(key),
 			self = this;
 
-		if (response) {
-			deferred.resolve(response);
-			return deferred;
-		}
-
-		this.cmsApi.getPhotos(function (data) {
-			self.cache.put(key, data);
-			deferred.resolve(data);
+		this.chuj(key, deferred, function () {
+			self.cmsApi.getPhotos(function (data) {
+				self.cache.put(key, data);
+				deferred.resolve(data);
+			});
 		});
-
 		return deferred;
 	};
 
-	ApiWrapper.prototype.getImageFromAlbum = function (albumId, imageIndex) {
-		return this.getAlbumPhotos(albumId).then(function (data) {
-			return data[imageIndex];
-		})
-	};
 	ApiWrapper.prototype.getAlbums = function () {
 		var deferred = $.Deferred();
 
@@ -112,14 +106,20 @@ var ApiWrapper = (function () {
 		return deferred;
 	};
 
-	ApiWrapper.prototype.snapshot = function (pageContent) {
+	ApiWrapper.prototype.snapshot = function (pageContent, path) {
 		var deferred = $.Deferred();
 
-		this.cmsApi.putSnapshot({data: pageContent}, function (data) {
+		this.cmsApi.putSnapshot({data: pageContent, path: path}, function (data) {
 			deferred.resolve(data);
 		});
 
 		return deferred.promise();
+	};
+
+	ApiWrapper.prototype.checkForSnapshot = function (scope, data) {
+		if (data.snapshot){
+			scope.$emit("page-loaded");
+		}
 	};
 
 	return ApiWrapper;

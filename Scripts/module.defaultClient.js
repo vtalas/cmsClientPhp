@@ -5,14 +5,14 @@ angular.module('HashBangURLs', []).config(['$locationProvider', function($locati
 var module = angular.module("defaultClient", ["apiModule", "ui.keypress", "ui.event", "ui.bootstrap", "HashBangURLs"]);
 
 module.factory('cache', ['$cacheFactory', function ($cacheFactory) {
-	return $cacheFactory("jarda");
+	return $cacheFactory("cmsCache");
 }]);
 
 module.factory("test", ['cmsApi' ,'cache', function (cmsApi, cache) {
 	return new ApiWrapper(cmsApi, cache);
 }]);
 
-module.config(['$routeProvider', '$provide', function ($routeProvider) {
+module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 		.when('/page/:link', {reloadOnSearch: false, controller: pageController, templateUrl: 'template.page.html', resolve: {api: "test"}})
 		.when('/p/:link/:elementIndex', {reloadOnSearch: false, controller: pController, templateUrl: 'template.p.html'})
@@ -35,8 +35,8 @@ module.directive('shortcut', function() {
 });
 
 
-module.directive("gridelement", function ($compile, $templateCache	) {
-	var directiveDefinitionObject = {
+module.directive("gridelement", ["$compile", "$templateCache", function ($compile, $templateCache) {
+	return {
 		scope: { grid: "=", gridelement: "=" },
 		link: function (scope, iElement, tAttrs, controller) {
 			scope.$watch("gridelement", function (val) {
@@ -53,14 +53,13 @@ module.directive("gridelement", function ($compile, $templateCache	) {
 			};
 		}
 	};
-	return directiveDefinitionObject;
-});
+}]);
 
-module.directive("ngcGdataAlbum", ngcGdataAlbumDirective);
+module.directive("ngcGdataAlbum", ["cmsApi", ngcGdataAlbumDirective]);
 module.directive("ngcLazyImage", ngcLazyImage);
-module.directive("ngcSimpleDrag", simpleDragDirective);
+module.directive("ngcSimpleDrag",  simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
-module.controller("appController", function ($scope, test, $location) {
+module.controller("appController", ["$scope", "test", "$location", function ($scope, test, $location) {
 
 	$scope.globalKeydown = function (event) {
 		$scope.$broadcast("global-keydown", event);
@@ -74,10 +73,8 @@ module.controller("appController", function ($scope, test, $location) {
 		var pageContent = $("html").html();
 
 		console.log($location.path());
-		test.snapshot(pageContent, $location.path()).then( function(data){
-			//console.log("data", data);
-		});
+		test.snapshot(pageContent, $location.path());
 	});
-});
+}]);
 
 

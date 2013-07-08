@@ -1,0 +1,211 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="all,follow">
+	<meta name="keywords" content="ladesopeklo, ladeso, web ladesoCMS">
+	<meta name="description" content="LadesoCMS - PHP client test page">
+	<meta name="google-site-verification" content="n9vDCHVCDFAdyfqfX4MVEp0H7kNTzP_XE3lvB0e36bo">	
+	<meta name="fragment" content="!">	
+	
+	<title>Default PHP Client</title>
+
+	<script type="text/javascript" src="Scripts/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular.js"></script><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style>
+	<script type="text/javascript" src="Scripts/libs/angular-resource.min.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular-ui/event.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular-ui/angular.keypress.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular-bootstrap/ui-bootstrap-custom-tpls-0.3.0.min.js"></script>
+
+	<script type="text/javascript" src="Scripts/class.apiWrapper.js"></script>
+
+	<script type="text/javascript" src="Scripts/directive.ngcGdataAlbum.js"></script>
+	<script type="text/javascript" src="Scripts/directive.ngcLazyImage.js"></script>
+	<script type="text/javascript" src="Scripts/directive.ngcResponsiveImage.js"></script>
+	<script type="text/javascript" src="Scripts/directive.ngcSimpleDrag.js"></script>
+
+	<script type="text/javascript" src="Scripts/controller.home.js"></script>
+	<script type="text/javascript" src="Scripts/controller.page.js"></script>
+	<script type="text/javascript" src="Scripts/controller.login.js"></script>
+	<script type="text/javascript" src="Scripts/controller.userDataForm.js"></script>
+	<script type="text/javascript" src="Scripts/controller.gridelementGdataAlbumCtrl.js"></script>
+	<script type="text/javascript" src="Scripts/controller.simplehtml.js"></script>
+	<script type="text/javascript" src="Scripts/controller.galleryImage.js"></script>
+	<script type="text/javascript" src="Scripts/controller.p.js"></script>
+
+	<script type="text/javascript" src="Scripts/module.appConfig.js"></script>
+	<script type="text/javascript" src="Scripts/module.apiModule.js"></script>
+	<script type="text/javascript" src="Scripts/module.defaultClient.js"></script>
+
+	<link rel="stylesheet" href="Css/fluid_grid.css">
+	<link rel="stylesheet" href="Css/masparti-responsive.css">
+	<link rel="stylesheet" href="Css/metro-bootstrap.css">
+	<link rel="stylesheet" href="Css/main.css">
+	<link href="http://fonts.googleapis.com/css?family=Noto+Sans|Courgette|Advent+Pro&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+</head>
+<body style="">
+<div class="container_12 right ng-scope" ng-controller="appController">
+	<i ui-event="{ keydown: 'globalKeydown($event)'}" style="display:none"></i>
+
+	<!--<div class="btn-group">-->
+		<!--<a class="btn" href="#/home">home</a>-->
+		<!--<a class="btn" href="#/login">login</a>-->
+		<!--<a class="btn" href="Service/cmsClientPHPService/logout.php">logout</a>-->
+	<!--</div>-->
+
+	<div class="alert alert-error ng-binding" ng-show="message" style="display: none;">
+		<b>Chyba:</b>
+		
+	</div>
+
+	<div ng-view=""><style class="ng-scope">
+
+	.handwritten {
+		font-family: 'Advent Pro', sans-serif;
+	}
+
+	.home {
+		height: 240px;;
+	}
+
+	.homeimage {
+		height: 230px;;
+		width: 230px;;
+		border: 1px solid gray;
+	}
+
+	.right {
+		padding-bottom: 10px;
+		border-right: 15px solid black;
+	}
+
+	.jara {
+		margin-right: 10px;
+		text-align: right;
+	}
+
+	.jara h1 {
+		font-size: 4em;
+		margin-bottom: 0px;
+		margin-top: 0px;
+	}
+
+	.jara h3 {
+		margin-top: 0px;
+	}
+
+</style>
+<!-- ngRepeat: image in homeImagesBegin --><div class="grid_3 ng-scope" ng-repeat="image in homeImagesBegin">
+	<div class="home">
+		<div class="homeimage">
+			<a href="#!/p/gallery_1/0"> <img src=""></a>
+		</div>
+	</div>
+</div><div class="grid_3 ng-scope" ng-repeat="image in homeImagesBegin">
+	<div class="home">
+		<div class="homeimage">
+			<a href="#!/p/gallery_1/0"> <img src=""></a>
+		</div>
+	</div>
+</div><div class="grid_3 ng-scope" ng-repeat="image in homeImagesBegin">
+	<div class="home">
+		<div class="homeimage">
+			<a href="#!/p/gallery_1/0"> <img src=""></a>
+		</div>
+	</div>
+</div><div class="grid_3 ng-scope" ng-repeat="image in homeImagesBegin">
+	<div class="home">
+		<div class="homeimage">
+			<a href="#!/p/gallery_1/0"> <img src=""></a>
+		</div>
+	</div>
+</div><div class="grid_3 ng-scope" ng-repeat="image in homeImagesBegin">
+	<div class="home">
+		<div class="homeimage">
+			<a href="#!/p/gallery_1/0"> <img src=""></a>
+		</div>
+	</div>
+</div><div class="grid_3 ng-scope" ng-repeat="image in homeImagesBegin">
+	<div class="home">
+		<div class="homeimage">
+			<a href="#!/p/gallery_1/0"> <img src=""></a>
+		</div>
+	</div>
+</div>
+<div class="grid_6 ng-scope">
+	<div class="home jara">
+		<h1 class="handwritten">jara tomka </h1>
+		<h3 class="handwritten">umelecky rezbar </h3>
+	</div>
+</div>
+<!-- ngRepeat: image in homeImagesEnd --><div class="grid_3 ng-scope" ng-repeat="image in homeImagesEnd">
+	<div class="home">
+		<div class="homeimage">
+			<img src="">
+		</div>
+	</div>
+</div><div class="grid_3 ng-scope" ng-repeat="image in homeImagesEnd">
+	<div class="home">
+		<div class="homeimage">
+			<img src="">
+		</div>
+	</div>
+</div><div class="grid_3 ng-scope" ng-repeat="image in homeImagesEnd">
+	<div class="home">
+		<div class="homeimage">
+			<img src="">
+		</div>
+	</div>
+</div><div class="grid_3 ng-scope" ng-repeat="image in homeImagesEnd">
+	<div class="home">
+		<div class="homeimage">
+			<img src="">
+		</div>
+	</div>
+</div>
+
+
+<div class="xxx ng-scope">
+
+
+	<!-- ngRepeat: grid in pages --><div ng-repeat="grid in pages" class="ng-scope">
+		<h3><a href="#!/page/sss" class="ng-binding">sdfsd</a></h3>
+	</div><div ng-repeat="grid in pages" class="ng-scope">
+		<h3><a href="#!/page/gallery_1" class="ng-binding">galerie 1</a></h3>
+	</div><div ng-repeat="grid in pages" class="ng-scope">
+		<h3><a href="#!/page/aaa" class="ng-binding">Uživatelská část</a></h3>
+	</div><div ng-repeat="grid in pages" class="ng-scope">
+		<h3><a href="#!/page/testPage_link" class="ng-binding">testovaci stranka</a></h3>
+	</div><div ng-repeat="grid in pages" class="ng-scope">
+		<h3><a href="#!/page/aaaa" class="ng-binding">asdas</a></h3>
+	</div>
+
+</div>
+
+</div>
+
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript" src="/ClientPhp/Scripts/libs/showdown.js"></script>
+
+<script>
+	angular.element(document).ready(function () {
+
+	});
+
+
+	$(document).ready(function () {
+		$(".xxx").bind("click", function () {
+			console.log("kjasbdjkasd");
+			window.history.pushState('object', 'New Title', "jasbdjasdjasdbkasbkjdjasb");
+		})
+	})
+
+
+</script>
+
+
+
+
+</body>

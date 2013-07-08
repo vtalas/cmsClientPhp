@@ -1,0 +1,5 @@
+<root>
+	<output path="Resources/css/basic.min.css">
+		<input path="Resources/css/basic.css"></input>
+	</output>
+</root>

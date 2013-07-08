@@ -1,26 +1,28 @@
-function pController($scope, test, $routeParams, $location) {
+var pController =  [ "$scope", "test", "$routeParams", "$location", function($scope, test, $routeParams, $location) {
 	$scope.link = $routeParams.link;
 
 	var getIndex = function () {
 		var search = $location.search().g,
 			elemIndex = $routeParams.elementIndex,
 			index;
-			
+
 		index = !isNaN(elemIndex) ? elemIndex : 0;
 
-		console.log(isNaN(search), search)
 		if (!isNaN(search)) {
-			console.log("kasbdjkas", search)
 			index = search;
 		}
 
 		return index;
 	};
 
-	test.getPage($scope.link).then(function (data) {
-		$scope.page = data;
-		$scope.currentGridElement = $scope.page.GridElements[getIndex()];
-	});
+	test.getPage($scope.link)
+		.then(function (response) {
+			$scope.page = response.data;
+			$scope.currentGridElement = $scope.page.GridElements[getIndex()];
+			return response;
+		}).then(function (data) {
+			test.checkForSnapshot($scope, data);
+		});
 
 	var setNewLocation = function (index) {
 		$location.search("g", index);
@@ -48,4 +50,4 @@ function pController($scope, test, $routeParams, $location) {
 		galleryIndex--;
 		setNewLocation(galleryIndex);
 	};
-}
+}];

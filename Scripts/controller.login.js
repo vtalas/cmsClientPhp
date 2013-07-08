@@ -1,4 +1,4 @@
-function loginController($scope, cmsApi, $routeParams, $location) {
+var loginController = ["$scope", "cmsApi",  function($scope, cmsApi) {
 	var api = new ApiWrapper(cmsApi);
 
 	var loading = function (type) {
@@ -64,5 +64,4 @@ function loginController($scope, cmsApi, $routeParams, $location) {
 				loading(false);
 			});
 	}
-
-}
+}];

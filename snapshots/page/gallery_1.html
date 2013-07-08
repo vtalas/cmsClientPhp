@@ -1,0 +1,723 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="all,follow">
+	<meta name="keywords" content="ladesopeklo, ladeso, web ladesoCMS">
+	<meta name="description" content="LadesoCMS - PHP client test page">
+	<meta name="google-site-verification" content="n9vDCHVCDFAdyfqfX4MVEp0H7kNTzP_XE3lvB0e36bo">	
+	<meta name="fragment" content="!">	
+	
+	<title>Default PHP Client</title>
+
+	<script type="text/javascript" src="Scripts/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular.min.js"></script><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style>
+	<script type="text/javascript" src="Scripts/libs/angular-resource.min.js"></script>
+
+	<script type="text/javascript" src="Scripts/libs/angular-ui/event.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular-ui/angular.keypress.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular-bootstrap/ui-bootstrap-custom-tpls-0.3.0.min.js"></script>
+
+	<!--<script type="text/javascript" src="Scripts/class.apiWrapper.js"></script>-->
+
+	<!--<script type="text/javascript" src="Scripts/directive.ngcGdataAlbum.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/directive.ngcLazyImage.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/directive.ngcResponsiveImage.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/directive.ngcSimpleDrag.js"></script>-->
+
+	<!--<script type="text/javascript" src="Scripts/controller.home.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/controller.page.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/controller.login.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/controller.userDataForm.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/controller.gridelementGdataAlbumCtrl.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/controller.simplehtml.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/controller.galleryImage.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/controller.p.js"></script>-->
+
+	<!--<script type="text/javascript" src="Scripts/module.appConfig.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/module.apiModule.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/module.defaultClient.js"></script>-->
+
+	<script type="text/javascript" src="Scripts/libs.min.js"></script>
+
+	<link rel="stylesheet" href="Css/fluid_grid.css">
+	<link rel="stylesheet" href="Css/masparti-responsive.css">
+	<link rel="stylesheet" href="Css/metro-bootstrap.css">
+	<link rel="stylesheet" href="Css/main.css">
+	<link href="http://fonts.googleapis.com/css?family=Noto+Sans|Courgette|Advent+Pro&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+</head>
+<body style="">
+<div class="container_12 right ng-scope" ng-controller="appController">
+	<i ui-event="{ keydown: 'globalKeydown($event)'}" style="display:none"></i>
+
+	<!--<div class="btn-group">-->
+		<!--<a class="btn" href="#/home">home</a>-->
+		<!--<a class="btn" href="#/login">login</a>-->
+		<!--<a class="btn" href="Service/cmsClientPHPService/logout.php">logout</a>-->
+	<!--</div>-->
+
+	<div class="alert alert-error ng-binding" ng-show="message" style="display: none;">
+		<b>Chyba:</b>
+		
+	</div>
+
+	<div ng-view=""><!-- ngRepeat: gridelement in page.GridElements --><div ng-repeat="gridelement in page.GridElements" class="ng-scope">
+	<div gridelement="gridelement" class="ng-isolate-scope ng-scope"><div class="ng-scope">
+
+	<div class="gdata-album-list ng-scope" ng-controller="gridelementGdataAlbumCtrl">
+			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto" style="">
+				<div style="padding-right:10px">
+				<img ngc-lazy-image="firstPhoto.Large.PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-ZgVwpjSQKh8/UbBYTErx3PI/AAAAAAAAABg/kntmEuFWqHA/w1200/december-12-trailer_santa__21-nocal-2560x1440.jpg">
+
+			</div>
+			</div>
+			<!-- ngRepeat: photo in gdataAlbumPhotos --><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-C4v1qXamPTM/UbBYT4fw4ZI/AAAAAAAAABs/boz-0UBy3p4/s230-c/december-12-best_frends__51-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-uEu35PaNmfg/UbBYUcHmr_I/AAAAAAAAABw/dSnjT3YaRcE/s230-c/december-12-happy_holidays__60-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-9nAPLVSsn6E/UbBYUovid4I/AAAAAAAAAB0/4ZzIzJejx3Q/s230-c/december-12-show_some_guts__44-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-Ox-oLRLFEQ0/UbBYVJbsuII/AAAAAAAAACA/RNguL1H2Kz8/s230-c/december-12-christmas_snowflakes__58-nocal-1920x1080.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-bjNNYWSSDAc/Ubc1Bg4rbYI/AAAAAAAAALU/6xO1JAD-7mg/s230-c/19042010.jpg"></div>
+			</div>
+	</div>
+	<div class="clear"></div>
+</div></div>
+	<hr>
+</div><div ng-repeat="gridelement in page.GridElements" class="ng-scope">
+	<div gridelement="gridelement" class="ng-isolate-scope ng-scope"><div class="ng-scope">
+
+	<div class="gdata-album-list ng-scope" ng-controller="gridelementGdataAlbumCtrl">
+			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto" style="">
+				<div style="padding-right:10px">
+				<img ngc-lazy-image="firstPhoto.Large.PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-InPfblDYP2I/UbBYeIxKxAI/AAAAAAAAAEU/ifWch_AqrI0/w1200/DSC_0009.jpg">
+
+			</div>
+			</div>
+			<!-- ngRepeat: photo in gdataAlbumPhotos --><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-dssuM1mXgj4/UbBYevCZ6wI/AAAAAAAAADs/NepbwhxGtjk/s230-c/DSC_0410.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-MSqc2_K6Kmg/UbBYfZUeBrI/AAAAAAAAAD0/DA0SJoqcBMY/s230-c/august-12-childhood_memories__4-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-lD081PqBi2I/UbBYfs_QQHI/AAAAAAAAAEA/cseE1EwX5VA/s230-c/september-12-autumn_memories__71-nocal-2880x1800.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-Tanq3UzBwAo/UbBYgOo5-II/AAAAAAAAAEE/6QLXEv4OpCE/s230-c/DSC_0394.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-SJSzEnK2UlI/UbBYhE1tImI/AAAAAAAAAEY/m2sW6Kdckvw/s230-c/january-13-end_of_the_world_postponed__51-nocal-2560x1440.jpg"></div>
+			</div>
+	</div>
+	<div class="clear"></div>
+</div></div>
+	<hr>
+</div><div ng-repeat="gridelement in page.GridElements" class="ng-scope">
+	<div gridelement="gridelement" class="ng-isolate-scope ng-scope"><div class="ng-scope ng-binding">
+		asdasd
+	</div></div>
+	<hr>
+</div><div ng-repeat="gridelement in page.GridElements" class="ng-scope">
+	<div gridelement="gridelement" class="ng-isolate-scope ng-scope"><div class="ng-scope">
+
+	<div class="gdata-album-list ng-scope" ng-controller="gridelementGdataAlbumCtrl">
+			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto" style="">
+				<div style="padding-right:10px">
+				<img ngc-lazy-image="firstPhoto.Large.PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-8wTMlWIT_KM/UbBYqgTW7fI/AAAAAAAAAGM/sHe7Fw2ph8I/w1200/05%2525252520topic%252525252006.jpg">
+
+			</div>
+			</div>
+			<!-- ngRepeat: photo in gdataAlbumPhotos --><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-0Q2iV_rkxNc/UbBYrNCOXpI/AAAAAAAAAGY/2Sp-_efwO3g/s230-c/05112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-ibSGBHuLEkI/UbBYrxcMmbI/AAAAAAAAAGg/rVEiKlnowIo/s230-c/06112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-y5Wf6rFi7u8/UbBYse56aHI/AAAAAAAAAGo/hL9RSP5D-N4/s230-c/06112010%252528001%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-GVIGSFGAWJs/UbBYs2v6NLI/AAAAAAAAAGw/_LM2N6VvQmE/s230-c/06112010%252528002%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-p23sIc98aTA/UbBYtatVZsI/AAAAAAAAAG4/V7WeHSM5YzE/s230-c/12112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-e0YqiLSDg1s/UbBYt2vJ7RI/AAAAAAAAAHA/ZHpi9V_PxGQ/s230-c/12112010%252528001%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-eFGgqlzRwqM/UbBYuR6_7PI/AAAAAAAAAHE/b1J5mAv8qj4/s230-c/17112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-hskDCevP-XU/UbBYvRbPJMI/AAAAAAAAAHQ/Sc_efC3rQcI/s230-c/27112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-PSVc4oqAJ3Y/UbBYwH_UGFI/AAAAAAAAAHU/OGVC2l_9w-4/s230-c/27112010%252528001%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-EovbPn4JbC8/UbBYw6pxmpI/AAAAAAAAAHc/TXAN3Hy75hk/s230-c/27112010%252528002%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-gxVyPGJCD2A/UbBYxzn7dRI/AAAAAAAAAHo/kON4Syk-8BE/s230-c/27112010%252528003%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-qYVdX4Ov4OQ/UbBYytzJQbI/AAAAAAAAAH0/YPIjvqfbb8w/s230-c/Fotografie0130.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/--9H22gjrDdw/UbBYy0dnBPI/AAAAAAAAAH4/9H1Ps3_jvSM/s230-c/Fotografie0131.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-NyENRdC70yQ/UbBYzqyFLiI/AAAAAAAAAIE/xoHBzMN5Pqk/s230-c/Fotografie0132.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-Nit_I2uOm8w/UbBYz1FjMpI/AAAAAAAAAIM/5jcpWyt726o/s230-c/07032013642_20130425T091223-216.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-x_98lf7SwCc/UbBY0nr_qXI/AAAAAAAAAIU/2NkI7eDWnWk/s230-c/Fotografie0133.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-b6YuPh5lYR4/UbBY07MXolI/AAAAAAAAAIY/1v_PLFIT-xk/s230-c/08032013652_20130425T091223-223.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-gEO9D6pUGn8/UbBY1pra8YI/AAAAAAAAAIk/knYco0iiqzw/s230-c/Fotografie0138.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-oJy9l9K15Hc/UbBY2Poy6WI/AAAAAAAAAIs/kPn8FSik7Hk/s230-c/Fotografie0139.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-H5pro1XmLAM/UbBY2aoro5I/AAAAAAAAAIw/McY_urMPdbU/s230-c/Fotografie0140.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-wL8bcTF-0ig/UbBY25rpraI/AAAAAAAAAI4/OoVcno9iyY4/s230-c/Fotografie0141.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-kRu3YWPOhD0/UbBY3TtQKeI/AAAAAAAAAJA/Rs_8K5UQ21A/s230-c/Fotografie0149.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-woRasG-g_hU/UbBY39thNKI/AAAAAAAAAJM/8RIYkh_xPlA/s230-c/december-12-best_frends__51-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-GABcZxlnr4Q/UbBY4rQOd9I/AAAAAAAAAJQ/s7YdMb9LB-A/s230-c/december-12-happy_holidays__60-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-_Pzkq-5RRrg/UbBY5KqJGAI/AAAAAAAAAJU/tcoV8Uhnjq4/s230-c/december-12-show_some_guts__44-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-CzWZSVE5aGs/UbBY53dKxmI/AAAAAAAAAJk/na606ZABbt4/s230-c/december-12-christmas_snowflakes__58-nocal-1920x1080.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-3N5W9et6QUk/UbBY6akfQEI/AAAAAAAAAJs/5YNck3Grp1c/s230-c/DSC_0391.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-m4yZ3_bzg2k/UbBY6mSfH0I/AAAAAAAAAJw/U8CDm-tU_aM/s230-c/DSC_0392.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-aGq9gy2x3F0/UbBY7IriGzI/AAAAAAAAAJ4/3q8H0O41r0Y/s230-c/DSC_0393.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-fooKEMeahRY/UbBY7l-zL2I/AAAAAAAAAJ8/VuzDXPB99mw/s230-c/container-icon_pack-preview.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-L3CBKb6qrT4/UbBY8cMGj4I/AAAAAAAAAKE/ls9572cPnyo/s230-c/DSC_0009.jpg"></div>
+			</div>
+	</div>
+	<div class="clear"></div>
+</div></div>
+	<hr>
+</div><div ng-repeat="gridelement in page.GridElements" class="ng-scope">
+	<div gridelement="gridelement" class="ng-isolate-scope ng-scope"></div>
+	<hr>
+</div><div ng-repeat="gridelement in page.GridElements" class="ng-scope">
+	<div gridelement="gridelement" class="ng-isolate-scope ng-scope"></div>
+	<hr>
+</div><div ng-repeat="gridelement in page.GridElements" class="ng-scope">
+	<div gridelement="gridelement" class="ng-isolate-scope ng-scope"><div class="ng-scope">
+
+	<div class="gdata-album-list ng-scope" ng-controller="gridelementGdataAlbumCtrl">
+			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto" style="">
+				<div style="padding-right:10px">
+				<img ngc-lazy-image="firstPhoto.Large.PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-ZgVwpjSQKh8/UbBYTErx3PI/AAAAAAAAABg/kntmEuFWqHA/w1200/december-12-trailer_santa__21-nocal-2560x1440.jpg">
+
+			</div>
+			</div>
+			<!-- ngRepeat: photo in gdataAlbumPhotos --><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-C4v1qXamPTM/UbBYT4fw4ZI/AAAAAAAAABs/boz-0UBy3p4/s230-c/december-12-best_frends__51-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-uEu35PaNmfg/UbBYUcHmr_I/AAAAAAAAABw/dSnjT3YaRcE/s230-c/december-12-happy_holidays__60-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-9nAPLVSsn6E/UbBYUovid4I/AAAAAAAAAB0/4ZzIzJejx3Q/s230-c/december-12-show_some_guts__44-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-Ox-oLRLFEQ0/UbBYVJbsuII/AAAAAAAAACA/RNguL1H2Kz8/s230-c/december-12-christmas_snowflakes__58-nocal-1920x1080.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-bjNNYWSSDAc/Ubc1Bg4rbYI/AAAAAAAAALU/6xO1JAD-7mg/s230-c/19042010.jpg"></div>
+			</div>
+	</div>
+	<div class="clear"></div>
+</div></div>
+	<hr>
+</div><div ng-repeat="gridelement in page.GridElements" class="ng-scope">
+	<div gridelement="gridelement" class="ng-isolate-scope ng-scope"><div class="ng-scope">
+
+	<div class="gdata-album-list ng-scope" ng-controller="gridelementGdataAlbumCtrl">
+			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto" style="">
+				<div style="padding-right:10px">
+				<img ngc-lazy-image="firstPhoto.Large.PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-8wTMlWIT_KM/UbBYqgTW7fI/AAAAAAAAAGM/sHe7Fw2ph8I/w1200/05%2525252520topic%252525252006.jpg">
+
+			</div>
+			</div>
+			<!-- ngRepeat: photo in gdataAlbumPhotos --><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-0Q2iV_rkxNc/UbBYrNCOXpI/AAAAAAAAAGY/2Sp-_efwO3g/s230-c/05112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-ibSGBHuLEkI/UbBYrxcMmbI/AAAAAAAAAGg/rVEiKlnowIo/s230-c/06112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-y5Wf6rFi7u8/UbBYse56aHI/AAAAAAAAAGo/hL9RSP5D-N4/s230-c/06112010%252528001%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-GVIGSFGAWJs/UbBYs2v6NLI/AAAAAAAAAGw/_LM2N6VvQmE/s230-c/06112010%252528002%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-p23sIc98aTA/UbBYtatVZsI/AAAAAAAAAG4/V7WeHSM5YzE/s230-c/12112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-e0YqiLSDg1s/UbBYt2vJ7RI/AAAAAAAAAHA/ZHpi9V_PxGQ/s230-c/12112010%252528001%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-eFGgqlzRwqM/UbBYuR6_7PI/AAAAAAAAAHE/b1J5mAv8qj4/s230-c/17112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-hskDCevP-XU/UbBYvRbPJMI/AAAAAAAAAHQ/Sc_efC3rQcI/s230-c/27112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-PSVc4oqAJ3Y/UbBYwH_UGFI/AAAAAAAAAHU/OGVC2l_9w-4/s230-c/27112010%252528001%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-EovbPn4JbC8/UbBYw6pxmpI/AAAAAAAAAHc/TXAN3Hy75hk/s230-c/27112010%252528002%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-gxVyPGJCD2A/UbBYxzn7dRI/AAAAAAAAAHo/kON4Syk-8BE/s230-c/27112010%252528003%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-qYVdX4Ov4OQ/UbBYytzJQbI/AAAAAAAAAH0/YPIjvqfbb8w/s230-c/Fotografie0130.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/--9H22gjrDdw/UbBYy0dnBPI/AAAAAAAAAH4/9H1Ps3_jvSM/s230-c/Fotografie0131.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-NyENRdC70yQ/UbBYzqyFLiI/AAAAAAAAAIE/xoHBzMN5Pqk/s230-c/Fotografie0132.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-Nit_I2uOm8w/UbBYz1FjMpI/AAAAAAAAAIM/5jcpWyt726o/s230-c/07032013642_20130425T091223-216.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-x_98lf7SwCc/UbBY0nr_qXI/AAAAAAAAAIU/2NkI7eDWnWk/s230-c/Fotografie0133.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-b6YuPh5lYR4/UbBY07MXolI/AAAAAAAAAIY/1v_PLFIT-xk/s230-c/08032013652_20130425T091223-223.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-gEO9D6pUGn8/UbBY1pra8YI/AAAAAAAAAIk/knYco0iiqzw/s230-c/Fotografie0138.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-oJy9l9K15Hc/UbBY2Poy6WI/AAAAAAAAAIs/kPn8FSik7Hk/s230-c/Fotografie0139.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-H5pro1XmLAM/UbBY2aoro5I/AAAAAAAAAIw/McY_urMPdbU/s230-c/Fotografie0140.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-wL8bcTF-0ig/UbBY25rpraI/AAAAAAAAAI4/OoVcno9iyY4/s230-c/Fotografie0141.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-kRu3YWPOhD0/UbBY3TtQKeI/AAAAAAAAAJA/Rs_8K5UQ21A/s230-c/Fotografie0149.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-woRasG-g_hU/UbBY39thNKI/AAAAAAAAAJM/8RIYkh_xPlA/s230-c/december-12-best_frends__51-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-GABcZxlnr4Q/UbBY4rQOd9I/AAAAAAAAAJQ/s7YdMb9LB-A/s230-c/december-12-happy_holidays__60-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-_Pzkq-5RRrg/UbBY5KqJGAI/AAAAAAAAAJU/tcoV8Uhnjq4/s230-c/december-12-show_some_guts__44-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-CzWZSVE5aGs/UbBY53dKxmI/AAAAAAAAAJk/na606ZABbt4/s230-c/december-12-christmas_snowflakes__58-nocal-1920x1080.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-3N5W9et6QUk/UbBY6akfQEI/AAAAAAAAAJs/5YNck3Grp1c/s230-c/DSC_0391.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-m4yZ3_bzg2k/UbBY6mSfH0I/AAAAAAAAAJw/U8CDm-tU_aM/s230-c/DSC_0392.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-aGq9gy2x3F0/UbBY7IriGzI/AAAAAAAAAJ4/3q8H0O41r0Y/s230-c/DSC_0393.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-fooKEMeahRY/UbBY7l-zL2I/AAAAAAAAAJ8/VuzDXPB99mw/s230-c/container-icon_pack-preview.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-L3CBKb6qrT4/UbBY8cMGj4I/AAAAAAAAAKE/ls9572cPnyo/s230-c/DSC_0009.jpg"></div>
+			</div>
+	</div>
+	<div class="clear"></div>
+</div></div>
+	<hr>
+</div><div ng-repeat="gridelement in page.GridElements" class="ng-scope">
+	<div gridelement="gridelement" class="ng-isolate-scope ng-scope"><div class="ng-scope">
+
+	<div class="gdata-album-list ng-scope" ng-controller="gridelementGdataAlbumCtrl">
+			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto" style="">
+				<div style="padding-right:10px">
+				<img ngc-lazy-image="firstPhoto.Large.PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-InPfblDYP2I/UbBYeIxKxAI/AAAAAAAAAEU/ifWch_AqrI0/w1200/DSC_0009.jpg">
+
+			</div>
+			</div>
+			<!-- ngRepeat: photo in gdataAlbumPhotos --><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-dssuM1mXgj4/UbBYevCZ6wI/AAAAAAAAADs/NepbwhxGtjk/s230-c/DSC_0410.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-MSqc2_K6Kmg/UbBYfZUeBrI/AAAAAAAAAD0/DA0SJoqcBMY/s230-c/august-12-childhood_memories__4-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-lD081PqBi2I/UbBYfs_QQHI/AAAAAAAAAEA/cseE1EwX5VA/s230-c/september-12-autumn_memories__71-nocal-2880x1800.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-Tanq3UzBwAo/UbBYgOo5-II/AAAAAAAAAEE/6QLXEv4OpCE/s230-c/DSC_0394.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-SJSzEnK2UlI/UbBYhE1tImI/AAAAAAAAAEY/m2sW6Kdckvw/s230-c/january-13-end_of_the_world_postponed__51-nocal-2560x1440.jpg"></div>
+			</div>
+	</div>
+	<div class="clear"></div>
+</div></div>
+	<hr>
+</div><div ng-repeat="gridelement in page.GridElements" class="ng-scope">
+	<div gridelement="gridelement" class="ng-isolate-scope ng-scope"><div class="ng-scope">
+
+	<div class="gdata-album-list ng-scope" ng-controller="gridelementGdataAlbumCtrl">
+			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto" style="">
+				<div style="padding-right:10px">
+				<img ngc-lazy-image="firstPhoto.Large.PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-8wTMlWIT_KM/UbBYqgTW7fI/AAAAAAAAAGM/sHe7Fw2ph8I/w1200/05%2525252520topic%252525252006.jpg">
+
+			</div>
+			</div>
+			<!-- ngRepeat: photo in gdataAlbumPhotos --><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-0Q2iV_rkxNc/UbBYrNCOXpI/AAAAAAAAAGY/2Sp-_efwO3g/s230-c/05112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-ibSGBHuLEkI/UbBYrxcMmbI/AAAAAAAAAGg/rVEiKlnowIo/s230-c/06112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-y5Wf6rFi7u8/UbBYse56aHI/AAAAAAAAAGo/hL9RSP5D-N4/s230-c/06112010%252528001%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-GVIGSFGAWJs/UbBYs2v6NLI/AAAAAAAAAGw/_LM2N6VvQmE/s230-c/06112010%252528002%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-p23sIc98aTA/UbBYtatVZsI/AAAAAAAAAG4/V7WeHSM5YzE/s230-c/12112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-e0YqiLSDg1s/UbBYt2vJ7RI/AAAAAAAAAHA/ZHpi9V_PxGQ/s230-c/12112010%252528001%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-eFGgqlzRwqM/UbBYuR6_7PI/AAAAAAAAAHE/b1J5mAv8qj4/s230-c/17112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-hskDCevP-XU/UbBYvRbPJMI/AAAAAAAAAHQ/Sc_efC3rQcI/s230-c/27112010.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-PSVc4oqAJ3Y/UbBYwH_UGFI/AAAAAAAAAHU/OGVC2l_9w-4/s230-c/27112010%252528001%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-EovbPn4JbC8/UbBYw6pxmpI/AAAAAAAAAHc/TXAN3Hy75hk/s230-c/27112010%252528002%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-gxVyPGJCD2A/UbBYxzn7dRI/AAAAAAAAAHo/kON4Syk-8BE/s230-c/27112010%252528003%252529.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-qYVdX4Ov4OQ/UbBYytzJQbI/AAAAAAAAAH0/YPIjvqfbb8w/s230-c/Fotografie0130.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/--9H22gjrDdw/UbBYy0dnBPI/AAAAAAAAAH4/9H1Ps3_jvSM/s230-c/Fotografie0131.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-NyENRdC70yQ/UbBYzqyFLiI/AAAAAAAAAIE/xoHBzMN5Pqk/s230-c/Fotografie0132.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-Nit_I2uOm8w/UbBYz1FjMpI/AAAAAAAAAIM/5jcpWyt726o/s230-c/07032013642_20130425T091223-216.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-x_98lf7SwCc/UbBY0nr_qXI/AAAAAAAAAIU/2NkI7eDWnWk/s230-c/Fotografie0133.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-b6YuPh5lYR4/UbBY07MXolI/AAAAAAAAAIY/1v_PLFIT-xk/s230-c/08032013652_20130425T091223-223.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-gEO9D6pUGn8/UbBY1pra8YI/AAAAAAAAAIk/knYco0iiqzw/s230-c/Fotografie0138.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-oJy9l9K15Hc/UbBY2Poy6WI/AAAAAAAAAIs/kPn8FSik7Hk/s230-c/Fotografie0139.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-H5pro1XmLAM/UbBY2aoro5I/AAAAAAAAAIw/McY_urMPdbU/s230-c/Fotografie0140.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-wL8bcTF-0ig/UbBY25rpraI/AAAAAAAAAI4/OoVcno9iyY4/s230-c/Fotografie0141.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-kRu3YWPOhD0/UbBY3TtQKeI/AAAAAAAAAJA/Rs_8K5UQ21A/s230-c/Fotografie0149.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-woRasG-g_hU/UbBY39thNKI/AAAAAAAAAJM/8RIYkh_xPlA/s230-c/december-12-best_frends__51-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-GABcZxlnr4Q/UbBY4rQOd9I/AAAAAAAAAJQ/s7YdMb9LB-A/s230-c/december-12-happy_holidays__60-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-_Pzkq-5RRrg/UbBY5KqJGAI/AAAAAAAAAJU/tcoV8Uhnjq4/s230-c/december-12-show_some_guts__44-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-CzWZSVE5aGs/UbBY53dKxmI/AAAAAAAAAJk/na606ZABbt4/s230-c/december-12-christmas_snowflakes__58-nocal-1920x1080.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-3N5W9et6QUk/UbBY6akfQEI/AAAAAAAAAJs/5YNck3Grp1c/s230-c/DSC_0391.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-m4yZ3_bzg2k/UbBY6mSfH0I/AAAAAAAAAJw/U8CDm-tU_aM/s230-c/DSC_0392.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh3.googleusercontent.com:443/-aGq9gy2x3F0/UbBY7IriGzI/AAAAAAAAAJ4/3q8H0O41r0Y/s230-c/DSC_0393.JPG"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-fooKEMeahRY/UbBY7l-zL2I/AAAAAAAAAJ8/VuzDXPB99mw/s230-c/container-icon_pack-preview.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-L3CBKb6qrT4/UbBY8cMGj4I/AAAAAAAAAKE/ls9572cPnyo/s230-c/DSC_0009.jpg"></div>
+			</div>
+	</div>
+	<div class="clear"></div>
+</div></div>
+	<hr>
+</div><div ng-repeat="gridelement in page.GridElements" class="ng-scope">
+	<div gridelement="gridelement" class="ng-isolate-scope ng-scope"><div class="ng-scope">
+
+	<div class="gdata-album-list ng-scope" ng-controller="gridelementGdataAlbumCtrl">
+			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto" style="">
+				<div style="padding-right:10px">
+				<img ngc-lazy-image="firstPhoto.Large.PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh6.googleusercontent.com:443/-ZgVwpjSQKh8/UbBYTErx3PI/AAAAAAAAABg/kntmEuFWqHA/w1200/december-12-trailer_santa__21-nocal-2560x1440.jpg">
+
+			</div>
+			</div>
+			<!-- ngRepeat: photo in gdataAlbumPhotos --><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-C4v1qXamPTM/UbBYT4fw4ZI/AAAAAAAAABs/boz-0UBy3p4/s230-c/december-12-best_frends__51-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh4.googleusercontent.com:443/-uEu35PaNmfg/UbBYUcHmr_I/AAAAAAAAABw/dSnjT3YaRcE/s230-c/december-12-happy_holidays__60-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-9nAPLVSsn6E/UbBYUovid4I/AAAAAAAAAB0/4ZzIzJejx3Q/s230-c/december-12-show_some_guts__44-nocal-2560x1440.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-Ox-oLRLFEQ0/UbBYVJbsuII/AAAAAAAAACA/RNguL1H2Kz8/s230-c/december-12-christmas_snowflakes__58-nocal-1920x1080.jpg"></div>
+			</div><div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 ng-scope">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri" class="ng-isolate-scope ng-scope" src="https://lh5.googleusercontent.com:443/-bjNNYWSSDAc/Ubc1Bg4rbYI/AAAAAAAAALU/6xO1JAD-7mg/s230-c/19042010.jpg"></div>
+			</div>
+	</div>
+	<div class="clear"></div>
+</div></div>
+	<hr>
+</div>
+
+<div ng-include="'template.galleryImageViewer.html'" class="ng-scope"><style class="ng-scope">
+	.dumbBoxWrap { /* The div that shows/hides. */
+		z-index:40001; /* High z-index to ensure it appears above all content */
+		position: absolute;
+		top:0;
+		left:0;
+	}
+	.dumbBoxOverlay { /* Shades out background when selector is active */
+		position:absolute;
+		width:100%;
+		height:100%;
+		background-color:black;
+		opacity:.8;
+		min-width: 1020px;
+		-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+		filter:alpha(opacity=80);
+		z-index:40001;
+	}
+	.vertical-offset { /* Fixed position to provide the vertical offset */
+		position:absolute;
+		z-index:40002; /* ensures box appears above overlay */
+	}
+	.dumbBox { /* The actual box, centered in the fixed-position div */
+		width:405px; /* Whatever width you want the box to be */
+		position:relative;
+		margin:0 auto;
+
+		background-color:white;
+		padding:10px;
+		border:1px solid black;
+	}
+
+</style>
+
+<div class="dumbBoxWrap ng-scope" ng-controller="galleryImageViewerController" ng-show="gallery" style="display: none;">
+	<div class="dumbBoxOverlay">
+		&nbsp;
+	</div>
+	<div class="vertical-offset">
+		<div>
+			<button ng-click="prev()" class="btn btn-link ng-scope" tooltip="předchozí (kurzor doleva)" tooltip-placement="right"><b class="icon icon-chevron-left icon-white">&nbsp;</b></button>
+			<button ng-click="next()" class="btn btn-link ng-scope" tooltip="další (kurzor doprava)" tooltip-placement="right"><b class="icon icon-chevron-right icon-white">&nbsp;</b></button>
+			<button ng-click="close()" class="btn btn-link ng-scope" tooltip="zavřít (Esc)" tooltip-placement="bottom"><b class="icon icon-remove icon-white">&nbsp;</b></button>
+			<span style="color: white; display: none;" ng-show="skipping &gt; 0">...přeskakujem.....</span>
+			<div ng-show="loading" style="float: right; display: none;"><img src="horizontalloadersmall_white.gif"></div>
+		</div>
+
+		<div gallery-image="image">
+	<!--<div style="width:100%; position: absolute">-->
+		<!--<div class="responsive-image-info-panel">-->
+			<!--<div>-->
+				<!--<div>-->
+					<!--<span ng-show="showLoader" style="height: 10px;"><img src="horizontalloadersmall.gif"> loading ... </span>-->
+					<!--&nbsp;-->
+				<!--</div>-->
+				<!--<span ng-show="skipping">...skipping images...</span>-->
+			<!--</div>-->
+			<!--<div ng-show="imageWidth">{{imageWidth}} x {{imageHeight}}</div>-->
+		<!--</div>-->
+	<!--</div>-->
+
+	<div ngc-simple-drag="" class="draggable" ng-class="isMovable()">
+		<style>
+			.movable {
+				cursor: move;
+			}
+
+			.actions {
+				position: absolute;
+			}
+
+			.responsive-image-info-panel {
+				background-color: #fff;
+				position: relative;
+				z-index: 1000;;
+				float: right;
+				width: 300px;
+			}
+		</style>
+		<div>
+			<div class="actions">
+				<button ng-show="isOverFlowable()" ng-click="showFullSize()" class="btn-link"><span class="icon-white ng-scope" ng-class="isFullSizeCssClass()" tooltip="{{fullSizeTooltip()}}" tooltip-popup-delay="300" tooltip-placement="right">&nbsp;</span>
+				</button>
+			</div>
+		</div>
+		<img ngc-lazy-image="source" width="100%" height="100%" class="ng-isolate-scope ng-scope">
+
+	</div>
+
+
+</div></div>
+</div>
+
+</div>
+<div ng-include="'template.gridelements.html'" class="ng-scope"><script id="text.thtml" type="text/ng-template" class="ng-scope"><div>
+		{{gridelement.Resources.text.Value}}
+	</div>
+</script>
+
+<script id="simplehtml.thtml" type="text/ng-template" class="ng-scope"><div ng-controller="simplehtml">
+	<div ng-bind-html-unsafe="ContentToHtml()"></div>
+	</div>
+</script>
+
+<script id="clientspecificpostdataform.thtml" type="text/ng-template" class="ng-scope"><div>
+	<ul>
+		<li>
+			<form name="myForm" ng-controller="userDataForm" ng-submit="post()">
+				<h3>1</h3>
+				<div>
+					<input type="text" name="key" ng-model="key" placeholder="key" value="bjkasdjkb">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.jmeno" placeholder="jmeno" required> *
+				</div>
+				<div>
+					<input type="text" name="desc" ng-model="data.prijmeni" placeholder="prijmeni">
+				</div>
+				<button type="submit">Ok</button>
+				<button ng-click="xx()">xxx</button>
+			</form>
+		</li>
+		<li>
+			<h3>2</h3>
+			<form ng-controller="userDataForm" ng-submit="post()">
+				<div>
+					<input type="text" name="key" ng-model="key" placeholder="key" value="dalsi form ">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.keywords">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.keywords">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.keywords">
+				</div>
+				<div>
+					<input type="checkbox" name="desc" ng-model="data.checkbox">
+				</div>
+				<button type="submit">Ok</button>
+			</form>
+		</li>
+		<li>
+			<h3>3</h3>
+			<form ng-controller="userDataForm" ng-submit="post()">
+				<div>
+					<input type="text" name="key" ng-model="key" placeholder="key">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.keywords">
+				</div>
+				<div>
+					<input type="text" name="desc" ng-model="data.desc">
+				</div>
+				<button type="submit">Ok</button>
+			</form>
+		</li>
+
+	</ul>
+	<div class="clearfix"></div>
+	</div>
+</script>
+
+
+<style class="ng-scope">
+	.gdata-album h1 {
+		margin-bottom: 0px;
+	}
+
+	.gdata-album h3 {
+		margin-top: 0px;
+	}
+
+	.gdata-album .first-image {
+
+	}
+
+	ul li {
+		display: block;
+		float: left;
+		margin-left: 30px;
+	}
+	.gdata-album-list .image-small {
+		padding-top: 10px;
+		padding-left: 0px;
+		padding-right: 10px;
+	}
+	.gdata-album-list .first-image {
+		max-height: 460px;
+		overflow: hidden;
+		padding-top: 10px;
+	}
+	.gdata-album-list .image-small.last {
+		padding-right: 0px;
+	}
+
+	gdata-album .image-small {
+		display: inline-block;
+		padding: 0 10px 10px 0;
+	}
+</style>
+<style class="ng-scope">
+	.dumbBoxWrap { /* The div that shows/hides. */
+		z-index:40001; /* High z-index to ensure it appears above all content */
+		position: absolute;
+		top:0;
+		left:0;
+	}
+	.dumbBoxOverlay { /* Shades out background when selector is active */
+		position:fixed;
+		width:100%;
+		height:100%;
+		background-color:black;
+		opacity:.8; /* Sets opacity so it's partly transparent */
+		-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; /* IE transparency */
+		filter:alpha(opacity=80); /* More IE transparency */
+		z-index:40001;
+	}
+	.vertical-offset { /* Fixed position to provide the vertical offset */
+		position:fixed;
+		width:100%;
+		z-index:40002; /* ensures box appears above overlay */
+	}
+	.dumbBox { /* The actual box, centered in the fixed-position div */
+		width:405px; /* Whatever width you want the box to be */
+		position:relative;
+		margin:0 auto;
+
+		background-color:white;
+		padding:10px;
+		border:1px solid black;
+	}
+</style>
+
+<script id="gdataalbum.thtml" type="text/ng-template" class="ng-scope"><div>
+
+	<div class="gdata-album-list" ng-controller="gridelementGdataAlbumCtrl">
+			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto">
+				<div style="padding-right:10px">
+				<img ngc-lazy-image="firstPhoto.Large.PhotoUri"/>
+
+			</div>
+			</div>
+			<div ng-repeat="photo in gdataAlbumPhotos" class="grid_3">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
+			</div>
+	</div>
+	<div class="clear"></div>
+</div>
+</script>
+
+<script id="gdataalbum_Single.thtml" type="text/ng-template" class="ng-scope"><div>
+	<div class="gdata-album" ng-controller="gridelementGdataAlbumCtrl">
+
+		<h1>{{gridelement.Resources.header.Value}}</h1>
+			<h3>{{gridelement.Resources.text.Value}}</h3>
+			<div class="first-image grid_3 btn-link" ng-click="showImage(gdataAlbumId, 0)" >
+				<img ngc-lazy-image="firstPhoto.Thumbnails[1].PhotoUri"/>
+			</div>
+		<div class="grid_9">
+				<div ng-repeat="photo in gdataAlbumPhotos" class="image-small">
+					<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link"><img  ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
+				</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+</script>
+</div>
+</div>
+
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript" src="Scripts/libs/showdown.js"></script>
+
+<script>
+	angular.element(document).ready(function () {
+	});
+
+	$(document).ready(function () {
+	})
+
+
+</script>
+
+
+
+
+</body>
