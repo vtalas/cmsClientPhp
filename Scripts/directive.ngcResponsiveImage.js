@@ -101,7 +101,8 @@ var ngcResponsiveImage = function () {
 		scope: {
 			galleryImage: "="
 		},
-		controller: function ($scope) {
+		controller: [ "$scope", function ($scope) {
+
 			$scope.containerWidth = "16";
 			$scope.windowWidth = $(window).width();
 			$scope.windowHeight = $(window).height();
@@ -144,7 +145,7 @@ var ngcResponsiveImage = function () {
 			$scope.getCssHeight = function (height) {
 				return height === null ? "auto" : height + "px";
 			};
-		},
+		}],
 		restrict: "E",
 		replace: true,
 		templateUrl: "template.ngcResponsiveImage.html",

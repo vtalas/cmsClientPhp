@@ -5,7 +5,8 @@
 		<!--<input path="../Scripts/libs/angular-resource.min.js"></input>-->
 		<!--<input path="../Scripts/libs/angular-ui/event.js"></input>-->
 		<!--<input path="../Scripts/libs/angular-ui/angular.keypress.js"></input>-->
-		<!--<input path="../Scripts/libs/angular-bootstrap/ui-bootstrap-custom-tpls-0.3.0.min.js"></input>-->
+        <input path="../Scripts/libs/showdown.js"></input>
+		<input path="../Scripts/libs/angular-bootstrap/ui-bootstrap-custom-tpls-0.3.0.min.js"></input>
 
 		<input path="../Scripts/class.apiWrapper.js"></input>
 

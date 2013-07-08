@@ -10,13 +10,13 @@
 	<title>Default PHP Client</title>
 
 	<script type="text/javascript" src="Scripts/libs/jquery.min.js"></script>
-	<script type="text/javascript" src="Scripts/libs/angular.js"></script><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style>
+	<script type="text/javascript" src="Scripts/libs/angular.min.js"></script><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style>
 	<script type="text/javascript" src="Scripts/libs/angular-resource.min.js"></script>
 
 	<script type="text/javascript" src="Scripts/libs/angular-ui/event.js"></script>
 	<script type="text/javascript" src="Scripts/libs/angular-ui/angular.keypress.js"></script>
-	<script type="text/javascript" src="Scripts/libs/angular-bootstrap/ui-bootstrap-custom-tpls-0.3.0.min.js"></script>
 
+	<!--<script type="text/javascript" src="Scripts/libs/angular-bootstrap/ui-bootstrap-custom-tpls-0.3.0.min.js"></script>-->
 	<!--<script type="text/javascript" src="Scripts/class.apiWrapper.js"></script>-->
 
 	<!--<script type="text/javascript" src="Scripts/directive.ngcGdataAlbum.js"></script>-->
@@ -35,14 +35,17 @@
 
 	<!--<script type="text/javascript" src="Scripts/module.appConfig.js"></script>-->
 	<!--<script type="text/javascript" src="Scripts/module.apiModule.js"></script>-->
+	<!--<script type="text/javascript" src="Scripts/module.defaultClient.js"></script>-->
+
+
+	<!--<link rel="stylesheet" href="Css/fluid_grid.css"/>-->
+	<!--<link rel="stylesheet" href="Css/masparti-responsive.css"/>-->
+	<!--<link rel="stylesheet" href="Css/metro-bootstrap.css"/>-->
+	<!--<link rel="stylesheet" href="Css/main.css"/>-->
 
 	<script type="text/javascript" src="Scripts/libs.min.js"></script>
-	<script type="text/javascript" src="Scripts/module.defaultClient.js"></script>
+	<link rel="stylesheet" href="Css/css.min.css">
 
-	<link rel="stylesheet" href="Css/fluid_grid.css">
-	<link rel="stylesheet" href="Css/masparti-responsive.css">
-	<link rel="stylesheet" href="Css/metro-bootstrap.css">
-	<link rel="stylesheet" href="Css/main.css">
 	<link href="http://fonts.googleapis.com/css?family=Noto+Sans|Courgette|Advent+Pro&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
 <script>(function bootstrap(window) {
@@ -932,59 +935,262 @@
 		
 	</div>
 
-	<div ng-view=""><style>
-
-	.handwritten {
-		font-family: 'Advent Pro', sans-serif;
+	<div ng-view=""><style class="ng-scope">
+	.navigation {
+		margin-left: 20px;
+		position: fixed;
+		z-index: 10;
+		width: 100%;
+		background-color: red;
 	}
-
-	.home {
-		height: 240px;;
+	.navigation li {
+		margin: 0;
+		padding: 0;
 	}
+</style>
 
-	.homeimage {
-		height: 230px;;
-		width: 230px;;
-		border: 1px solid gray;
+<!--<div class="btn-group">-->
+	<!--<a class="btn" href="#/home">home</a>-->
+<!--</div>-->
+
+<ul class="navigation ng-scope">
+	<li><button ng-click="prev()">prev</button></li>
+	<li><button ng-click="next()">next</button></li>
+</ul>
+
+<div class="clear ng-scope"></div>
+
+<div gridelement="currentGridElement" class="ng-isolate-scope ng-scope"></div>
+
+<div ng-include="'template.galleryImageViewer.html'" class="ng-scope"><style class="ng-scope">
+	.dumbBoxWrap { /* The div that shows/hides. */
+		z-index:40001; /* High z-index to ensure it appears above all content */
+		position: absolute;
+		top:0;
+		left:0;
 	}
-
-	.right {
-		padding-bottom: 10px;
-		border-right: 15px solid black;
+	.dumbBoxOverlay { /* Shades out background when selector is active */
+		position:absolute;
+		width:100%;
+		height:100%;
+		background-color:black;
+		opacity:.8;
+		min-width: 1020px;
+		-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+		filter:alpha(opacity=80);
+		z-index:40001;
 	}
-
-	.jara {
-		margin-right: 10px;
-		text-align: right;
+	.vertical-offset { /* Fixed position to provide the vertical offset */
+		position:absolute;
+		z-index:40002; /* ensures box appears above overlay */
 	}
+	.dumbBox { /* The actual box, centered in the fixed-position div */
+		width:405px; /* Whatever width you want the box to be */
+		position:relative;
+		margin:0 auto;
 
-	.jara h1 {
-		font-size: 4em;
-		margin-bottom: 0px;
-		margin-top: 0px;
-	}
-
-	.jara h3 {
-		margin-top: 0px;
+		background-color:white;
+		padding:10px;
+		border:1px solid black;
 	}
 
 </style>
-<!-- ngRepeat: image in homeImagesBegin -->
-<div class="grid_6">
-	<div class="home jara">
-		<h1 class="handwritten">jara tomka </h1>
-		<h3 class="handwritten">umelecky rezbar </h3>
+
+<div class="dumbBoxWrap ng-scope" ng-controller="galleryImageViewerController" ng-show="gallery" style="display: none;">
+	<div class="dumbBoxOverlay">
+		&nbsp;
 	</div>
+	<div class="vertical-offset">
+		<div>
+			<button ng-click="prev()" class="btn btn-link ng-scope" tooltip="předchozí (kurzor doleva)" tooltip-placement="right"><b class="icon icon-chevron-left icon-white">&nbsp;</b></button>
+			<button ng-click="next()" class="btn btn-link ng-scope" tooltip="další (kurzor doprava)" tooltip-placement="right"><b class="icon icon-chevron-right icon-white">&nbsp;</b></button>
+			<button ng-click="close()" class="btn btn-link ng-scope" tooltip="zavřít (Esc)" tooltip-placement="bottom"><b class="icon icon-remove icon-white">&nbsp;</b></button>
+			<span style="color: white; display: none;" ng-show="skipping &gt; 0">...přeskakujem.....</span>
+			<div ng-show="loading" style="float: right; display: none;"><img src="horizontalloadersmall_white.gif"></div>
+		</div>
+
+		<ngc-responsive-image gallery-image="image" class="ng-isolate-scope ng-scope"></ngc-responsive-image></div>
 </div>
-<!-- ngRepeat: image in homeImagesEnd -->
-
-
-<div class="xxx">
-
-
-	<!-- ngRepeat: grid in pages -->
 
 </div>
+<div ng-include="'template.gridelements.html'" class="ng-scope"><script id="text.thtml" type="text/ng-template" class="ng-scope"><div>
+		{{gridelement.Resources.text.Value}}
+	</div>
+</script>
+
+<script id="simplehtml.thtml" type="text/ng-template" class="ng-scope"><div ng-controller="simplehtml">
+	<div ng-bind-html-unsafe="ContentToHtml()"></div>
+	</div>
+</script>
+
+<script id="clientspecificpostdataform.thtml" type="text/ng-template" class="ng-scope"><div>
+	<ul>
+		<li>
+			<form name="myForm" ng-controller="userDataForm" ng-submit="post()">
+				<h3>1</h3>
+				<div>
+					<input type="text" name="key" ng-model="key" placeholder="key" value="bjkasdjkb">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.jmeno" placeholder="jmeno" required> *
+				</div>
+				<div>
+					<input type="text" name="desc" ng-model="data.prijmeni" placeholder="prijmeni">
+				</div>
+				<button type="submit">Ok</button>
+				<button ng-click="xx()">xxx</button>
+			</form>
+		</li>
+		<li>
+			<h3>2</h3>
+			<form ng-controller="userDataForm" ng-submit="post()">
+				<div>
+					<input type="text" name="key" ng-model="key" placeholder="key" value="dalsi form ">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.keywords">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.keywords">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.keywords">
+				</div>
+				<div>
+					<input type="checkbox" name="desc" ng-model="data.checkbox">
+				</div>
+				<button type="submit">Ok</button>
+			</form>
+		</li>
+		<li>
+			<h3>3</h3>
+			<form ng-controller="userDataForm" ng-submit="post()">
+				<div>
+					<input type="text" name="key" ng-model="key" placeholder="key">
+				</div>
+				<div>
+					<input type="text" name="keywords" ng-model="data.keywords">
+				</div>
+				<div>
+					<input type="text" name="desc" ng-model="data.desc">
+				</div>
+				<button type="submit">Ok</button>
+			</form>
+		</li>
+
+	</ul>
+	<div class="clearfix"></div>
+	</div>
+</script>
+
+
+<style class="ng-scope">
+	.gdata-album h1 {
+		margin-bottom: 0px;
+	}
+
+	.gdata-album h3 {
+		margin-top: 0px;
+	}
+
+	.gdata-album .first-image {
+
+	}
+
+	ul li {
+		display: block;
+		float: left;
+		margin-left: 30px;
+	}
+	.gdata-album-list .image-small {
+		padding-top: 10px;
+		padding-left: 0px;
+		padding-right: 10px;
+	}
+	.gdata-album-list .first-image {
+		max-height: 460px;
+		overflow: hidden;
+		padding-top: 10px;
+	}
+	.gdata-album-list .image-small.last {
+		padding-right: 0px;
+	}
+
+	gdata-album .image-small {
+		display: inline-block;
+		padding: 0 10px 10px 0;
+	}
+</style>
+<style class="ng-scope">
+	.dumbBoxWrap { /* The div that shows/hides. */
+		z-index:40001; /* High z-index to ensure it appears above all content */
+		position: absolute;
+		top:0;
+		left:0;
+	}
+	.dumbBoxOverlay { /* Shades out background when selector is active */
+		position:fixed;
+		width:100%;
+		height:100%;
+		background-color:black;
+		opacity:.8; /* Sets opacity so it's partly transparent */
+		-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; /* IE transparency */
+		filter:alpha(opacity=80); /* More IE transparency */
+		z-index:40001;
+	}
+	.vertical-offset { /* Fixed position to provide the vertical offset */
+		position:fixed;
+		width:100%;
+		z-index:40002; /* ensures box appears above overlay */
+	}
+	.dumbBox { /* The actual box, centered in the fixed-position div */
+		width:405px; /* Whatever width you want the box to be */
+		position:relative;
+		margin:0 auto;
+
+		background-color:white;
+		padding:10px;
+		border:1px solid black;
+	}
+</style>
+
+<script id="gdataalbum.thtml" type="text/ng-template" class="ng-scope"><div>
+
+	<div class="gdata-album-list" ng-controller="gridelementGdataAlbumCtrl">
+			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto">
+				<div style="padding-right:10px">
+				<img ngc-lazy-image="firstPhoto.Large.PhotoUri"/>
+
+			</div>
+			</div>
+			<div ng-repeat="photo in gdataAlbumPhotos" class="grid_3">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
+			</div>
+	</div>
+	<div class="clear"></div>
+</div>
+</script>
+
+<script id="gdataalbum_Single.thtml" type="text/ng-template" class="ng-scope"><div>
+	<div class="gdata-album" ng-controller="gridelementGdataAlbumCtrl">
+
+		<h1>{{gridelement.Resources.header.Value}}</h1>
+			<h3>{{gridelement.Resources.text.Value}}</h3>
+			<div class="first-image grid_3 btn-link" ng-click="showImage(gdataAlbumId, 0)" >
+				<img ngc-lazy-image="firstPhoto.Thumbnails[1].PhotoUri"/>
+			</div>
+		<div class="grid_9">
+				<div ng-repeat="photo in gdataAlbumPhotos" class="image-small">
+					<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link"><img  ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
+				</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+</script>
+</div>
+
+
 
 </div>
 
@@ -999,8 +1205,6 @@
 
 	$(document).ready(function () {
 	})
-
-
 </script>
 
 

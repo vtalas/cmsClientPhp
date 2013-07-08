@@ -55,7 +55,7 @@ module.directive("gridelement", ["$compile", "$templateCache", function ($compil
 	};
 }]);
 
-module.directive("ngcGdataAlbum", ["cmsApi", ngcGdataAlbumDirective]);
+module.directive("ngcGdataAlbum", ngcGdataAlbumDirective);
 module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag",  simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
@@ -71,8 +71,6 @@ module.controller("appController", ["$scope", "test", "$location", function ($sc
 
 	$scope.$on("page-loaded", function(e) {
 		var pageContent = $("html").html();
-
-		console.log($location.path());
 		test.snapshot(pageContent, $location.path());
 	});
 }]);

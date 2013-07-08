@@ -1,4 +1,4 @@
-function ngcGdataAlbumDirective(cmsApi) {
+var ngcGdataAlbumDirective = ["cmsApi", function(cmsApi) {
 	var api = new ApiWrapper(cmsApi);
 
 	return {
@@ -11,4 +11,4 @@ function ngcGdataAlbumDirective(cmsApi) {
 			};
 		}
 	};
-}
+}];

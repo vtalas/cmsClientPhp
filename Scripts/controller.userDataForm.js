@@ -1,5 +1,4 @@
-function userDataForm($scope, cmsApi, $routeParams) {
-
+var userDataForm = ["$scope", "cmsApi", "$routeParams", function($scope, cmsApi, $routeParams) {
 	$scope.link = $routeParams.link;
 
 	var parserStatus = function (status) {
@@ -30,6 +29,4 @@ function userDataForm($scope, cmsApi, $routeParams) {
 	$scope.serialized = function () {
 		JSON.stringify($scope.data);
 	}
-
-
-}
+}];

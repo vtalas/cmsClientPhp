@@ -1,5 +1,8 @@
 <root>
-	<output path="Resources/css/basic.min.css">
-		<input path="Resources/css/basic.css"></input>
+	<output path="../Css/css.min.css">
+		<input path="../Css/fluid_grid.css"/>
+		<input path="../Css/masparti-responsive.css"/>
+		<input path="../Css/metro-bootstrap.css"/>
+		<input path="../Css/main.css"/>
 	</output>
 </root>
