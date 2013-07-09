@@ -61,7 +61,6 @@ var  galleryImageViewerController = ["$scope", "$routeParams", "test", "$locatio
 	}
 
 	function getImage(index) {
-
 		if (!$scope.gallery) {
 			$scope.newindex = index;
 			test.getAlbumPhotos(getGalleryId()).then(function (data) {

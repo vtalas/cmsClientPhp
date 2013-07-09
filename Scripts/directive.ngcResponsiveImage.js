@@ -148,7 +148,7 @@ var ngcResponsiveImage = function () {
 		}],
 		restrict: "E",
 		replace: true,
-		templateUrl: "template.ngcResponsiveImage.html",
+		templateUrl: "Templates/template.ngcResponsiveImage.html",
 		compile: function () {
 			return function (scope, el) {
 				var element = el.find(".draggable");

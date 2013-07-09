@@ -1,5 +1,5 @@
 <root>
-	<output path="../Scripts/libs.min.js">
+	<output path="../_production/Scripts/libs.min.js">
 		<!--<input path="../Scripts/libs/jquery.min.js"></input>-->
 		<!--<input path="../Scripts/libs/angular.min.js"></input>-->
 		<!--<input path="../Scripts/libs/angular-resource.min.js"></input>-->

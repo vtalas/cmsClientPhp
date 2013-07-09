@@ -14,10 +14,10 @@ module.factory("test", ['cmsApi' ,'cache', function (cmsApi, cache) {
 
 module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
-		.when('/page/:link', {reloadOnSearch: false, controller: pageController, templateUrl: 'template.page.html', resolve: {api: "test"}})
-		.when('/p/:link/:elementIndex', {reloadOnSearch: false, controller: pController, templateUrl: 'template.p.html'})
-		.when('/home', {controller: homeController, templateUrl: 'template.home.html'})
-		.when('/login', {controller: loginController, templateUrl: 'template.login.html'})
+		.when('/page/:link', {reloadOnSearch: false, controller: pageController, templateUrl: 'Templates/template.page.html', resolve: {api: "test"}})
+		.when('/p/:link/:elementIndex', {reloadOnSearch: false, controller: pController, templateUrl: 'Templates/template.p.html'})
+		.when('/home', {controller: homeController, templateUrl: 'Templates/template.home.html'})
+		.when('/login', {controller: loginController, templateUrl: 'Templates/template.login.html'})
 		.otherwise({redirectTo: '/home'});
 }]);
 
