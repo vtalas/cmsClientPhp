@@ -6,10 +6,19 @@
 	.home {
 		height: 240px;;
 	}
+	.home_main {
+		height: 480px;;
+	}
 
 	.homeimage {
 		height: 230px;;
 		width: 230px;;
+		border: 1px solid gray;
+	}
+
+	.home_main_image {
+		height: 710px;;
+		width: 470px;;
 		border: 1px solid gray;
 	}
 
@@ -33,33 +42,75 @@
 		margin-top: 0px;
 	}
 
+	.grid_6 {
+		background-color: none;
+	}
+
 </style>
-<div class="grid_3" ng-repeat="image in homeImagesBegin" >
-	<div class="home">
-		<div class="homeimage">
-			<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="image.Thumbnails[1].PhotoUri"/></a>
+<div class="grid_6">
+	<div class="home_main">
+		<div class="home_main_image">
+			<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="homeImages[0].Thumbnails[2].PhotoUri"/></a>
 		</div>
 	</div>
 </div>
 <div class="grid_6">
-	<div class="home jara">
-		<h1 class="handwritten">jara tomka </h1>
-		<h3 class="handwritten">umelecky rezbar </h3>
+	<div class="grid_6">
+		<div class="home">
+			<div class="homeimage">
+				<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="homeImages[1].Thumbnails[1].PhotoUri"/></a>
+			</div>
+		</div>
 	</div>
-</div>
-<div class="grid_3" ng-repeat="image in homeImagesEnd">
-	<div class="home">
-		<div class="homeimage">
-			<img ngc-lazy-image="image.Thumbnails[1].PhotoUri" />
+	<div class="grid_6">
+		<div class="home">
+			<div class="homeimage">
+				<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="homeImages[2].Thumbnails[1].PhotoUri"/></a>
+			</div>
+		</div>
+	</div>
+	<div class="grid_12">
+		<div class="home jara">
+			<h1 class="handwritten">jára tomka </h1>
+
+			<h3 class="handwritten">umělecký řezbář </h3>
+		</div>
+	</div>
+	<div class="grid_6">
+		<div class="home">
+			<div class="homeimage">
+				<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="homeImages[3].Thumbnails[1].PhotoUri"/></a>
+			</div>
+		</div>
+	</div>
+	<div class="grid_6">
+		<div class="home">
+			<div class="homeimage">
+				<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="homeImages[4].Thumbnails[1].PhotoUri"/></a>
+			</div>
 		</div>
 	</div>
 </div>
 
 
-<div class="xxx">
-	<div ng-repeat="grid in pages">
-		<h3><a href="#!/page/{{grid.Link}}">{{grid.Name}}</a></h3>
-	</div>
-
-</div>
+<!--<div class="grid_3" ng-repeat="image in homeImagesBegin" >-->
+<!--<div class="home">-->
+<!--<div class="homeimage">-->
+<!--<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="image.Thumbnails[1].PhotoUri"/></a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="grid_6">-->
+<!--<div class="home jara">-->
+<!--<h1 class="handwritten">jára tomka </h1>-->
+<!--<h3 class="handwritten">umělecký řezbář </h3>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="grid_3" ng-repeat="image in homeImagesEnd">-->
+<!--<div class="home">-->
+<!--<div class="homeimage">-->
+<!--<img ngc-lazy-image="image.Thumbnails[1].PhotoUri" />-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 

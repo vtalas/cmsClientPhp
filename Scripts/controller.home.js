@@ -10,8 +10,9 @@ var homeController = ["$scope", "test", function($scope, test) {
 
 	test.getPhotos()
 		.then(function (data) {
-			$scope.homeImagesBegin = data.data.slice(0, 6);
-			$scope.homeImagesEnd = data.data.slice(7, 11);
+			$scope.homeImages = data.data;
+//			$scope.homeImagesBegin = data.data.slice(0, 6);
+//			$scope.homeImagesEnd = data.data.slice(7, 11);
 			return data;
 		})
 		.then(function (data) {
