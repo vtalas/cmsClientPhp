@@ -13,12 +13,12 @@ var gridelementGdataAlbumCtrl =  ["$scope", "test", "$routeParams", "$location",
 			var copy = data.data.slice();
 			$scope.firstPhoto = copy.splice(0, 1)[0];
 			$scope.gdataAlbumPhotos = copy;
-			$scope.gdataAlbumPhotosAll = data;
+			$scope.gdataAlbumPhotosAll = data.data;
 		});
 
 	$scope.showImage = function (galleryId, imageIndex) {
 		$location.search("i", imageIndex);
-		$location.search("g", galleryId);
+		$location.search("gid", galleryId);
 		$rootScope.$broadcast("getAlbumPhotosSuccess", $scope.gdataAlbumPhotosAll, imageIndex);
 	};
 

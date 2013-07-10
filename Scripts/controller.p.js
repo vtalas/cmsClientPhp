@@ -2,7 +2,7 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", function($sc
 	$scope.link = $routeParams.link;
 
 	var getIndex = function () {
-		var search = $location.search().g,
+		var search = $location.search().elindex,
 			elemIndex = $routeParams.elementIndex,
 			index;
 
@@ -25,7 +25,7 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", function($sc
 		});
 
 	var setNewLocation = function (index) {
-		$location.search("g", index);
+		$location.search("elindex", index);
 		$scope.currentGridElement = $scope.page.GridElements[index];
 	};
 

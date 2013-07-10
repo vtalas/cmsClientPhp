@@ -21,7 +21,7 @@
 		<input path="../Scripts/controller.userDataForm.js"></input>
 		<input path="../Scripts/controller.gridelementGdataAlbumCtrl.js"></input>
 		<input path="../Scripts/controller.simplehtml.js"></input>
-		<input path="../Scripts/controller.galleryImage.js"></input>
+		<input path="../Scripts/controller.galleryImageViewer.js"></input>
 		<input path="../Scripts/controller.p.js"></input>
 
 		<input path="../Scripts/module.appConfig.js"></input>

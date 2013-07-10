@@ -40,7 +40,7 @@ var  galleryImageViewerController = ["$scope", "$routeParams", "test", "$locatio
 	});
 	$scope.$on("ngc-responsive-image-skipping", function (e, data) {
 		$scope.skipping = data;
-		if ($scope.$$phase !== "$digest"){
+		if ($scope.$$phase !== "$digest") {
 			$scope.$digest();
 		}
 	});
@@ -57,7 +57,7 @@ var  galleryImageViewerController = ["$scope", "$routeParams", "test", "$locatio
 	}
 
 	function getGalleryId() {
-		return $routeParams.g;
+		return $routeParams.gid;
 	}
 
 	function getImage(index) {
