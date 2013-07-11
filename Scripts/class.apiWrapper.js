@@ -13,9 +13,7 @@ var ApiWrapper = (function () {
 			deferred.resolve(response);
 			return deferred;
 		}
-
 		callback();
-
 		return deferred;
 	};
 
@@ -32,7 +30,9 @@ var ApiWrapper = (function () {
 				function (err) {
 					var returnUrl = (window.location);
 					var hash = (window.location.hash);
-					window.location.hash = "login";//?returnuccrl=" + hash;
+					if (err.status === 403){
+						window.location.hash = "!login";//?returnuccrl=" + hash;
+					}
 				});
 		});
 
@@ -59,7 +59,6 @@ var ApiWrapper = (function () {
 		this.cmsApi.getAlbum({id: albumId }, function (data) {
 			deferred.resolve(data);
 		});
-
 		return deferred;
 	};
 

@@ -7,7 +7,6 @@
 		height: 240px;;
 	}
 	.home_main {
-		height: 480px;;
 	}
 
 	.homeimage {
@@ -15,16 +14,22 @@
 		width: 230px;;
 		border: 1px solid gray;
 	}
+	.lastline {
+		position: relative;
+		top:10px;
+	}
 
 	.home_main_image {
-		height: 710px;;
+		height: 720px;;
 		width: 470px;;
 		border: 1px solid gray;
 		overflow: hidden;
 	}
 
+	.home_main_image img{
+		max-width: auto;
+	}
 	.right {
-		padding-bottom: 10px;
 		border-right: 15px solid black;
 	}
 
@@ -48,10 +53,12 @@
 	}
 
 </style>
+		<div style="margin-top: 10px;">
+
 <div class="grid_6">
 	<div class="home_main">
 		<div class="home_main_image">
-			<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="homeImages[0].Large.PhotoUri"/></a>
+			<a href="#!/p/{{pageLink}}/0"><img ngc-lazy-image="homeImages[0].Large.PhotoUri"/></a>
 		</div>
 	</div>
 </div>
@@ -59,14 +66,14 @@
 	<div class="grid_6">
 		<div class="home">
 			<div class="homeimage">
-				<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="homeImages[1].Thumbnails[1].PhotoUri"/></a>
+				<a href="#!/p/{{pageLink}}/1"> <img ngc-lazy-image="homeImages[1].Thumbnails[1].PhotoUri"/></a>
 			</div>
 		</div>
 	</div>
 	<div class="grid_6">
 		<div class="home">
 			<div class="homeimage">
-				<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="homeImages[2].Thumbnails[1].PhotoUri"/></a>
+				<a href="#!/p/{{pageLink}}/2"> <img ngc-lazy-image="homeImages[2].Thumbnails[1].PhotoUri"/></a>
 			</div>
 		</div>
 	</div>
@@ -79,15 +86,15 @@
 	</div>
 	<div class="grid_6">
 		<div class="home">
-			<div class="homeimage">
-				<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="homeImages[3].Thumbnails[1].PhotoUri"/></a>
+			<div class="homeimage lastline">
+				<a href="#!/p/{{pageLink}}/3"> <img ngc-lazy-image="homeImages[3].Thumbnails[1].PhotoUri"/></a>
 			</div>
 		</div>
 	</div>
 	<div class="grid_6">
 		<div class="home">
-			<div class="homeimage">
-				<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="homeImages[4].Thumbnails[1].PhotoUri"/></a>
+			<div class="homeimage lastline">
+				<a href="#!/p/{{pageLink}}/4"> <img ngc-lazy-image="homeImages[4].Thumbnails[1].PhotoUri"/></a>
 			</div>
 		</div>
 	</div>
@@ -115,3 +122,5 @@
 <!--</div>-->
 <!--</div>-->
 
+			<div class="clearfix"></div>
+		</div>
