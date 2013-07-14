@@ -63,12 +63,16 @@
 	<!--<a class="btn" href="Service/cmsClientPHPService/logout.php">logout</a>-->
 	<!--</div>-->
 
+
 	<div class="alert alert-error" ng-show="message">
 		<b>Chyba:</b>
 		{{message}}
 	</div>
 
 	<div ng-view></div>
+
+	<div ng-include="'Templates/template.galleryImageViewer.html'"></div>
+	<div ng-include="'Templates/template.gridelements.html'" onload="chuj = true"></div>
 
 	<div class="clear"></div>
 </div>

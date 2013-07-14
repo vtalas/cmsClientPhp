@@ -20,6 +20,7 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", function($sc
 			$scope.page = response.data;
 			$scope.currentGridElement = $scope.page.GridElements[getIndex()];
 			return response;
+
 		}).then(function (data) {
 			test.checkForSnapshot($scope, data);
 		});
