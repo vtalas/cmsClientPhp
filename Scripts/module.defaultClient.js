@@ -59,7 +59,7 @@ module.directive("ngcGdataAlbum", ngcGdataAlbumDirective);
 module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag",  simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
-module.controller("appController", ["$scope", "test", "$location", function ($scope, test, $location) {
+module.controller("appController", ["$scope", "test", "$location", "$rootScope", function ($scope, test, $location, $rootScope) {
 
 	$scope.globalKeydown = function (event) {
 		$scope.$broadcast("global-keydown", event);

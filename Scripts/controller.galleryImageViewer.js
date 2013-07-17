@@ -1,10 +1,13 @@
 /*global MaspartiData, ApiWrapper*/
 var  galleryImageViewerController = ["$scope", "$routeParams", "test", "$location", function($scope, $routeParams, test, $location) {
 
-	$scope.$on("getAlbumPhotosSuccess", function (e, data, index) {
-		$scope.gallery = data;
-		getImage(index);
+	$scope.$on("galleryImageViewer-display-image", function (e, galleryId, imageIndex) {
+		console.log("--- 00 00 ");
+		$scope.imageIndex = imageIndex;
+		$scope.galleryId = galleryId;
+		getImage(galleryId, imageIndex);
 	});
+
 
 	$scope.$on("global-keydown", function (e, $event) {
 		if (!visible()) {
@@ -25,19 +28,13 @@ var  galleryImageViewerController = ["$scope", "$routeParams", "test", "$locatio
 		}
 	});
 
-	$scope.$on("$locationChangeSuccess", function () {
-		var index = getImageIndex();
-		if (typeof index === "undefined") {
-			$scope.gallery = null;
-		}
-	});
-
 	$scope.$on("ngc-responsive-image-loading", function (e, data) {
 		$scope.loading = data;
 		if ($scope.$$phase !== "$digest"){
 			$scope.$digest();
 		}
 	});
+
 	$scope.$on("ngc-responsive-image-skipping", function (e, data) {
 		$scope.skipping = data;
 		if ($scope.$$phase !== "$digest") {
@@ -45,25 +42,14 @@ var  galleryImageViewerController = ["$scope", "$routeParams", "test", "$locatio
 		}
 	});
 
-
-	handleUrlParams();
-
 	function visible() {
 		return $scope.gallery !== null && $scope.gallery !== undefined;
 	}
 
-	function getImageIndex() {
-		return $routeParams.i;
-	}
-
-	function getGalleryId() {
-		return $routeParams.gid;
-	}
-
-	function getImage(index) {
+	function getImage(galleryId, index) {
 		if (!$scope.gallery) {
 			$scope.newindex = index;
-			test.getAlbumPhotos(getGalleryId()).then(function (data) {
+			test.getAlbumPhotos(galleryId).then(function (data) {
 				$scope.gallery = data.data;
 				$scope.image = $scope.gallery[index];
 			});
@@ -72,41 +58,32 @@ var  galleryImageViewerController = ["$scope", "$routeParams", "test", "$locatio
 		$scope.image = $scope.gallery[index];
 	}
 
-	function handleUrlParams() {
-		var galleryId = getGalleryId(),
-			index = getImageIndex();
-
-		if (typeof index !== "undefined" && typeof galleryId !== "undefined") {
-			getImage(index);
-		}
-	}
-
 	$scope.close = function () {
-		location.hash = "!" + $location.path();
+		$location.search("gid", null);
+		$location.search("i", null);
+		$scope.gallery = null;
 	};
 
 	$scope.next = function () {
 		var length = $scope.gallery.length,
-			imageIndex = getImageIndex();
+			imageIndex = $scope.imageIndex;
 
 		imageIndex++;
 		if (imageIndex >= length) {
 			imageIndex = 0;
 		}
 
-		getImage(imageIndex);
 		$location.search("i", imageIndex);
 	};
 
 	$scope.prev = function () {
 		var length = $scope.gallery.length,
-			imageIndex = getImageIndex();
+			imageIndex = $scope.imageIndex;
 
 		imageIndex--;
 		if (imageIndex <= 0) {
 			imageIndex = length - 1;
 		}
-		getImage(imageIndex);
 		$location.search("i", imageIndex);
 	};
 

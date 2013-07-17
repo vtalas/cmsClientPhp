@@ -1,5 +1,19 @@
-var pController =  [ "$scope", "test", "$routeParams", "$location", function($scope, test, $routeParams, $location) {
+var pController =  [ "$scope", "test", "$routeParams", "$location", "$rootScope", function($scope, test, $routeParams, $location, $rootScope) {
 	$scope.link = $routeParams.link;
+
+	$scope.$on("$locationChangeSuccess", function () {
+		setNewLocation(getIndex());
+		processShowImageEvent();
+	});
+
+	var processShowImageEvent = function () {
+		var search = $location.search();
+		if (search.gid && search.i !== undefined){
+			$rootScope.$broadcast("galleryImageViewer-display-image", search.gid, search.i);
+		}
+	};
+
+	processShowImageEvent();
 
 	var getIndex = function () {
 		var search = $location.search().elindex,
@@ -15,6 +29,11 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", function($sc
 		return index;
 	};
 
+	var setNewLocation = function (index) {
+		$location.search("elindex", index);
+		$scope.currentGridElement = $scope.page.GridElements[index];
+	};
+
 	test.getPage($scope.link)
 		.then(function (response) {
 			$scope.page = response.data;
@@ -24,12 +43,6 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", function($sc
 		}).then(function (data) {
 			test.checkForSnapshot($scope, data);
 		});
-
-	var setNewLocation = function (index) {
-		$location.search("elindex", index);
-		$scope.currentGridElement = $scope.page.GridElements[index];
-	};
-
 
 	$scope.next = function () {
 		var galleryIndex = getIndex(),
