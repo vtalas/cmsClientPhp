@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="cs" ng-app="defaultClient">
 <head>
@@ -12,9 +12,10 @@
 
 	<title>Jaromír Tomka - Umělecký řezbář</title>
 	<link rel="stylesheet" href="Css/fluid_grid.css"/>
-	<link rel="stylesheet" href="Css/masparti-responsive.css"/>
 	<link rel="stylesheet" href="Css/metro-bootstrap.css"/>
+	<link rel="stylesheet" href="Css/masparti-responsive.css"/>
 	<link rel="stylesheet" href="Css/main.css"/>
+	<link rel="stylesheet" href="Css/font-awesome/css/font-awesome.min.css"/>
 
 	<!--<link rel="stylesheet" href="Css/css.min.css"/>-->
 
@@ -55,6 +56,7 @@
 </head>
 <body>
 <div class="container_12 right" ng-controller="appController">
+
 	<i ui-event="{ keydown: 'globalKeydown($event)'}" style="display:none"></i>
 
 	<!--<div class="btn-group">-->
@@ -71,8 +73,9 @@
 
 	<div ng-view></div>
 
-	<div ng-include="'Templates/template.galleryImageViewer.html'"></div>
-	<div ng-include="'Templates/template.gridelements.html'" onload="chuj = true"></div>
+	<div ng-include="'Templates/template.galleryImageViewer.html'" onload="galleryImageViewerLoaded = true"></div>
+	<div ng-include="'Templates/template.gridelements.html'" onload="gridElementsTemplateLoaded = true"></div>
+
 
 	<div class="clear"></div>
 </div>

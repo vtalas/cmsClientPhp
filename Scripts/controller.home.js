@@ -13,7 +13,6 @@ var homeController = ["$scope", "test", function ($scope, test) {
 				test.getAlbumPhotos(content.gdataAlbumId)
 					.then(function (xx) {
 						$scope.homeImages.push(xx.data[0]);
-						console.log($scope.homeImages)
 					})
 			}
 		});

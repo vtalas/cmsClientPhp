@@ -2,7 +2,6 @@
 var  galleryImageViewerController = ["$scope", "$routeParams", "test", "$location", function($scope, $routeParams, test, $location) {
 
 	$scope.$on("galleryImageViewer-display-image", function (e, galleryId, imageIndex) {
-		console.log("--- 00 00 ");
 		$scope.imageIndex = imageIndex;
 		$scope.galleryId = galleryId;
 		getImage(galleryId, imageIndex);

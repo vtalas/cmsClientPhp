@@ -4,11 +4,13 @@
 		position: fixed;
 		z-index: 10;
 		width: 100%;
-		background-color: red;
 	}
 	.navigation li {
 		margin: 0;
 		padding: 0;
+	}
+	.icon-15x {
+		font-size: 15em;
 	}
 </style>
 
@@ -18,8 +20,8 @@
 
 
 <ul class="navigation">
-	<li><button ng-click="prev()">prev</button></li>
-	<li><button ng-click="next()">next</button></li>
+	<li><button ng-click="prev()" class="btn"><i class="icon-angle-left icon-15x"></i> </button></li>
+	<li><button ng-click="next()" class="btn"><i class="icon-angle-right icon-15x"></i></button></li>
 </ul>
 <div class="clear"></div>
 

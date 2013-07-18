@@ -73,6 +73,25 @@ module.controller("appController", ["$scope", "test", "$location", "$rootScope",
 		var pageContent = $("html").html();
 		test.snapshot(pageContent, $location.path());
 	});
+
+	var processShowImageEvent = function () {
+		var search = $location.search();
+		if (search.gid && search.i !== undefined){
+			$rootScope.$broadcast("galleryImageViewer-display-image", search.gid, search.i);
+		}
+	};
+
+	$scope.$on("$locationChangeSuccess", function () {
+		processShowImageEvent();
+	});
+
+	$scope.$watch("gridElementsTemplateLoaded", function (value) {
+		if (value === true ){
+			processShowImageEvent();
+		}
+	});
+
+
 }]);
 
 

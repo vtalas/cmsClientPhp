@@ -3,17 +3,8 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", "$rootScope"
 
 	$scope.$on("$locationChangeSuccess", function () {
 		setNewLocation(getIndex());
-		processShowImageEvent();
 	});
 
-	var processShowImageEvent = function () {
-		var search = $location.search();
-		if (search.gid && search.i !== undefined){
-			$rootScope.$broadcast("galleryImageViewer-display-image", search.gid, search.i);
-		}
-	};
-
-	processShowImageEvent();
 
 	var getIndex = function () {
 		var search = $location.search().elindex,
