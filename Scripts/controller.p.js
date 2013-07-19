@@ -17,23 +17,33 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", "$rootScope"
 			index = search;
 		}
 
-		return index;
+		return Number(index, 10);
 	};
 
+	var setBoundaries = function (index) {
+		var length = $scope.page.GridElements.length;
+		$scope.isFirst = index === 0;
+		$scope.isLast = index === length - 1;
+	};
+	
 	var setNewLocation = function (index) {
 		$location.search("elindex", index);
 		$scope.currentGridElement = $scope.page.GridElements[index];
+		setBoundaries(index);
 	};
 
 	test.getPage($scope.link)
 		.then(function (response) {
+			var index = getIndex();
 			$scope.page = response.data;
-			$scope.currentGridElement = $scope.page.GridElements[getIndex()];
+			setBoundaries(index);
+			$scope.currentGridElement = $scope.page.GridElements[index];
 			return response;
 
 		}).then(function (data) {
 			test.checkForSnapshot($scope, data);
 		});
+
 
 	$scope.next = function () {
 		var galleryIndex = getIndex(),
