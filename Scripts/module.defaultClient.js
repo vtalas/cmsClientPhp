@@ -34,7 +34,6 @@ module.directive('shortcut', function() {
 	};
 });
 
-
 module.directive("gridelement", ["$compile", "$templateCache", function ($compile, $templateCache) {
 	return {
 		scope: { grid: "=", gridelement: "=" },

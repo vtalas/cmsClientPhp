@@ -3,8 +3,10 @@
 		position: fixed;
 		z-index: 10;
 		width: 100%;
-		background-color: yellowgreen;
 		opacity: 0.8;
+		background-color: white;
+		/*transition:height 1s linear;*/
+		/*-webkit-transition:height 1s linear;*/
 	}
 
 	.navigation li {
@@ -17,19 +19,25 @@
 		padding: 0;
 	}
 </style>
-<div class="navigation">
+<div class="navigation" >
 	<div class="container_12">
 		<div class="grid_1">
-			<button ng-click="prev()"  class="btn" ng-disabled="isFirst">
+			<button ng-click="prev()"  class="btn-link" ng-disabled="isFirst">
 				<i class="icon-angle-left icon-4x-responsive"></i>
 			</button>
 		</div>
 
-		<div class="grid_10">ss</div>
+		<div class="grid_10">
+			<h1 class="font-4x-responsive">{{currentGridElement.Resources.header.Value}}</h1>
+
+			<!--<h1 class="font-4x-responsive">{{currentGridElement.Resources.header.Value}}</h1>-->
+			<h3>{{currentGridElement.Resources.text.Value }}</h3>
+			<!--&nbsp; -->
+			</div>
 
 		<div class="grid_1">
 			<div style="padding-right: 10px">
-				<button style="float:right" ng-click="next()" ng-disabled="isLast" class="btn">
+				<button style="float:right" ng-click="next()" ng-disabled="isLast" class="btn-link">
 					<i class="icon-angle-right icon-4x-responsive"></i>
 				</button>
 			</div>

@@ -69,42 +69,20 @@
 	</div>
 </script>
 
-
 <style>
 	.gdata-album h1 {
-		margin-bottom: 0px;
+		margin-bottom: 0;
 	}
 
 	.gdata-album h3 {
-		margin-top: 0px;
+		margin-top: 0;
 	}
-
-	.gdata-album .first-image {
-
-	}
-
-	ul li {
-		display: block;
-		float: left;
-		margin-left: 30px;
-	}
-	.gdata-album-list .image-small {
-		padding-top: 10px;
-		padding-left: 0px;
-		padding-right: 10px;
-	}
-	.gdata-album-list .first-image {
-		max-height: 460px;
-		overflow: hidden;
-	}
-	.gdata-album-list .image-small.last {
-		padding-right: 0px;
-	}
-
 	gdata-album .image-small {
 		display: inline-block;
 		padding: 0 10px 10px 0;
 	}
+
+
 </style>
 <style>
 	.dumbBoxWrap { /* The div that shows/hides. */
@@ -141,14 +119,18 @@
 
 <script id="gdataalbum.thtml" type="text/ng-template"><div>
 	<div class="gdata-album-list" ng-controller="gridelementGdataAlbumCtrl">
-			<div class="first-image grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto">
-				<div style="padding-right:10px">
-				<img ngc-lazy-image="firstPhoto.Large.PhotoUri"/>
-
-			</div>
+			<div class="first-image-box grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" ng-show="firstPhoto">
+				<div  class="first-image-content">
+					<div class="image-placeholder">
+						<img ngc-lazy-image="firstPhoto.Large.PhotoUri"/>
+					</div>
+				</div>
 			</div>
 			<div ng-repeat="photo in gdataAlbumPhotos" class="grid_3">
-				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link  image-small"><img ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link image-small">
+				<div class="image-placeholder">
+					<img ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
+				</div>
 			</div>
 	</div>
 	<div class="clear"></div>
@@ -165,7 +147,7 @@
 			</div>
 		<div class="grid_9">
 				<div ng-repeat="photo in gdataAlbumPhotos" class="image-small">
-					<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link"><img  ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
+						<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link"><img  ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
 				</div>
 		</div>
 	</div>

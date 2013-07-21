@@ -1,4 +1,217 @@
+@import "variables";
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'source_sans_prolight', sans-serif;
+    font-weight: 400;
+}
+
+h1, h2, h3 {
+    font-weight: 400;
+}
+
+img {
+    max-width: 100%;
+}
+
 .middle-container {
-  width: 960px;
-  margin: 5% auto;
+    width: 960px;
+    margin: 5% auto;
+}
+
+.navigation {
+    h1 {
+        margin: 0;
+        padding: 0;
+    }
+    .btn-link {
+        &:disabled {
+            color: #eeeeee;
+            cursor: auto;
+        }
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    &.scrolled {
+        opacity: 1;
+        padding-top: .5em;
+        padding-bottom: .5em;
+        .font-4x-responsive, .icon-4x-responsive {
+            font-size: 2em;
+        }
+        h3 {
+            display: none;
+        }
+        h1 {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+}
+
+//http://www.mademyday.de/css-height-equals-width-with-pure-css.html
+//aspect ratio
+.pseudo-aspect-ratio-box {
+    position: relative;
+    content: "";
+    display: block;
+}
+
+.pseudo-aspect-ratio-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.ratio1_1 {
+    padding-top: 100%;
+}
+
+.ratio2_1 {
+    padding-top: 50%;
+}
+
+.ratio1_2 {
+    padding-top: 200%;
+}
+
+.ratio4_3 {
+    padding-top: 75%;
+}
+
+.ratio16_9 {
+    padding-top: 56.25%;
+}
+
+.image-placeholder {
+    background-color: #eeeeee;
+    width: 100%;
+    height: 100%;
+}
+
+/////////////////////////////////
+
+.btn-link,
+.btn-link:active,
+.btn-link[disabled] {
+    background-color: transparent;
+    background-image: none;
+    //.box-shadow(none);
+}
+
+.btn-link {
+    border-color: transparent;
+    cursor: pointer;
+    color: @linkColor;
+}
+
+.btn-link:hover {
+    color: @linkColorHover;
+    text-decoration: underline;
+    background-color: transparent;
+}
+
+.btn-link[disabled]:hover {
+    text-decoration: none;
+}
+
+.page-home {
+    margin-top: 10px;
+    &.right {
+        border-right: 15px solid black;
+    }
+
+    .handwritten {
+        font-family: 'Advent Pro', sans-serif;
+    }
+    .home {
+        .pseudo-aspect-ratio-box;
+        .ratio1_1;
+    }
+
+    .home-jara {
+        .pseudo-aspect-ratio-box;
+        .ratio2_1;
+    }
+
+    .home_main {
+        padding-right: 10px;
+    }
+
+    .homeimage {
+        .pseudo-aspect-ratio-content;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
+
+    .home_main_image {
+        height: 720px;;
+        overflow: hidden;
+        img {
+            max-width: inherit;
+        }
+    }
+    .lastline {
+        top: 10px;
+    }
+
+    .jara {
+        margin-right: 10px;
+        text-align: right;
+        .pseudo-aspect-ratio-content;
+        h1 {
+            font-size: 4em;
+            margin-bottom: 0px;
+            margin-top: 0px;
+            font-weight: 100;
+        }
+        h3 {
+            font-weight: 100;
+            margin-top: 0px;
+        }
+    }
+
+    .grid_6 {
+        background-color: none;
+    }
+
+}
+
+.gdata-album-list {
+    .image-small {
+        .pseudo-aspect-ratio-content;
+        padding-top: 10px;
+        padding-left: 0;
+        padding-right: 10px;
+    }
+
+    .grid_3:before {
+        .pseudo-aspect-ratio-box;
+        .ratio1_1;
+    }
+
+    .first-image-box {
+        overflow: hidden;
+    }
+    .first-image-box:before {
+        .pseudo-aspect-ratio-box;
+        .ratio16_9;
+    }
+    .first-image-content {
+        .pseudo-aspect-ratio-content;
+        padding-right: 10px;
+    }
+    .image-small.last {
+        padding-right: 0px;
+    }
+
 }

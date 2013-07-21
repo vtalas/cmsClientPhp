@@ -65,4 +65,32 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", "$rootScope"
 		galleryIndex--;
 		setNewLocation(galleryIndex);
 	};
+
+	var el = angular.element(".navigation");
+	angular.element(window).scroll(function () {
+
+		var fromTop = $(this).scrollTop(),
+			threshold = 50;
+
+		if (fromTop > threshold && !$scope.isScrolled) {
+			$scope.isScrolled = true;
+			el.addClass("scrolled");
+		}
+		if (fromTop < threshold && $scope.isScrolled) {
+			$scope.isScrolled = false;
+			el.removeClass("scrolled");
+		}
+
+
+//			console.log("savdjavsjd", el, fromTop)
+	});
+
+
+	$scope.xxx = function (event) {
+		var element = angular.element(event.toElement);
+
+		console.log(element);
+//		element.css("height", "40px");
+
+	}
 }];

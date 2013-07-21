@@ -1,62 +1,4 @@
-<style>
-	.handwritten {
-		font-family: 'Advent Pro', sans-serif;
-	}
-
-	.home {
-		height: 240px;;
-	}
-
-	.home_main {
-		padding-right: 10px;
-	}
-
-	.homeimage {
-		padding-right: 10px;
-	}
-
-	.lastline {
-		position: relative;
-		top: 10px;
-	}
-
-	.home_main_image {
-		height: 720px;;
-		overflow: hidden;
-	}
-
-	.home_main_image img {
-		max-width: inherit;
-	}
-
-	.home_main_image img {
-	}
-
-	.right {
-		border-right: 15px solid black;
-	}
-
-	.jara {
-		margin-right: 10px;
-		text-align: right;
-	}
-
-	.jara h1 {
-		font-size: 4em;
-		margin-bottom: 0px;
-		margin-top: 0px;
-	}
-
-	.jara h3 {
-		margin-top: 0px;
-	}
-
-	.grid_6 {
-		background-color: none;
-	}
-
-</style>
-<div style="margin-top: 10px;" class="container_12 right" >
+<div class="container_12 right page-home">
 	<div class="grid_6">
 		<div class="home_main">
 			<div class="home_main_image">
@@ -68,35 +10,44 @@
 		<div class="grid_6">
 			<div class="home">
 				<div class="homeimage">
-					<a href="#!/p/{{pageLink}}/1"> <img ngc-lazy-image="homeImages[1].Thumbnails[1].PhotoUri"/></a>
+					<div class="image-placeholder">
+						<a href="#!/p/{{pageLink}}/1"> <img ngc-lazy-image="homeImages[1].Thumbnails[1].PhotoUri"/></a>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="grid_6">
 			<div class="home">
 				<div class="homeimage">
-					<a href="#!/p/{{pageLink}}/2"> <img ngc-lazy-image="homeImages[2].Thumbnails[1].PhotoUri"/></a>
+					<div class="image-placeholder">
+						<a href="#!/p/{{pageLink}}/2"> <img ngc-lazy-image="homeImages[2].Thumbnails[1].PhotoUri"/></a>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="grid_12">
-			<div class="home jara">
-				<h1 class="handwritten">jára tomka </h1>
+			<div class="home-jara ">
+				<div class="jara">
+					<h1 class="handwritten">jára tomka </h1>
 
-				<h3 class="handwritten">umělecký řezbář </h3>
+					<h3 class="handwritten">umělecký řezbář </h3></div>
 			</div>
 		</div>
 		<div class="grid_6">
 			<div class="home">
 				<div class="homeimage lastline">
-					<a href="#!/p/{{pageLink}}/3"> <img ngc-lazy-image="homeImages[3].Thumbnails[1].PhotoUri"/></a>
+					<div class="image-placeholder">
+						<a href="#!/p/{{pageLink}}/3"> <img ngc-lazy-image="homeImages[3].Thumbnails[1].PhotoUri"/></a>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="grid_6">
 			<div class="home">
 				<div class="homeimage lastline">
-					<a href="#!/p/{{pageLink}}/4"> <img ngc-lazy-image="homeImages[4].Thumbnails[1].PhotoUri"/></a>
+					<div class="image-placeholder">
+						<a href="#!/p/{{pageLink}}/4"> <img ngc-lazy-image="homeImages[4].Thumbnails[1].PhotoUri"/></a>
+					</div>
 				</div>
 			</div>
 		</div>
