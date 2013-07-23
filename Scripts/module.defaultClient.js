@@ -45,6 +45,10 @@ module.directive("gridelement", ["$compile", "$templateCache", function ($compil
 				var skin = scope.gridelement.Skin || "";
 				var template = $templateCache.get(scope.gridelement.Type + skin+".thtml");
 				var compiled = $compile(template)(scope);
+
+				setTimeout(function () {
+					scope.$emit("page-loaded");
+				}, 500);
 				iElement.html(compiled);
 			});
 			scope.getGridElement = function (){
@@ -68,7 +72,7 @@ module.controller("appController", ["$scope", "test", "$location", "$rootScope",
 		$scope.message = message;
 	});
 
-	$scope.$on("page-loaded", function(e) {
+	$scope.$on("page-loaded", function() {
 		var pageContent = $("html").html();
 		test.snapshot(pageContent, $location.path());
 	});

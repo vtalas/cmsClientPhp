@@ -1,4 +1,4 @@
-var pController =  [ "$scope", "test", "$routeParams", "$location", "$rootScope", function($scope, test, $routeParams, $location, $rootScope) {
+var pController =  [ "$scope", "test", "$routeParams", "$location", function($scope, test, $routeParams, $location) {
 	$scope.link = $routeParams.link;
 
 	$scope.$on("$locationChangeSuccess", function () {
@@ -40,8 +40,6 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", "$rootScope"
 			$scope.currentGridElement = $scope.page.GridElements[index];
 			return response;
 
-		}).then(function (data) {
-			test.checkForSnapshot($scope, data);
 		});
 
 
@@ -80,17 +78,5 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", "$rootScope"
 			$scope.isScrolled = false;
 			el.removeClass("scrolled");
 		}
-
-
-//			console.log("savdjavsjd", el, fromTop)
 	});
-
-
-	$scope.xxx = function (event) {
-		var element = angular.element(event.toElement);
-
-		console.log(element);
-//		element.css("height", "40px");
-
-	}
 }];

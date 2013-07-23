@@ -1,59 +1,52 @@
-<style>
-	.navigation {
-		position: fixed;
-		z-index: 10;
-		width: 100%;
-		opacity: 0.8;
-		background-color: white;
-		/*transition:height 1s linear;*/
-		/*-webkit-transition:height 1s linear;*/
-	}
-
-	.navigation li {
-		margin: 0;
-		padding: 0;
-	}
-
-	.navigation ul, ul.navigation {
-		margin: 0;
-		padding: 0;
-	}
-</style>
-<div class="navigation" >
-	<div class="container_12">
-		<div class="grid_1">
-			<button ng-click="prev()"  class="btn-link" ng-disabled="isFirst">
-				<i class="icon-angle-left icon-4x-responsive"></i>
-			</button>
-		</div>
-
-		<div class="grid_10">
-			<h1 class="font-4x-responsive">{{currentGridElement.Resources.header.Value}}</h1>
-
-			<!--<h1 class="font-4x-responsive">{{currentGridElement.Resources.header.Value}}</h1>-->
-			<h3>{{currentGridElement.Resources.text.Value }}</h3>
-			<!--&nbsp; -->
+<div class="template-p">
+	<div class="navigation">
+		<div class="container_12">
+			<div class="grid_1">
+				<button ng-click="prev()" class="btn-link" ng-disabled="isFirst">
+					<i class="icon-angle-left icon-4x-responsive"></i>
+				</button>
 			</div>
 
-		<div class="grid_1">
-			<div style="padding-right: 10px">
-				<button style="float:right" ng-click="next()" ng-disabled="isLast" class="btn-link">
-					<i class="icon-angle-right icon-4x-responsive"></i>
-				</button>
+			<div class="grid_10">
+				<h1 class="font-4x-responsive">{{currentGridElement.Resources.header.Value}}</h1>
+
+				<!--<h1 class="font-4x-responsive">{{currentGridElement.Resources.header.Value}}</h1>-->
+				<h3>{{currentGridElement.Resources.text.Value }}</h3>
+				<!--&nbsp; -->
+			</div>
+
+			<div class="grid_1">
+				<div style="padding-right: 10px">
+					<button style="float:right" ng-click="next()" ng-disabled="isLast" class="btn-link">
+						<i class="icon-angle-right icon-4x-responsive"></i>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
+	<div class="clear"></div>
+
+	<div class="container_12">
+
+		<!--<div class="btn-group">-->
+		<!--<a class="btn" href="#/home">home</a>-->
+		<!--</div>-->
+
+
+		<div gridelement="currentGridElement"></div>
+
+		<div class="grid_12">
+			<div class="footer">
+				<span class="divider"></span>
+				<a href="#!/home">home</a>
+				<span class="divider"></span>
+				tel. +420 737 016 101
+				<span class="divider"></span>
+				http://www.facebook.com/JaromirTomka
+				<span class="divider"></span>
+			</div>
+		</div>
+
+	</div>
+
 </div>
-<div class="clear"></div>
-
-<div class="container_12">
-
-	<!--<div class="btn-group">-->
-	<!--<a class="btn" href="#/home">home</a>-->
-	<!--</div>-->
-
-
-	<div gridelement="currentGridElement"></div>
-</div>
-
-

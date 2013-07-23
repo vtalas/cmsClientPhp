@@ -1,7 +1,7 @@
 var homeController = ["$scope", "test", function ($scope, test) {
 
 	$scope.homeImages = [];
-	$scope.pageLink = "galerie"
+	$scope.pageLink = "galerie";
 
 	test.getPage($scope.pageLink )
 		.then(function (data) {

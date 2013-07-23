@@ -4,10 +4,10 @@ body {
     margin: 0;
     padding: 0;
 }
-
-body {
-    font-family: 'source_sans_prolight', sans-serif;
-    font-weight: 400;
+body, body * {
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-family: 'source_sans_prolight', sans-serif;
+  font-weight: 400;
 }
 
 h1, h2, h3 {
@@ -93,7 +93,7 @@ img {
 }
 
 .image-placeholder {
-    background-color: #eeeeee;
+  background-color: #eeeeee;
     width: 100%;
     height: 100%;
 }
@@ -131,7 +131,7 @@ img {
     }
 
     .handwritten {
-        font-family: 'Advent Pro', sans-serif;
+
     }
     .home {
         .pseudo-aspect-ratio-box;
@@ -162,6 +162,7 @@ img {
     }
     .lastline {
         top: 10px;
+        padding-bottom:0px;
     }
 
     .jara {
@@ -213,5 +214,46 @@ img {
     .image-small.last {
         padding-right: 0px;
     }
+
+}
+
+.template-p {
+  .footer {
+    color: #ccc;
+    padding-top: 1em;
+    padding-bottom: 2em;
+    &:hover{
+      color:black;
+    }
+    .divider {
+      display: inline-block;
+      margin-left: 30px;
+      height: 10px;
+
+      &:first-child {
+        display: inline-block;
+        margin-left: 0px;
+      }
+    }
+  }
+
+  .navigation {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    opacity: 0.8;
+    background-color: white;
+    /*transition:height 1s linear;*/
+    /*-webkit-transition:height 1s linear;*/
+    li {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .navigation ul, ul.navigation {
+    margin: 0;
+    padding: 0;
+  }
 
 }

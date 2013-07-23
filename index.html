@@ -11,15 +11,13 @@
 	<meta name="fragment" content="!"/>
 
 	<title>Jaromír Tomka - Umělecký řezbář</title>
-	<!--<link rel="stylesheet" href="Css/fluid_grid.css"/>-->
-	<!--<link rel="stylesheet" href="Css/masparti-responsive.css"/>-->
-	<!--<link rel="stylesheet" href="Css/main.css"/>-->
+	<link rel="stylesheet" href="Css/fluid_grid.css"/>
+	<link rel="stylesheet" href="Css/masparti-responsive.css"/>
+	<link rel="stylesheet" href="Css/main.css"/>
 
 	<link rel="stylesheet" href="Css/font-awesome/css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="Css/fonts/stylesheet.css"/>
-	<link rel="stylesheet" href="Css/css.min.css"/>
-
-	<link href='http://fonts.googleapis.com/css?family=Advent+Pro:400,500' rel='stylesheet' type='text/css'>
+	<!--<link rel="stylesheet" href="Css/css.min.css"/>-->
 
 	<script type="text/javascript" src="Scripts/libs/jquery.min.js"></script>
 	<script type="text/javascript" src="Scripts/libs/angular.min.js"></script>
@@ -28,34 +26,34 @@
 	<script type="text/javascript" src="Scripts/libs/angular-ui/event.js"></script>
 	<script type="text/javascript" src="Scripts/libs/angular-ui/angular.keypress.js"></script>
 
-	<script type="text/javascript" src="Scripts/libs.min.js"></script>
+	<!--DEBUG-->
+	<script type="text/javascript" src="Scripts/libs/showdown.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular-bootstrap/ui-bootstrap-custom-tpls-0.3.0.min.js"></script>
+	<script type="text/javascript" src="Scripts/class.apiWrapper.js"></script>
 
-	<!--<script type="text/javascript" src="Scripts/libs/showdown.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/libs/angular-bootstrap/ui-bootstrap-custom-tpls-0.3.0.min.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/class.apiWrapper.js"></script>-->
+	<script type="text/javascript" src="Scripts/directive.ngcGdataAlbum.js"></script>
+	<script type="text/javascript" src="Scripts/directive.ngcLazyImage.js"></script>
+	<script type="text/javascript" src="Scripts/directive.ngcResponsiveImage.js"></script>
+	<script type="text/javascript" src="Scripts/directive.ngcSimpleDrag.js"></script>
 
-	<!--<script type="text/javascript" src="Scripts/directive.ngcGdataAlbum.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/directive.ngcLazyImage.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/directive.ngcResponsiveImage.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/directive.ngcSimpleDrag.js"></script>-->
+	<script type="text/javascript" src="Scripts/controller.home.js"></script>
+	<script type="text/javascript" src="Scripts/controller.page.js"></script>
+	<script type="text/javascript" src="Scripts/controller.login.js"></script>
+	<script type="text/javascript" src="Scripts/controller.userDataForm.js"></script>
+	<script type="text/javascript" src="Scripts/controller.gridelementGdataAlbumCtrl.js"></script>
+	<script type="text/javascript" src="Scripts/controller.simplehtml.js"></script>
+	<script type="text/javascript" src="Scripts/controller.galleryImageViewer.js"></script>
+	<script type="text/javascript" src="Scripts/controller.p.js"></script>
 
-	<!--<script type="text/javascript" src="Scripts/controller.home.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/controller.page.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/controller.login.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/controller.userDataForm.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/controller.gridelementGdataAlbumCtrl.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/controller.simplehtml.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/controller.galleryImageViewer.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/controller.p.js"></script>-->
+	<script type="text/javascript" src="Scripts/module.appConfig.js"></script>
+	<script type="text/javascript" src="Scripts/module.apiModule.js"></script>
+	<script type="text/javascript" src="Scripts/module.defaultClient.js"></script>
 
-	<!--<script type="text/javascript" src="Scripts/module.appConfig.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/module.apiModule.js"></script>-->
-	<!--<script type="text/javascript" src="Scripts/module.defaultClient.js"></script>-->
-
+	<!--RELEASE-->
+	<!--<script type="text/javascript" src="Scripts/libs.min.js"></script>-->
 
 </head>
 <body ng-controller="appController">
-
 	<i ui-event="{ keydown: 'globalKeydown($event)'}" style="display:none"></i>
 
 	<div class="clear"></div>
