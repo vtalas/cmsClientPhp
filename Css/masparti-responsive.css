@@ -4,15 +4,15 @@
   }
   .container_12,
   .container {
-    max-width: 960px;
+    max-width: 1600px;
     margin-left: auto;
     margin-right: auto;
   }
   .icon-4x-responsive {
-    font-size: 4em;
+    font-size: 6em;
   }
   .font-4x-responsive {
-    font-size: 4em;
+    font-size: 6em;
   }
 }
 @media (min-width: 768px) and (max-width: 1199px) {
@@ -24,10 +24,10 @@
     border: 1px solid green;
   }
   .icon-4x-responsive {
-    font-size: 3.2em;
+    font-size: 4.800000000000001em;
   }
   .font-4x-responsive {
-    font-size: 3.2em;
+    font-size: 4.800000000000001em;
   }
 }
 @media (max-width: 767px) {
@@ -39,10 +39,10 @@
     border: 1px solid blue;
   }
   .icon-4x-responsive {
-    font-size: 2.8em;
+    font-size: 4.199999999999999em;
   }
   .font-4x-responsive {
-    font-size: 2.8em;
+    font-size: 4.199999999999999em;
   }
 }
 @media (max-width: 480px) {
@@ -54,9 +54,9 @@
     border: 1px solid yellow;
   }
   .icon-4x-responsive {
-    font-size: 2.4em;
+    font-size: 3.5999999999999996em;
   }
   .font-4x-responsive {
-    font-size: 2.4em;
+    font-size: 3.5999999999999996em;
   }
 }
