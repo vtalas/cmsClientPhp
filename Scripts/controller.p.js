@@ -5,7 +5,6 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", function($sc
 		setNewLocation(getIndex());
 	});
 
-
 	var getIndex = function () {
 		var search = $location.search().elindex,
 			elemIndex = $routeParams.elementIndex,

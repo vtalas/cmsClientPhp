@@ -20,7 +20,8 @@
 	<!--<link rel="stylesheet" href="Css/css.min.css"/>-->
 
 	<script type="text/javascript" src="Scripts/libs/jquery.min.js"></script>
-	<script type="text/javascript" src="Scripts/libs/angular.min.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular.js"></script>
+
 	<script type="text/javascript" src="Scripts/libs/angular-resource.min.js"></script>
 
 	<script type="text/javascript" src="Scripts/libs/angular-ui/event.js"></script>
@@ -65,6 +66,11 @@
 	<!--</div>-->
 
 
+	<div ng-view ng-animate="{enter: 'example-enter', leave: 'example-leave'}"></div>
+
+	<div ng-include="'Templates/template.galleryImageViewer.html'" onload="galleryImageViewerLoaded = true"></div>
+	<div ng-include="'Templates/template.gridelements.html'" onload="gridElementsTemplateLoaded = true"></div>
+
 	<div class="alert alert-error" ng-show="message">
 		<b>Chyba:</b>
 		{{message}}
@@ -87,11 +93,6 @@
         <span class="icon-thumbs-down"></span> I hide when your checkbox is checked.
       </span>
 	</div>
-
-	<div ng-view ng-animate="{enter: 'example-enter', leave: 'example-leave'}"></div>
-
-	<div ng-include="'Templates/template.galleryImageViewer.html'" onload="galleryImageViewerLoaded = true"></div>
-	<div ng-include="'Templates/template.gridelements.html'" onload="gridElementsTemplateLoaded = true"></div>
 
 
 	<div class="clear"></div>
