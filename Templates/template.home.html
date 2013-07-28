@@ -1,9 +1,14 @@
-<div class="container_12 right page-home">
+<div class="container_12 right page-home" >
 	<div class="grid_6">
 		<div class="home_main">
 			<div class="home_main_image">
 				<div class="image-placeholder">
-					<a href="#!/p/{{pageLink}}/0"><img ngc-lazy-image="homeImages[0].Thumbnails[2].PhotoUri"/></a>
+					<a href="#!/p/{{pageLink}}/0"
+					   ng-show="homeData[0].images"
+					   ng-animate="{show: 'xexample-show', hide: 'xexample-hide'}">
+						<img ngc-lazy-image="homeData[0].images.Thumbnails[2].PhotoUri"/>
+						<div class="gallery-info-text">{{homeData[0].Resources.header.Value}}</div>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -13,7 +18,10 @@
 			<div class="home">
 				<div class="homeimage">
 					<div class="image-placeholder">
-						<a href="#!/p/{{pageLink}}/1"> <img ngc-lazy-image="homeImages[1].Thumbnails[1].PhotoUri"/></a>
+						<a href="#!/p/{{pageLink}}/1">
+							<img ngc-lazy-image="homeData[1].images.Thumbnails[1].PhotoUri"/>
+							<div class="gallery-info-text">{{homeData[1].Resources.header.Value}}</div>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -22,7 +30,10 @@
 			<div class="home">
 				<div class="homeimage">
 					<div class="image-placeholder">
-						<a href="#!/p/{{pageLink}}/2"> <img ngc-lazy-image="homeImages[2].Thumbnails[1].PhotoUri"/></a>
+						<a href="#!/p/{{pageLink}}/2">
+							<img ngc-lazy-image="homeData[2].images.Thumbnails[1].PhotoUri"/>
+							<div class="gallery-info-text">{{homeData[2].Resources.header.Value}}</div>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -30,16 +41,24 @@
 		<div class="grid_12">
 			<div class="home-jara ">
 				<div class="jara">
-					<h1 class="handwritten"><span>sdsd sdsdsadas sd as a</span></h1>
+					<h1 class="handwritten">&nbsp;
+						<span ng-show="loadedData" ng-animate="{show : 'home-jara-show', hide : 'home-jara-hide'}">jára tomka</span>
+					</h1>
 
-					<h3 class="handwritten">umělecký řezbář </h3></div>
+					<h3 class="handwritten">
+						<span ng-show="loadedData" ng-animate="{show : 'home-jara-show', hide : 'home-jara-hide'}"> umělecký řezbář</span>
+					</h3>
+				</div>
 			</div>
 		</div>
 		<div class="grid_6">
 			<div class="home">
 				<div class="homeimage lastline">
 					<div class="image-placeholder">
-						<a href="#!/p/{{pageLink}}/3"> <img ngc-lazy-image="homeImages[3].Thumbnails[1].PhotoUri"/></a>
+						<a href="#!/p/{{pageLink}}/3">
+							<img ngc-lazy-image="homeData[3].images.Thumbnails[1].PhotoUri"/>
+							<div class="gallery-info-text">{{homeData[3].Resources.header.Value}}</div>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -48,7 +67,10 @@
 			<div class="home">
 				<div class="homeimage lastline">
 					<div class="image-placeholder">
-						<a href="#!/p/{{pageLink}}/4"> <img ngc-lazy-image="homeImages[4].Thumbnails[1].PhotoUri"/></a>
+						<a href="#!/p/{{pageLink}}/4">
+							<img ngc-lazy-image="homeData[4].images.Thumbnails[1].PhotoUri"/>
+							<div class="gallery-info-text">{{homeData[4].Resources.header.Value}}</div>
+						</a>
 					</div>
 				</div>
 			</div>

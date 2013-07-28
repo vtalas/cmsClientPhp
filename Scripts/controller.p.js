@@ -38,7 +38,6 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", function($sc
 			setBoundaries(index);
 			$scope.currentGridElement = $scope.page.GridElements[index];
 			return response;
-
 		});
 
 

@@ -9,7 +9,7 @@ function ngcLazyImage() {
 			if (attrs.loader !== undefined ){
 				loader = attrs.loader;
 			}
-			element.attr("src", loader);
+			//element.attr("src", loader);
 
 			scope.$watch("ngcLazyImage", function (url, oldValue) {
 				if (url !== undefined){

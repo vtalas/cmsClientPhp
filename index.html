@@ -20,8 +20,7 @@
 	<!--<link rel="stylesheet" href="Css/css.min.css"/>-->
 
 	<script type="text/javascript" src="Scripts/libs/jquery.min.js"></script>
-	<script type="text/javascript" src="Scripts/libs/angular.js"></script>
-
+	<script type="text/javascript" src="Scripts/libs/angular.min.js"></script>
 	<script type="text/javascript" src="Scripts/libs/angular-resource.min.js"></script>
 
 	<script type="text/javascript" src="Scripts/libs/angular-ui/event.js"></script>
@@ -52,7 +51,6 @@
 
 	<!--RELEASE-->
 	<!--<script type="text/javascript" src="Scripts/libs.min.js"></script>-->
-
 </head>
 <body ng-controller="appController">
 	<i ui-event="{ keydown: 'globalKeydown($event)'}" style="display:none"></i>
@@ -66,34 +64,15 @@
 	<!--</div>-->
 
 
-	<div ng-view ng-animate="{enter: 'example-enter', leave: 'example-leave'}"></div>
-
-	<div ng-include="'Templates/template.galleryImageViewer.html'" onload="galleryImageViewerLoaded = true"></div>
-	<div ng-include="'Templates/template.gridelements.html'" onload="gridElementsTemplateLoaded = true"></div>
-
 	<div class="alert alert-error" ng-show="message">
 		<b>Chyba:</b>
 		{{message}}
 	</div>
 
-	Click me: <input type="checkbox" ng-model="checked"><br/>
-	<div>
-		Show:
-      <span class="check-element"
-			ng-show="checked"
-			ng-animate="{show: 'example-show', hide: 'example-hide'}">
-        <span class="icon-thumbs-up"></span> I show up when your checkbox is checked.
-      </span>
-	</div>
-	<div>
-		Hide:
-      <span class="check-element"
-			ng-hide="checked"
-			ng-animate="{show: 'example-show', hide: 'example-hide'}">
-        <span class="icon-thumbs-down"></span> I hide when your checkbox is checked.
-      </span>
-	</div>
+	<div ng-view class="view" ng-animate="{enter: 'view-enter', leave: 'view-leave'}" ></div>
 
+	<div ng-include="'Templates/template.galleryImageViewer.html'" onload="galleryImageViewerLoaded = true"></div>
+	<div ng-include="'Templates/template.gridelements.html'" onload="gridElementsTemplateLoaded = true"></div>
 
 	<div class="clear"></div>
 </body>
