@@ -99,7 +99,7 @@ img {
 
 .image-placeholder {
     overflow: hidden;
-    background-color: #ccc;
+    background-color: #f6f6f6;
     width: 100%;
     height: 100%;
 }
@@ -144,10 +144,18 @@ img {
         display: none;
         text-overflow: ellipsis;
         position: absolute;
-        top: 40%;
-        color: white;
-        font-size: 286%;
-    }
+		height: 100%;
+        color: #000;
+    	vertical-align: middle;
+		top:0;
+		overflow: hidden;
+		min-height: 100%;
+		h1{
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
+	}
 
     .handwritten {
         overflow: hidden;
@@ -186,13 +194,6 @@ img {
     .home_main {
         .pseudo-aspect-ratio-box;
         padding-top: 125%;
-        img {
-            .animate(1200ms);
-        }
-        img:hover {
-            opacity: 0.5;
-            -webkit-transform: scale(1.1);
-        }
     }
 
     .homeimage {
@@ -202,19 +203,19 @@ img {
         opacity: 1;
         &:hover {
             .gallery-info-text {
-                display: block;
+				display: table;
             }
         }
         a {
             display: block
         }
     }
-    .homeimage img {
+    .homeimage img, .home_main img {
         .animate(1200ms);
     }
 
-    .homeimage a:hover img {
-        opacity: 0.5;
+    .homeimage a:hover img, .home_main a:hover img {
+        opacity: 0.2;
         -webkit-transform: scale(1.2);
     }
 
@@ -223,7 +224,7 @@ img {
         padding-right: 10px;
         &:hover {
             .gallery-info-text {
-                display: block;
+				display: table;
             }
         }
     }

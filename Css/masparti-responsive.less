@@ -1,5 +1,6 @@
 @icon4xSize: 6em;
 @font4xSize: 6em;
+@font3xSize: 3em;
 
 @media (min-width: 1200px) {
     body {
@@ -19,31 +20,28 @@
     .font-4x-responsive {
         font-size: @font4xSize;
     }
+
+    .font-3x-responsive { font-size: @font3xSize;  }
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
+	@coefficient: 0.8;
 
     body {
         font-size: 80%;
-    }
-
-    h3 {
     }
 
     .container_12, .container {
         border: 1px solid green;
     }
 
-    .icon-4x-responsive {
-        font-size: @icon4xSize * 0.8;
-    }
-
-    .font-4x-responsive {
-        font-size: @font4xSize * 0.8;
-    }
+    .icon-4x-responsive { font-size: @icon4xSize * @coefficient; }
+    .font-4x-responsive { font-size: @font4xSize * @coefficient; }
+    .font-3x-responsive { font-size: @font3xSize * @coefficient; }
 }
 
 @media (max-width: 767px) {
+	@coefficient: 0.7;
     body {
         font-size: 70%;
     }
@@ -52,17 +50,14 @@
         border: 1px solid blue;
     }
 
-    .icon-4x-responsive {
-        font-size: @icon4xSize * 0.7;
-    }
-
-    .font-4x-responsive {
-        font-size: @font4xSize * 0.7;
-    }
+	.icon-4x-responsive { font-size: @icon4xSize * @coefficient; }
+	.font-4x-responsive { font-size: @font4xSize * @coefficient;  }
+	.font-3x-responsive { font-size: @font3xSize * @coefficient;  }
 }
 
 @media (max-width: 480px) {
-    body {
+	@coefficient: 0.6;
+	body {
         font-size: 60%;
     }
 
@@ -70,12 +65,7 @@
         border: 1px solid yellow;
     }
 
-    .icon-4x-responsive {
-        font-size: @icon4xSize * 0.6;
-    }
-
-    .font-4x-responsive {
-        font-size: @font4xSize * 0.6;
-    }
-
+	.icon-4x-responsive { font-size: @icon4xSize * @coefficient; }
+	.font-4x-responsive { font-size: @font4xSize * @coefficient;  }
+	.font-3x-responsive { font-size: @font3xSize * @coefficient;  }
 }
