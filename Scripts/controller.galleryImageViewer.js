@@ -1,11 +1,9 @@
 /*global MaspartiData, ApiWrapper*/
 var  galleryImageViewerController = ["$scope", "$routeParams", "test", "$location", function($scope, $routeParams, test, $location) {
 
-	console.log("asdjkbasdjk");
 	$scope.$on("galleryImageViewer-display-image", function (e, galleryId, imageIndex) {
 		$scope.imageIndex = imageIndex;
 		$scope.galleryId = galleryId;
-		console.log("xxxxxxxxxxxxxxxxxxxxxxxx");
 		getImage(galleryId, imageIndex);
 	});
 

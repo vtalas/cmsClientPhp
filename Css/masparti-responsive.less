@@ -1,4 +1,7 @@
 @icon4xSize: 6em;
+@icon2xSize: 2em;
+@icon3xSize: 3em;
+
 @font4xSize: 6em;
 @font3xSize: 3em;
 
@@ -13,14 +16,10 @@
         margin-right: auto;
     }
 
-    .icon-4x-responsive {
-        font-size: @icon4xSize;
-    }
-
-    .font-4x-responsive {
-        font-size: @font4xSize;
-    }
-
+    .icon-4x-responsive {font-size: @icon4xSize; }
+    .icon-3x-responsive {font-size: @icon3xSize; }
+    .icon-2x-responsive {font-size: @icon2xSize; }
+    .font-4x-responsive {  font-size: @font4xSize; }
     .font-3x-responsive { font-size: @font3xSize;  }
 }
 
@@ -35,6 +34,8 @@
         border: 1px solid green;
     }
 
+    .icon-2x-responsive { font-size: @icon2xSize * @coefficient; }
+    .icon-3x-responsive { font-size: @icon3xSize * @coefficient; }
     .icon-4x-responsive { font-size: @icon4xSize * @coefficient; }
     .font-4x-responsive { font-size: @font4xSize * @coefficient; }
     .font-3x-responsive { font-size: @font3xSize * @coefficient; }
@@ -50,7 +51,9 @@
         border: 1px solid blue;
     }
 
-	.icon-4x-responsive { font-size: @icon4xSize * @coefficient; }
+    .icon-2x-responsive { font-size: @icon2xSize * @coefficient; }
+    .icon-3x-responsive { font-size: @icon3xSize * @coefficient; }
+    .icon-4x-responsive { font-size: @icon4xSize * @coefficient; }
 	.font-4x-responsive { font-size: @font4xSize * @coefficient;  }
 	.font-3x-responsive { font-size: @font3xSize * @coefficient;  }
 }
@@ -65,7 +68,9 @@
         border: 1px solid yellow;
     }
 
-	.icon-4x-responsive { font-size: @icon4xSize * @coefficient; }
+    .icon-2x-responsive { font-size: @icon2xSize * @coefficient; }
+    .icon-3x-responsive { font-size: @icon3xSize * @coefficient; }
+    .icon-4x-responsive { font-size: @icon4xSize * @coefficient; }
 	.font-4x-responsive { font-size: @font4xSize * @coefficient;  }
 	.font-3x-responsive { font-size: @font3xSize * @coefficient;  }
 }

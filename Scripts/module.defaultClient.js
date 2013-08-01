@@ -86,7 +86,6 @@ module.controller("appController", ["$scope", "test", "$location", "$rootScope",
 
 	var processShowImageEvent = function () {
 		var search = $location.search();
-		console.log(search, search.gid && search.i !== undefined, $scope.gridElementsTemplateLoaded);
 		if (search.gid && search.i !== undefined) {
 			$rootScope.$broadcast("galleryImageViewer-display-image", search.gid, search.i);
 		}

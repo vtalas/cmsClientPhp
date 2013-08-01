@@ -9,6 +9,7 @@
 
 			<div class="grid_10">
 				<h1 class="font-4x-responsive">{{currentGridElement.Resources.header.Value}}</h1>
+
 				<h2>{{currentGridElement.Resources.text.Value }}</h2>
 			</div>
 
@@ -24,17 +25,18 @@
 	<div class="clear"></div>
 
 	<div class="container_12">
-
-		<!--<div class="btn-group">-->
-		<!--<a class="btn" href="#/home">home</a>-->
-		<!--</div>-->
-
-
-		<div gridelement="currentGridElement"></div>
+		<div gridelement="currentGridElement" class="gridelement-content"></div>
 
 		<div class="grid_12">
+			<div ng-show="loading" class="loader">
+				<img src="Css/loaders/horizontalloadersmall_green.gif" alt="loading..."/>
+			</div>
+
 			<div class="footer">
 				<div class="logo">
+					<a href="http://www.facebook.com/JaromirTomka" target="_blank">
+						<i class="icon-facebook-sign icon-3x-responsive"></i>
+					</a>
 					<a href="#!/home">
 						<h2>jára tomka</h2>
 						<h5> umělecký řezbář</h5>
@@ -42,7 +44,7 @@
 				</div>
 				tel. +420 737 016 101
 				<span class="divider"></span>
-				http://www.facebook.com/JaromirTomka
+
 				<span class="divider"></span>
 			</div>
 		</div>

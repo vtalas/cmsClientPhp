@@ -11,6 +11,12 @@
   .icon-4x-responsive {
     font-size: 6em;
   }
+  .icon-3x-responsive {
+    font-size: 3em;
+  }
+  .icon-2x-responsive {
+    font-size: 2em;
+  }
   .font-4x-responsive {
     font-size: 6em;
   }
@@ -25,6 +31,12 @@
   .container_12,
   .container {
     border: 1px solid green;
+  }
+  .icon-2x-responsive {
+    font-size: 1.6em;
+  }
+  .icon-3x-responsive {
+    font-size: 2.4000000000000004em;
   }
   .icon-4x-responsive {
     font-size: 4.800000000000001em;
@@ -44,6 +56,12 @@
   .container {
     border: 1px solid blue;
   }
+  .icon-2x-responsive {
+    font-size: 1.4em;
+  }
+  .icon-3x-responsive {
+    font-size: 2.0999999999999996em;
+  }
   .icon-4x-responsive {
     font-size: 4.199999999999999em;
   }
@@ -61,6 +79,12 @@
   .container_12,
   .container {
     border: 1px solid yellow;
+  }
+  .icon-2x-responsive {
+    font-size: 1.2em;
+  }
+  .icon-3x-responsive {
+    font-size: 1.7999999999999998em;
   }
   .icon-4x-responsive {
     font-size: 3.5999999999999996em;

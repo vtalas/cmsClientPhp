@@ -53,7 +53,7 @@ var ngcResponsiveImage = function () {
 
 		if (overflowHeight) {
 			var windowHeight = getWindowHeight(scope);
-			scope.containerWidth = Math.round(scope.imageWidth / scope.imageHeight * (windowHeight - 50 ));
+			scope.containerWidth = Math.round(scope.imageWidth / scope.imageHeight * (windowHeight));
 		}
 	};
 
