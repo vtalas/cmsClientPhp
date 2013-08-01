@@ -63,6 +63,13 @@ module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag",  simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
 module.controller("appController", ["$scope", "test", "$location", "$rootScope", function ($scope, test, $location, $rootScope) {
+	$scope.galleryImageViewerLoaded = false;
+	$scope.gridElementsTemplateLoaded = false;
+
+
+	$scope.isLoaded = function () {
+		$scope.resourcesLoaded = $scope.galleryImageViewerLoaded && $scope.gridElementsTemplateLoaded;
+	};
 
 	$scope.globalKeydown = function (event) {
 		$scope.$broadcast("global-keydown", event);
@@ -79,19 +86,30 @@ module.controller("appController", ["$scope", "test", "$location", "$rootScope",
 
 	var processShowImageEvent = function () {
 		var search = $location.search();
-		if (search.gid && search.i !== undefined){
+		console.log(search, search.gid && search.i !== undefined, $scope.gridElementsTemplateLoaded);
+		if (search.gid && search.i !== undefined) {
 			$rootScope.$broadcast("galleryImageViewer-display-image", search.gid, search.i);
 		}
 	};
 
 	$scope.$on("$locationChangeSuccess", function () {
-		processShowImageEvent();
-	});
-
-	$scope.$watch("gridElementsTemplateLoaded", function (value) {
-		if (value === true ){
+		if ($scope.resourcesLoaded){
 			processShowImageEvent();
 		}
+	});
+
+	$scope.$watch("resourcesLoaded", function (value) {
+		if (value){
+			processShowImageEvent();
+		}
+	});
+
+	$scope.$watch("gridElementsTemplateLoaded", function () {
+		$scope.isLoaded();
+	});
+
+	$scope.$watch("galleryImageViewerLoaded", function () {
+		$scope.isLoaded();
 	});
 
 

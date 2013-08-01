@@ -17,22 +17,6 @@ var gridelementGdataAlbumCtrl =  ["$scope", "test", "$routeParams", "$location",
 			$scope.gdataAlbumPhotosAll = data.data;
 		});
 
-//	var processShowImageEvent = function () {
-//		var search = $location.search();
-//		if (search.gid && search.i !== undefined){
-//			$rootScope.$broadcast("galleryImageViewer-display-image", search.gid, search.i);
-//		}
-//	};
-//
-//	processShowImageEvent();
-//
-//	if (!$scope.$parent.xxx) {
-//		$scope.$parent.xxx = true;
-////		$scope.$on("$locationChangeSuccess", function () {
-////			processShowImageEvent();
-////		});
-//	}
-
 	$scope.showImage = function (galleryId, imageIndex) {
 		$location.search("i", imageIndex);
 		$location.search("gid", galleryId);
