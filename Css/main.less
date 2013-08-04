@@ -1,8 +1,9 @@
 @import "variables";
 
-body {
+body, html {
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 body, body * {
@@ -17,6 +18,10 @@ h1, h2, h3 {
 
 img {
     max-width: 100%;
+}
+
+.view {
+    min-height: 100%;
 }
 
 .middle-container {
@@ -287,6 +292,11 @@ img {
 }
 
 .template-p {
+    //display:table;
+    min-height: 100%;
+    .centered-contaier{
+        height: 20em;
+    }
     .loader{
         position: relative;
         width: 220px;
@@ -295,7 +305,8 @@ img {
     .footer {
         color: #ccc;
         padding-top: 3em;
-        padding-bottom: 8em;
+        padding-bottom: 3em;
+
         .divider {
             display: inline-block;
             margin-left: 30px;
