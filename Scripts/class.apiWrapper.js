@@ -6,6 +6,13 @@ var ApiWrapper = (function () {
 		this.cache = cache;
 	}
 
+
+	ApiWrapper.prototype.cacheSet = function (key, value) {
+		//value.version = this.version;
+		self.cache.put(key, value);
+	};
+
+
 	ApiWrapper.prototype.chuj = function (key, deferred, callback) {
 		var response = this.cache.get(key);
 
@@ -72,11 +79,18 @@ var ApiWrapper = (function () {
 			return deferred;
 		}
 
+
 		this.chuj(key, deferred, function () {
-			self.cmsApi.getAlbumPhotos({id: albumId }, function (data) {
+
+			self.cmsApi.getAlbumPhotos({id: albumId }, function (data, xhr, headers) {
+				console.log(xhr());//.get("cache-control"));
+				console.log(arguments);
 				self.cache.put(key, data);
 				deferred.resolve(data);
-			});
+			}).$then(function (c) {
+					console.log(c);
+					console.log(c.headers("etag"));
+				});
 		});
 
 		return deferred;
@@ -89,7 +103,7 @@ var ApiWrapper = (function () {
 
 		this.chuj(key, deferred, function () {
 			self.cmsApi.getPhotos(function (data) {
-				self.cache.put(key, data);
+				self.cacheSet(key, data);
 				deferred.resolve(data);
 			});
 		});
