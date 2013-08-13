@@ -8,8 +8,8 @@ module.factory('cache', ['$cacheFactory', function ($cacheFactory) {
 	return $cacheFactory("cmsCache");
 }]);
 
-module.factory("test", ['cmsApi' ,'cache', function (cmsApi, cache) {
-	return new ApiWrapper(cmsApi, cache);
+module.factory("test", ['cmsApi' ,'cache', "$q", function (cmsApi, cache, $q) {
+	return new ApiWrapper(cmsApi, cache, $q);
 }]);
 
 module.config(['$routeProvider', function ($routeProvider) {
@@ -34,7 +34,8 @@ module.directive('shortcut', function() {
 	};
 });
 
-module.directive("gridelement", ["$compile", "$templateCache", function ($compile, $templateCache) {
+module.directive("gridelement", ["$compile", "$templateCache", "$timeout", function ($compile, $templateCache, $timeout) {
+	var timeout;
 	return {
 		scope: { grid: "=", gridelement: "=" },
 		link: function (scope, iElement, tAttrs, controller) {
@@ -46,9 +47,13 @@ module.directive("gridelement", ["$compile", "$templateCache", function ($compil
 				var template = $templateCache.get(scope.gridelement.Type + skin+".thtml");
 				var compiled = $compile(template)(scope);
 
-				setTimeout(function () {
+				if (timeout) {
+					$timeout.cancel(timeout);
+				}
+				timeout = $timeout(function () {
 					scope.$emit("page-loaded");
 				}, 500);
+
 				iElement.html(compiled);
 			});
 			scope.getGridElement = function (){

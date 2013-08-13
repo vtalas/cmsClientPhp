@@ -1,9 +1,10 @@
 /*global MenuItemList, RawDataConverter, GalleryList*/
 var ApiWrapper = (function () {
 
-	function ApiWrapper(cmsApiImpl, cache) {
+	function ApiWrapper(cmsApiImpl, cache, $q) {
 		this.cmsApi = cmsApiImpl;
 		this.cache = cache;
+		this.q = $q;
 	}
 
 	ApiWrapper.prototype.chuj = function (key, deferred, callback) {
@@ -18,7 +19,7 @@ var ApiWrapper = (function () {
 	};
 
 	ApiWrapper.prototype.getPage = function (link) {
-		var deferred = $.Deferred(),
+		var deferred = this.q.defer(),
 			key = "getPage_" + link,
 			self = this;
 
@@ -30,65 +31,61 @@ var ApiWrapper = (function () {
 				function (err) {
 					var returnUrl = (window.location);
 					var hash = (window.location.hash);
-					if (err.status === 403){
+					if (err.status === 403) {
 						window.location.hash = "!login";//?returnuccrl=" + hash;
 					}
 				});
 		});
 
-		return deferred;
+		return deferred.promise;
 	};
 
 	ApiWrapper.prototype.getPages = function () {
-		var deferred = $.Deferred();
+		var deferred = this.q.defer();
 
 		this.cmsApi.getPages(function (data) {
 			deferred.resolve(data);
 		});
 
-		return deferred;
+		return deferred.promise;
 	};
 
 	ApiWrapper.prototype.getAlbum = function (albumId) {
-		var deferred = $.Deferred();
+		var deferred = this.q.defer();
 
 		if (albumId === null) {
 			deferred.resolve(null);
-			return deferred;
+			return deferred.promise;
 		}
 		this.cmsApi.getAlbum({id: albumId }, function (data) {
 			deferred.resolve(data);
 		});
-		return deferred;
+		return deferred.promise;
 	};
 
 	ApiWrapper.prototype.getAlbumPhotos = function (albumId) {
-		var deferred = $.Deferred(),
+		var deferred = this.q.defer(),
 			key = albumId + "getAlbumPhotos",
 			self = this;
 
 		if (!albumId) {
 			deferred.resolve([]);
-			return deferred;
+			return deferred.promise;
 		}
-
 
 		this.chuj(key, deferred, function () {
 
 			self.cmsApi.getAlbumPhotos({id: albumId }, function (data, xhr) {
 				self.cache.put(key, data);
 				deferred.resolve(data);
-			}).$then(function (c) {
-					console.log(c);
-					console.log(c.headers("etag"));
-				});
+			});
 		});
 
-		return deferred;
+		return deferred.promise;
 	};
 
 	ApiWrapper.prototype.getPhotos = function () {
-		var deferred = $.Deferred(),
+		var deferred = this.q.defer(),
 			key = "getAlbumPhotosStream",
 			self = this;
 
@@ -98,30 +95,30 @@ var ApiWrapper = (function () {
 				deferred.resolve(data);
 			});
 		});
-		return deferred;
+		return deferred.promise;
 	};
 
 	ApiWrapper.prototype.getAlbums = function () {
-		var deferred = $.Deferred();
+		var deferred = this.q.defer();
 
 		this.cmsApi.getAlbums(function (data) {
 			deferred.resolve(data);
 		});
-		return deferred;
+		return deferred.promise;
 	};
 
 	ApiWrapper.prototype.snapshot = function (pageContent, path) {
-		var deferred = $.Deferred();
+		var deferred = this.q.defer();
 
 		this.cmsApi.putSnapshot({data: pageContent, path: path}, function (data) {
 			deferred.resolve(data);
 		});
 
-		return deferred.promise();
+		return deferred.promise;
 	};
 
 	ApiWrapper.prototype.checkForSnapshot = function (scope, data) {
-		if (data.snapshot){
+		if (data.snapshot) {
 			scope.$emit("page-loaded");
 		}
 	};
