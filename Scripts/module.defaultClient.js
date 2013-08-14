@@ -67,10 +67,22 @@ module.directive("ngcGdataAlbum", ngcGdataAlbumDirective);
 module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag",  simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
-module.controller("appController", ["$scope", "test", "$location", "$rootScope", function ($scope, test, $location, $rootScope) {
+module.controller("appController", ["$scope", "test", "$location", "$rootScope", "$timeout", function ($scope, test, $location, $rootScope, $timeout) {
 	$scope.galleryImageViewerLoaded = false;
 	$scope.gridElementsTemplateLoaded = false;
+	var timeout;
 
+	$(window).resize(function () {
+		if (timeout) {
+			$timeout.cancel(timeout);
+		}
+		timeout = $timeout(function () {
+			$scope.$broadcast("windowChanged", {
+				width : $(window).width(),
+				height: $(window).height()
+			})
+		}, 200);
+	});
 
 	$scope.isLoaded = function () {
 		$scope.resourcesLoaded = $scope.galleryImageViewerLoaded && $scope.gridElementsTemplateLoaded;
@@ -107,6 +119,8 @@ module.controller("appController", ["$scope", "test", "$location", "$rootScope",
 			processShowImageEvent();
 		}
 	});
+
+
 
 	$scope.$watch("gridElementsTemplateLoaded", function () {
 		$scope.isLoaded();
