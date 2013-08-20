@@ -5,6 +5,7 @@
   .container_12,
   .container {
     max-width: 1600px;
+    min-width: 960px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -30,7 +31,7 @@
   }
   .container_12,
   .container {
-    border: 1px solid green;
+    border: 1px solid #9acd32;
   }
   .icon-2x-responsive {
     font-size: 1.6em;
@@ -79,6 +80,7 @@
   .container_12,
   .container {
     border: 1px solid yellow;
+    min-width: 340px;
   }
   .icon-2x-responsive {
     font-size: 1.2em;

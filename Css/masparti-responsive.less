@@ -12,6 +12,7 @@
 
     .container_12, .container {
         max-width: 1600px;
+		min-width: 960px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -28,10 +29,10 @@
 
     body {
         font-size: 80%;
-    }
+	}
 
     .container_12, .container {
-        border: 1px solid green;
+        border: 1px solid #9acd32;
     }
 
     .icon-2x-responsive { font-size: @icon2xSize * @coefficient; }
@@ -66,7 +67,9 @@
 
     .container_12, .container {
         border: 1px solid yellow;
-    }
+		min-width: 340px;
+
+	}
 
     .icon-2x-responsive { font-size: @icon2xSize * @coefficient; }
     .icon-3x-responsive { font-size: @icon3xSize * @coefficient; }

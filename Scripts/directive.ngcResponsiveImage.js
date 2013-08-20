@@ -180,7 +180,9 @@ var ngcResponsiveImage = function () {
 				scope.$on("windowChanged", function (x, data) {
 					scope.windowWidth = data.width;
 					scope.windowHeight = data.height;
-					refreshImage(scope, scope.galleryImage, element)
+					if (scope.galleryImage){
+						refreshImage(scope, scope.galleryImage, element)
+					}
 				});
 			}
 		}

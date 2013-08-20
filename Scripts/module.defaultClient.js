@@ -71,7 +71,6 @@ module.controller("appController", ["$scope", "test", "$location", "$rootScope",
 	$scope.galleryImageViewerLoaded = false;
 	$scope.gridElementsTemplateLoaded = false;
 	var timeout;
-
 	$(window).resize(function () {
 		if (timeout) {
 			$timeout.cancel(timeout);

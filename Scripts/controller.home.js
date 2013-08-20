@@ -18,6 +18,27 @@ var homeController = ["$scope", "test", function ($scope, test) {
 			})
 	}
 
+	var container = $(".page-home");
+	container.hide();
+
+	function chuj(windowWidth, windowHeight) {
+		var container = $(".page-home");
+		var width = container.width();
+		var height = container.height();
+		console.log(width, height, windowHeight);
+
+		if (windowWidth > width  ){
+			var xx = width / height;
+			container.css("max-width", xx * windowHeight - 120);
+
+			console.log(xx * windowHeight, $(".page-home").height(), windowHeight);
+		}
+	}
+	$scope.$on("windowChanged", function (e, data) {
+		chuj(data.width, data.height);
+	});
+
+
 	test.getPage($scope.pageLink)
 		.then(function (data) {
 			$scope.homeData = data.data.GridElements;
@@ -25,6 +46,9 @@ var homeController = ["$scope", "test", function ($scope, test) {
 				$scope.loadedData = true;
 				$scope.$digest();
 			},1000);
+
+			chuj($(window).width(), $(window).height());
+			container.show();
 			return data.data;
 		})
 		.then(function (data) {
