@@ -21,21 +21,22 @@ var homeController = ["$scope", "test", function ($scope, test) {
 	var container = $(".page-home");
 	container.hide();
 
-	function chuj(windowWidth, windowHeight) {
-		var container = $(".page-home");
-		var width = container.width();
-		var height = container.height();
-		console.log(width, height, windowHeight);
+	function updateContainerDimensions(container, windowWidth, windowHeight) {
+		var width = container.width(),
+			height = container.height(),
+			ratio,
+			newWidth;
 
 		if (windowWidth > width  ){
-			var xx = width / height;
-			container.css("max-width", xx * windowHeight - 120);
+			ratio = width / height;
+			newWidth = Math.floor(ratio * windowHeight - 50);
 
-			console.log(xx * windowHeight, $(".page-home").height(), windowHeight);
+			console.log(newWidth);
+			container.css("max-width", newWidth );
 		}
 	}
 	$scope.$on("windowChanged", function (e, data) {
-		chuj(data.width, data.height);
+		updateContainerDimensions(container, data.width, data.height);
 	});
 
 
@@ -47,7 +48,7 @@ var homeController = ["$scope", "test", function ($scope, test) {
 				$scope.$digest();
 			},1000);
 
-			chuj($(window).width(), $(window).height());
+			updateContainerDimensions(container, $(window).width(), $(window).height());
 			container.show();
 			return data.data;
 		})
