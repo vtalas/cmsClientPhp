@@ -228,6 +228,7 @@ a img {border: none; }
     .home_main_image {
         .pseudo-aspect-ratio-content;
         padding-right: 10px;
+        padding-bottom: 10px;
         &:hover {
             .gallery-info-text {
                 display: table;
@@ -259,6 +260,29 @@ a img {border: none; }
     .grid_6 {
         background-color: none;
     }
+
+	.footer {
+		background-color: #000000;
+		height: 5em;
+		color: #ccc;
+		a {
+			color: #ccc;
+		}
+		a:hover {
+			color: #ccc;
+		}
+
+		&:hover {
+			color: #fff;
+		}
+		&.dalsi {
+			h1 {
+				margin-right: 2em;
+				float:right;
+			}
+		}
+
+	}
 
 }
 
@@ -566,7 +590,28 @@ a img {border: none; }
 }
 
 .kontakt {
-	padding-bottom: 10px;
-	padding-right: 10px;
+	padding: 10px;
+
+	.animate(1500ms);
 	p { margin: 0px; padding: 0px}
+}
+
+.logo {
+	display: inline-block;
+
+	a {
+		display: inline-block;
+		color: #ccc;
+		text-decoration: none;
+		text-align: center;
+		.icon {
+			.animate(1500ms);
+		}
+	}
+	a:hover {
+		.icon {
+			font-size: 210%;
+			color: #fff;
+		}
+	}
 }
