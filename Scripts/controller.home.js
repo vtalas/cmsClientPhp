@@ -1,7 +1,7 @@
 var homeController = ["$scope", "test", function ($scope, test) {
 
-	$scope.homeImages = [];
 	$scope.homeData = [];
+	$scope.nextWorkData = [];
 	$scope.pageLink = "galerie";
 	$scope.loadedData = false;
 	$scope.loadedImages = false;
@@ -10,14 +10,18 @@ var homeController = ["$scope", "test", function ($scope, test) {
 	function getPhotos(index, gdataAlbumId) {
 		return test.getAlbumPhotos(gdataAlbumId)
 			.then(function (photos) {
-				$scope.homeData[index].images = photos.data[0];
+
+				if (index < 5) {
+					$scope.homeData[index].images = photos.data[0];
+				} else {
+					$scope.nextWorkData[index] = photos.data[0];
+				}
 				$scope.tempLength ++ ;
 				if ($scope.tempLength > $scope.homeData.length) {
 					$scope.loadedImages = true;
 				}
 			})
 	}
-
 	var container = $(".page-home");
 	container.hide();
 
@@ -30,8 +34,6 @@ var homeController = ["$scope", "test", function ($scope, test) {
 		if (windowWidth > width  ){
 			ratio = width / height;
 			newWidth = Math.floor(ratio * windowHeight - 50);
-
-			console.log(newWidth);
 			container.css("max-width", newWidth );
 		}
 	}
