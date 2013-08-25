@@ -10,12 +10,7 @@ var homeController = ["$scope", "test", function ($scope, test) {
 	function getPhotos(index, gdataAlbumId) {
 		return test.getAlbumPhotos(gdataAlbumId)
 			.then(function (photos) {
-
-				if (index < 5) {
-					$scope.homeData[index].images = photos.data[0];
-				} else {
-					$scope.nextWorkData[index] = photos.data[0];
-				}
+				$scope.homeData[index].images = photos.data[0];
 				$scope.tempLength ++ ;
 				if ($scope.tempLength > $scope.homeData.length) {
 					$scope.loadedImages = true;
@@ -30,7 +25,9 @@ var homeController = ["$scope", "test", function ($scope, test) {
 			height = container.height(),
 			ratio,
 			newWidth;
-
+		if ($scope.disableAutoFormat) {
+			return;
+		}
 		if (windowWidth > width  ){
 			ratio = width / height;
 			newWidth = Math.floor(ratio * windowHeight - 50);
@@ -61,4 +58,10 @@ var homeController = ["$scope", "test", function ($scope, test) {
 				x.push(getPhotos(i, content.gdataAlbumId));
 			}
 		});
+
+	$scope.showNextWork = function () {
+		$scope.nextWork = true;
+		$scope.disableAutoFormat = true;
+		$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+	}
 }];
