@@ -618,3 +618,37 @@ a img {border: none; }
 		}
 	}
 }
+
+.footer.dalsi {
+	.icon-button{
+		.animate(500ms);
+	}
+	h1{
+		overflow: hidden;
+	}
+	.dalsi-text-inner{
+		position: relative;
+	}
+	&:hover {
+		.dalsi-text-inner{
+			display: inline-block;
+		}
+
+		.icon-button {
+			color: @linkColor;
+		}
+
+	}
+	.dalsi-text-show{
+		.animate(1000ms);
+		top:-40px;
+	}
+	.dalsi-text-show-active{
+		top:0px;
+	}
+	.dalsi-text-hide{
+		top:-40px;
+		.animate(500ms);
+	}
+
+}

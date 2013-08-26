@@ -102,9 +102,9 @@
 		</div>
 
 	</div>
-	<div class="grid_8 footer dalsi" >
+	<div class="grid_8 footer dalsi" ng-mouseenter="xxx = true" ng-mouseleave="xxx = false" >
 		<a href="" ng-click="showNextWork()">
-			<h1>DALŠÍ PRÁCE <i class="icon-angle-down"></i></h1>
+			<h1><span ng-hide="!xxx" class="dalsi-text-inner" ng-animate="{show : 'dalsi-text-show', hide : 'dalsi-text-hide'}">DALŠÍ PRÁCE</span> <i class="icon-angle-down icon-button"></i></h1>
 		</a>
 	</div>
 
@@ -116,11 +116,8 @@
 				<div class="homeimage">
 					<div class="image-placeholder">
 						<a href="#!/p/{{pageLink}}/{{$index}}">
-							<img ngc-lazy-image="nextWorkImage.images.Thumbnails[1].PhotoUri" width="100%"
-								 height="100%"/>
-
-							<div class="gallery-info-text"><h1 class="font-3x-responsive">
-								{{nextWorkImage.Resources.header.Value}}</h1></div>
+							<img ngc-lazy-image="nextWorkImage.images.Thumbnails[1].PhotoUri" width="100%"	 height="100%"/>
+							<h1 class="font-3x-responsive gallery-info-text">{{nextWorkImage.Resources.header.Value}}</h1>
 						</a>
 					</div>
 				</div>
@@ -128,28 +125,6 @@
 
 		</div>
 	</div>
-
-
-	<!--<div class="grid_3" ng-repeat="image in homeImagesBegin" >-->
-	<!--<div class="home">-->
-	<!--<div class="homeimage">-->
-	<!--<a href="#!/p/gallery_1/0"> <img ngc-lazy-image="image.Thumbnails[1].PhotoUri"/></a>-->
-	<!--</div>-->
-	<!--</div>-->
-	<!--</div>-->
-	<!--<div class="grid_6">-->
-	<!--<div class="home jara">-->
-	<!--<h1 class="handwritten">jára tomka </h1>-->
-	<!--<h3 class="handwritten">umělecký řezbář </h3>-->
-	<!--</div>-->
-	<!--</div>-->
-	<!--<div class="grid_3" ng-repeat="image in homeImagesEnd">-->
-	<!--<div class="home">-->
-	<!--<div class="homeimage">-->
-	<!--<img ngc-lazy-image="image.Thumbnails[1].PhotoUri" />-->
-	<!--</div>-->
-	<!--</div>-->
-	<!--</div>-->
 
 	<div class="clearfix"></div>
 </div>
