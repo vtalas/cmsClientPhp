@@ -70,6 +70,8 @@ module.directive("ngcResponsiveImage", ngcResponsiveImage);
 module.controller("appController", ["$scope", "test", "$location", "$rootScope", "$timeout", function ($scope, test, $location, $rootScope, $timeout) {
 	$scope.galleryImageViewerLoaded = false;
 	$scope.gridElementsTemplateLoaded = false;
+	$scope.hideLoader = false;
+
 	var timeout;
 	$(window).resize(function () {
 		if (timeout) {
@@ -98,6 +100,15 @@ module.controller("appController", ["$scope", "test", "$location", "$rootScope",
 	$scope.$on("page-loaded", function() {
 		var pageContent = $("html").html();
 		test.snapshot(pageContent, $location.path());
+	});
+
+	$scope.$on("data-loaded", function() {
+		setTimeout(function () {
+			$scope.hideLoader = true;
+			$scope.$digest();
+		},1000);
+
+
 	});
 
 	var processShowImageEvent = function () {
