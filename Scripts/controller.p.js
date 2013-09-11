@@ -30,12 +30,9 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", function($sc
 			var index = getIndex();
 			$scope.page = response.data;
 			setBoundaries(index);
-		//	setTimeout(function () {
-				$scope.currentGridElement = $scope.page.GridElements[index];
-				$scope.loading = false;
-
-//				$scope.$apply();
-//			}, 20000);
+			$scope.currentGridElement = $scope.page.GridElements[index];
+			$scope.loading = false;
+			$scope.$emit("data-loaded");
 			return response;
 		});
 

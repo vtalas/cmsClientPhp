@@ -26,7 +26,7 @@ module.directive('shortcut', function() {
 		restrict: 'E',
 		replace: true,
 		scope: true,
-		link:    function postLink(scope, iElement, iAttrs){
+		link: function postLink(scope, iElement, iAttrs){
 			jQuery(document).on('keydown', function(e){
 				scope.$apply(scope.keyPressed(e));
 			});
@@ -72,6 +72,10 @@ module.controller("appController", ["$scope", "test", "$location", "$rootScope",
 	$scope.gridElementsTemplateLoaded = false;
 	$scope.hideLoader = false;
 
+	$(".centered-container")
+		.css("height", $(window).height())
+		.css("width", $(window).width());
+
 	var timeout;
 	$(window).resize(function () {
 		if (timeout) {
@@ -103,12 +107,8 @@ module.controller("appController", ["$scope", "test", "$location", "$rootScope",
 	});
 
 	$scope.$on("data-loaded", function() {
-		setTimeout(function () {
-			$scope.hideLoader = true;
-			$scope.$digest();
-		},1000);
-
-
+		$scope.hideLoader = true;
+		$scope.$digest();
 	});
 
 	var processShowImageEvent = function () {
