@@ -73,36 +73,38 @@
 
 <script id="gdataalbum.thtml" type="text/ng-template" ><div>
 	<div class="gdata-album-list" ng-controller="gridelementGdataAlbumCtrl">
-			<div class="first-image-box grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" >
-				<div class="first-image-content">
-					<div class="image-placeholder">
-						<img ngc-lazy-image="firstPhoto.Large.PhotoUri"/>
-					</div>
+		<div class="first-image-box grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)">
+			<div class="first-image-content">
+				<div class="image-placeholder">
+					<img ngc-lazy-image="firstPhoto.Large.PhotoUri"/>
 				</div>
 			</div>
-			<div ng-repeat="photo in gdataAlbumPhotos" class="grid_3">
-				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link image-small">
+		</div>
+		<div ng-repeat="photo in gdataAlbumPhotos" class="grid_3 mobile_grid_6 tablet_grid_4">
+			<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link image-small">
 				<div class="image-placeholder">
 					<img ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/>
 				</div>
 			</div>
+		</div>
+		<div class="clear"></div>
 	</div>
-	<div class="clear"></div>
-</div>
 </script>
 
 <script id="gdataalbum_Single.thtml" type="text/ng-template"><div>
 	<div class="gdata-album" ng-controller="gridelementGdataAlbumCtrl">
 
 		<h1>{{gridelement.Resources.header.Value}}</h1>
-			<h3>{{gridelement.Resources.text.Value}}</h3>
-			<div class="first-image grid_3 btn-link" ng-click="showImage(gdataAlbumId, 0)" >
-				<img ngc-lazy-image="firstPhoto.Thumbnails[1].PhotoUri"/>
-			</div>
+		<h3>{{gridelement.Resources.text.Value}}</h3>
+
+		<div class="first-image grid_3 btn-link" ng-click="showImage(gdataAlbumId, 0)">
+			<img ngc-lazy-image="firstPhoto.Thumbnails[1].PhotoUri"/>
+		</div>
 		<div class="grid_9">
-				<div ng-repeat="photo in gdataAlbumPhotos" class="image-small">
-						<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link"><img  ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
-				</div>
+			<div ng-repeat="photo in gdataAlbumPhotos" class="image-small">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link"><img
+						ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
+			</div>
 		</div>
 	</div>
 	<div class="clear"></div>
