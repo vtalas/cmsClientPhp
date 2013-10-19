@@ -1,5 +1,6 @@
-var homeController = ["$scope", "test", function ($scope, test) {
+var homeController = ["$scope", "test", function ($scope, $api) {
 
+	console.log("boos")
 	$scope.homeData = [];
 	$scope.nextWorkData = [];
 	$scope.pageLink = "galerie";
@@ -9,7 +10,7 @@ var homeController = ["$scope", "test", function ($scope, test) {
 
 	$scope.tempLength = 0;
 	function getPhotos(index, gdataAlbumId) {
-		return test.getAlbumPhotos(gdataAlbumId)
+		return $api.getAlbumPhotos(gdataAlbumId)
 			.then(function (photos) {
 				$scope.homeData[index].images = photos.data[0];
 				$scope.tempLength ++ ;
@@ -40,7 +41,7 @@ var homeController = ["$scope", "test", function ($scope, test) {
 	});
 
 
-	test.getPage($scope.pageLink)
+	$api.getPage($scope.pageLink)
 		.then(function (data) {
 			$scope.homeData = data.data.GridElements;
 			setTimeout(function () {
