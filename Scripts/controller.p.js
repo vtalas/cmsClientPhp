@@ -1,4 +1,4 @@
-var pController =  [ "$scope", "test", "$routeParams", "$location", function($scope, test, $routeParams, $location) {
+var pController =  [ "$scope", "$api", "$routeParams", "$location", function($scope, $api, $routeParams, $location) {
 	$scope.link = $routeParams.link;
 	var getIndex = function () {
 		var search = $location.search().elindex,
@@ -25,7 +25,7 @@ var pController =  [ "$scope", "test", "$routeParams", "$location", function($sc
 
 
 	$scope.loading = true;
-	test.getPage($scope.link)
+	$api.getPage($scope.link)
 		.then(function (response) {
 			var index = getIndex();
 			$scope.page = response.data;

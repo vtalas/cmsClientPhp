@@ -1,14 +1,14 @@
-var pageController = ["$scope", "test", "$routeParams", function ($scope, test, $routeParams) {
+var pageController = ["$scope", "$api", "$routeParams", function ($scope, $api, $routeParams) {
 	$scope.link = $routeParams.link;
 
-	test.getPage($scope.link)
+	$api.getPage($scope.link)
 		.then(function (data) {
 			$scope.page = data.data;
 			return data;
 		})
 		.then(function (data) {
 			setTimeout(function () {
-				test.checkForSnapshot($scope, data);
+				$api.checkForSnapshot($scope, data);
 			}, 3000)
 		});
 }];

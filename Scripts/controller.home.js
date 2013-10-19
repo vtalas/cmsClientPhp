@@ -1,6 +1,5 @@
-var homeController = ["$scope", "test", function ($scope, $api) {
+var homeController = ["$scope", "$api", function ($scope, $api) {
 
-	console.log("boos")
 	$scope.homeData = [];
 	$scope.nextWorkData = [];
 	$scope.pageLink = "galerie";

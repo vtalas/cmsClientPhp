@@ -1,5 +1,5 @@
 /*global MaspartiData, ApiWrapper*/
-var  galleryImageViewerController = ["$scope", "$routeParams", "test", "$location", function($scope, $routeParams, test, $location) {
+var  galleryImageViewerController = ["$scope", "$routeParams", "$api", "$location", function($scope, $routeParams, $api, $location) {
 
 	$scope.$on("galleryImageViewer-display-image", function (e, galleryId, imageIndex) {
 		$scope.imageIndex = imageIndex;
@@ -48,7 +48,7 @@ var  galleryImageViewerController = ["$scope", "$routeParams", "test", "$locatio
 	function getImage(galleryId, index) {
 		if (!$scope.gallery) {
 			$scope.newindex = index;
-			test.getAlbumPhotos(galleryId).then(function (data) {
+			$api.getAlbumPhotos(galleryId).then(function (data) {
 				$scope.gallery = data.data;
 				$scope.image = $scope.gallery[index];
 			});

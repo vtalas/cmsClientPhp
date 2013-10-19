@@ -9,18 +9,13 @@ module.factory('cache', ['$cacheFactory', function ($cacheFactory) {
 }]);
 
 
-// deprecated
-module.factory("test", ['cmsApi' ,'cache', "$q", function (cmsApi, cache, $q) {
-	return new ApiWrapper(cmsApi, cache, $q);
-}]);
-
 module.factory("$api", ['cmsApi' ,'cache', "$q", function (cmsApi, cache, $q) {
 	return new ApiWrapper(cmsApi, cache, $q);
 }]);
 
 module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
-		.when('/page/:link', {reloadOnSearch: false, controller: pageController, templateUrl: 'Templates/template.page.html', resolve: {api: "test"}})
+		.when('/page/:link', {reloadOnSearch: false, controller: pageController, templateUrl: 'Templates/template.page.html', resolve: {api: "$api"}})
 		.when('/p/:link/:elementIndex', {reloadOnSearch: false, controller: pController, templateUrl: 'Templates/template.p.html'})
 		.when('/home', {controller: homeController, templateUrl: 'Templates/template.home.html'})
 		.when('/login', {controller: loginController, templateUrl: 'Templates/template.login.html'})
@@ -73,7 +68,7 @@ module.directive("ngcGdataAlbum", ngcGdataAlbumDirective);
 module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag",  simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
-module.controller("appController", ["$scope", "test", "$location", "$rootScope", "$timeout", function ($scope, test, $location, $rootScope, $timeout) {
+module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", function ($scope, $api, $location, $rootScope, $timeout) {
 	$scope.galleryImageViewerLoaded = false;
 	$scope.gridElementsTemplateLoaded = false;
 	$scope.hideLoader = false;
@@ -109,7 +104,7 @@ module.controller("appController", ["$scope", "test", "$location", "$rootScope",
 
 	$scope.$on("page-loaded", function() {
 		var pageContent = $("html").html();
-		test.snapshot(pageContent, $location.path());
+		$api.snapshot(pageContent, $location.path());
 	});
 
 	$scope.$on("data-loaded", function() {

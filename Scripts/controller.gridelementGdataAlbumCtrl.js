@@ -1,4 +1,4 @@
-var gridelementGdataAlbumCtrl =  ["$scope", "test", "$routeParams", "$location", "$rootScope", function ($scope, test, $routeParams, $location, $rootScope) {
+var gridelementGdataAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$rootScope", function ($scope, $api, $routeParams, $location) {
 	$scope.gdataAlbumId = getAlbumId();
 	$scope.route = {
 		link: $routeParams.link
@@ -9,7 +9,7 @@ var gridelementGdataAlbumCtrl =  ["$scope", "test", "$routeParams", "$location",
 		return x !== null ? x.gdataAlbumId : null;
 	}
 
-	test.getAlbumPhotos($scope.gdataAlbumId)
+	$api.getAlbumPhotos($scope.gdataAlbumId)
 		.then(function (data) {
 			var copy = data.data.slice();
 			$scope.firstPhoto = copy.splice(0, 1)[0];
