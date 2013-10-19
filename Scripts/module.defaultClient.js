@@ -8,7 +8,13 @@ module.factory('cache', ['$cacheFactory', function ($cacheFactory) {
 	return $cacheFactory("cmsCache");
 }]);
 
+
+// deprecated
 module.factory("test", ['cmsApi' ,'cache', "$q", function (cmsApi, cache, $q) {
+	return new ApiWrapper(cmsApi, cache, $q);
+}]);
+
+module.factory("$api", ['cmsApi' ,'cache', "$q", function (cmsApi, cache, $q) {
 	return new ApiWrapper(cmsApi, cache, $q);
 }]);
 
