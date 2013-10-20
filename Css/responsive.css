@@ -1,0 +1,99 @@
+@media (min-width: 1200px) {
+  body {
+    font-size: 100%;
+  }
+  .container_12,
+  .container {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .icon-4x-responsive {
+    font-size: 6em;
+  }
+  .icon-3x-responsive {
+    font-size: 3em;
+  }
+  .icon-2x-responsive {
+    font-size: 2em;
+  }
+  .font-4x-responsive {
+    font-size: 4em;
+  }
+  .font-3x-responsive {
+    font-size: 3em;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  body {
+    font-size: 80%;
+  }
+  .container_12,
+  .container {
+    border: 1px solid #9acd32;
+  }
+  .icon-2x-responsive {
+    font-size: 1.6em;
+  }
+  .icon-3x-responsive {
+    font-size: 2.4000000000000004em;
+  }
+  .icon-4x-responsive {
+    font-size: 4.800000000000001em;
+  }
+  .font-4x-responsive {
+    font-size: 3.2em;
+  }
+  .font-3x-responsive {
+    font-size: 2.4000000000000004em;
+  }
+}
+@media (max-width: 767px) {
+  body {
+    font-size: 70%;
+  }
+  .container_12,
+  .container {
+    border: 1px solid blue;
+  }
+  .icon-2x-responsive {
+    font-size: 1.4em;
+  }
+  .icon-3x-responsive {
+    font-size: 2.0999999999999996em;
+  }
+  .icon-4x-responsive {
+    font-size: 4.199999999999999em;
+  }
+  .font-4x-responsive {
+    font-size: 2.8em;
+  }
+  .font-3x-responsive {
+    font-size: 2.0999999999999996em;
+  }
+}
+@media (max-width: 480px) {
+  body {
+    font-size: 60%;
+  }
+  .container_12,
+  .container {
+    border: 1px solid yellow;
+    min-width: 340px;
+  }
+  .icon-2x-responsive {
+    font-size: 1.2em;
+  }
+  .icon-3x-responsive {
+    font-size: 1.7999999999999998em;
+  }
+  .icon-4x-responsive {
+    font-size: 3.5999999999999996em;
+  }
+  .font-4x-responsive {
+    font-size: 2.4em;
+  }
+  .font-3x-responsive {
+    font-size: 1.7999999999999998em;
+  }
+}

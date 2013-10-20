@@ -4,12 +4,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="robots" content="all,follow"/>
-	<meta name="keywords" content="umělecký řezbář, Šternberk, restaurování, vyřezávání, dřevořezba, řezbářství, dřevo, tomka"/>
-	<meta name="description" content="Dělám řezbařinu. Prohlédněte si mou tvorbu."/>
-	<meta name="google-site-verification" content="n9vDCHVCDFAdyfqfX4MVEp0H7kNTzP_XE3lvB0e36bo"/>
+	<meta name="keywords" content=""/>
+	<meta name="description" content=""/>
+	<meta name="google-site-verification" content=""/>
 	<meta name="fragment" content="!"/>
 
-	<title>Jaromír Tomka - Umělecký řezbář</title>
+	<title>BOOS</title>
 	<!--DEBUG-->
 	<link rel="stylesheet" href="Css/fluid_grid.css"/>
 	<link rel="stylesheet" href="Css/responsive.css"/>
@@ -55,7 +55,7 @@
 	<!--RELEASE-->
 	<!--<script type="text/javascript" src="Scripts/libs.min.js"></script>-->
 </head>
-<body ng-controller="appController">
+<body ng-controller="appController" class="boos">
 	<i ui-event="{ keydown: 'globalKeydown($event)'}" style="display:none"></i>
 
 	<div class="clear"></div>
@@ -65,23 +65,38 @@
 		{{message}}
 	</div>
 
-	<div ng-view class="view" ng-animate="{enter: 'view-enter', leave: 'view-leave'}" ></div>
+	<div class="container_12">
+		<div class="grid_3"> LOGO</div>
+		<div class="grid_6"><div class="logo-home"> architektura design project management inženýring</div></div>
+		<div class="grid_3">
+			<div><a href="#!/page/projekty">Projekty</a></div>
+			<div><a href="#">Historie</a></div>
+			<div><a href="#">Činnost</a></div>
+			<div><a href="#">Kontakt</a></div>
+		</div>
+
+		<div class="grid_12">
+			<div ng-view class="view"></div>
+		</div>
+	</div>
+
+
 
 	<div ng-include="'Templates/template.galleryImageViewer.html'" onload="galleryImageViewerLoaded = true"></div>
 	<div ng-include="'Templates/template.gridelements.html'" onload="gridElementsTemplateLoaded = true"></div>
 
 	<div class="clear"></div>
 
-	<div class="centered-container" ng-hide="hideLoader" ng-animate="{hide : 'fade-out'}" style="position: absolute;top:0px;margin-right: 20px">
-		<div class="loader centered-content">
-			<img src="Css/loaders/horizontalloadersmall_green.gif" alt="loading..."/>
+	<!--<div class="centered-container" ng-hide="hideLoader" ng-animate="{hide : 'fade-out'}" style="position: absolute;top:0px;margin-right: 20px">-->
+		<!--<div class="loader centered-content">-->
+			<!--<img src="Css/loaders/horizontalloadersmall_green.gif" alt="loading..."/>-->
 
-			<div class="home-loader">
-				<h2>boos</h2>
-				<h5>...</h5>
-			</div>
-		</div>
-	</div>
+			<!--<div class="home-loader">-->
+				<!--<h2>boos</h2>-->
+				<!--<h5>...</h5>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
 
 </body>
 

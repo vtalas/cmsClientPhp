@@ -1,0 +1,19 @@
+<script id="gdataalbum.thtml" type="text/ng-template" ><div>
+	<div class="gdata-album-list" ng-controller="gridelementGdataAlbumCtrl">
+			<div class="first-image-box grid_12 btn-link" ng-click="showImage(gdataAlbumId, 0)" >
+				<div class="first-image-content">
+					<div class="image-placeholder">
+						<img ngc-lazy-image="firstPhoto.Large.PhotoUri"/>
+					</div>
+				</div>
+			</div>
+			<div ng-repeat="photo in gdataAlbumPhotos" class="grid_3">
+				<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link image-small">
+				<div class="image-placeholder">
+					<img ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/>
+				</div>
+			</div>
+	</div>
+	<div class="clear"></div>
+</div>
+</script>

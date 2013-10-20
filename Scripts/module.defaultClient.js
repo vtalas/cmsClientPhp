@@ -1,14 +1,10 @@
 angular.module('HashBangURLs', []).config(['$locationProvider', function($location) {
 	$location.hashPrefix('!');
 }]);
-
 var module = angular.module("defaultClient", ["apiModule", "ui.keypress", "ui.event", "ui.bootstrap", "HashBangURLs"]);
-
 module.factory('cache', ['$cacheFactory', function ($cacheFactory) {
 	return $cacheFactory("cmsCache");
 }]);
-
-
 module.factory("$api", ['cmsApi' ,'cache', "$q", function (cmsApi, cache, $q) {
 	return new ApiWrapper(cmsApi, cache, $q);
 }]);

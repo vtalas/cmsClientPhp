@@ -2,7 +2,7 @@ var homeController = ["$scope", "$api", function ($scope, $api) {
 
 	$scope.homeData = [];
 	$scope.nextWorkData = [];
-	$scope.pageLink = "galerie";
+	$scope.pageLink = "projekty";
 	$scope.loadedData = false;
 	$scope.loadedImages = false;
 	$scope.showLoader = true;

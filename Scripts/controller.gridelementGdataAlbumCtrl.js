@@ -9,12 +9,13 @@ var gridelementGdataAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location",
 		return x !== null ? x.gdataAlbumId : null;
 	}
 
-	$api.getAlbumPhotos($scope.gdataAlbumId)
+	$scope.header = $scope.gridelement.Resources.header.Value;
+	$scope.text = $scope.gridelement.Resources.text.Value;
+
+	$api.getAlbum($scope.gdataAlbumId)
 		.then(function (data) {
-			var copy = data.data.slice();
-			$scope.firstPhoto = copy.splice(0, 1)[0];
-			$scope.gdataAlbumPhotos = copy;
-			$scope.gdataAlbumPhotosAll = data.data;
+			$scope.album = data.data;
+			console.log(data)
 		});
 
 	$scope.showImage = function (galleryId, imageIndex) {
