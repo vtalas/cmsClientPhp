@@ -12,7 +12,7 @@
 	<div class="gdata-album-list" ng-controller="gridelementGdataAlbumCtrl">
 		<div>{{ header }}</div>
 		<div>{{ text }}</div>
-		<div><img src="{{album.Thumbnail.PhotoUri}}" /></div>
+		<div><img src="{{album.Thumbnail.Thumbnails[0].PhotoUri}}" /></div>
 	<div class="clear"></div>
 </div>
 </script>

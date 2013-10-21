@@ -4,8 +4,8 @@ var pageController = ["$scope", "$api", "$routeParams", function ($scope, $api, 
 	$api.getPage($scope.link)
 		.then(function (data) {
 			$scope.page = data.data;
-	console.log(data)
-							return data;
+			console.log(data)
+			return data;
 		})
 		.then(function (data) {
 			setTimeout(function () {
