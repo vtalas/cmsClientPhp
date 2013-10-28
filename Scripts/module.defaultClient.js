@@ -13,9 +13,7 @@ module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 		.when('/page/:link', {reloadOnSearch: false, controller: pageController, templateUrl: 'Templates/template.page.html', resolve: {api: "$api"}})
 		.when('/p/:link/:elementIndex', {reloadOnSearch: false, controller: pController, templateUrl: 'Templates/template.p.html'})
-		.when('/home', {controller: homeController, templateUrl: 'Templates/template.home.html'})
-		.when('/login', {controller: loginController, templateUrl: 'Templates/template.login.html'})
-		.otherwise({redirectTo: '/home'});
+		.otherwise({redirectTo: '/page/projekty'});
 }]);
 
 module.directive('shortcut', function() {

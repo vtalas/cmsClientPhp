@@ -17,6 +17,18 @@
 </div>
 </script>
 
+<script id="album.thtml" type="text/ng-template" ><div>
+	<div class="gdata-album-list" ng-controller="gridelementAlbumCtrl">
+		<div>{{ name }}</div>
+		<div>{{ type }}</div>
+		<div>{{ services }}</div>
+		<div>{{ year }}</div>
+		<div>{{ text }}</div>
+		<div><img src="{{album.Thumbnail.Thumbnails[0].PhotoUri}}" /></div>
+	<div class="clear"></div>
+</div>
+</script>
+
 <script id="gdataalbum_Single.thtml" type="text/ng-template"><div>
 	<div class="gdata-album" ng-controller="gridelementGdataAlbumCtrl">
 

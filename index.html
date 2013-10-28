@@ -44,6 +44,7 @@
 	<script type="text/javascript" src="Scripts/controller.login.js"></script>
 	<script type="text/javascript" src="Scripts/controller.userDataForm.js"></script>
 	<script type="text/javascript" src="Scripts/controller.gridelementGdataAlbumCtrl.js"></script>
+	<script type="text/javascript" src="Scripts/controller.gridelementAlbumCtrl.js"></script>
 	<script type="text/javascript" src="Scripts/controller.simplehtml.js"></script>
 	<script type="text/javascript" src="Scripts/controller.galleryImageViewer.js"></script>
 	<script type="text/javascript" src="Scripts/controller.p.js"></script>
@@ -70,7 +71,7 @@
 		<div class="grid_6"><div class="logo-home"> architektura design project management inženýring</div></div>
 		<div class="grid_3">
 			<div><a href="#!/page/projekty">Projekty</a></div>
-			<div><a href="#">Historie</a></div>
+			<div><a href="#!/page/historie">Historie</a></div>
 			<div><a href="#">Činnost</a></div>
 			<div><a href="#">Kontakt</a></div>
 		</div>
@@ -79,7 +80,6 @@
 			<div ng-view class="view"></div>
 		</div>
 	</div>
-
 
 
 	<div ng-include="'Templates/template.galleryImageViewer.html'" onload="galleryImageViewerLoaded = true"></div>
