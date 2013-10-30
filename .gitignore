@@ -9,3 +9,4 @@ Css/main.css
 Css/masparti-responsive.css
 Css/masparti-responsive.css
 Service/cmsClientPHPService
+Service/cron/*
