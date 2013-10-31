@@ -17,14 +17,20 @@
 </div>
 </script>
 
-<script id="album.thtml" type="text/ng-template" ><div>
+<script id="album.thtml" type="text/ng-template" ><div class="grid_4">
 	<div class="gdata-album-list" ng-controller="gridelementAlbumCtrl">
-		<div>{{ name }}</div>
-		<div>{{ type }}</div>
-		<div>{{ services }}</div>
-		<div>{{ year }}</div>
-		<div>{{ text }}</div>
-		<div><img src="{{album.Thumbnail.Thumbnails[0].PhotoUri}}" /></div>
+		<div style="overflow:hidden">
+			<img class="album-image" src="{{album.Thumbnail.Thumbnails[0].PhotoUri}}"/>
+			<div class="album-name">
+				<div class="content" title="{{name}}">
+					{{ name }}
+				</div>
+			</div>
+		</div>
+		<!--<div>{{ type }}</div>-->
+		<!--<div>{{ services }}</div>-->
+		<!--<div>{{ year }}</div>-->
+		<!--<div>{{ text }}</div>-->
 	<div class="clear"></div>
 </div>
 </script>

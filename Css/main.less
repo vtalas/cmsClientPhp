@@ -16,9 +16,6 @@ h1, h2, h3 {
     font-weight: 400;
 }
 
-img {
-    max-width: 100%;
-}
 a img {border: none; }
 
 
@@ -299,32 +296,21 @@ a img {border: none; }
 }
 
 .gdata-album-list {
-    .image-small {
-        .pseudo-aspect-ratio-content;
-        padding-top: 10px;
-        padding-left: 0;
-        padding-right: 10px;
-    }
+	padding: 10px;
+	.album-name {
+		margin-top: -20px;
+		position: relative;
+	 	z-index:20;
+		  padding:10px;
+		.content {
+		  .text-overflow-elipsies;
 
-    .grid_3:before {
-        .pseudo-aspect-ratio-box;
-        .ratio1_1;
-    }
-
-    .first-image-box {
-        overflow: hidden;
-    }
-    .first-image-box:before {
-        .pseudo-aspect-ratio-box;
-        .ratio16_9;
-    }
-    .first-image-content {
-        .pseudo-aspect-ratio-content;
-        padding-right: 10px;
-    }
-    .image-small.last {
-        padding-right: 0px;
-    }
+		}
+	}
+  	.album-image {
+	  position: relative;
+	  z-index:10;
+	}
 
 }
 
@@ -698,4 +684,20 @@ a img {border: none; }
 }
 .fade-out-active{
   opacity: 0;
+}
+
+.text-overflow-elipsies{
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+
+}
+///////////
+.gdata-album-list {
+  .album-name {
+	background-color: #9acd32;
+  }
+}
+.index-content{
+  background-color: red;
 }
