@@ -1,0 +1,98 @@
+[
+	{
+		"Id": "9d98c68d-c332-4941-8eed-2cd687a1572c",
+		"Position": 1,
+		"Content": {
+			"gdataAlbumId": "5574024902156833169",
+			"name": "Album bez názvu",
+			"updated": 1383303805417
+		},
+		"Type": "album",
+		"Skin": null,
+		"ParentId": "",
+		"Resources": {
+			"name": {
+				"Id": 77,
+				"Value": "sdafasdfdasf asdn asklndasnl lkasnkld lkankdnalskndlknaslkndasdasd  ds"
+			},
+			"group": {
+				"Id": 78,
+				"Value": "a"
+			}
+		},
+		"Width": 12,
+		"Group": []
+	},
+	{
+		"Id": "223db59a-ae21-4c89-ab07-456792e370ad",
+		"Position": 2,
+		"Content": {
+			"gdataAlbumId": "5853992972375325889",
+			"name": "DOWNLOADs",
+			"updated": 1383303810962
+		},
+		"Type": "album",
+		"Skin": null,
+		"ParentId": "",
+		"Resources": {
+			"name": {
+				"Id": 76,
+				"Value": "cccccccccccc"
+			},
+			"group": {
+				"Id": 81,
+				"Value": "a"
+			}
+		},
+		"Width": 12,
+		"Group": []
+	},
+	{
+		"Id": "b15e4bff-0dd0-4732-ba81-fc87033115c3",
+		"Position": 3,
+		"Content": {
+			"gdataAlbumId": "5853999490774678289",
+			"name": "07 - GMC - Strelba",
+			"updated": 1383303819529
+		},
+		"Type": "album",
+		"Skin": null,
+		"ParentId": "",
+		"Resources": {
+			"name": {
+				"Id": 75,
+				"Value": "fffffffff"
+			},
+			"group": {
+				"Id": 79,
+				"Value": "b"
+			}
+		},
+		"Width": 12,
+		"Group": []
+	},
+	{
+		"Id": "a1c08a0c-9f56-492d-88ae-ade0fb8551f0",
+		"Position": 4,
+		"Content": {
+			"gdataAlbumId": "5856635321710909729",
+			"name": "dalov",
+			"updated": 1383303825585
+		},
+		"Type": "album",
+		"Skin": null,
+		"ParentId": "",
+		"Resources": {
+			"name": {
+				"Id": 74,
+				"Value": "aaaaaaaaa"
+			},
+			"group": {
+				"Id": 80,
+				"Value": "a"
+			}
+		},
+		"Width": 12,
+		"Group": []
+	}
+]

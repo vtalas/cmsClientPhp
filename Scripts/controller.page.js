@@ -4,6 +4,9 @@ var pageController = ["$scope", "test", "$routeParams", function ($scope, test, 
 	test.getPage($scope.link)
 		.then(function (data) {
 			$scope.page = data.data;
+			console.log($scope.page.GridElements);
+			var a = new GridElementsList(data.data.GridElements);
+			console.log(JSON.stringify(a.data));
 			return data;
 		})
 		.then(function (data) {
@@ -12,3 +15,4 @@ var pageController = ["$scope", "test", "$routeParams", function ($scope, test, 
 			}, 3000)
 		});
 }];
+
