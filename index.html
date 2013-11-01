@@ -16,9 +16,9 @@
 	<!--<link rel="stylesheet" href="Css/main.css"/>-->
 	<!--DEBUG-->
 
-	<!--RELEASE-->
 	<link rel="stylesheet" href="Css/font-awesome/css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="Css/fonts/stylesheet.css"/>
+	<!--RELEASE-->
 	<link rel="stylesheet" href="Css/css.min.css"/>
 	<!--RELEASE-->
 
@@ -60,14 +60,8 @@
 
 	<div class="clear"></div>
 
-	<!--<div class="btn-group">-->
-	<!--<a class="btn" href="#/home">home</a>-->
-	<!--<a class="btn" href="#/login">login</a>-->
-	<!--<a class="btn" href="Service/cmsClientPHPService/logout.php">logout</a>-->
-	<!--</div>-->
-
 	<div class="alert alert-error" ng-show="message">
-		<b>Chyba:</b>
+		<b></b>
 		{{message}}
 	</div>
 
@@ -77,6 +71,18 @@
 	<div ng-include="'Templates/template.gridelements.html'" onload="gridElementsTemplateLoaded = true"></div>
 
 	<div class="clear"></div>
+
+	<div class="centered-container" ng-hide="hideLoader" ng-animate="{hide : 'fade-out'}" style="position: absolute;top:0px;margin-right: 20px">
+		<div class="loader centered-content">
+			<img src="Css/loaders/horizontalloadersmall_green.gif" alt="loading..."/>
+
+			<div class="home-loader">
+				<h2>jára tomka</h2>
+				<h5>umělecký řezbář</h5>
+			</div>
+		</div>
+	</div>
+
 </body>
 
 </html>

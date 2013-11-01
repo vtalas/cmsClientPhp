@@ -26,7 +26,7 @@ module.directive('shortcut', function() {
 		restrict: 'E',
 		replace: true,
 		scope: true,
-		link:    function postLink(scope, iElement, iAttrs){
+		link: function postLink(scope, iElement, iAttrs){
 			jQuery(document).on('keydown', function(e){
 				scope.$apply(scope.keyPressed(e));
 			});
@@ -70,6 +70,12 @@ module.directive("ngcResponsiveImage", ngcResponsiveImage);
 module.controller("appController", ["$scope", "test", "$location", "$rootScope", "$timeout", function ($scope, test, $location, $rootScope, $timeout) {
 	$scope.galleryImageViewerLoaded = false;
 	$scope.gridElementsTemplateLoaded = false;
+	$scope.hideLoader = false;
+
+	$(".centered-container")
+		.css("height", $(window).height())
+		.css("width", $(window).width());
+
 	var timeout;
 	$(window).resize(function () {
 		if (timeout) {
@@ -98,6 +104,11 @@ module.controller("appController", ["$scope", "test", "$location", "$rootScope",
 	$scope.$on("page-loaded", function() {
 		var pageContent = $("html").html();
 		test.snapshot(pageContent, $location.path());
+	});
+
+	$scope.$on("data-loaded", function() {
+		$scope.hideLoader = true;
+		$scope.$digest();
 	});
 
 	var processShowImageEvent = function () {

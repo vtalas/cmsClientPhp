@@ -2,11 +2,20 @@
 @icon2xSize: 2em;
 @icon3xSize: 3em;
 
-@font4xSize: 6em;
+@font4xSize: 4em;
 @font3xSize: 3em;
 
+@min-width: 480;
+
+
+
+.grid(@number){
+  width:  (1 / 12 * @number) * 100%;
+}
+
+
 @media (min-width: 1200px) {
-    body {
+  body {
         font-size: 100%;
     }
     .container_12, .container {
@@ -61,6 +70,7 @@
 
 @media (max-width: 480px) {
 	@coefficient: 0.6;
+
 	body {
         font-size: 60%;
     }
@@ -68,10 +78,26 @@
     .container_12, .container {
         border: 1px solid yellow;
 		min-width: 340px;
-
 	}
+  .container_12 .grid_6 {
+	width:100.0%;
+  }
 
-    .icon-2x-responsive { font-size: @icon2xSize * @coefficient; }
+  .container_12 .grid_1 {  .grid(2)  }
+  .container_12 .grid_2 {  .grid(4)  }
+  .container_12 .grid_3 {  .grid(6)  }
+  .container_12 .grid_4 {  .grid(8)  }
+  .container_12 .grid_5 {  .grid(10)  }
+  .container_12 .grid_6 {  .grid(12)  }
+
+  .container_12 .grid_7 {  .grid(2)  }
+  .container_12 .grid_8 {  .grid(4)  }
+  .container_12 .grid_9 {  .grid(6)  }
+  .container_12 .grid_10 {  .grid(8)  }
+  .container_12 .grid_11 {  .grid(10)  }
+  .container_12 .grid_12 {  .grid(12)  }
+
+  .icon-2x-responsive { font-size: @icon2xSize * @coefficient; }
     .icon-3x-responsive { font-size: @icon3xSize * @coefficient; }
     .icon-4x-responsive { font-size: @icon4xSize * @coefficient; }
 	.font-4x-responsive { font-size: @font4xSize * @coefficient;  }

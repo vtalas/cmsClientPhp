@@ -5,6 +5,7 @@ var homeController = ["$scope", "test", function ($scope, test) {
 	$scope.pageLink = "galerie";
 	$scope.loadedData = false;
 	$scope.loadedImages = false;
+	$scope.showLoader = true;
 
 	$scope.tempLength = 0;
 	function getPhotos(index, gdataAlbumId) {
@@ -48,7 +49,9 @@ var homeController = ["$scope", "test", function ($scope, test) {
 			},1000);
 
 			updateContainerDimensions(container, $(window).width(), $(window).height());
-			container.show();
+
+			$scope.$emit("data-loaded");
+
 			return data.data;
 		})
 		.then(function (data) {

@@ -322,7 +322,7 @@ a img {border: none; }
 .template-p {
     //display:table;
     min-height: 100%;
-    .centered-contaier{
+    .centered-container {
         height: 20em;
     }
     .loader{
@@ -642,6 +642,7 @@ a img {border: none; }
 	.dalsi-text-show{
 		.animate(1000ms);
 		top:-40px;
+
 	}
 	.dalsi-text-show-active{
 		top:0px;
@@ -651,4 +652,41 @@ a img {border: none; }
 		.animate(500ms);
 	}
 
+}
+
+.centered-container {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.centered-content {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.home-loader {
+  h2,h5 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+
+/**animate */
+.fade-in{
+  .animate-easing(1000ms, linear);
+   opacity: 0;
+}
+
+.fade-in-active{
+  opacity: 1;
+}
+
+.fade-out, fade-out-linear{
+  .animate(500ms);
+}
+.fade-out-active{
+  opacity: 0;
 }
