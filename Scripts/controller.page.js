@@ -4,6 +4,9 @@ var pageController = ["$scope", "$api", "$routeParams", function ($scope, $api, 
 	$api.getPage($scope.link)
 		.then(function (data) {
 			$scope.page = data.data;
+			console.log($scope.page.GridElements);
+			var a = new GridElementsList(data.data.GridElements);
+			console.log(JSON.stringify(a.data));
 			return data;
 		}, function (err) {
 			console.log("ERROR!!", err.status);
@@ -14,3 +17,4 @@ var pageController = ["$scope", "$api", "$routeParams", function ($scope, $api, 
 			}, 3000)
 		});
 }];
+
