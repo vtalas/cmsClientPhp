@@ -1,12 +1,12 @@
 <div class="grid_9">
-	<div ng-repeat="gridelement in page.GridElements" style="background-color: #0480be">
+	<div ng-repeat="gridelement in gridElements" style="background-color: #0480be">
 		<div gridelement="gridelement"></div>
 	</div>
 </div>
 
-<div class="grid_3" style="background-color: #00aba9">
-	<div><a href="#!/page/projekty">aaa aa aa a</a></div>
-	<div><a href="#!/p/historie">bbb </a></div>
-	<div><a href="#!/page/cinnost">ccc ccc cc cccccc ccc</a></div>
-	<div><a href="#!/page/kontakt">xxx x</a></div>
+<div class="grid_3 groups" >
+	<h3>Typy projektů</h3>
+	<ul  class="group-list">
+		<li ng-repeat="group in groups" class="link group-item" ng-click="filter(group)">{{group}}</li>
+	</ul>
 </div>

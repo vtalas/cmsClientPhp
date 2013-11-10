@@ -21,7 +21,6 @@ var gridelementAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$ro
 	$scope.text = getResource("text");
 
 	$api.getAlbum($scope.gdataAlbumId, {size:320, isSquare: false, type: 1})
-//	$api.getAlbum($scope.gdataAlbumId)
 		.then(function (data) {
 			if (data) {
 				$scope.album = data.data;
