@@ -3,6 +3,7 @@
 		var api = $resource('Service/cmsClientPHPService/:service',
 			{ service: "serverProxy.php" },
 			{
+				getJsonData: { method: 'GET', isArray: false, params: {action: "getJson"} },
 				getPage: { method: 'GET', isArray: false, params: {action: "getPage"} },
 				getRequestToken: { method: 'GET', isArray: false, params: {action: "getLogin"} },
 				login: { method: 'POST', isArray: false, params: {action: "PostLogin", service: "login.php"} },

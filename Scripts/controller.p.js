@@ -28,7 +28,7 @@ var pController =  [ "$scope", "$api", "$routeParams", "$location", function($sc
 	$api.getPage($scope.link)
 		.then(function (response) {
 			var index = getIndex();
-			$scope.page = response.data;
+			$scope.page = response;
 			setBoundaries(index);
 			$scope.currentGridElement = $scope.page.GridElements[index];
 			$scope.loading = false;

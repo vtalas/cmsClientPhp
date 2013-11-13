@@ -6,9 +6,9 @@ var pageController = ["$scope", "$api", "$routeParams", function ($scope, $api, 
 
 	$api.getPage($scope.link)
 		.then(function (data) {
-			$scope.page = data.data;
-			$scope.gridElements = data.data.GridElements || [];
-			source =  new GridElementsList(data.data.GridElements);
+			$scope.page = data;
+			$scope.gridElements = $scope.page.GridElements || [];
+			source =  new GridElementsList($scope.page.GridElements);
 			return data;
 		}, function (err) {
 			console.log("ERROR!!", err.status);
@@ -20,7 +20,19 @@ var pageController = ["$scope", "$api", "$routeParams", function ($scope, $api, 
 		});
 
 	$scope.filter = function (value) {
+		if (value === undefined) {
+			$scope.filterValue = null;
+			$scope.gridElements = source.data;
+			return ;
+		}
+		$scope.filterValue = value;
 		$scope.gridElements = source.filter("group", value);
-	}
+	};
+
+	$scope.isSelectedFilter = function (value) {
+		return $scope.filterValue === value ? "selected" : null;
+	};
+
+
 }];
 

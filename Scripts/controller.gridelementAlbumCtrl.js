@@ -9,9 +9,9 @@ var gridelementAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$ro
 		return x !== null ? x.gdataAlbumId : null;
 	}
 
-	var resources = $scope.gridelement.Resources || {};
+	var resources = $scope.gridelement.resources || {};
 	function getResource(key){
-		return resources[key] ? resources[key].Value : "";
+		return resources[key] || "";
 	}
 
 	$scope.name = getResource("name");
@@ -19,7 +19,7 @@ var gridelementAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$ro
 	$scope.services = getResource("services");
 	$scope.year = getResource("year");
 	$scope.text = getResource("text");
-
+	$scope.y = 320;
 	$api.getAlbum($scope.gdataAlbumId, {size:320, isSquare: false, type: 1})
 		.then(function (data) {
 			if (data) {

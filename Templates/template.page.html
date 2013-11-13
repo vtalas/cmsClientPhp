@@ -1,12 +1,16 @@
 <div class="grid_9">
-	<div ng-repeat="gridelement in gridElements" style="background-color: #0480be">
-		<div gridelement="gridelement"></div>
-	</div>
+	<div ng-show="gridElements.length === 0" style="width: 100%">nic.&nbsp;</div>
+	<div ng-show="gridElements === undefined" style="width: 100%">loading....&nbsp;</div>
+		<div ng-repeat="gridelement in gridElements">
+			<div gridelement="gridelement"></div>
+		</div>
 </div>
 
-<div class="grid_3 groups" >
-	<h3>Typy projektů</h3>
-	<ul  class="group-list">
-		<li ng-repeat="group in groups" class="link group-item" ng-click="filter(group)">{{group}}</li>
+<div class="grid_3 groups">
+	<h3 ng-click="filter()">Typy projektů</h3>
+	<ul class="group-list">
+		<li ng-repeat="group in groups" class="link group-item" ng-click="filter(group)"
+			ng-class="isSelectedFilter(group)">{{group}}
+		</li>
 	</ul>
 </div>

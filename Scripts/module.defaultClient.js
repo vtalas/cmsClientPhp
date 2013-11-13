@@ -12,7 +12,7 @@ module.factory("$api", ['cmsApi' ,'cache', "$q", function (cmsApi, cache, $q) {
 module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 		.when('/page/:link', {reloadOnSearch: false, controller: pageController, templateUrl: 'Templates/template.page.html', resolve: {api: "$api"}})
-		.when('/p/:link/:elementIndex', {reloadOnSearch: false, controller: pController, templateUrl: 'Templates/template.p.html'})
+		.when('/p/:link', {reloadOnSearch: false, controller: pController, templateUrl: 'Templates/template.p.html'})
 		.otherwise({redirectTo: '/page/projekty'});
 }]);
 
@@ -62,10 +62,12 @@ module.directive("ngcGdataAlbum", ngcGdataAlbumDirective);
 module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag",  simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
-module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", function ($scope, $api, $location, $rootScope, $timeout) {
+module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", function ($scope, $api, $location, $rootScope, $timeout, $routeParams) {
 	$scope.galleryImageViewerLoaded = false;
 	$scope.gridElementsTemplateLoaded = false;
 	$scope.hideLoader = false;
+
+
 
 	$(".centered-container")
 		.css("height", $(window).height())
@@ -131,6 +133,11 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 	$scope.$watch("galleryImageViewerLoaded", function () {
 		$scope.isLoaded();
 	});
+
+	$scope.isSelectedLink = function (value) {
+		return $routeParams.link === value ? "selected" : null;
+	};
+
 
 
 }]);

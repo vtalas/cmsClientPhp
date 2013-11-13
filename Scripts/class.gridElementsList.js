@@ -17,9 +17,9 @@ var GridElementsList = (function () {
 			result = [];
 
 		for (i = 0; i < this.data.length; i++) {
-			resources = this.data[i].Resources;
+			resources = this.data[i].resources;
 
-			if (resources[key] && resources[key].Value === value ) {
+			if (resources[key] === value ) {
 				result.push(this.data[i]);
 			}
 		}
