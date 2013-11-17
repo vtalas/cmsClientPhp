@@ -27,6 +27,12 @@ var gridelementAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$ro
 			}
 		});
 
+	$scope.testxxx = function (value) {
+		console.log("xxx..x xxx");
+		$location.search("detail", value);
+	};
+
+
 	$scope.showImage = function (galleryId, imageIndex) {
 		$location.search("i", imageIndex);
 		$location.search("gid", galleryId);

@@ -19,11 +19,11 @@
 
 <script id="album.thtml" type="text/ng-template" ><div class="grid_4">
 	<div class="gdata-album-list" ng-controller="gridelementAlbumCtrl">
-		<div style="min-height:{{y}}px" class="album-image-wrap">
+		<div style="min-height:{{y}}px" class="album-image-wrap" >
 			<img style="min-height:{{y}}px" class="album-image" src="{{album.Thumbnail.Thumbnails[0].PhotoUri}}"/>
 			<div class="album-name">
 				<div class="content" title="{{name}}">
-					{{ name }}
+					<a ng-click="testxxx(name)">{{ name }} ss</a>
 				</div>
 			</div>
 		</div>

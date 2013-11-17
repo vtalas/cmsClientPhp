@@ -1,4 +1,4 @@
-var pageController = ["$scope", "$api", "$routeParams", function ($scope, $api, $routeParams) {
+var pageController = ["$scope", "$api", "$routeParams","$location", function ($scope, $api, $routeParams,$location) {
 	var source = null;
 
 	$scope.link = $routeParams.link;
@@ -32,6 +32,11 @@ var pageController = ["$scope", "$api", "$routeParams", function ($scope, $api, 
 	$scope.isSelectedFilter = function (value) {
 		return $scope.filterValue === value ? "selected" : null;
 	};
+
+	$scope.testxxx = function (value) {
+
+	};
+
 
 
 }];

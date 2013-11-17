@@ -32,6 +32,7 @@
 	<!--DEBUG-->
 	<script type="text/javascript" src="Scripts/libs/showdown.js"></script>
 	<script type="text/javascript" src="Scripts/libs/angular-bootstrap/ui-bootstrap-custom-tpls-0.3.0.min.js"></script>
+	<script type="text/javascript" src="Scripts/class.gridList.js"></script>
 	<script type="text/javascript" src="Scripts/class.apiWrapper.js"></script>
 	<script type="text/javascript" src="Scripts/class.gridElementsList.js"></script>
 
@@ -39,6 +40,7 @@
 	<script type="text/javascript" src="Scripts/directive.ngcLazyImage.js"></script>
 	<script type="text/javascript" src="Scripts/directive.ngcResponsiveImage.js"></script>
 	<script type="text/javascript" src="Scripts/directive.ngcSimpleDrag.js"></script>
+	<script type="text/javascript" src="Scripts/directive.ngcOverlay.js"></script>
 
 	<script type="text/javascript" src="Scripts/controller.home.js"></script>
 	<script type="text/javascript" src="Scripts/controller.page.js"></script>
@@ -106,6 +108,41 @@
 <!--</div>-->
 <!--</div>-->
 <!--</div>-->
+
+
+<ngc-overlay class="full-height" ng-show="x">
+	<div class="container_12 full-height">
+		<div class="grid_2 full-height">
+			<div class="full-height-content">
+				<button ng-click="prev()" class="btn btn-link"
+						tooltip="předchozí (kurzor doleva)"
+						tooltip-popup-delay="500"
+						tooltip-placement="right">
+					<i class="icon-chevron-left icon-3x-responsive"></i>
+				</button>
+
+
+			</div>
+		</div>
+		<div class="grid_8 full-height">
+			<div class="full-height-content">xxx</div>
+		</div>
+		<div class="grid_2 full-height">
+			<div class="full-height-content">
+				<button ng-click="next()" class="btn btn-link"
+						tooltip="další (kurzor doprava)"
+						tooltip-popup-delay="500"
+						tooltip-placement="bottom">
+					<i class="icon-chevron-right icon-3x-responsive"></i>
+				</button>
+
+
+			</div>
+		</div>
+	</div>
+</ngc-overlay>
+
+
 
 </body>
 

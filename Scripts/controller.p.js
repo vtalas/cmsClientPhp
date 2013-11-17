@@ -4,15 +4,13 @@ var pController =  [ "$scope", "$api", "$routeParams", "$location", function($sc
 		var search = $location.search().elindex,
 			elemIndex = $routeParams.elementIndex,
 			index;
-
 		index = !isNaN(elemIndex) ? elemIndex : 0;
-
 		if (!isNaN(search)) {
 			index = search;
 		}
-
 		return Number(index, 10);
 	};
+
 	var setBoundaries = function (index) {
 		var length = $scope.page.GridElements.length;
 		$scope.isFirst = index === 0;
@@ -25,7 +23,7 @@ var pController =  [ "$scope", "$api", "$routeParams", "$location", function($sc
 
 
 	$scope.loading = true;
-	$api.getPage($scope.link)
+	var getPagePromise = $api.getPage($scope.link)
 		.then(function (response) {
 			var index = getIndex();
 			$scope.page = response;
@@ -38,11 +36,11 @@ var pController =  [ "$scope", "$api", "$routeParams", "$location", function($sc
 
 	var setNewLocation = function (index) {
 		$location.search("elindex", index);
-		$scope.currentGridElement = $scope.page.GridElements[index];
-		setBoundaries(index);
+		getPagePromise.then(function () {
+			$scope.currentGridElement = $scope.page.GridElements[index];
+			setBoundaries(index);
+		})
 	};
-
-
 
 	$scope.next = function () {
 		var galleryIndex = getIndex(),
@@ -67,7 +65,6 @@ var pController =  [ "$scope", "$api", "$routeParams", "$location", function($sc
 
 	var el = angular.element(".navigation");
 	angular.element(window).scroll(function () {
-
 		var fromTop = $(this).scrollTop(),
 			threshold = 50;
 

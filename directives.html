@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="cs" ng-app="defaultClient">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="all,follow"/>
+	<meta name="keywords" content=""/>
+	<meta name="description" content=""/>
+	<meta name="google-site-verification" content=""/>
+	<meta name="fragment" content="!"/>
+
+	<title>BOOS</title>
+	<!--DEBUG-->
+	<link rel="stylesheet" href="Css/fluid_grid.css"/>
+	<link rel="stylesheet" href="Css/responsive.css"/>
+	<link rel="stylesheet" href="Css/main.css"/>
+	<!--DEBUG-->
+
+	<link rel="stylesheet" href="libs/css/font-awesome/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="libs/css/font/stylesheet.css"/>
+	<!--RELEASE-->
+	<!--<link rel="stylesheet" href="Css/css.min.css"/>-->
+	<!--RELEASE-->
+
+	<script type="text/javascript" src="Scripts/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular.min.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular-resource.min.js"></script>
+
+	<script type="text/javascript" src="Scripts/libs/angular-ui/event.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular-ui/angular.keypress.js"></script>
+
+	<!--DEBUG-->
+	<script type="text/javascript" src="Scripts/libs/showdown.js"></script>
+	<script type="text/javascript" src="Scripts/libs/angular-bootstrap/ui-bootstrap-custom-tpls-0.3.0.min.js"></script>
+	<script type="text/javascript" src="Scripts/class.gridList.js"></script>
+	<script type="text/javascript" src="Scripts/class.apiWrapper.js"></script>
+	<script type="text/javascript" src="Scripts/class.gridElementsList.js"></script>
+
+	<script type="text/javascript" src="Scripts/directive.ngcGdataAlbum.js"></script>
+	<script type="text/javascript" src="Scripts/directive.ngcLazyImage.js"></script>
+	<script type="text/javascript" src="Scripts/directive.ngcResponsiveImage.js"></script>
+	<script type="text/javascript" src="Scripts/directive.ngcSimpleDrag.js"></script>
+	<script type="text/javascript" src="Scripts/directive.ngcOverlay.js"></script>
+
+	<script type="text/javascript" src="Scripts/controller.home.js"></script>
+	<script type="text/javascript" src="Scripts/controller.page.js"></script>
+	<script type="text/javascript" src="Scripts/controller.login.js"></script>
+	<script type="text/javascript" src="Scripts/controller.userDataForm.js"></script>
+	<script type="text/javascript" src="Scripts/controller.gridelementGdataAlbumCtrl.js"></script>
+	<script type="text/javascript" src="Scripts/controller.gridelementAlbumCtrl.js"></script>
+	<script type="text/javascript" src="Scripts/controller.simplehtml.js"></script>
+	<script type="text/javascript" src="Scripts/controller.galleryImageViewer.js"></script>
+	<script type="text/javascript" src="Scripts/controller.p.js"></script>
+
+	<script type="text/javascript" src="Scripts/module.appConfig.js"></script>
+	<script type="text/javascript" src="Scripts/module.apiModule.js"></script>
+	<script type="text/javascript" src="Scripts/module.defaultClient.js"></script>
+
+	<!--RELEASE-->
+	<!--<script type="text/javascript" src="Scripts/libs.min.js"></script>-->
+</head>
+<body ng-controller="appController" class="boos">
+<i ui-event="{ keydown: 'globalKeydown($event)'}" style="display:none"></i>
+
+
+<ngc-overlay class="full-height">
+	<!--	<div class="navigation-buttons">-->
+	<!--<button ng-click="prev()" class="btn btn-link"-->
+	<!--tooltip="předchozí (kurzor doleva)"-->
+	<!--tooltip-popup-delay="500"-->
+	<!--tooltip-placement="right">-->
+	<!--<i class="icon-chevron-left icon-3x-responsive"></i>-->
+	<!--</button>-->
+	<!--<button ng-click="next()" class="btn btn-link"-->
+	<!--tooltip="další (kurzor doprava)"-->
+	<!--tooltip-popup-delay="500"-->
+	<!--tooltip-placement="bottom">`-->
+	<!--<i class="icon-chevron-right icon-3x-responsive"></i>-->
+	<!--</button>-->
+	<!--<button ng-click="close()" class="btn btn-link close"-->
+	<!--tooltip="zavřít (Esc)"-->
+	<!--tooltip-popup-delay="500"-->
+	<!--tooltip-placement="bottom">-->
+	<!--<i class="icon-remove icon-3x-responsive"></i>-->
+	<!--</button>-->
+	<!--<span style="color: white" ng-show="skipping > 0">......</span>-->
+	<!--</div>-->
+
+	<div class="container_12 full-height">
+		<div class="grid_2 full-height">
+			<div class="full-height-content">
+				<button ng-click="prev()" class="btn btn-link"
+						tooltip="předchozí (kurzor doleva)"
+						tooltip-popup-delay="500"
+						tooltip-placement="right">
+					<i class="icon-chevron-left icon-3x-responsive"></i>
+				</button>
+
+
+			</div>
+		</div>
+		<div class="grid_8 full-height">
+			<div class="full-height-content">kjbfdskj</div>
+		</div>
+		<div class="grid_2 full-height">
+			<div class="full-height-content">
+				<button ng-click="next()" class="btn btn-link"
+						tooltip="další (kurzor doprava)"
+						tooltip-popup-delay="500"
+						tooltip-placement="bottom">
+					<i class="icon-chevron-right icon-3x-responsive"></i>
+				</button>
+
+
+			</div>
+		</div>
+	</div>
+
+</ngc-overlay>
+
+
+</body>
+
+</html>
+

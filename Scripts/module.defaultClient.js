@@ -58,6 +58,7 @@ module.directive("gridelement", ["$compile", "$templateCache", "$timeout", funct
 	};
 }]);
 
+module.directive("ngcOverlay", ngcOverlay);
 module.directive("ngcGdataAlbum", ngcGdataAlbumDirective);
 module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag",  simpleDragDirective);
@@ -114,11 +115,11 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 		}
 	};
 
-	$scope.$on("$locationChangeSuccess", function () {
-		if ($scope.resourcesLoaded){
-			processShowImageEvent();
-		}
-	});
+//	$scope.$on("$locationChangeSuccess", function () {
+//		if ($scope.resourcesLoaded){
+//			processShowImageEvent();
+//		}
+//	});
 
 	$scope.$watch("resourcesLoaded", function (value) {
 		if (value){
@@ -138,6 +139,11 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 		return $routeParams.link === value ? "selected" : null;
 	};
 
+	$scope.x = $location.search().detail;
+	$scope.$on("$locationChangeSuccess", function () {
+		$scope.x = $location.search().detail;
+		console.log("xx", $location.search())
+	});
 
 
 }]);
