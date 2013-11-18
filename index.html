@@ -93,56 +93,120 @@
 	</div>
 </div>
 
-<div ng-include="'Templates/template.galleryImageViewer.html'" onload="galleryImageViewerLoaded = true"></div>
-<div ng-include="'Templates/template.gridelements.html'" onload="gridElementsTemplateLoaded = true"></div>
-
 <div class="clear"></div>
 
-<!--<div class="centered-container" ng-hide="hideLoader" ng-animate="{hide : 'fade-out'}" style="position: absolute;top:0px;margin-right: 20px">-->
-<!--<div class="loader centered-content">-->
-<!--<img src="Css/loaders/horizontalloadersmall_green.gif" alt="loading..."/>-->
 
-<!--<div class="home-loader">-->
-<!--<h2>boos</h2>-->
-<!--<h5>...</h5>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-
-<ngc-overlay class="full-height" ng-show="x">
-	<div class="container_12 full-height">
-		<div class="grid_2 full-height">
-			<div class="full-height-content">
-				<button ng-click="prev()" class="btn btn-link"
-						tooltip="předchozí (kurzor doleva)"
-						tooltip-popup-delay="500"
-						tooltip-placement="right">
-					<i class="icon-chevron-left icon-3x-responsive"></i>
-				</button>
-
-
-			</div>
+<div class="dumbBoxWrap gallery-image-viewer" ng-show="xxx" >
+	<div class="dumbBoxOverlay">
+		<div ng-show="loading" class="loader">
+			<img src="Css/loaders/horizontalloadersmall_white.gif" alt="loading..."/>
 		</div>
-		<div class="grid_8 full-height">
-			<div class="full-height-content">xxx</div>
-		</div>
-		<div class="grid_2 full-height">
-			<div class="full-height-content">
-				<button ng-click="next()" class="btn btn-link"
-						tooltip="další (kurzor doprava)"
-						tooltip-popup-delay="500"
-						tooltip-placement="bottom">
-					<i class="icon-chevron-right icon-3x-responsive"></i>
-				</button>
-
-
-			</div>
-		</div>
+		&nbsp;
 	</div>
-</ngc-overlay>
+	<div class="vertical-offset" >
 
 
+		<div class="full-height" >
+			<div class="container_12 full-height">
+				<div class="grid_2 full-height">
+					<div class="full-height-content">
+						<button ng-click="prev()" class="btn btn-link"
+								tooltip="předchozí (kurzor doleva)"
+								tooltip-popup-delay="500"
+								tooltip-placement="right">
+							<i class="icon-chevron-left icon-3x-responsive"></i>
+						</button>
+					</div>
+				</div>
+				<div class="grid_8 full-height">
+					<div class="full-height-content">
+						<h3 ng-click="close()">close </h3>
+						<div gridelement="xxx"></div>
+					</div>
+				</div>
+				<div class="grid_2 full-height">
+					<div class="full-height-content">
+						<button ng-click="next()" class="btn btn-link"
+								tooltip="další (kurzor doprava)"
+								tooltip-popup-delay="500"
+								tooltip-placement="bottom">
+							<i class="icon-chevron-right icon-3x-responsive"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+
+<script id="text.thtml" type="text/ng-template">
+	<div>
+		{{gridelement.resources.text}}
+	</div>
+
+</script>
+
+<script id="simplehtml.thtml" type="text/ng-template">
+	<div
+			ng-controller="simplehtml">
+		<div ng-bind-html-unsafe="ContentToHtml()"></div>
+	</div>
+
+</script>
+
+<script id="gdataalbum.thtml" type="text/ng-template">
+	<div>
+		<div class="gdata-album-list" ng-controller="gridelementGdataAlbumCtrl">
+			<div>{{ header }}</div>
+			<div>{{ text }}</div>
+			<div><img src="{{album.Thumbnail.Thumbnails[0].PhotoUri}}"/></div>
+			<div class="clear"></div>
+		</div>
+
+</script>
+
+<script id="album.thtml" type="text/ng-template">
+	<div
+			class="grid_4">
+		<div class="gdata-album-list" ng-controller="gridelementAlbumCtrl">
+			<div style="min-height:{{y}}px" class="album-image-wrap">
+				<img style="min-height:{{y}}px" class="album-image" src="{{album.Thumbnail.Thumbnails[0].PhotoUri}}"/>
+
+				<div class="album-name">
+					<div class="content" title="{{name}}">
+						<a ng-click="testxxx(name)">{{ name }} ss</a>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+</script>
+
+<script id="gdataalbum_Single.thtml" type="text/ng-template">
+	<div>
+		<div class="gdata-album" ng-controller="gridelementGdataAlbumCtrl">
+
+			<h1>{{gridelement.Resources.header.Value}}</h1>
+
+			<h3>{{gridelement.Resources.text.Value}}</h3>
+
+			<div class="first-image grid_3 btn-link" ng-click="showImage(gdataAlbumId, 0)">
+				<img ngc-lazy-image="firstPhoto.Thumbnails[1].PhotoUri"/>
+			</div>
+			<div class="grid_9">
+				<div ng-repeat="photo in gdataAlbumPhotos" class="image-small">
+					<div ng-click="showImage(gdataAlbumId, $index + 1)" class="btn-link"><img
+							ngc-lazy-image="photo.Thumbnails[1].PhotoUri"/></div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>
 
 </body>
 

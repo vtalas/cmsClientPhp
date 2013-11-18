@@ -9,6 +9,7 @@ var gridelementAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$ro
 		return x !== null ? x.gdataAlbumId : null;
 	}
 
+
 	var resources = $scope.gridelement.resources || {};
 	function getResource(key){
 		return resources[key] || "";
@@ -27,11 +28,11 @@ var gridelementAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$ro
 			}
 		});
 
-	$scope.testxxx = function (value) {
-		console.log("xxx..x xxx");
-		$location.search("detail", value);
+	$scope.testxxx = function () {
+		var search = $location.search() || {};
+		search.detail = $scope.gridelement.Id;
+		$location.search(search);
 	};
-
 
 	$scope.showImage = function (galleryId, imageIndex) {
 		$location.search("i", imageIndex);

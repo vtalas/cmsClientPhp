@@ -8,7 +8,8 @@ var pageController = ["$scope", "$api", "$routeParams","$location", function ($s
 		.then(function (data) {
 			$scope.page = data;
 			$scope.gridElements = $scope.page.GridElements || [];
-			source =  new GridElementsList($scope.page.GridElements);
+			source = new GridElementsList($scope.page.GridElements);
+			setLocation($location.search().detail);
 			return data;
 		}, function (err) {
 			console.log("ERROR!!", err.status);
@@ -33,10 +34,14 @@ var pageController = ["$scope", "$api", "$routeParams","$location", function ($s
 		return $scope.filterValue === value ? "selected" : null;
 	};
 
-	$scope.testxxx = function (value) {
-
+	var setLocation = function (id) {
+		$scope.$emit("overlay", {source : source, active : source.findById(id)});
 	};
 
+	//$scope.x = $location.search().detail;
+	$scope.$on("$locationChangeSuccess", function () {
+		setLocation($location.search().detail);
+	});
 
 
 }];

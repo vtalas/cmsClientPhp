@@ -57,8 +57,7 @@ var ApiWrapper = (function () {
 		var deferred = this.q.defer();
 
 		this.cmsApi.getJsonData(function (data) {
-			console.log(data)
-			deferred.resolve(data);
+			deferred.resolve(new GridList(data.data));
 		});
 
 		return deferred.promise;

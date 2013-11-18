@@ -1,11 +1,11 @@
-angular.module('HashBangURLs', []).config(['$locationProvider', function($location) {
+angular.module('HashBangURLs', []).config(['$locationProvider', function ($location) {
 	$location.hashPrefix('!');
 }]);
 var module = angular.module("defaultClient", ["apiModule", "ui.keypress", "ui.event", "ui.bootstrap", "HashBangURLs"]);
 module.factory('cache', ['$cacheFactory', function ($cacheFactory) {
 	return $cacheFactory("cmsCache");
 }]);
-module.factory("$api", ['cmsApi' ,'cache', "$q", function (cmsApi, cache, $q) {
+module.factory("$api", ['cmsApi' , 'cache', "$q", function (cmsApi, cache, $q) {
 	return new ApiWrapper(cmsApi, cache, $q);
 }]);
 
@@ -16,13 +16,13 @@ module.config(['$routeProvider', function ($routeProvider) {
 		.otherwise({redirectTo: '/page/projekty'});
 }]);
 
-module.directive('shortcut', function() {
+module.directive('shortcut', function () {
 	return {
 		restrict: 'E',
 		replace: true,
 		scope: true,
-		link: function (scope){
-			jQuery(document).on('keydown', function(e){
+		link: function (scope) {
+			jQuery(document).on('keydown', function (e) {
 				scope.$apply(scope.keyPressed(e));
 			});
 		}
@@ -35,11 +35,11 @@ module.directive("gridelement", ["$compile", "$templateCache", "$timeout", funct
 		scope: { grid: "=", gridelement: "=" },
 		link: function (scope, iElement, tAttrs, controller) {
 			scope.$watch("gridelement", function (val) {
-				if (!val ) {
-					return ;
+				if (!val) {
+					return;
 				}
 				var skin = scope.gridelement.Skin || "";
-				var template = $templateCache.get(scope.gridelement.Type + skin+".thtml");
+				var template = $templateCache.get(scope.gridelement.Type + skin + ".thtml");
 				var compiled = $compile(template)(scope);
 
 				if (timeout) {
@@ -51,7 +51,7 @@ module.directive("gridelement", ["$compile", "$templateCache", "$timeout", funct
 
 				iElement.html(compiled);
 			});
-			scope.getGridElement = function (){
+			scope.getGridElement = function () {
 				return scope.gridelement;
 			};
 		}
@@ -61,14 +61,18 @@ module.directive("gridelement", ["$compile", "$templateCache", "$timeout", funct
 module.directive("ngcOverlay", ngcOverlay);
 module.directive("ngcGdataAlbum", ngcGdataAlbumDirective);
 module.directive("ngcLazyImage", ngcLazyImage);
-module.directive("ngcSimpleDrag",  simpleDragDirective);
+module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
 module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", function ($scope, $api, $location, $rootScope, $timeout, $routeParams) {
 	$scope.galleryImageViewerLoaded = false;
 	$scope.gridElementsTemplateLoaded = false;
 	$scope.hideLoader = false;
 
-
+	$api.getJsonData().then(function (data) {
+		//$scope.x = data.data[0].GridElements[0];
+		//console.log($scope.x);
+		//console.log(data)
+	})
 
 	$(".centered-container")
 		.css("height", $(window).height())
@@ -81,7 +85,7 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 		}
 		timeout = $timeout(function () {
 			$scope.$broadcast("windowChanged", {
-				width : $(window).width(),
+				width: $(window).width(),
 				height: $(window).height()
 			})
 		}, 200);
@@ -95,16 +99,16 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 		$scope.$broadcast("global-keydown", event);
 	};
 
-	$scope.$on("set-message", function(e, message) {
+	$scope.$on("set-message", function (e, message) {
 		$scope.message = message;
 	});
 
-	$scope.$on("page-loaded", function() {
+	$scope.$on("page-loaded", function () {
 		var pageContent = $("html").html();
 		$api.snapshot(pageContent, $location.path());
 	});
 
-	$scope.$on("data-loaded", function() {
+	$scope.$on("data-loaded", function () {
 		$scope.hideLoader = true;
 	});
 
@@ -121,8 +125,16 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 //		}
 //	});
 
+	$scope.$on("overlay", function (x, data) {
+		$scope.xxx = data.active;
+	});
+	$scope.close = function () {
+		$location.search("detail", null);
+	};
+
+
 	$scope.$watch("resourcesLoaded", function (value) {
-		if (value){
+		if (value) {
 			processShowImageEvent();
 		}
 	});
@@ -138,14 +150,6 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 	$scope.isSelectedLink = function (value) {
 		return $routeParams.link === value ? "selected" : null;
 	};
-
-	$scope.x = $location.search().detail;
-	$scope.$on("$locationChangeSuccess", function () {
-		$scope.x = $location.search().detail;
-		console.log("xx", $location.search())
-	});
-
-
 }]);
 
 

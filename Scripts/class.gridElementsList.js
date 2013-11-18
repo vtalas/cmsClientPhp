@@ -11,6 +11,15 @@ var GridElementsList = (function () {
 		return "skdbaj";
 	};
 
+	GridElementsList.prototype.findById = function (id) {
+		for (var i = 0; i < this.data.length; i++) {
+			if (id === this.data[i].Id){
+				return this.data[i];
+			}
+		}
+		return null;
+	};
+
 	GridElementsList.prototype.filter = function (key, value) {
 		var i,
 			resources,
