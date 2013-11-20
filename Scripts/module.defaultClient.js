@@ -71,7 +71,7 @@ module.controller("abc", ["$scope", "$api", "$location", "$rootScope", "$timeout
 	var visible = function () {
 		return true;
 	};
-	
+
 	$scope.$watch("xxx", function (val) {
 		if (val) {
 			$scope.overlaygallery = val.active;
@@ -96,19 +96,18 @@ module.controller("abc", ["$scope", "$api", "$location", "$rootScope", "$timeout
 		}
 		var key = $event.keyCode;
 		switch (key) {
-			case 27 :
-				$scope.close();
-				break;
-			case 37 :
-				$scope.prev();
-				break;
-			case 32 :
-			case 39 :
-				$scope.next();
-				break;
+		case 27:
+			$scope.close();
+			break;
+		case 37:
+			$scope.prev();
+			break;
+		case 32:
+		case 39:
+			$scope.next();
+			break;
 		}
 	});
-
 
 
 }]);
@@ -117,7 +116,6 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 	$scope.galleryImageViewerLoaded = false;
 	$scope.gridElementsTemplateLoaded = false;
 	$scope.hideLoader = false;
-	$scope.u = "xxx";
 
 	$scope.aaa = function (val) {
 		return $scope.xxx;

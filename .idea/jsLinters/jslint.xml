@@ -5,8 +5,9 @@
     <option indent="4" />
     <option maxerr="50" />
     <option plusplus="true" />
-    <option predef="describe,it,begoreEach" />
+    <option predef="describe,it,beforeEach,inject,expect,console" />
     <option regexp="true" />
+    <option sloppy="true" />
   </component>
 </project>
 

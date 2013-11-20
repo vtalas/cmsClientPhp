@@ -14,17 +14,19 @@ module.exports = function (config) {
 
 		// list of files / patterns to load in the browser
 		files: [
-//			"../Scripts/libs/*.js",
-			"../Scripts/*.class.js",
+			"../libs/js/angular.js",
+			"../libs/js/*.js",
+			"../Scripts/class.*.js",
+			"../data/*.js",
 			"*.test.js"
 		],
 
 
-		// list of files to exclude
-		exclude: [
-
+		exclude : [
+			'../libs/js/angular-loader.js',
+			'../libs/js/*.min.js',
+			'../libs/js/angular-scenario.js'
 		],
-
 
 		// test results reporter to use
 		// possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
@@ -44,7 +46,6 @@ module.exports = function (config) {
 		logLevel: config.LOG_INFO,
 
 
-		// enable / disable watching file and executing tests whenever any file changes
 		autoWatch: true,
 
 

@@ -62,6 +62,7 @@
     <option passfail="false" />
     <option white="false" />
     <option maxerr="50" />
+    <option predef="describe,it,beforeEach,inject,expect,console&#10;" />
   </component>
 </project>
 
