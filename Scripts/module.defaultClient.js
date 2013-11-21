@@ -63,16 +63,68 @@ module.directive("ngcGdataAlbum", ngcGdataAlbumDirective);
 module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
+
+module.controller("abc", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", function ($scope, $api, $location, $rootScope, $timeout, $routeParams) {
+
+	var source = $scope.xxx;
+
+	var visible = function () {
+		return true;
+	};
+
+	$scope.$watch("xxx", function (val) {
+		if (val) {
+			$scope.overlaygallery = val.active;
+		}
+	});
+
+	$scope.close = function () {
+		$location.search("detail", null);
+	};
+
+	$scope.prev = function () {
+		console.log("prev");
+	};
+
+	$scope.next = function () {
+		console.log("next");
+	};
+
+	$scope.$on("global-keydown", function (e, $event) {
+		if (!visible()) {
+			return;
+		}
+		var key = $event.keyCode;
+		switch (key) {
+		case 27:
+			$scope.close();
+			break;
+		case 37:
+			$scope.prev();
+			break;
+		case 32:
+		case 39:
+			$scope.next();
+			break;
+		}
+	});
+
+
+}]);
+
 module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", function ($scope, $api, $location, $rootScope, $timeout, $routeParams) {
 	$scope.galleryImageViewerLoaded = false;
 	$scope.gridElementsTemplateLoaded = false;
 	$scope.hideLoader = false;
 
+	$scope.aaa = function (val) {
+		return $scope.xxx;
+	};
 	$api.getJsonData().then(function (data) {
 		//$scope.x = data.data[0].GridElements[0];
 		//console.log($scope.x);
 		//console.log(data)
-	})
+	});
 
 	$(".centered-container")
 		.css("height", $(window).height())
@@ -126,12 +178,8 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 //	});
 
 	$scope.$on("overlay", function (x, data) {
-		$scope.xxx = data.active;
+		$scope.xxx = data;
 	});
-	$scope.close = function () {
-		$location.search("detail", null);
-	};
-
 
 	$scope.$watch("resourcesLoaded", function (value) {
 		if (value) {
