@@ -1,13 +1,8 @@
 angular.module('HashBangURLs', []).config(['$locationProvider', function ($location) {
 	$location.hashPrefix('!');
 }]);
-var module = angular.module("defaultClient", ["apiModule", "ui.keypress", "ui.event", "ui.bootstrap", "HashBangURLs"]);
-module.factory('cache', ['$cacheFactory', function ($cacheFactory) {
-	return $cacheFactory("cmsCache");
-}]);
-module.factory("$api", ['cmsApi' , 'cache', "$q", function (cmsApi, cache, $q) {
-	return new ApiWrapper(cmsApi, cache, $q);
-}]);
+
+var module = angular.module("defaultClient", ["ngRoute", "galleryBrowser", "repo", "ui.keypress", "ui.event", "ui.bootstrap", "HashBangURLs"]);
 
 module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
@@ -64,7 +59,23 @@ module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
 
-module.controller("abc", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", function ($scope, $api, $location, $rootScope, $timeout, $routeParams) {
+module.controller("abc", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$gallery", function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $gallery) {
+	$scope.uch = $gallery.currentIndex;
+	$scope.$watch("uch", function (value, oldvalue) {
+		console.log("-------value changed", value, oldvalue);
+	});
+
+	setTimeout(function () {
+	//	$gallery.loadData(["xxx"]);
+		console.log($scope.uch, $gallery.currentIndex);
+		$scope.$apply();
+	}, 2000);
+
+	$scope.x = $location.search().detail;
+	$scope.$on("$locationChangeSuccess", function () {
+		var index = $location.search().detail;
+//		setLocation($location.search().detail);
+	});
 
 	var source = $scope.xxx;
 
@@ -83,11 +94,13 @@ module.controller("abc", ["$scope", "$api", "$location", "$rootScope", "$timeout
 	};
 
 	$scope.prev = function () {
-		console.log("prev");
+		$scope.currentItem = $gallery.prev()
+		console.log("prev", $scope.currentItem);
 	};
 
 	$scope.next = function () {
-		console.log("next");
+		$scope.currentItem = $gallery.next();
+		console.log("prev", $scope.currentItem);
 	};
 
 	$scope.$on("global-keydown", function (e, $event) {
@@ -112,7 +125,7 @@ module.controller("abc", ["$scope", "$api", "$location", "$rootScope", "$timeout
 
 }]);
 
-module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", function ($scope, $api, $location, $rootScope, $timeout, $routeParams) {
+module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$gallery", function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $gallery) {
 	$scope.galleryImageViewerLoaded = false;
 	$scope.gridElementsTemplateLoaded = false;
 	$scope.hideLoader = false;

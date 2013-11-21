@@ -1,4 +1,4 @@
-var gridelementAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$rootScope", function ($scope, $api, $routeParams, $location) {
+var gridelementAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$rootScope",  function ($scope, $api, $routeParams, $location) {
 	$scope.gdataAlbumId = getAlbumId();
 	$scope.route = {
 		link: $routeParams.link
@@ -8,7 +8,6 @@ var gridelementAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$ro
 		var x = $scope.gridelement.Content;
 		return x !== null ? x.gdataAlbumId : null;
 	}
-
 
 	var resources = $scope.gridelement.resources || {};
 	function getResource(key){
@@ -28,10 +27,11 @@ var gridelementAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$ro
 			}
 		});
 
-	$scope.testxxx = function () {
-		var search = $location.search() || {};
-		search.detail = $scope.gridelement.Id;
-		$location.search(search);
+
+
+	$scope.testxxx = function (value) {
+		console.log(value);
+		$location.search("detail", value );
 	};
 
 	$scope.showImage = function (galleryId, imageIndex) {

@@ -17,6 +17,8 @@ module.exports = function (config) {
 			"../libs/js/angular.js",
 			"../libs/js/*.js",
 			"../Scripts/class.*.js",
+			"../common/*.js",
+			"../api/*.js",
 			"../data/*.js",
 			"*.test.js"
 		],
@@ -30,7 +32,7 @@ module.exports = function (config) {
 
 		// test results reporter to use
 		// possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-		reporters: ['progress'],
+		reporters: ['dots'],
 
 
 		// web server port
@@ -57,7 +59,7 @@ module.exports = function (config) {
 		// - Safari (only Mac; has to be installed with `npm install karma-safari-launcher`)
 		// - PhantomJS
 		// - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
-		browsers: ['PhantomJS'],
+		browsers: ['Chrome'],
 
 
 		// If browser does not capture in given timeout [ms], kill it

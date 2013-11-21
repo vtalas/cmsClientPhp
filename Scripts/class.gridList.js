@@ -24,8 +24,14 @@ var GridList = (function(){
 		this.repo.set(this.data);
 	};
 
+
+
 	GridList.prototype.save  = function () {
 		this.repo.set(this.data);
+	};
+
+	GridList.prototype.xx  = function () {
+		console.log("xxx");
 	};
 
 	GridList.prototype.update  = function (item) {

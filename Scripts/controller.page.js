@@ -1,8 +1,14 @@
-var pageController = ["$scope", "$api", "$routeParams","$location", function ($scope, $api, $routeParams,$location) {
+var pageController = ["$scope", "$api", "$routeParams","$location", "$gallery", function ($scope, $api, $routeParams,$location, $gallery) {
 	var source = null;
 
 	$scope.link = $routeParams.link;
 	$scope.groups = ["a", "b", "c"];
+
+	setTimeout(function () {
+		$gallery.loadData(["xx","aaa", "sss"]);
+		console.log("loading");
+		$scope.$digest();
+	},1000);
 
 	$api.getPage($scope.link)
 		.then(function (data) {
@@ -38,10 +44,11 @@ var pageController = ["$scope", "$api", "$routeParams","$location", function ($s
 		$scope.$emit("overlay", {source : source, active : source.findById(id)});
 	};
 
-	//$scope.x = $location.search().detail;
-	$scope.$on("$locationChangeSuccess", function () {
-		setLocation($location.search().detail);
-	});
+
+//	//$scope.x = $location.search().detail;
+//	$scope.$on("$locationChangeSuccess", function () {
+//		setLocation($location.search().detail);
+//	});
 
 
 }];

@@ -1,56 +1,28 @@
-angular.module('myModule', [], function ($provide) {
-	$provide.factory('notify', ['$window', function (win) {
-		var msgs = [];
-		return function (msg) {
-			msgs.push(msg);
-			if (msgs.length === 3) {
-				win.alert(msgs.join("\n"));
-				msgs = [];
-			}
-		};
-	}]);
+/*global describe,it,module, beforeEach */
+describe('myApp', function () {
+	beforeEach(module('repo', function ($provide) {
+
+	}));
+
+	it('should alert on $window', inject(function (db) {
+
+	}));
 });
 
-/*global describe,it,module, beforeEach */
-describe("Describe", function () {
-	var mock, notify;
 
+describe("Gallery browser module test", function () {
 	beforeEach(function () {
-		mock = {alert: jasmine.createSpy()};
+		module('galleryBrowser', function () {
 
-		module(function ($provide) {
-			$provide.value('$window', mock);
 		});
+		module('galleryBrowser', function () {
 
-		inject(function ($injector) {
-			notify = $injector.get('notify');
 		});
 	});
 
-	it('should not alert first two notifications', function () {
-		notify('one');
-		notify('two');
-
-		expect(mock.alert).not.toHaveBeenCalled();
-	});
-
-	it('should alert all after third notification', function () {
-		notify('one');
-		notify('two');
-		notify('three');
-
-		expect(mock.alert).toHaveBeenCalledWith("one\ntwo\nthree");
-	});
-
-	it('should clear messages after alert', function () {
-		notify('one');
-		notify('two');
-		notify('third');
-		notify('more');
-		notify('two');
-		notify('third');
-
-		expect(mock.alert.callCount).toEqual(2);
-		expect(mock.alert.mostRecentCall.args).toEqual(["more\ntwo\nthird"]);
-	});
+	it("initialization", inject(function ($gallery) {
+		var g = $gallery(["a", "b", "c"]);
+		expect(g.data[0]).toBe("a");
+		expect(g.data[0]).toBe("a");
+	}));
 });

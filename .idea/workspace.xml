@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/test/module.repository.test.js" line="22" mnemonic="1" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="fe4a007e-9384-49d1-ac32-532ad2286309" name="Default" comment="" />
     <ignored path="ClientPHP.iws" />
@@ -23,58 +26,103 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="module.defaultClient.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="module.defaultClient.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Scripts/module.defaultClient.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="473" selection-end="473" vertical-scroll-proportion="-5.4" vertical-offset="0" max-vertical-offset="3135">
+            <state line="66" column="0" selection-start="2268" selection-end="2268" vertical-scroll-proportion="0.1865285" vertical-offset="1140" max-vertical-offset="4440">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class.apiWrapper.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/class.apiWrapper.js">
+      <file leaf-file-name="controller.page.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Scripts/controller.page.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="0" selection-start="1408" selection-end="1408" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="2265">
+            <state line="7" column="20" selection-start="270" selection-end="270" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1220">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gridElementList.test.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/gridElementList.test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="3" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="module.repository.test.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="module.repository.test.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/module.repository.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="3" selection-start="266" selection-end="266" vertical-scroll-proportion="0.16566265" vertical-offset="0" max-vertical-offset="996">
+            <state line="19" column="11" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="8" max-vertical-offset="660">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class.gridElementsList.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/class.gridElementsList.js">
+      <file leaf-file-name="template.gridelements.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Templates/template.gridelements.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="648" selection-end="648" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+            <state line="22" column="114" selection-start="869" selection-end="869" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1200">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="karma.conf.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/karma.conf.js">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="23" selection-start="465" selection-end="465" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1155">
+            <state line="119" column="0" selection-start="4812" selection-end="4812" vertical-scroll-proportion="-6.724138" vertical-offset="2185" max-vertical-offset="4680">
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1385076542191" expanded="true" signature="5946:5987" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="6061:6151" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="6225:6462" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="6300:6460" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="6529:6984" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="6617:6982" placeholder="..." />
+                <marker date="1385076542191" expanded="false" signature="6634:6652" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="6678:6944" placeholder="..." />
+                <marker date="1385076542191" expanded="false" signature="6696:6714" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="6815:6934" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="6859:6923" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="7063:7689" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="7133:7653" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="7319:7391" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="7415:7644" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="7483:7634" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="7558:7623" placeholder="..." />
+                <marker date="1385076542191" expanded="true" signature="7563:7617" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller.gridelementAlbumCtrl.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Scripts/controller.gridelementAlbumCtrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="36" selection-start="451" selection-end="451" vertical-scroll-proportion="0.0" vertical-offset="260" max-vertical-offset="940">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="module.galleryBrowser.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gallery/module.galleryBrowser.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="20" selection-start="155" selection-end="155" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="class.gallery.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gallery/class.gallery.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="31" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="module.repository.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/module.repository.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="25" selection-start="47" selection-end="47" vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="620">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -89,33 +137,33 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Scripts/controller.gridelementGdataAlbumCtrl.js" />
-        <option value="$PROJECT_DIR$/Scripts/class.apiWrapper.js" />
-        <option value="$PROJECT_DIR$/Scripts/controller.page.js" />
-        <option value="$PROJECT_DIR$/gridElements.json" />
-        <option value="$PROJECT_DIR$/Templates/template.page.html" />
-        <option value="$PROJECT_DIR$/Css/main.less" />
-        <option value="$PROJECT_DIR$/Service/cmsClientPHPService/config.php" />
+        <option value="$PROJECT_DIR$/test/karma.conf.js" />
+        <option value="$PROJECT_DIR$/common/class.apiWrapper.js" />
+        <option value="$PROJECT_DIR$/test/_test.test.js" />
+        <option value="$PROJECT_DIR$/test/gridElementList.test.js" />
+        <option value="$PROJECT_DIR$/Scripts/class.gridList.js" />
+        <option value="$PROJECT_DIR$/common/class.gallery.js" />
+        <option value="$PROJECT_DIR$/data/module.repository.js" />
+        <option value="$PROJECT_DIR$/common/module.galleryBrowser.js" />
+        <option value="$PROJECT_DIR$/test/module.repository.test.js" />
         <option value="$PROJECT_DIR$/Templates/template.gridelements.html" />
         <option value="$PROJECT_DIR$/Scripts/controller.gridelementAlbumCtrl.js" />
-        <option value="$PROJECT_DIR$/Scripts/class.gridElementsList.js" />
+        <option value="$PROJECT_DIR$/gallery/module.galleryBrowser.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/Scripts/controller.page.js" />
+        <option value="$PROJECT_DIR$/gallery/class.gallery.js" />
         <option value="$PROJECT_DIR$/Scripts/module.defaultClient.js" />
-        <option value="$PROJECT_DIR$/Scripts/module.repository.js" />
-        <option value="$PROJECT_DIR$/test/gridElementList.test.js" />
-        <option value="$PROJECT_DIR$/test/karma.conf.js" />
-        <option value="$PROJECT_DIR$/test/module.repository.test.js" />
       </list>
     </option>
   </component>
   <component name="JsKarmaPackageDirSetting">
-    <data>C:\Users\v.talas\AppData\Roaming\npm\node_modules\karma</data>
+    <data>C:\Users\v.talas\AppData\Roaming\npm\node_modules\karma\bin\karma</data>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1176" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1170" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -156,7 +204,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -167,25 +215,61 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ClientPHP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ClientPHP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ClientPhp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ClientPHP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ClientPhp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="true" />
     <property name="options.splitter.main.proportions" value="0.32327586" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="Settings.JavaScript.Linters.JSHint" />
+    <property name="options.lastSelected" value="Settings.JavaScript.Linters.JSLint" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="C:/lades" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="FullScreen" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="FullScreen" value="false" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -209,7 +293,15 @@
       <recent name="C:\wamp\www\ClientPhp\Scripts" />
     </key>
   </component>
-  <component name="RunManager" selected="Karma.Unnamed">
+  <component name="RunManager" selected="Node.js.Unnamed">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -220,12 +312,8 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="$PROJECT_DIR$/test/karma.conf.js">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -235,11 +323,17 @@
       <setting name="preferredDebugBrowser" value="CHROME" />
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="$PROJECT_DIR$/test/karma.conf.js">
-      <envs />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <test-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>BDD</ui>
+      <require />
+      <recursive>false</recursive>
       <method />
     </configuration>
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
@@ -252,8 +346,9 @@
       <ConfigurationWrapper RunnerId="KarmaJavaScriptTestRunnerRun" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Karma.Unnamed" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js.Unnamed" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -284,7 +379,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1170" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -292,16 +387,16 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25144964" sideWeight="0.5088063" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25133404" sideWeight="0.64314115" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.327112" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.49119374" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1925" y="-50" width="1196" height="1149" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3537415" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="664" y="624" width="1138" height="381" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32485324" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32405567" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -322,124 +417,136 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Scripts/controller.gridelementAlbumCtrl.js">
+    <entry file="file://$PROJECT_DIR$/libs/js/angular.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="23" selection-start="787" selection-end="787" vertical-scroll-proportion="0.0" vertical-offset="56" max-vertical-offset="705" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/controller.p.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1191" selection-end="1191" vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="1275" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/template.p.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="381" selection-end="381" vertical-scroll-proportion="0.24691358" vertical-offset="0" max-vertical-offset="972">
+        <state line="3460" column="10" selection-start="105533" selection-end="105533" vertical-scroll-proportion="0.33223686" vertical-offset="68998" max-vertical-offset="402720">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/controller.page.js">
+    <entry file="file://$PROJECT_DIR$/test/_test.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="51" selection-start="443" selection-end="443" vertical-scroll-proportion="0.16566265" vertical-offset="0" max-vertical-offset="996">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="38" selection-start="3256" selection-end="3269" vertical-scroll-proportion="0.35185185" vertical-offset="588" max-vertical-offset="3285">
-          <folding>
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384859200877" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/template.galleryImageViewer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="21" selection-start="573" selection-end="573" vertical-scroll-proportion="0.21604939" vertical-offset="0" max-vertical-offset="972">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/controller.galleryImageViewer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="40" selection-start="357" selection-end="357" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1500">
+        <state line="41" column="35" selection-start="1326" selection-end="1326" vertical-scroll-proportion="0.7137014" vertical-offset="122" max-vertical-offset="1100">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/class.gridList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="791" selection-end="791" vertical-scroll-proportion="0.45783132" vertical-offset="69" max-vertical-offset="1065">
+        <state line="24" column="6" selection-start="568" selection-end="568" vertical-scroll-proportion="0.28938907" vertical-offset="300" max-vertical-offset="1540">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/module.apiModule.js">
+    <entry file="file://$PROJECT_DIR$/libs/js/angular-resource.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="16" selection-start="226" selection-end="226" vertical-scroll-proportion="0.07530121" vertical-offset="0" max-vertical-offset="996">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/class.apiWrapper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="0" selection-start="1408" selection-end="1408" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="2265">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/module.defaultClient.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="473" selection-end="473" vertical-scroll-proportion="-5.4" vertical-offset="0" max-vertical-offset="3135">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/gridElementList.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="3" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/class.gridElementsList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="648" selection-end="648" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/karma.conf.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="23" selection-start="465" selection-end="465" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1155">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="639">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/libs/js/angular-route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="0" selection-start="559" selection-end="559" vertical-scroll-proportion="0.2413088" vertical-offset="224" max-vertical-offset="17680">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/js/angular-resource.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="180" column="22" selection-start="8920" selection-end="8920" vertical-scroll-proportion="0.2208589" vertical-offset="3384" max-vertical-offset="11040">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/module.apiModule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="111" selection-start="565" selection-end="565" vertical-scroll-proportion="0.16359918" vertical-offset="0" max-vertical-offset="978">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/module.repository.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="3" selection-start="266" selection-end="266" vertical-scroll-proportion="0.16566265" vertical-offset="0" max-vertical-offset="996">
+        <state line="19" column="11" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="8" max-vertical-offset="660">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/template.gridelements.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="114" selection-start="869" selection-end="869" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/controller.gridelementAlbumCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="36" selection-start="451" selection-end="451" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="940">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/module.repository.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="25" selection-start="47" selection-end="47" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="620">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="0" selection-start="4812" selection-end="4812" vertical-scroll-proportion="-6.724138" vertical-offset="2185" max-vertical-offset="4680">
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1385076542191" expanded="true" signature="5946:5987" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="6061:6151" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="6225:6462" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="6300:6460" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="6529:6984" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="6617:6982" placeholder="..." />
+            <marker date="1385076542191" expanded="false" signature="6634:6652" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="6678:6944" placeholder="..." />
+            <marker date="1385076542191" expanded="false" signature="6696:6714" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="6815:6934" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="6859:6923" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="7063:7689" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="7133:7653" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="7319:7391" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="7415:7644" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="7483:7634" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="7558:7623" placeholder="..." />
+            <marker date="1385076542191" expanded="true" signature="7563:7617" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/controller.page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="20" selection-start="270" selection-end="270" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1220">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gallery/module.galleryBrowser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="20" selection-start="155" selection-end="155" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gallery/class.gallery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="31" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/module.defaultClient.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="0" selection-start="2268" selection-end="2268" vertical-scroll-proportion="0.1865285" vertical-offset="1140" max-vertical-offset="4440">
           <folding />
         </state>
       </provider>
