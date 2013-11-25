@@ -1,0 +1,39 @@
+.album-overlay {
+  color: white;
+}
+.album-overlay .imagePadding {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.album-overlay .preview {
+  display: inline-block;
+  cursor: pointer;
+  opacity: 0.6;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.album-overlay .preview:hover {
+  opacity: 1;
+}
+.album-overlay .preview-current,
+.album-overlay .details,
+.album-overlay .more-details,
+.album-overlay .header {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.album-overlay .details {
+  position: relative;
+}
+.album-overlay .details-overlay {
+  padding-left: 10px;
+  padding-top: 10px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  background-color: black;
+}
+.album-overlay .selected {
+  opacity: 1;
+}

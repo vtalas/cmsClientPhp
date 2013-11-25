@@ -2,7 +2,7 @@ angular.module('HashBangURLs', []).config(['$locationProvider', function ($locat
 	$location.hashPrefix('!');
 }]);
 
-var module = angular.module("defaultClient", ["ngRoute", "galleryBrowser", "repo", "ui.keypress", "ui.event", "ui.bootstrap", "HashBangURLs"]);
+var module = angular.module("defaultClient", ["ngRoute", "galleryBrowser", "repo", "ui.keypress", "ui.event", "ui.bootstrap", "HashBangURLs", "stringutils"]);
 
 module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
@@ -27,14 +27,15 @@ module.directive('shortcut', function () {
 module.directive("gridelement", ["$compile", "$templateCache", "$timeout", function ($compile, $templateCache, $timeout) {
 	var timeout;
 	return {
-		scope: { grid: "=", gridelement: "=" },
+		scope: { grid: "=", gridelement: "="},
 		link: function (scope, iElement, tAttrs, controller) {
 			scope.$watch("gridelement", function (val) {
 				if (!val) {
 					return;
 				}
-				var skin = scope.gridelement.Skin || "";
-				var template = $templateCache.get(scope.gridelement.Type + skin + ".thtml");
+				var skin = scope.gridelement.Skin || tAttrs.skin || null,
+					skinStr = skin ? "_" + skin : "";
+				var template = $templateCache.get(scope.gridelement.Type + skinStr + ".thtml");
 				var compiled = $compile(template)(scope);
 
 				if (timeout) {
@@ -59,85 +60,11 @@ module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
 
-module.controller("abc", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$gallery", function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $gallery) {
-	$scope.uch = $gallery.currentIndex;
-	$scope.$watch("uch", function (value, oldvalue) {
-		console.log("-------value changed", value, oldvalue);
-	});
-
-	setTimeout(function () {
-	//	$gallery.loadData(["xxx"]);
-		console.log($scope.uch, $gallery.currentIndex);
-		$scope.$apply();
-	}, 2000);
-
-	$scope.x = $location.search().detail;
-	$scope.$on("$locationChangeSuccess", function () {
-		var index = $location.search().detail;
-//		setLocation($location.search().detail);
-	});
-
-	var source = $scope.xxx;
-
-	var visible = function () {
-		return true;
-	};
-
-	$scope.$watch("xxx", function (val) {
-		if (val) {
-			$scope.overlaygallery = val.active;
-		}
-	});
-
-	$scope.close = function () {
-		$location.search("detail", null);
-	};
-
-	$scope.prev = function () {
-		$scope.currentItem = $gallery.prev()
-		console.log("prev", $scope.currentItem);
-	};
-
-	$scope.next = function () {
-		$scope.currentItem = $gallery.next();
-		console.log("prev", $scope.currentItem);
-	};
-
-	$scope.$on("global-keydown", function (e, $event) {
-		if (!visible()) {
-			return;
-		}
-		var key = $event.keyCode;
-		switch (key) {
-		case 27:
-			$scope.close();
-			break;
-		case 37:
-			$scope.prev();
-			break;
-		case 32:
-		case 39:
-			$scope.next();
-			break;
-		}
-	});
-
-
-}]);
 
 module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$gallery", function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $gallery) {
 	$scope.galleryImageViewerLoaded = false;
 	$scope.gridElementsTemplateLoaded = false;
 	$scope.hideLoader = false;
-
-	$scope.aaa = function (val) {
-		return $scope.xxx;
-	};
-	$api.getJsonData().then(function (data) {
-		//$scope.x = data.data[0].GridElements[0];
-		//console.log($scope.x);
-		//console.log(data)
-	});
 
 	$(".centered-container")
 		.css("height", $(window).height())

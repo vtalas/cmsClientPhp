@@ -1,21 +1,20 @@
-var pageController = ["$scope", "$api", "$routeParams","$location", "$gallery", function ($scope, $api, $routeParams,$location, $gallery) {
+var pageController = ["$scope", "$api", "$routeParams", "$gallery", function ($scope, $api, $routeParams, $gallery) {
 	var source = null;
 
 	$scope.link = $routeParams.link;
 	$scope.groups = ["a", "b", "c"];
 
-	setTimeout(function () {
-		$gallery.loadData(["xx","aaa", "sss"]);
-		console.log("loading");
-		$scope.$digest();
-	},1000);
+//	setTimeout(function () {
+//		$gallery.loadData(["xx","aaa", "sss"]);
+//	}, 20000);
 
 	$api.getPage($scope.link)
 		.then(function (data) {
 			$scope.page = data;
 			$scope.gridElements = $scope.page.GridElements || [];
 			source = new GridElementsList($scope.page.GridElements);
-			setLocation($location.search().detail);
+			$gallery.loadData(data.GridElements || []);
+
 			return data;
 		}, function (err) {
 			console.log("ERROR!!", err.status);
@@ -23,7 +22,7 @@ var pageController = ["$scope", "$api", "$routeParams","$location", "$gallery", 
 		.then(function (data) {
 			setTimeout(function () {
 				$api.checkForSnapshot($scope, data);
-			}, 3000)
+			}, 3000);
 		});
 
 	$scope.filter = function (value) {
@@ -39,11 +38,6 @@ var pageController = ["$scope", "$api", "$routeParams","$location", "$gallery", 
 	$scope.isSelectedFilter = function (value) {
 		return $scope.filterValue === value ? "selected" : null;
 	};
-
-	var setLocation = function (id) {
-		$scope.$emit("overlay", {source : source, active : source.findById(id)});
-	};
-
 
 //	//$scope.x = $location.search().detail;
 //	$scope.$on("$locationChangeSuccess", function () {

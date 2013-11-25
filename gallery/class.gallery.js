@@ -1,34 +1,85 @@
 var Gallery = (function () {
 	"use strict";
 
-	function Gallery() {
+	var defaults = function () {
+		return {
+			onLoad: function () {},
+			onChange: function () {}
+		};
+	};
+
+	function Gallery(settings) {
+		var x = defaults();
+		this.settings = angular.extend(x, settings);
 		this.data = [];
 		this.currentIndex = -1;
-		this.galleryId = null;
 	}
 
 	Gallery.prototype.loadData = function (data) {
-		this.data = data || [];
+		if (data === undefined) {
+			data = [];
+		}
+
+		if (this.isArray(data)) {
+			this.data = data;
+		} else {
+			this.data.push(data);
+		}
+		this.settings.onLoad();
 	};
 
-	Gallery.prototype.show = function (index) {
-		this.currentIndex = this.data[index] ? index : 0;
-		return this.data[this.currentIndex];
-	};
+	Gallery.prototype.showByIndex = function (index) {
+		this.currentIndex = this.data[index] ? index : -1;
+		if(this.currentIndex !== -1 ){
+			this.settings.onChange();
+		}
+};
 
-	Gallery.prototype.current = function () {
-			return this.data[this.currentIndex];
+
+	Gallery.prototype.close = function () {
+
 	};
 
 	Gallery.prototype.next = function () {
-		this.currentIndex++;
-		return this.data[this.currentIndex];
+		if (this.currentIndex < this.data.length - 1) {
+			this.settings.onChange();
+			this.currentIndex++;
+		}
+		return this.getCurrent();
 	};
 
 	Gallery.prototype.prev = function () {
-		this.currentIndex--;
-		return this.data[this.currentIndex];
+		if (this.currentIndex > 0) {
+			this.settings.onChange();
+			this.currentIndex--;
+		}
+		return this.getCurrent();
 	};
+
+	Gallery.prototype.getPrevious = function () {
+		return this.data[this.currentIndex - 1] || null;
+	};
+
+	Gallery.prototype.getNext = function () {
+		if (this.currentIndex === -1) {
+			return null;
+		}
+		return this.data[this.currentIndex + 1] || null;
+	};
+
+	Gallery.prototype.getCurrent = function () {
+		return this.data[this.currentIndex] || null;
+	};
+
+	/**
+	 *
+	 * @returns {*}
+	 * @private
+	 */
+	Gallery.prototype.isArray = function (variable) {
+		return Object.prototype.toString.call(variable) === '[object Array]';
+	};
+
 
 	return Gallery;
 }());

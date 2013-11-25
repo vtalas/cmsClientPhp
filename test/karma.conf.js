@@ -20,6 +20,7 @@ module.exports = function (config) {
 			"../common/*.js",
 			"../api/*.js",
 			"../data/*.js",
+			"../gallery/*.js",
 			"*.test.js"
 		],
 
