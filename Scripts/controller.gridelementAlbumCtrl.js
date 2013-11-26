@@ -30,6 +30,10 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 
 	$scope.imageClick = function () {
 		$gallery.showByIndex(0);
+//		$gallery.showBy(function (obj) {
+//			var value = obj.resources.name || null;
+//			return value === $scope.name;
+//		});
 	};
 }];
 
@@ -38,7 +42,6 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 	$scope.route = {
 		link: $routeParams.link
 	};
-
 
 	function getAlbumId() {
 		var x = $scope.gridelement.Content;
@@ -75,5 +78,33 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 		$scope.currentImage = $scope.albumPhotos[index];
 		$scope.currentImageIndex = index;
 	};
+
+	$scope.prevImage = function () {
+		if ($scope.currentImageIndex >= 1) {
+			$scope.currentImageIndex--;
+			$scope.currentImage = $scope.albumPhotos[$scope.currentImageIndex];
+		}
+	};
+
+	$scope.nextImage = function () {
+		if ($scope.currentImageIndex < $scope.albumPhotos.length - 1 ) {
+			$scope.currentImageIndex++;
+			$scope.currentImage = $scope.albumPhotos[$scope.currentImageIndex];
+		}
+	};
+
+	$scope.$on("global-keydown", function (e, $event) {
+		var key = $event.keyCode;
+
+		switch (key) {
+			case 37:
+				$scope.prevImage();
+				break;
+			case 39:
+				$scope.nextImage();
+				break;
+		}
+	});
+
 
 }];

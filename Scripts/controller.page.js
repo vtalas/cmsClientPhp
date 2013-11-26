@@ -4,10 +4,6 @@ var pageController = ["$scope", "$api", "$routeParams", "$gallery", function ($s
 	$scope.link = $routeParams.link;
 	$scope.groups = ["a", "b", "c"];
 
-//	setTimeout(function () {
-//		$gallery.loadData(["xx","aaa", "sss"]);
-//	}, 20000);
-
 	$api.getPage($scope.link)
 		.then(function (data) {
 			$scope.page = data;
@@ -38,12 +34,6 @@ var pageController = ["$scope", "$api", "$routeParams", "$gallery", function ($s
 	$scope.isSelectedFilter = function (value) {
 		return $scope.filterValue === value ? "selected" : null;
 	};
-
-//	//$scope.x = $location.search().detail;
-//	$scope.$on("$locationChangeSuccess", function () {
-//		setLocation($location.search().detail);
-//	});
-
 
 }];
 

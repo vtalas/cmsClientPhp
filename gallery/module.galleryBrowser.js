@@ -65,11 +65,10 @@ galleryModule.controller("galleryBrowser", [
 				case 27:
 					$scope.close();
 					break;
-				case 37:
+				case 33:
 					$scope.prev();
 					break;
-				case 32:
-				case 39:
+				case 34:
 					$scope.next();
 					break;
 			}

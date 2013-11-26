@@ -126,7 +126,7 @@
 				<div class="grid_2 full-height">
 					<div class="full-height-content">
 						<button ng-click="prev()" class="btn btn-link"
-								tooltip="předchozí (kurzor doleva)"
+								tooltip="předchozí (page-up)"
 								tooltip-popup-delay="500"
 								tooltip-placement="right">
 							<i class="icon-chevron-left icon-3x-responsive"></i>
@@ -141,7 +141,7 @@
 				<div class="grid_2 full-height">
 					<div class="full-height-content">
 						<button ng-click="next()" class="btn btn-link"
-								tooltip="další (kurzor doprava)"
+								tooltip="další (page-down)"
 								tooltip-popup-delay="500"
 								tooltip-placement="bottom">
 							<i class="icon-chevron-right icon-3x-responsive"></i>
@@ -207,13 +207,13 @@
 				<h1>{{ name }}</h1>
 			</div>
 		</div>
-		<div class="grid_6">
+		<div class="grid_8">
 			<div class="image-envelope preview-current">
 				<img class="album-image" ng-src="{{currentImage.Thumbnails[2].PhotoUri}}"/>
 			</div>
 
 		</div>
-		<div class="grid_6">
+		<div class="grid_4">
 			<div class="">
 				<div ng-repeat="image in albumPhotos" class="preview"
 					 ng-class="currentImageIndex == $index ? 'selected' : null">

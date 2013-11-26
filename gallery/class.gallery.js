@@ -3,8 +3,10 @@ var Gallery = (function () {
 
 	var defaults = function () {
 		return {
-			onLoad: function () {},
-			onChange: function () {}
+			onLoad: function () {
+			},
+			onChange: function () {
+			}
 		};
 	};
 
@@ -30,10 +32,21 @@ var Gallery = (function () {
 
 	Gallery.prototype.showByIndex = function (index) {
 		this.currentIndex = this.data[index] ? index : -1;
-		if(this.currentIndex !== -1 ){
+		if (this.currentIndex !== -1) {
 			this.settings.onChange();
 		}
-};
+	};
+
+	Gallery.prototype.showBy = function (comparator) {
+		for (var i = 0; i < this.data.length; i++) {
+			var obj = this.data[i];
+			if (comparator(obj)) {
+				this.currentIndex = i;
+				this.settings.onChange();
+				return;
+			}
+		}
+	};
 
 
 	Gallery.prototype.close = function () {
@@ -42,16 +55,16 @@ var Gallery = (function () {
 
 	Gallery.prototype.next = function () {
 		if (this.currentIndex < this.data.length - 1) {
-			this.settings.onChange();
 			this.currentIndex++;
+			this.settings.onChange();
 		}
 		return this.getCurrent();
 	};
 
 	Gallery.prototype.prev = function () {
 		if (this.currentIndex > 0) {
-			this.settings.onChange();
 			this.currentIndex--;
+			this.settings.onChange();
 		}
 		return this.getCurrent();
 	};
