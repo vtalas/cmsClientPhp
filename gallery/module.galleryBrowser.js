@@ -28,11 +28,16 @@ galleryModule.controller("galleryBrowser", [
 				$scope.overlayGalleryShow = $gallery.currentIndex > -1;
 			}
 			$scope.currentItem = $gallery.getCurrent();
+			$scope.prevItem = $gallery.getPrevious();
+			$scope.nextItem = $gallery.getNext();
 		});
 
 		$notify.addEventListener("gallery-changed", function () {
 			$scope.overlayGalleryShow = true;
 			$scope.currentItem = $gallery.getCurrent();
+			$scope.nextItem = $gallery.getNext();
+			$scope.prevItem = $gallery.getPrevious();
+
 			$location.search("galleryIndex", $gallery.currentIndex);
 		});
 
@@ -47,11 +52,15 @@ galleryModule.controller("galleryBrowser", [
 
 		$scope.prev = function () {
 			$scope.currentItem = $gallery.prev();
+			$scope.nextItem = $gallery.getNext();
+			$scope.prevItem = $gallery.getPrevious();
 			$location.search("galleryIndex", $gallery.currentIndex);
 		};
 
 		$scope.next = function () {
 			$scope.currentItem = $gallery.next();
+			$scope.nextItem = $gallery.getNext();
+			$scope.prevItem = $gallery.getPrevious();
 			$location.search("galleryIndex", $gallery.currentIndex);
 		};
 

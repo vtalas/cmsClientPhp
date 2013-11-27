@@ -1,7 +1,8 @@
 .album-overlay {
   color: white;
+  height: 100%;
 }
-.album-overlay .imagePadding {
+.album-overlay .ImagePadding {
   padding-left: 10px;
   padding-top: 10px;
 }
@@ -21,6 +22,20 @@
 .album-overlay .header {
   padding-left: 10px;
   padding-top: 10px;
+}
+.album-overlay .header,
+.album-overlay .more-details {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.album-overlay .header-content {
+  vertical-align: middle;
+  display: table-cell;
+}
+.album-overlay .more-details-content {
+  vertical-align: top;
+  display: table-cell;
 }
 .album-overlay .details {
   position: relative;

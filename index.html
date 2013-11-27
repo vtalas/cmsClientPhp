@@ -86,7 +86,7 @@
 
 <div class="container_12 maincontent">
 	<div class="border-bottom">
-		<div class="grid_5"> LOGO</div>
+		<div class="grid_5"> jbjb LOGO</div>
 		<div class="grid_4">
 			<div class="border-top">
 				<div class="logo-home"> architektura design project management inženýring</div>
@@ -111,7 +111,7 @@
 <div class="clear"></div>
 
 
-<div class="dumbBoxWrap gallery-image-viewer" ng-show="overlayGalleryShow" ng-controller="galleryBrowser">
+<div class="dumbBoxWrap gallery-image-viewer page-overlay" ng-show="overlayGalleryShow" ng-controller="galleryBrowser">
 
 	<div class="dumbBoxOverlay">
 		<div ng-show="loading" class="loader">
@@ -125,7 +125,8 @@
 			<div class="container_12 full-height">
 				<div class="grid_2 full-height">
 					<div class="full-height-content">
-						<button ng-click="prev()" class="btn btn-link"
+						<div gridelement="prevItem" skin="album-overlay-preview" class="full-height preview-content" ng-show="prevItem"></div>
+						<button ng-click="prev()" class="btn btn-link navigation-action"
 								tooltip="předchozí (page-up)"
 								tooltip-popup-delay="500"
 								tooltip-placement="right">
@@ -135,15 +136,18 @@
 				</div>
 				<div class="grid_8 full-height">
 					<div class="full-height-content">
-						<div gridelement="currentItem" skin="overlay"></div>
+						<div gridelement="currentItem" skin="album-overlay" class="full-height"></div>
 					</div>
 				</div>
 				<div class="grid_2 full-height">
 					<div class="full-height-content">
-						<button ng-click="next()" class="btn btn-link"
+						<div gridelement="nextItem" skin="album-overlay-preview" class="full-height preview-content"
+							 ng-show="nextItem"></div>
+						<button ng-click="next()" class="btn btn-link navigation-action"
 								tooltip="další (page-down)"
 								tooltip-popup-delay="500"
-								tooltip-placement="bottom">
+								tooltip-placement="bottom"
+								>
 							<i class="icon-chevron-right icon-3x-responsive"></i>
 						</button>
 					</div>
@@ -199,40 +203,79 @@
 
 </script>
 
-<script id="album_overlay.thtml" type="text/ng-template">
+<script id="album_album-overlay.thtml" type="text/ng-template">
 	<div class="album-overlay" ng-controller="gridelementAlbumOverlayCtrl">
 
-		<div class="grid_12 ">
+		<div class="grid_12 " style="height: 10%;max-height: 90px">
 			<div class="header">
-				<h1>{{ name }}</h1>
+				<h1 class="header-content">{{ name }}</h1>
 			</div>
 		</div>
-		<div class="grid_8">
-			<div class="image-envelope preview-current">
-				<img class="album-image" ng-src="{{currentImage.Thumbnails[2].PhotoUri}}"/>
-			</div>
+		<div class="grid_12" style="height: 70%;overflow: hidden">
+			<div class="grid_8">
+				<div class="image-envelope preview-current">
+					<img class="album-image" ng-src="{{currentImage.Thumbnails[2].PhotoUri}}"/>
+				</div>
 
-		</div>
-		<div class="grid_4">
-			<div class="">
-				<div ng-repeat="image in albumPhotos" class="preview"
-					 ng-class="currentImageIndex == $index ? 'selected' : null">
-					<img ng-click="showImagePreview($index)" ng-src="{{image.Thumbnails[0].PhotoUri}}"/>
+			</div>
+			<div class="grid_4">
+				<div class="">
+					<div ng-repeat="image in albumPhotos" class="preview"
+						 ng-class="currentImageIndex == $index ? 'selected' : null">
+						<img ng-click="showImagePreview($index)" ng-src="{{image.Thumbnails[0].PhotoUri}}"/>
+					</div>
+				</div>
+				<div class="">
+					<div class="details">
+						<div>{{ services }}</div>
+						<div>{{ year }}</div>
+						<div>{{ type }}</div>
+					</div>
 				</div>
 			</div>
-			<div class="" >
-				<div class="details">
-					<div>{{ services }}</div>
-					<div>{{ year }}</div>
-					<div>{{ type }}</div>
-				</div>
-			</div>
 		</div>
-		<div class="grid_12">
-			<div class="more-details"><div ng-bind-html="text"></div></div>
+		<div class="grid_12" style="height: 20%">
+			<div class="more-details">
+				<div class="more-details-content" ng-bind-html="text"></div>
+			</div>
 		</div>
 	</div>
 </script>
+
+<script id="album_album-overlay-preview.thtml" type="text/ng-template">
+	<div class="album-overlay" ng-controller="gridelementAlbumOverlayCtrl">
+
+		<div class="grid_12 " style="height: 10%;max-height: 90px">
+			<div class="header">
+			</div>
+		</div>
+		<div class="grid_12" style="height: 70%;overflow: hidden">
+			<div class="grid_8">
+				<div class="image-envelope preview-current">
+					<img class="album-image" ng-src="{{currentImage.Thumbnails[2].PhotoUri}}"/>
+				</div>
+
+			</div>
+			<div class="grid_4">
+				<div class="">
+					<div ng-repeat="image in albumPhotos" class="preview"
+						 ng-class="currentImageIndex == $index ? 'selected' : null">
+						<img ng-click="showImagePreview($index)" ng-src="{{image.Thumbnails[0].PhotoUri}}"/>
+					</div>
+				</div>
+				<div class="">
+					<div class="details">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12" style="height: 20%">
+			<div class="more-details">
+			</div>
+		</div>
+	</div>
+</script>
+
 
 <script id="gdataalbum_Single.thtml" type="text/ng-template">
 	<div>

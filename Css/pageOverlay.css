@@ -1,0 +1,8 @@
+.page-overlay .navigation-action {
+  padding: 30px;
+  position: absolute;
+  top: 30%;
+}
+.page-overlay .preview-content {
+  opacity: 0.1;
+}

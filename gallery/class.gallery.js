@@ -31,7 +31,7 @@ var Gallery = (function () {
 	};
 
 	Gallery.prototype.showByIndex = function (index) {
-		this.currentIndex = this.data[index] ? index : -1;
+		this.currentIndex = this.data[index] ? Number(index) : -1;
 		if (this.currentIndex !== -1) {
 			this.settings.onChange();
 		}

@@ -29,11 +29,10 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 		});
 
 	$scope.imageClick = function () {
-		$gallery.showByIndex(0);
-//		$gallery.showBy(function (obj) {
-//			var value = obj.resources.name || null;
-//			return value === $scope.name;
-//		});
+		$gallery.showBy(function (obj) {
+			var value = obj.resources.name || null;
+			return value === $scope.name;
+		});
 	};
 }];
 

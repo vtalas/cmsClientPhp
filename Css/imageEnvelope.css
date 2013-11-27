@@ -1,3 +1,6 @@
 .image-envelope {
   overflow: hidden;
 }
+.image-envelope .album-image {
+  max-height: 100%;
+}
