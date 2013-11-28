@@ -126,7 +126,7 @@
 
 		<div class="full-height">
 			<div class="container_12 full-height">
-				<div class="grid_2 full-height">
+				<div class="grid_2 full-height preview-previous">
 					<div class="full-height-content">
 						<div gridelement="prevItem" skin="album-overlay-preview" class="full-height preview-content" ng-show="prevItem"></div>
 						<button ng-click="prev()" class="btn btn-link navigation-action"
@@ -253,24 +253,9 @@
 			</div>
 		</div>
 		<div class="grid_12" style="height: 70%;overflow: hidden">
-			<div class="grid_8">
 				<div class="image-envelope preview-current">
 					<img class="album-image" ng-src="{{currentImage.Thumbnails[2].PhotoUri}}"/>
 				</div>
-
-			</div>
-			<div class="grid_4">
-				<div class="">
-					<div ng-repeat="image in albumPhotos" class="preview"
-						 ng-class="currentImageIndex == $index ? 'selected' : null">
-						<img ng-click="showImagePreview($index)" ng-src="{{image.Thumbnails[0].PhotoUri}}"/>
-					</div>
-				</div>
-				<div class="">
-					<div class="details">
-					</div>
-				</div>
-			</div>
 		</div>
 		<div class="grid_12" style="height: 20%">
 			<div class="more-details">
