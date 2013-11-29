@@ -1,0 +1,19 @@
+.TextOverflowElipsies {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+
+.AnimateEasing(@duration, @ease) {
+	-webkit-transition: all @ease @duration;
+	-moz-transition: all @ease @duration;
+	-ms-transition: all @ease @duration;
+	-o-transition: all @ease @duration;
+	transition: all @ease @duration;
+}
+
+.Animate(@duration) {
+	@ease: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+	.AnimateEasing(@duration, @ease);
+}

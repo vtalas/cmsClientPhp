@@ -1,0 +1,44 @@
+.TextOverflowElipsies {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.gdata-album-list {
+  padding: 10px;
+  padding-left: 0px;
+}
+.gdata-album-list:hover a {
+  color: red;
+}
+.gdata-album-list:hover .album-image {
+  opacity: 1;
+}
+.gdata-album-list .album-name {
+  margin-top: -20px;
+  position: relative;
+  z-index: 20;
+  padding: 10px;
+}
+.gdata-album-list .album-name .content {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.gdata-album-list .album-image {
+  -webkit-transition: all ease-out 300ms;
+  -moz-transition: all ease-out 300ms;
+  -ms-transition: all ease-out 300ms;
+  -o-transition: all ease-out 300ms;
+  transition: all ease-out 300ms;
+  position: relative;
+  z-index: 10;
+  max-height: 100%;
+  opacity: 0.8;
+}
+.gdata-album-list .album-image-wrap {
+  overflow: hidden;
+  background: radial-gradient(#ff0000 1%, transparent 9%) 0 0, radial-gradient(#000000 0%, transparent 6%) 8px 8px, radial-gradient(rgba(255, 255, 255, 0.1) 0%, transparent 0%) 0 1px, radial-gradient(rgba(255, 255, 255, 0.1) -31%, transparent 20%) 8px 9px;
+  background-size: 16px 16px;
+  background-color: #f6f6f6;
+  cursor: pointer;
+}
