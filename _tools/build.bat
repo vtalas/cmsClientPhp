@@ -1,4 +1,3 @@
-
 type ^
 ..\common\*.js,^
 ..\gallery\*.js,^
