@@ -1,0 +1,34 @@
+<root>
+	<output path="../_production/Scripts/libs.min.js">
+		<!--<input path="../Scripts/libs/jquery.min.js"></input>-->
+		<!--<input path="../Scripts/libs/angular.min.js"></input>-->
+		<!--<input path="../Scripts/libs/angular-resource.min.js"></input>-->
+		<!--<input path="../Scripts/libs/angular-ui/event.js"></input>-->
+		<!--<input path="../Scripts/libs/angular-ui/angular.keypress.js"></input>-->
+        <input path="../Scripts/libs/showdown.js"></input>
+		<input path="../Scripts/libs/angular-bootstrap/ui-bootstrap-custom-tpls-0.3.0.min.js"></input>
+
+		<input path="../Scripts/class.apiWrapper.js"></input>
+
+		<input path="../Scripts/directive.ngcGdataAlbum.js"></input>
+		<input path="../Scripts/directive.ngcLazyImage.js"></input>
+		<input path="../Scripts/directive.ngcResponsiveImage.js"></input>
+		<input path="../Scripts/directive.ngcSimpleDrag.js"></input>
+
+		<input path="../Scripts/controller.home.js"></input>
+		<input path="../Scripts/controller.page.js"></input>
+		<input path="../Scripts/controller.login.js"></input>
+		<input path="../Scripts/controller.userDataForm.js"></input>
+		<input path="../Scripts/controller.gridelementGdataAlbumCtrl.js"></input>
+		<input path="../Scripts/controller.simplehtml.js"></input>
+		<input path="../Scripts/controller.galleryImageViewer.js"></input>
+		<input path="../Scripts/controller.p.js"></input>
+
+		<input path="../Scripts/module.appConfig.js"></input>
+		<input path="../Scripts/module.apiModule.js"></input>
+		<input path="../Scripts/module.defaultClient.js"></input>
+	</output>
+</root>
+
+
+	

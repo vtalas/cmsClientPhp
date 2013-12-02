@@ -351,7 +351,6 @@ var ApiWrapper = (function () {
 	
 	ApiWrapper.prototype.getPages = function () {
 		var deferred = this.q.defer();
-
 		this.cmsApi.getPages(function (data) {
 			deferred.resolve(data);
 		});
@@ -1046,20 +1045,23 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 			el.removeClass("scrolled");
 		}
 	});
-}];var pageController = ["$scope", "$api", "$routeParams", "$gallery", function ($scope, $api, $routeParams, $gallery) {
+}];var pageController = ["$scope", "$api", "$routeParams", "$gallery", "$notify", "$timeout", function ($scope, $api, $routeParams, $gallery, $notify, $timeout) {
 	var source = null;
 
 	$scope.link = $routeParams.link;
 	$scope.groups = ["a", "b", "c"];
 
+	$notify.trigger("content-loading");
 	$api.getPage($scope.link)
 		.then(function (data) {
+//$timeout(function () {
 			$scope.page = data;
 			$scope.gridElements = $scope.page.GridElements || [];
+			$notify.trigger("content-loaded");
 			source = new GridElementsList($scope.page.GridElements);
 			$gallery.loadData(data.GridElements || []);
-
 			return data;
+//},2000)
 		}, function (err) {
 			console.log("ERROR!!", err.status);
 		})
@@ -1073,7 +1075,7 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 		if (value === undefined) {
 			$scope.filterValue = null;
 			$scope.gridElements = source.data;
-			return ;
+			return;
 		}
 		$scope.filterValue = value;
 		$scope.gridElements = source.filter("group", value);
@@ -1138,7 +1140,7 @@ var simplehtml = ["$scope", function ($scope) {
 		}
 	};
 }];function ngcLazyImage() {
-	var loader = "Css/loaders/loader16.gif";
+	var loader = "resources/loaders/loader16.gif";
 
 	return {
 		scope: {
@@ -1468,83 +1470,71 @@ module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
 
 
-module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$gallery", function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $gallery) {
-	$scope.galleryImageViewerLoaded = false;
-	$scope.gridElementsTemplateLoaded = false;
-	$scope.hideLoader = false;
+module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify",
+	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify) {
+		$scope.showContent = false;
+		$(".centered-container")
+			.css("height", $(window).height())
+			.css("width", $(window).width());
 
-	$(".centered-container")
-		.css("height", $(window).height())
-		.css("width", $(window).width());
+		var timeout;
+		$(window).resize(function () {
+			if (timeout) {
+				$timeout.cancel(timeout);
+			}
+			timeout = $timeout(function () {
+				$scope.$broadcast("windowChanged", {
+					width: $(window).width(),
+					height: $(window).height()
+				})
+			}, 200);
+		});
 
-	var timeout;
-	$(window).resize(function () {
-		if (timeout) {
-			$timeout.cancel(timeout);
-		}
-		timeout = $timeout(function () {
-			$scope.$broadcast("windowChanged", {
-				width: $(window).width(),
-				height: $(window).height()
-			})
-		}, 200);
-	});
+		var loaderTimeout;
+		$notify.addEventListener("content-loading", function () {
+			loaderTimeout = setTimeout(function () {
+				$scope.$apply(function () {
+					$scope.showLoader = true;
+				});
+			}, 500);
+		});
 
-	$scope.isLoaded = function () {
-		$scope.resourcesLoaded = $scope.galleryImageViewerLoaded && $scope.gridElementsTemplateLoaded;
-	};
 
-	$scope.globalKeydown = function (event) {
-		$scope.$broadcast("global-keydown", event);
-	};
+		$notify.addEventListener("content-loaded", function () {
+			clearTimeout(loaderTimeout);
+			$scope.showLoader = false;
+			$scope.showContent = true;
+		});
 
-	$scope.$on("set-message", function (e, message) {
-		$scope.message = message;
-	});
+		$scope.globalKeydown = function (event) {
+			$scope.$broadcast("global-keydown", event);
+		};
 
-	$scope.$on("page-loaded", function () {
-		var pageContent = $("html").html();
-		$api.snapshot(pageContent, $location.path());
-	});
+		$scope.$on("set-message", function (e, message) {
+			$scope.message = message;
+		});
 
-	$scope.$on("data-loaded", function () {
-		$scope.hideLoader = true;
-	});
+		$scope.$on("page-loaded", function () {
+			var pageContent = $("html").html();
+			$api.snapshot(pageContent, $location.path());
+		});
 
-	var processShowImageEvent = function () {
-		var search = $location.search();
-		if (search.gid && search.i !== undefined) {
-			$rootScope.$broadcast("galleryImageViewer-display-image", search.gid, search.i);
-		}
-	};
+		var processShowImageEvent = function () {
+			var search = $location.search();
+			if (search.gid && search.i !== undefined) {
+				$rootScope.$broadcast("galleryImageViewer-display-image", search.gid, search.i);
+			}
+		};
 
-//	$scope.$on("$locationChangeSuccess", function () {
-//		if ($scope.resourcesLoaded){
-//			processShowImageEvent();
-//		}
-//	});
+		$scope.$watch("resourcesLoaded", function (value) {
+			if (value) {
+				processShowImageEvent();
+			}
+		});
 
-	$scope.$on("overlay", function (x, data) {
-		$scope.xxx = data;
-	});
-
-	$scope.$watch("resourcesLoaded", function (value) {
-		if (value) {
-			processShowImageEvent();
-		}
-	});
-
-	$scope.$watch("gridElementsTemplateLoaded", function () {
-		$scope.isLoaded();
-	});
-
-	$scope.$watch("galleryImageViewerLoaded", function () {
-		$scope.isLoaded();
-	});
-
-	$scope.isSelectedLink = function (value) {
-		return $routeParams.link === value ? "selected" : null;
-	};
-}]);
+		$scope.isSelectedLink = function (value) {
+			return $routeParams.link === value ? "selected" : null;
+		};
+	}]);
 
 
