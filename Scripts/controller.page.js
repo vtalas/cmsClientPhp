@@ -18,6 +18,7 @@ var pageController = ["$scope", "$api", "$routeParams", "$gallery", "$notify", "
 		}, function (err) {
 			console.log("ERROR!!", err.status);
 		})
+
 		.then(function (data) {
 			setTimeout(function () {
 				$api.checkForSnapshot($scope, data);

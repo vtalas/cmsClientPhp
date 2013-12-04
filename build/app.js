@@ -1065,6 +1065,7 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 		}, function (err) {
 			console.log("ERROR!!", err.status);
 		})
+
 		.then(function (data) {
 			setTimeout(function () {
 				$api.checkForSnapshot($scope, data);
