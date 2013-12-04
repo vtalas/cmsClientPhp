@@ -46,9 +46,8 @@
   opacity: 0.8;
 }
 .gdata-album-list .album-image-wrap {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJnz56tZ4TxQRxjY+NGsACMA2IzInNAAgDZSw7r4ocGigAAAABJRU5ErkJggg==);
   overflow: hidden;
-  background: radial-gradient(#a5a5a5 1%, transparent 9%) 0 0, radial-gradient(#000000 0%, transparent 6%) 8px 8px, radial-gradient(rgba(255, 255, 255, 0.1) 0%, transparent 0%) 0 1px, radial-gradient(rgba(255, 255, 255, 0.1) -31%, transparent 20%) 8px 9px;
-  background-size: 16px 16px;
   background-color: #f6f6f6;
   cursor: pointer;
 }
@@ -576,6 +575,45 @@
 .page-overlay .preview-content {
   opacity: 0.1;
 }
+.aspect-ratio-box {
+  position: relative;
+  content: "";
+  display: block;
+}
+.aspect-ratio-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.ratio1_1 {
+  padding-top: 100%;
+}
+.ratio2_1 {
+  padding-top: 50%;
+}
+.ratio4_1 {
+  padding-top: 25%;
+}
+.ratio1_2 {
+  padding-top: 200%;
+}
+.ratio9_16 {
+  padding-top: 177%;
+}
+.ratio4_3 {
+  padding-top: 75%;
+}
+.ratio3_4 {
+  padding-top: 133%;
+}
+.ratio10_3 {
+  padding-top: 30%;
+}
+.ratio16_9 {
+  padding-top: 56.25%;
+}
 .TextOverflowElipsies {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -624,9 +662,8 @@
   opacity: 0.8;
 }
 .gdata-album-list .album-image-wrap {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJnz56tZ4TxQRxjY+NGsACMA2IzInNAAgDZSw7r4ocGigAAAABJRU5ErkJggg==);
   overflow: hidden;
-  background: radial-gradient(#a5a5a5 1%, transparent 9%) 0 0, radial-gradient(#000000 0%, transparent 6%) 8px 8px, radial-gradient(rgba(255, 255, 255, 0.1) 0%, transparent 0%) 0 1px, radial-gradient(rgba(255, 255, 255, 0.1) -31%, transparent 20%) 8px 9px;
-  background-size: 16px 16px;
   background-color: #f6f6f6;
   cursor: pointer;
 }
