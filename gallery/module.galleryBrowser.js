@@ -14,6 +14,31 @@ galleryModule.factory("$gallery", ["$notify", function ($notify) {
 }]);
 
 
+galleryModule.directive("ngcFitToBoxImage", [function () {
+	return {
+		template: '<div class="xxx" ><img ng-src="{{ngcFitToBoxImage.PhotoUri}}" /></div>',
+		replace: true,
+		scope: {ngcFitToBoxImage: "="},
+		link: function (scope, element, attrs) {
+			scope.$watch("ngcFitToBoxImage", function (image) {
+				var width,
+					height;
+
+				if (image) {
+					var imageElement = element.find("img");
+					width = element.width();
+					height = element.height();
+
+					// todo ocekovat jesli pasuje a kdyztak napasovat
+					imageElement.css("height", "100%");
+					console.log(width,height, image, image.PhotoUri);
+				}
+			});
+		}
+	};
+}])
+;
+
 galleryModule.controller("galleryBrowser", [
 	"$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$gallery", "$notify",
 	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $gallery, $notify) {

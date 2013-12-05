@@ -231,6 +231,31 @@ galleryModule.factory("$gallery", ["$notify", function ($notify) {
 }]);
 
 
+galleryModule.directive("ngcFitToBoxImage", [function () {
+	return {
+		template: '<div class="xxx" ><img ng-src="{{ngcFitToBoxImage.PhotoUri}}" /></div>',
+		replace: true,
+		scope: {ngcFitToBoxImage: "="},
+		link: function (scope, element, attrs) {
+			scope.$watch("ngcFitToBoxImage", function (image) {
+				var width,
+					height;
+
+				if (image) {
+					var imageElement = element.find("img");
+					width = element.width();
+					height = element.height();
+
+					// todo ocekovat jesli pasuje a kdyztak napasovat
+					imageElement.css("height", "100%");
+					console.log(width,height, image, image.PhotoUri);
+				}
+			});
+		}
+	};
+}])
+;
+
 galleryModule.controller("galleryBrowser", [
 	"$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$gallery", "$notify",
 	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $gallery, $notify) {
@@ -710,16 +735,19 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 
 	var resources = $scope.gridelement.resources || {};
 
-	function getResource(key) {
-		return resources[key] || "";
+	function getResource(key, defaultValue) {
+		return resources[key] || defaultValue || "";
 	}
 
-	$scope.name = getResource("name");
+	$scope.name = getResource("name", " ");
 	$scope.type = getResource("type");
 	$scope.services = getResource("services");
 	$scope.year = getResource("year");
 	$scope.text = getResource("text");
 	$scope.y = 320;
+	$scope.cssRatio = "ratio1_1";
+
+
 	$api.getAlbum($scope.gdataAlbumId, {size: 320, isSquare: false, type: 1})
 		.then(function (data) {
 			if (data) {

@@ -11,16 +11,19 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 
 	var resources = $scope.gridelement.resources || {};
 
-	function getResource(key) {
-		return resources[key] || "";
+	function getResource(key, defaultValue) {
+		return resources[key] || defaultValue || "";
 	}
 
-	$scope.name = getResource("name");
+	$scope.name = getResource("name", " ");
 	$scope.type = getResource("type");
 	$scope.services = getResource("services");
 	$scope.year = getResource("year");
 	$scope.text = getResource("text");
 	$scope.y = 320;
+	$scope.cssRatio = "ratio1_1";
+
+
 	$api.getAlbum($scope.gdataAlbumId, {size: 320, isSquare: false, type: 1})
 		.then(function (data) {
 			if (data) {

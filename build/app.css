@@ -24,10 +24,10 @@
   opacity: 1;
 }
 .gdata-album-list .album-name {
-  margin-top: -20px;
-  position: relative;
-  z-index: 20;
   padding: 10px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJnz56tZ4TxQRxjY+NGsACMA2IzInNAAgDZSw7r4ocGigAAAABJRU5ErkJggg==);
+  background-color: #f7f7f7;
+  cursor: pointer;
 }
 .gdata-album-list .album-name .content {
   text-overflow: ellipsis;
@@ -640,10 +640,10 @@
   opacity: 1;
 }
 .gdata-album-list .album-name {
-  margin-top: -20px;
-  position: relative;
-  z-index: 20;
   padding: 10px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJnz56tZ4TxQRxjY+NGsACMA2IzInNAAgDZSw7r4ocGigAAAABJRU5ErkJggg==);
+  background-color: #f7f7f7;
+  cursor: pointer;
 }
 .gdata-album-list .album-name .content {
   text-overflow: ellipsis;
@@ -1391,6 +1391,6 @@ fade-out-linear {
 .container_12.maincontent .main-logo img {
   width: 100%;
 }
-.gdata-album-list .album-name {
-  background-color: #eeeeee;
+.xxx {
+  width: 100%;
 }
