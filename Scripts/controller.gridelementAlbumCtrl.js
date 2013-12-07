@@ -21,10 +21,10 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 	$scope.year = getResource("year");
 	$scope.text = getResource("text");
 	$scope.y = 320;
-	$scope.cssRatio = "ratio1_1";
+	$scope.cssRatio = "ratio4_3";
 
 
-	$api.getAlbum($scope.gdataAlbumId, {size: 320, isSquare: false, type: 1})
+	$api.getAlbum($scope.gdataAlbumId, {size: 417, isSquare: false, type: 0})
 		.then(function (data) {
 			if (data) {
 				$scope.album = data.data;

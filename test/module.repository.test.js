@@ -9,42 +9,6 @@ describe('myApp', function () {
 	}));
 });
 
-describe("Gallery browser module test", function () {
-	beforeEach(function () {
-		module('galleryBrowser', function () {
-
-		});
-	});
-
-	it("initialization", inject(function ($gallery) {
-		spyOn($gallery.settings, "onLoad");
-		$gallery.loadData(["a", "b", "c"]);
-		expect($gallery.data.length).toBe(3);
-		expect($gallery.settings.onLoad).toHaveBeenCalled();
-	}));
-
-	it("initialization", inject(function ($gallery) {
-		spyOn($gallery.settings, "onLoad");
-		$gallery.loadData();
-		expect($gallery.data.length).toBe(0);
-		expect($gallery.settings.onLoad).toHaveBeenCalled();
-
-	}));
-
-	it("initialization", inject(function ($gallery) {
-		spyOn($gallery.settings, "onLoad");
-		$gallery.loadData("aaa");
-		expect($gallery.data.length).toBe(1);
-		expect($gallery.data[0]).toBe("aaa");
-		expect($gallery.settings.onLoad).toHaveBeenCalled();
-	}));
-
-	it("Test 1", function () {
-
-
-
-	});
-});
 
 describe("Gallery tests", function () {
 	var gallery,

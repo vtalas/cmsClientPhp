@@ -14,24 +14,36 @@ galleryModule.factory("$gallery", ["$notify", function ($notify) {
 }]);
 
 
+
 galleryModule.directive("ngcFitToBoxImage", [function () {
 	return {
-		template: '<div class="xxx" ><img ng-src="{{ngcFitToBoxImage.PhotoUri}}" /></div>',
+		template: '<div class="xxx" ><img src="{{imageSrc}}" /></div>',
 		replace: true,
 		scope: {ngcFitToBoxImage: "="},
 		link: function (scope, element, attrs) {
-			scope.$watch("ngcFitToBoxImage", function (image) {
+
+			scope.$watch("ngcFitToBoxImage", function (image, xxx) {
 				var width,
+					imageElement,
 					height;
 
 				if (image) {
-					var imageElement = element.find("img");
+					imageElement = element.find("img");
 					width = element.width();
 					height = element.height();
 
-					// todo ocekovat jesli pasuje a kdyztak napasovat
-					imageElement.css("height", "100%");
-					console.log(width,height, image, image.PhotoUri);
+					if (image.Width) {
+						console.log("not implemented");
+					} else {
+						var img = new Image();
+						img.onload = function () {
+							var fit = new FitImage(this.width, this.height, width, height);
+							imageElement.css("height", fit.imageHeightCss());
+							imageElement.css("width", fit.imageWidthCss());
+						};
+						img.src = image;
+						scope.imageSrc = image;
+					}
 				}
 			});
 		}

@@ -118,6 +118,34 @@ stringUtils.directive("ngBindHtmlUnsafe", ['$sce', '$parse', function($sce, $par
 		});
 	};
 }]);
+var FitImage = (function () {
+	"use strict";
+
+	var fitImage = function (imageWidth, imageHeight, cWidth, cHeight) {
+		this.iWidth = imageWidth || 0;
+		this.iHeight = imageHeight || 0;
+		this.cWidth = cWidth || 0;
+		this.cHeight= cHeight || 0;
+	};
+
+	fitImage.prototype.imageWidthCss = function () {
+		return this.boxScale() >= this.imageScale() ? "100%" : "auto";
+	};
+
+	fitImage.prototype.imageHeightCss = function () {
+		return this.boxScale() < this.imageScale() ? "100%" : "auto";
+	};
+
+	fitImage.prototype.imageScale = function () {
+		return this.iWidth / this.iHeight;
+	};
+
+	fitImage.prototype.boxScale = function () {
+		return this.cWidth / this.cHeight;
+	};
+
+	return fitImage;
+}());
 var Gallery = (function () {
 	"use strict";
 
@@ -231,24 +259,36 @@ galleryModule.factory("$gallery", ["$notify", function ($notify) {
 }]);
 
 
+
 galleryModule.directive("ngcFitToBoxImage", [function () {
 	return {
-		template: '<div class="xxx" ><img ng-src="{{ngcFitToBoxImage.PhotoUri}}" /></div>',
+		template: '<div class="xxx" ><img src="{{imageSrc}}" /></div>',
 		replace: true,
 		scope: {ngcFitToBoxImage: "="},
 		link: function (scope, element, attrs) {
-			scope.$watch("ngcFitToBoxImage", function (image) {
+
+			scope.$watch("ngcFitToBoxImage", function (image, xxx) {
 				var width,
+					imageElement,
 					height;
 
 				if (image) {
-					var imageElement = element.find("img");
+					imageElement = element.find("img");
 					width = element.width();
 					height = element.height();
 
-					// todo ocekovat jesli pasuje a kdyztak napasovat
-					imageElement.css("height", "100%");
-					console.log(width,height, image, image.PhotoUri);
+					if (image.Width) {
+						console.log("not implemented");
+					} else {
+						var img = new Image();
+						img.onload = function () {
+							var fit = new FitImage(this.width, this.height, width, height);
+							imageElement.css("height", fit.imageHeightCss());
+							imageElement.css("width", fit.imageWidthCss());
+						};
+						img.src = image;
+						scope.imageSrc = image;
+					}
 				}
 			});
 		}
@@ -745,10 +785,10 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 	$scope.year = getResource("year");
 	$scope.text = getResource("text");
 	$scope.y = 320;
-	$scope.cssRatio = "ratio1_1";
+	$scope.cssRatio = "ratio4_3";
 
 
-	$api.getAlbum($scope.gdataAlbumId, {size: 320, isSquare: false, type: 1})
+	$api.getAlbum($scope.gdataAlbumId, {size: 417, isSquare: false, type: 0})
 		.then(function (data) {
 			if (data) {
 				$scope.album = data.data;

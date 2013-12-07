@@ -154,13 +154,10 @@
 		<div class="gdata-album-list" ng-controller="gridelementAlbumCtrl">
 			<div class="aspect-ratio-box" ng-class="cssRatio" ng-click="imageClick(name)">
 				<div class="aspect-ratio-content album-image-wrap">
-					<div ngc-fit-to-box-image="album.Thumbnail.Thumbnails[0]" style="width: 100%;height: 100%;background-color: greenyellow">.</div>
-					<!--<div ngc-fit-to-image="album.Thumbnail" style="backgrxound-color: red;width: 100%;height: 100%">-->
-						<!--<img  class="album-image" ng-src="{{album.Thumbnail.Thumbnails[0].PhotoUri}}"/>-->
-					<!--</div>-->
+					<div ngc-fit-to-box-image="album.Thumbnail.Thumbnails[0].PhotoUri" style="width: 100%;height: 100%;">.</div>
 				</div>
 			</div>
-			<div class="album-name" ><a>{{ name }} &nbsp;</a></div>
+			<div class="album-name" ><a ng-click="imageClick(name)">{{ name }} &nbsp;</a></div>
 			<div class="clear"></div>
 		</div>
 
@@ -247,16 +244,6 @@
 	</div>
 </script>
 
-
-<script>
-	$(document).ready(function () {
-		$("body").click(function () {
-			var x = $(".xxx").width();
-			console.log(x);
-
-		})
-	})
-</script>
 </body>
 </html>
 

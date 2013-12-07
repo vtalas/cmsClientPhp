@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="cs" ng-app="">
+<html lang="cs" ng-app="defaultClient">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +11,33 @@
 
 	<title>BOOS</title>
 
-	<script type="text/javascript" src="build/app.libs.js"></script>
-	<script type="text/javascript" src="build/app.js"></script>
+	<script type="text/javascript" src="../build/app.libs.js"></script>
+	<script type="text/javascript" src="../build/app.js"></script>
 	<link rel="stylesheet" href="css/directives.css"/>
 	<link rel="stylesheet" href="css/fluid_grid.css"/>
 
 
 </head>
 <body>
+
+
+<h1>fit image</h1>
+
+
+<script>
+	var fit = function ($scope) {
+//		$scope.image = {Width: 100, Height: 200, PhotoUri: 'images/intro1.jpg'};
+		$scope.image = "images/intro1.jpg";
+		$scope.portrait = "images/intro2.jpg";
+	}
+</script>
+<div ng-controller="fit">
+	<div ngc-fit-to-box-image="image" style="overflow: hidden;width: 400px;height: 300px;background-color: greenyellow"></div>
+	<div ngc-fit-to-box-image="portrait" style="overflow: hidden;width: 400px;height: 300px;background-color: greenyellow"></div>
+</div>
+
+<div class="clear"></div>
+<h1>aspect ratio</h1>
 
 <div class="container_12">
 	<div class="grid_4">
@@ -44,7 +63,7 @@
 	</div>
 
 	<div class="grid_3">
-		<div class="aspect-ratio-box ratio9_16">
+		<div class="aspect-ratio-box ratio16_9">
 			<div class="aspect-ratio-content">
 				<div style="background-color: blue;width: 100%;height: 100%">.</div>
 			</div>
@@ -71,7 +90,6 @@
 			</div>
 		</div>
 	</div>
-
 </div>
 
 
