@@ -2,7 +2,6 @@ var pageController = ["$scope", "$api", "$routeParams", "$gallery", "$notify", "
 	var source = null;
 
 	$scope.link = $routeParams.link;
-	$scope.groups = ["a", "b", "c"];
 
 	$notify.trigger("content-loading");
 	$api.getPage($scope.link)
@@ -10,6 +9,7 @@ var pageController = ["$scope", "$api", "$routeParams", "$gallery", "$notify", "
 //$timeout(function () {
 			$scope.page = data;
 			$scope.gridElements = $scope.page.GridElements || [];
+			$scope.groups = $scope.page.groups;
 			$notify.trigger("content-loaded");
 			source = new GridElementsList($scope.page.GridElements);
 			$gallery.loadData(data.GridElements || []);

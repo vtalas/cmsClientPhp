@@ -19,7 +19,26 @@
 	<link rel="stylesheet" href="libs/css/font/stylesheet.css"/>
 
 </head>
+
+
 <body ng-controller="appController" class="boos">
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNC6LIzTQj51MXJg4hSopBak9cqhPGazY&sensor=false">
+    </script>
+    
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+     <div id="map-canvaxs"/>
+
 
 <div class="loader-wrap" ng-show="showLoader">
 	<div class="centered-container">
@@ -56,8 +75,8 @@
 			<div class="grid_3 main-menu">
 				<div class="border-top">
 					<div><a href="#!/page/projekty" ng-class="isSelectedLink('projekty')">Projekty</a></div>
-					<div><a href="#!/p/historie" ng-class="isSelectedLink('historie')">Historie</a></div>
-					<div><a href="#!/p/cinnost" ng-class="isSelectedLink('cinnost')">Činnost</a></div>
+					<div><a href="#!/page/historie" ng-class="isSelectedLink('historie')">Historie</a></div>
+					<div><a href="#!/page/cinnost" ng-class="isSelectedLink('cinnost')">Činnost</a></div>
 					<div><a href="#!/p/kontakt" ng-class="isSelectedLink('kontakt')">Kontakt</a></div>
 				</div>
 			</div>
@@ -131,11 +150,10 @@
 </script>
 
 <script id="simplehtml.thtml" type="text/ng-template">
-	<div
-			ng-controller="simplehtml">
-		<div ng-bind-html-unsafe="ContentToHtml()"></div>
-	</div>
+	<div ng-controller="simplehtml">
 
+			<div ng-bind-html-unsafe="ContentToHtml()"></div>
+	</div>
 </script>
 
 <script id="gdataalbum.thtml" type="text/ng-template">
@@ -196,7 +214,7 @@
 		</div>
 		<div class="grid_12" style="height: 20%">
 			<div class="more-details">
-				<div class="more-details-content" ng-bind-html="text"></div>
+				<div class="more-details-content" ng-bind-html-unsafe="text"></div>
 			</div>
 		</div>
 	</div>

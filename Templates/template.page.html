@@ -8,10 +8,10 @@
 	</div>
 </div>
 
-<div class="grid_3 groups">
-	<h3 ng-click="filter()">Typy projektů</h3>
+<div class="grid_3 groups" ng-show="groups">
+	<h3 ng-click="filter()">{{groups.groupName}}</h3>
 	<ul class="group-list">
-		<li ng-repeat="group in groups" class="link group-item" ng-click="filter(group)"
+		<li ng-repeat="group in groups.items" class="link group-item" ng-click="filter(group)"
 			ng-class="isSelectedFilter(group)">{{group}}
 		</li>
 	</ul>

@@ -1,7 +1,7 @@
 /*global Showdown, angular*/
 var stringUtils = angular.module("stringutils", []);
 
-stringUtils.factory("$markdown", function () {
+	stringUtils.factory("$markdown", function () {
 	var converter = new Showdown.converter();
 
 	return {
@@ -14,19 +14,16 @@ stringUtils.factory("$markdown", function () {
 	};
 });
 
-
 stringUtils.directive("ngBindHtmlUnsafe", ['$sce', '$parse', function($sce, $parse) {
 	return function(scope, element, attr) {
-		element.addClass('ng-binding').data('$binding', attr.ngBindHtml);
+		element.addClass('ng-binding').data('$binding', attr.ngBindHtmlUnsafe);
 
-		var parsed = $parse(attr.ngBindHtml);
+		var parsed = $parse(attr.ngBindHtmlUnsafe);
 		function getStringValue() { return (parsed(scope) || '').toString(); }
 
 
-		scope.$watch(getStringValue, function ngBindHtmlWatchAction(value) {
-			console.log(value);
+		scope.$watch(getStringValue, function(value) {
 			element.html(value);
-			//element.html($sce.getTrustedHtml(parsed(scope)) || '');
 		});
 	};
 }]);

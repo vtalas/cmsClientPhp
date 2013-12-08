@@ -8,7 +8,7 @@ var GridElementsList = (function () {
 		for (var i = 0; i < this.data.length; i++) {
 			console.log(this.data[i])
 		}
-		return "skdbaj";
+		return "";
 	};
 
 	GridElementsList.prototype.findById = function (id) {

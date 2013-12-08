@@ -50,8 +50,7 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 		return x !== null ? x.gdataAlbumId : null;
 	}
 
-	var resources = $scope.gridelement.resources || {},
-		currentImageIndex;
+	var resources = $scope.gridelement.resources || {};
 
 	function getResource(key) {
 		return resources[key] || "";

@@ -1,15 +1,3 @@
-var Grid  = (function () {
-
-	function Grid (data) {
-		data = data || {};
-		this.GridElements = data.GridElements || [];
-		this.Link = data.Link || null;
-		this.id = data.id || null;
-		this.resources = data.resources || [];
-		this.Name = data.Name = "";
-	}
-	return Grid;
-}());
 
 var GridList = (function(){
 
@@ -28,10 +16,6 @@ var GridList = (function(){
 
 	GridList.prototype.save  = function () {
 		this.repo.set(this.data);
-	};
-
-	GridList.prototype.xx  = function () {
-		console.log("xxx");
 	};
 
 	GridList.prototype.update  = function (item) {
