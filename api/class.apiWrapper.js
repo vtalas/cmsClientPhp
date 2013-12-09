@@ -47,7 +47,6 @@ var ApiWrapper = (function () {
 	
 	ApiWrapper.prototype.getPages = function () {
 		var deferred = this.q.defer();
-
 		this.cmsApi.getPages(function (data) {
 			deferred.resolve(data);
 		});

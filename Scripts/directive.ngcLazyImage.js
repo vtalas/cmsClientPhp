@@ -1,5 +1,5 @@
 function ngcLazyImage() {
-	var loader = "Css/loaders/loader16.gif";
+	var loader = "resources/loaders/loader16.gif";
 
 	return {
 		scope: {

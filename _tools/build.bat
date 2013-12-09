@@ -1,14 +1,14 @@
+type ^
+..\common\*.js,^
+..\gallery\*.js,^
+..\api\*.js,^
+..\data\*.js,^
+..\Scripts\*.js >..\build\app.js
 
-type ..\common\*.js > ../build/app.js
-type ..\gallery\*.js >> ../build/app.js
-type ..\api\*.js >> ../build/app.js
-type ..\data\*.js >> ../build/app.js
-type ..\Scripts\*.js >> ../build/app.js
+type ^
+..\css\*.css > ../build/app.css
 
-
-
-type ..\css\*.css >> ../build/app.css
-
-type ..\libs\css\font-awesome\css\*.min.css >> ../build/app.libs.css
-type ..\libs\css\font\*.css >> ../build/app.libs.css
+type ^
+..\libs\css\font-awesome\css\*.min.css,^
+..\libs\css\font\*.css > ../build/app.libs.css
 

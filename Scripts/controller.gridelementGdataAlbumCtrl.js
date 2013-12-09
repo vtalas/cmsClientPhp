@@ -16,7 +16,6 @@ var gridelementGdataAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location",
 	//$api.getAlbum($scope.gdataAlbumId)
 		.then(function (data) {
 			$scope.album = data.data;
-			console.log(data)
 		});
 
 	$scope.showImage = function (galleryId, imageIndex) {

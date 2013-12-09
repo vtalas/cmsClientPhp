@@ -1,20 +1,24 @@
-var pageController = ["$scope", "$api", "$routeParams", "$gallery", function ($scope, $api, $routeParams, $gallery) {
+var pageController = ["$scope", "$api", "$routeParams", "$gallery", "$notify", "$timeout", function ($scope, $api, $routeParams, $gallery, $notify, $timeout) {
 	var source = null;
 
 	$scope.link = $routeParams.link;
-	$scope.groups = ["a", "b", "c"];
 
+	$notify.trigger("content-loading");
 	$api.getPage($scope.link)
 		.then(function (data) {
+//$timeout(function () {
 			$scope.page = data;
 			$scope.gridElements = $scope.page.GridElements || [];
+			$scope.groups = $scope.page.groups;
+			$notify.trigger("content-loaded");
 			source = new GridElementsList($scope.page.GridElements);
 			$gallery.loadData(data.GridElements || []);
-
 			return data;
+//},2000)
 		}, function (err) {
 			console.log("ERROR!!", err.status);
 		})
+
 		.then(function (data) {
 			setTimeout(function () {
 				$api.checkForSnapshot($scope, data);
@@ -25,7 +29,7 @@ var pageController = ["$scope", "$api", "$routeParams", "$gallery", function ($s
 		if (value === undefined) {
 			$scope.filterValue = null;
 			$scope.gridElements = source.data;
-			return ;
+			return;
 		}
 		$scope.filterValue = value;
 		$scope.gridElements = source.filter("group", value);

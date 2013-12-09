@@ -3,6 +3,16 @@
   overflow: hidden;
   white-space: nowrap;
 }
+.centered-container {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.centered-content {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
 .gdata-album-list {
   padding: 10px;
   padding-left: 0px;
@@ -14,10 +24,10 @@
   opacity: 1;
 }
 .gdata-album-list .album-name {
-  margin-top: -20px;
-  position: relative;
-  z-index: 20;
   padding: 10px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJnz56tZ4TxQRxjY+NGsACMA2IzInNAAgDZSw7r4ocGigAAAABJRU5ErkJggg==);
+  background-color: #f7f7f7;
+  cursor: pointer;
 }
 .gdata-album-list .album-name .content {
   text-overflow: ellipsis;
@@ -36,9 +46,8 @@
   opacity: 0.8;
 }
 .gdata-album-list .album-image-wrap {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJnz56tZ4TxQRxjY+NGsACMA2IzInNAAgDZSw7r4ocGigAAAABJRU5ErkJggg==);
   overflow: hidden;
-  background: radial-gradient(#ff0000 1%, transparent 9%) 0 0, radial-gradient(#000000 0%, transparent 6%) 8px 8px, radial-gradient(rgba(255, 255, 255, 0.1) 0%, transparent 0%) 0 1px, radial-gradient(rgba(255, 255, 255, 0.1) -31%, transparent 20%) 8px 9px;
-  background-size: 16px 16px;
   background-color: #f6f6f6;
   cursor: pointer;
 }

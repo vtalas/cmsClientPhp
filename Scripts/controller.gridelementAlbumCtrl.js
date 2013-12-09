@@ -11,17 +11,20 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 
 	var resources = $scope.gridelement.resources || {};
 
-	function getResource(key) {
-		return resources[key] || "";
+	function getResource(key, defaultValue) {
+		return resources[key] || defaultValue || "";
 	}
 
-	$scope.name = getResource("name");
+	$scope.name = getResource("name", " ");
 	$scope.type = getResource("type");
 	$scope.services = getResource("services");
 	$scope.year = getResource("year");
 	$scope.text = getResource("text");
 	$scope.y = 320;
-	$api.getAlbum($scope.gdataAlbumId, {size: 320, isSquare: false, type: 1})
+	$scope.cssRatio = "ratio4_3";
+
+
+	$api.getAlbum($scope.gdataAlbumId, {size: 417, isSquare: false, type: 0})
 		.then(function (data) {
 			if (data) {
 				$scope.album = data.data;
@@ -47,8 +50,7 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 		return x !== null ? x.gdataAlbumId : null;
 	}
 
-	var resources = $scope.gridelement.resources || {},
-		currentImageIndex;
+	var resources = $scope.gridelement.resources || {};
 
 	function getResource(key) {
 		return resources[key] || "";

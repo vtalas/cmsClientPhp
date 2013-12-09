@@ -1,9 +1,13 @@
-var simplehtml = ["$scope", function ($scope) {
-	var converter = new Showdown.converter();
+var simplehtml = ["$scope", "$markdown", function ($scope, $markdown) {
+	var gridElement = $scope.getGridElement(),
+		resources = gridElement.resources || {};
 
-	var gridElement = $scope.getGridElement();
+	function getResource(key) {
+		return resources[key] || "";
+	}
+	//console.log("xx",getResource("text"), $markdown.toHtml(getResource("text")));
 
 	$scope.ContentToHtml = function () {
-		return converter.makeHtml(gridElement.Resources && gridElement.Resources.text ? gridElement.Resources.text.Value : "");
+		return $markdown.toHtml(getResource("text"));
 	};
 }];

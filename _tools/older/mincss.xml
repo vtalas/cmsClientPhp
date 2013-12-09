@@ -1,0 +1,9 @@
+<root>
+	<output path="../_production/Css/css.min.css">
+		<input path="../Css/fluid_grid.css"/>
+		<input path="../Css/masparti-responsive.css"/>
+		<input path="../Css/main.css"/>
+		<!--<input path="../Css/font-awesome/css/font-awesome.min.css"/>-->
+		<!--<input path="../Css/fonts/stylesheet.css"/>-->
+	</output>
+</root>

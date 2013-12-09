@@ -1,4 +1,5 @@
-var pController =  [ "$scope", "$api", "$routeParams", "$location", function($scope, $api, $routeParams, $location) {
+var pController =  [ "$scope", "$api", "$routeParams", "$location", "$notify",
+	function($scope, $api, $routeParams, $location, $notify) {
 	$scope.link = $routeParams.link;
 	var getIndex = function () {
 		var search = $location.search().elindex,
@@ -8,7 +9,7 @@ var pController =  [ "$scope", "$api", "$routeParams", "$location", function($sc
 		if (!isNaN(search)) {
 			index = search;
 		}
-		return Number(index, 10);
+		return Number(index, 10) || 0 ;
 	};
 
 	var setBoundaries = function (index) {
@@ -16,10 +17,6 @@ var pController =  [ "$scope", "$api", "$routeParams", "$location", function($sc
 		$scope.isFirst = index === 0;
 		$scope.isLast = index === length - 1;
 	};
-
-	$scope.$on("$locationChangeSuccess", function () {
-		setNewLocation(getIndex());
-	});
 
 
 	$scope.loading = true;
@@ -29,8 +26,7 @@ var pController =  [ "$scope", "$api", "$routeParams", "$location", function($sc
 			$scope.page = response;
 			setBoundaries(index);
 			$scope.currentGridElement = $scope.page.GridElements[index];
-			$scope.loading = false;
-			$scope.$emit("data-loaded");
+			$notify.trigger("content-loaded");
 			return response;
 		});
 
@@ -39,7 +35,7 @@ var pController =  [ "$scope", "$api", "$routeParams", "$location", function($sc
 		getPagePromise.then(function () {
 			$scope.currentGridElement = $scope.page.GridElements[index];
 			setBoundaries(index);
-		})
+		});
 	};
 
 	$scope.next = function () {

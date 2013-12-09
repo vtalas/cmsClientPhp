@@ -11,15 +11,7 @@
 
 	<title>BOOS</title>
 
-	<script type="text/javascript" src="libs/js/jquery.min.js"></script>
-	<script type="text/javascript" src="libs/js/angular.js"></script>
-	<script type="text/javascript" src="libs/js/angular-route.js"></script>
-	<script type="text/javascript" src="libs/js/angular-resource.js"></script>
-	<script type="text/javascript" src="libs/js/angular-ui/event.js"></script>
-	<script type="text/javascript" src="libs/js/angular-ui/angular.keypress.js"></script>
-	<script type="text/javascript" src="libs/js/showdown.js"></script>
-	<script type="text/javascript" src="libs/js/angular-bootstrap/ui-bootstrap-custom-tpls-0.3.0.min.js"></script>
-
+	<script type="text/javascript" src="build/app.libs.js"></script>
 	<script type="text/javascript" src="build/app.js"></script>
 	<link rel="stylesheet" href="build/app.css"/>
 
@@ -27,90 +19,125 @@
 	<link rel="stylesheet" href="libs/css/font/stylesheet.css"/>
 
 </head>
+
+
 <body ng-controller="appController" class="boos">
-<i ui-event="{ keydown: 'globalKeydown($event)'}" style="display:none"></i>
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNC6LIzTQj51MXJg4hSopBak9cqhPGazY&sensor=false">
+    </script>
+    
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+     <div id="map-canvaxs"/>
 
-<div class="clear"></div>
 
-<div class="alert alert-error" ng-show="message">
-	<b></b>
-	{{message}}
-</div>
-
-<div class="container_12 maincontent">
-	<div class="border-bottom">
-		<div class="grid_5">
-			<div class="main-logo">
-				<img src="resources/booswhite.png" alt="BOOS"/></div>
-			</div>
-		<div class="grid_4">
-			<div class="border-top">
-				<div class="logo-home"> architektura design project management inženýring</div>
-			</div>
-		</div>
-		<div class="grid_3 main-menu">
-			<div class="border-top">
-				<div><a href="#!/page/projekty" ng-class="isSelectedLink('projekty')">Projekty</a></div>
-				<div><a href="#!/p/historie" ng-class="isSelectedLink('historie')">Historie</a></div>
-				<div><a href="#!/p/cinnost" ng-class="isSelectedLink('cinnost')">Činnost</a></div>
-				<div><a href="#!/p/kontakt" ng-class="isSelectedLink('kontakt')">Kontakt</a></div>
+<div class="loader-wrap" ng-show="showLoader">
+	<div class="centered-container">
+		<div class="centered-content">
+			<img src="resources/booswhite.png"/>
+			<div>
+				<img src="resources/loaders/loader.gif"/>
 			</div>
 		</div>
-		<div class="clearfix"></div>
-	</div>
-
-	<div class="grid_12 index-content">
-		<div ng-view class="view"></div>
 	</div>
 </div>
+<div class="background-wrap" ng-show="showContent">
+	<i ui-event="{ keydown: 'globalKeydown($event)'}" style="display:none"></i>
 
-<div class="clear"></div>
+	<div class="clear"></div>
 
-
-<div class="dumbBoxWrap gallery-image-viewer page-overlay" ng-show="overlayGalleryShow" ng-controller="galleryBrowser">
-
-	<div class="dumbBoxOverlay">
-		<div ng-show="loading" class="loader">
-			<img src="Css/loaders/horizontalloadersmall_white.gif" alt="loading..."/>
-		</div>
-		&nbsp;
+	<div class="alert alert-error" ng-show="message">
+		<b></b>
+		{{message}}
 	</div>
-	<div class="vertical-offset">
 
-		<div class="full-height">
-			<div class="container_12 full-height">
-				<div class="grid_2 full-height preview-previous">
-					<div class="full-height-content">
-						<div gridelement="prevItem" skin="album-overlay-preview" class="full-height preview-content" ng-show="prevItem"></div>
-						<button ng-click="prev()" class="btn btn-link navigation-action"
-								tooltip="předchozí (page-up)"
-								tooltip-popup-delay="500"
-								tooltip-placement="right">
-							<i class="icon-chevron-left icon-3x-responsive"></i>
-						</button>
-					</div>
-				</div>
-				<div class="grid_8 full-height">
-					<div class="full-height-content">
-						<div gridelement="currentItem" skin="album-overlay" class="full-height"></div>
-					</div>
-				</div>
-				<div class="grid_2 full-height">
-					<div class="full-height-content">
-						<div gridelement="nextItem" skin="album-overlay-preview" class="full-height preview-content"
-							 ng-show="nextItem"></div>
-						<button ng-click="next()" class="btn btn-link navigation-action"
-								tooltip="další (page-down)"
-								tooltip-popup-delay="500"
-								tooltip-placement="bottom"
-								>
-							<i class="icon-chevron-right icon-3x-responsive"></i>
-						</button>
+	<div class="container_12 maincontent">
+		<div class="border-bottom">
+			<div class="grid_5">
+				<div class="main-logo">
+					<img src="resources/booswhite.png" alt="BOOS"/></div>
+			</div>
+			<div class="grid_4">
+				<div class="border-top">
+					<div class="logo-home"> architektura &#8226; design &#8226; project management &#8226; inženýring
 					</div>
 				</div>
 			</div>
+			<div class="grid_3 main-menu">
+				<div class="border-top">
+					<div><a href="#!/page/projekty" ng-class="isSelectedLink('projekty')">Projekty</a></div>
+					<div><a href="#!/page/historie" ng-class="isSelectedLink('historie')">Historie</a></div>
+					<div><a href="#!/page/cinnost" ng-class="isSelectedLink('cinnost')">Činnost</a></div>
+					<div><a href="#!/p/kontakt" ng-class="isSelectedLink('kontakt')">Kontakt</a></div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
 		</div>
 
+		<div class="grid_12 index-content">
+			<div ng-view class="view"></div>
+		</div>
+	</div>
+
+	<div class="clear"></div>
+
+
+	<div class="dumbBoxWrap gallery-image-viewer page-overlay" ng-show="overlayGalleryShow"
+		 ng-controller="galleryBrowser">
+
+		<div class="dumbBoxOverlay">
+			<div ng-show="loading" class="loader">
+				<img src="resources/loaders/loader.gif" alt="loading..."/>
+			</div>
+			&nbsp;
+		</div>
+		<div class="vertical-offset">
+
+			<div class="full-height">
+				<div class="container_12 full-height">
+					<div class="grid_2 full-height preview-previous">
+						<div class="full-height-content">
+							<div gridelement="prevItem" skin="album-overlay-preview" class="full-height preview-content"
+								 ng-show="prevItem"></div>
+							<button ng-click="prev()" class="btn btn-link navigation-action"
+									tooltip="předchozí (page-up)"
+									tooltip-popup-delay="500"
+									tooltip-placement="right">
+								<i class="icon-chevron-left icon-3x-responsive"></i>
+							</button>
+						</div>
+					</div>
+					<div class="grid_8 full-height">
+						<div class="full-height-content">
+							<div gridelement="currentItem" skin="album-overlay" class="full-height"></div>
+						</div>
+					</div>
+					<div class="grid_2 full-height">
+						<div class="full-height-content">
+							<div gridelement="nextItem" skin="album-overlay-preview" class="full-height preview-content"
+								 ng-show="nextItem"></div>
+							<button ng-click="next()" class="btn btn-link navigation-action"
+									tooltip="další (page-down)"
+									tooltip-popup-delay="500"
+									tooltip-placement="bottom"
+									>
+								<i class="icon-chevron-right icon-3x-responsive"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
 	</div>
 </div>
 
@@ -123,11 +150,10 @@
 </script>
 
 <script id="simplehtml.thtml" type="text/ng-template">
-	<div
-			ng-controller="simplehtml">
-		<div ng-bind-html-unsafe="ContentToHtml()"></div>
-	</div>
+	<div ng-controller="simplehtml">
 
+			<div ng-bind-html-unsafe="ContentToHtml()"></div>
+	</div>
 </script>
 
 <script id="gdataalbum.thtml" type="text/ng-template">
@@ -142,18 +168,14 @@
 </script>
 
 <script id="album.thtml" type="text/ng-template">
-	<div
-			class="grid_4">
+	<div class="grid_4">
 		<div class="gdata-album-list" ng-controller="gridelementAlbumCtrl">
-			<div style="min-height:{{y}}px" class="album-image-wrap" ng-click="imageClick(name)">
-				<img style="min-height:{{y}}px" class="album-image" src="{{album.Thumbnail.Thumbnails[0].PhotoUri}}"/>
-
-				<div class="album-name">
-					<div class="content" title="{{name}}">
-						<a>{{ name }}</a>
-					</div>
+			<div class="aspect-ratio-box" ng-class="cssRatio" ng-click="imageClick(name)">
+				<div class="aspect-ratio-content album-image-wrap">
+					<div ngc-fit-to-box-image="album.Thumbnail.Thumbnails[0].PhotoUri" style="width: 100%;height: 100%;">.</div>
 				</div>
 			</div>
+			<div class="album-name" ><a ng-click="imageClick(name)">{{ name }} &nbsp;</a></div>
 			<div class="clear"></div>
 		</div>
 
@@ -192,7 +214,7 @@
 		</div>
 		<div class="grid_12" style="height: 20%">
 			<div class="more-details">
-				<div class="more-details-content" ng-bind-html="text"></div>
+				<div class="more-details-content" ng-bind-html-unsafe="text"></div>
 			</div>
 		</div>
 	</div>
@@ -206,9 +228,9 @@
 			</div>
 		</div>
 		<div class="grid_12" style="height: 70%;overflow: hidden">
-				<div class="image-envelope preview-current">
-					<img class="album-image" ng-src="{{currentImage.Thumbnails[2].PhotoUri}}"/>
-				</div>
+			<div class="image-envelope preview-current">
+				<img class="album-image" ng-src="{{currentImage.Thumbnails[2].PhotoUri}}"/>
+			</div>
 		</div>
 		<div class="grid_12" style="height: 20%">
 			<div class="more-details">
@@ -241,6 +263,5 @@
 </script>
 
 </body>
-
 </html>
 
