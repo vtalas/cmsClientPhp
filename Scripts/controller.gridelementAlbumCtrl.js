@@ -1,28 +1,29 @@
 var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", function ($scope, $api, $routeParams, $location, $notify, $gallery) {
-	$scope.gdataAlbumId = getAlbumId();
-	$scope.route = {
-		link: $routeParams.link
-	};
-
-	function getAlbumId() {
-		var x = $scope.gridelement.Content;
-		return x !== null ? x.gdataAlbumId : null;
-	}
-
-	var resources = $scope.gridelement.resources || {};
+	var resources = $scope.gridelement.resources || {},
+		content = $scope.gridelement.Content || {};
 
 	function getResource(key, defaultValue) {
 		return resources[key] || defaultValue || "";
 	}
+
+	function getContentProperty(key, defaultValue) {
+		return content[key] || defaultValue || "";
+	}
+
+	$scope.gdataAlbumId = getContentProperty("gdataAlbumId", null);
+	$scope.route = {
+		link: $routeParams.link
+	};
+
 
 	$scope.name = getResource("name", " ");
 	$scope.type = getResource("type");
 	$scope.services = getResource("services");
 	$scope.year = getResource("year");
 	$scope.text = getResource("text");
-	$scope.y = 320;
-	$scope.cssRatio = "ratio4_3";
 
+	$scope.cssRatio = getContentProperty("ratio", "ratio16_9");
+console.log($scope.cssRatio);
 
 	$api.getAlbum($scope.gdataAlbumId, {size: 417, isSquare: false, type: 0})
 		.then(function (data) {
