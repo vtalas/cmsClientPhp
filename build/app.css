@@ -1377,7 +1377,7 @@ fade-out-linear {
 .container_12.maincontent {
   width: 90%;
 }
-@-webkit-keyframes resize {
+@-webkit-keyframes resizexx {
   0% {
     padding: 0;
   }
@@ -1387,7 +1387,7 @@ fade-out-linear {
   }
   100% {
     padding: 0 100px;
-    background-color: rgba(255, 0, 0, 0.9);
+    background-color: blue;
   }
 }
 .container_12.maincontent .xxx:hover {
@@ -1399,41 +1399,37 @@ fade-out-linear {
   -ms-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
   -o-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
-  background-color: green;
+  background-color: royalblue;
 }
 .container_12.maincontent .main-logo {
   padding-top: 10px;
   padding-bottom: 21px;
-  width: 220px;
-  background-color: red;
-  width: 400px;
 }
 .container_12.maincontent .main-logo img {
   transition: all 2s ease-in-out;
 }
 @-webkit-keyframes resize {
-  0% {
-    padding: 0;
-  }
   50% {
-    padding: 0 20px;
-    background-color: rgba(255, 0, 0, 0.2);
+    -webkit-transform: rotateX(90deg);
   }
   100% {
-    padding: 0 100px;
-    background-color: rgba(255, 0, 0, 0.9);
+    -webkit-transform: rotateX(0deg);
   }
 }
-.container_12.maincontent .main-logo:hover {
-  -webkit-animation-name: resize 5s;
-  /* Safari and Chrome */
-
-  -webkit-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
-  -moz-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
-  -ms-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
-  -o-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
-  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
-  background-color: green;
+.container_12.maincontent .main-logo .rotate {
+  -webkit-transition: all linear 1s;
+  -moz-transition: all linear 1s;
+  -ms-transition: all linear 1s;
+  -o-transition: all linear 1s;
+  transition: all linear 1s;
+}
+.container_12.maincontent .main-logo .rotate:hover {
+  -webkit-transform: rotateX(180deg);
+  -webkit-transition: all linear 500ms;
+  -moz-transition: all linear 500ms;
+  -ms-transition: all linear 500ms;
+  -o-transition: all linear 500ms;
+  transition: all linear 500ms;
 }
 .xxx {
   width: 100%;

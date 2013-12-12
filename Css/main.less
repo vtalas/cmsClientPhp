@@ -15,7 +15,6 @@ body, html {
 }
 body {
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJnz56tZ4TxQRxjY+NGsACMA2IzInNAAgDZSw7r4ocGigAAAABJRU5ErkJggg==);
-
 }
 
 body {
@@ -764,7 +763,7 @@ button {
 	width: 90%;
 
 	.xxx{
-		@-webkit-keyframes resize {
+		@-webkit-keyframes resizexx {
 			0% {
 				padding: 0;
 			}
@@ -774,7 +773,7 @@ button {
 			}
 			100% {
 				padding: 0 100px;
-				background-color:rgba(255,0,0,0.9);
+				background-color:blue;
 			}
 		}
 
@@ -782,7 +781,7 @@ button {
 			-webkit-animation-name: resize 5s; /* Safari and Chrome */
 			.Animate(2s);
 
-			background-color: green;
+			background-color: royalblue;
 			//-webkit-transform: rotateX(180deg);
 		}
 
@@ -790,10 +789,7 @@ button {
 	.main-logo {
 		padding-top: 10px;
 		padding-bottom: 21px;
-		width: 220px;
-		background-color: red;
 
-		width: 400px;
 
 		img {
 			transition:all 2s ease-in-out;
@@ -801,24 +797,23 @@ button {
 
 		@-webkit-keyframes resize {
 			0% {
-				padding: 0;
 			}
 			50% {
-				padding: 0 20px;
-				background-color:rgba(255,0,0,0.2);
+				-webkit-transform: rotateX(90deg);;
 			}
 			100% {
-				padding: 0 100px;
-				background-color:rgba(255,0,0,0.9);
+				-webkit-transform: rotateX(0deg);;
 			}
 		}
 
-		&:hover {
-			-webkit-animation-name: resize 5s; /* Safari and Chrome */
-			.Animate(2s);
 
-			background-color: green;
-			//-webkit-transform: rotateX(180deg);
+		.rotate{
+			.AnimateEasing(1s, linear);
+		}
+		.rotate:hover {
+	//		-webkit-animation:resize 1s; /* Safari and Chrome */
+			-webkit-transform: rotateX(180deg);;
+			.AnimateEasing(500ms, linear);
 		}
 	}
 }
