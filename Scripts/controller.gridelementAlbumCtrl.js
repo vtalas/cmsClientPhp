@@ -15,7 +15,6 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 		link: $routeParams.link
 	};
 
-
 	$scope.name = getResource("name", " ");
 	$scope.type = getResource("type");
 	$scope.services = getResource("services");
@@ -23,7 +22,6 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 	$scope.text = getResource("text");
 
 	$scope.cssRatio = getContentProperty("ratio", "ratio16_9");
-console.log($scope.cssRatio);
 
 	$api.getAlbum($scope.gdataAlbumId, {size: 417, isSquare: false, type: 0})
 		.then(function (data) {

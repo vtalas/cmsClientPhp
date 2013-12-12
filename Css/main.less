@@ -763,12 +763,62 @@ button {
 .container_12.maincontent {
 	width: 90%;
 
+	.xxx{
+		@-webkit-keyframes resize {
+			0% {
+				padding: 0;
+			}
+			50% {
+				padding: 0 20px;
+				background-color:rgba(255,0,0,0.2);
+			}
+			100% {
+				padding: 0 100px;
+				background-color:rgba(255,0,0,0.9);
+			}
+		}
+
+		&:hover {
+			-webkit-animation-name: resize 5s; /* Safari and Chrome */
+			.Animate(2s);
+
+			background-color: green;
+			//-webkit-transform: rotateX(180deg);
+		}
+
+	}
 	.main-logo {
-		padding-top: 60px;
+		padding-top: 10px;
 		padding-bottom: 21px;
 		width: 220px;
+		background-color: red;
+
+		width: 400px;
+
 		img {
-			width: 100%;
+			transition:all 2s ease-in-out;
+		}
+
+		@-webkit-keyframes resize {
+			0% {
+				padding: 0;
+			}
+			50% {
+				padding: 0 20px;
+				background-color:rgba(255,0,0,0.2);
+			}
+			100% {
+				padding: 0 100px;
+				background-color:rgba(255,0,0,0.9);
+			}
+		}
+
+		&:hover {
+			-webkit-animation-name: resize 5s; /* Safari and Chrome */
+			.Animate(2s);
+
+			background-color: green;
+			//-webkit-transform: rotateX(180deg);
 		}
 	}
 }

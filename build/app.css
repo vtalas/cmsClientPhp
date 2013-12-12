@@ -587,14 +587,23 @@
   bottom: 0;
   right: 0;
 }
-.ratio1_1 {
-  padding-top: 100%;
+.ratio4_1 {
+  padding-top: 25%;
+}
+.ratio10_3 {
+  padding-top: 30%;
 }
 .ratio2_1 {
   padding-top: 50%;
 }
-.ratio4_1 {
-  padding-top: 25%;
+.ratio16_9 {
+  padding-top: 56.25%;
+}
+.ratio4_3 {
+  padding-top: 75%;
+}
+.ratio1_1 {
+  padding-top: 100%;
 }
 .ratio1_2 {
   padding-top: 200%;
@@ -602,17 +611,8 @@
 .ratio9_16 {
   padding-top: 177%;
 }
-.ratio4_3 {
-  padding-top: 75%;
-}
 .ratio3_4 {
   padding-top: 133%;
-}
-.ratio10_3 {
-  padding-top: 30%;
-}
-.ratio16_9 {
-  padding-top: 56.25%;
 }
 .TextOverflowElipsies {
   text-overflow: ellipsis;
@@ -1377,13 +1377,63 @@ fade-out-linear {
 .container_12.maincontent {
   width: 90%;
 }
+@-webkit-keyframes resize {
+  0% {
+    padding: 0;
+  }
+  50% {
+    padding: 0 20px;
+    background-color: rgba(255, 0, 0, 0.2);
+  }
+  100% {
+    padding: 0 100px;
+    background-color: rgba(255, 0, 0, 0.9);
+  }
+}
+.container_12.maincontent .xxx:hover {
+  -webkit-animation-name: resize 5s;
+  /* Safari and Chrome */
+
+  -webkit-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
+  -moz-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
+  -ms-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
+  -o-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
+  background-color: green;
+}
 .container_12.maincontent .main-logo {
-  padding-top: 60px;
+  padding-top: 10px;
   padding-bottom: 21px;
   width: 220px;
+  background-color: red;
+  width: 400px;
 }
 .container_12.maincontent .main-logo img {
-  width: 100%;
+  transition: all 2s ease-in-out;
+}
+@-webkit-keyframes resize {
+  0% {
+    padding: 0;
+  }
+  50% {
+    padding: 0 20px;
+    background-color: rgba(255, 0, 0, 0.2);
+  }
+  100% {
+    padding: 0 100px;
+    background-color: rgba(255, 0, 0, 0.9);
+  }
+}
+.container_12.maincontent .main-logo:hover {
+  -webkit-animation-name: resize 5s;
+  /* Safari and Chrome */
+
+  -webkit-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
+  -moz-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
+  -ms-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
+  -o-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
+  background-color: green;
 }
 .xxx {
   width: 100%;
