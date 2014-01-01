@@ -1,6 +1,11 @@
+@import "animations";
+
 .album-overlay {
 	color: white;
 	height: 100%;
+	.xx {
+		vertical-align: top;
+	}
 
 	.ImagePadding {
 		padding-left: 10px;
@@ -10,7 +15,8 @@
 	.preview {
 		display: inline-block;
 		cursor: pointer;
-		opacity: 0.6;
+		opacity:0.6;
+		.Animate(1000ms);
 		.ImagePadding;
 	}
 

@@ -174,8 +174,7 @@
 				<div class="">
 					<div ng-repeat="image in albumPhotos" class="preview"
 						 ng-class="currentImageIndex == $index ? 'selected' : null">
-						<img ng-click="showImagePreview($index)" ng-src="{{image.Thumbnails[0].PhotoUri}}"/>
-					</div>
+						<img class="xx" ng-click="showImagePreview($index)" ng-src="{{image.Thumbnails[0].PhotoUri}}" src="" /></div>
 				</div>
 				<div class="">
 					<div class="details">
