@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="angular-google-maps-example">
+<head>
+	<meta charset="UTF-8">
+	<title>angular-google-maps example</title>
+	<style>
+		.angular-google-map {
+			display: block;
+		}
+	</style>
+</head>
+<body ng-controller="ExampleController">
+<google-map
+		center="center"
+		zoom="zoom"
+		markers="markers"
+		mark-click="true"
+		draggable="true"
+		style="height: 450px; width: 100%">
+</google-map>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+<script src="libs/js/angular-google-maps/angular-google-maps.js"></script>
+<script>
+	var module = angular.module("angular-google-maps-example", ["google-maps"]);
+	function ExampleController ($scope) {
+		angular.extend($scope, {
+			center: {
+				latitude: 100, // initial map center latitude
+				longitude: 80 // initial map center longitude
+			},
+			markers: [], // an array of markers,
+			zoom: 8 // the zoom level
+		});	}
+</script>
+</body>
+</html>

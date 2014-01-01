@@ -1,0 +1,27 @@
+@import "utils";
+
+
+.rotate{
+}
+
+.rotate:hover {
+	.Transformation(rotate(180deg));
+	.AnimateEasing(1s, cubic-bezier(.23,1.04,.32,.94));
+}
+
+.scale {
+	.AnimateEasing(1s, ease-in);
+}
+.scale:hover {
+	.Transformation(scale(1.150,1.150));
+	.AnimateEasing(1s, cubic-bezier(.23,1.04,.32,.94));
+}
+
+
+.flip {
+}
+.flip:hover {
+	.Transformation(rotateX(180deg) rotateY(180deg));
+	//.AnimateEasing(1200ms, cubic-bezier(.23,1.04,.32,.94));
+	.AnimateEasing(1s, ease-out);
+}

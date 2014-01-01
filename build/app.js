@@ -330,6 +330,8 @@ galleryModule.controller("galleryBrowser", [
 		};
 
 		$scope.prev = function () {
+			console.log("prev");
+
 			$scope.currentItem = $gallery.prev();
 			$scope.nextItem = $gallery.getNext();
 			$scope.prevItem = $gallery.getPrevious();
@@ -337,6 +339,7 @@ galleryModule.controller("galleryBrowser", [
 		};
 
 		$scope.next = function () {
+			console.log("next");
 			$scope.currentItem = $gallery.next();
 			$scope.nextItem = $gallery.getNext();
 			$scope.prevItem = $gallery.getPrevious();
@@ -779,6 +782,7 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 	$scope.year = getResource("year");
 	$scope.text = getResource("text");
 
+
 	$scope.cssRatio = getContentProperty("ratio", "ratio16_9");
 
 	$api.getAlbum($scope.gdataAlbumId, {size: 417, isSquare: false, type: 0})
@@ -788,10 +792,9 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 			}
 		});
 
-	$scope.imageClick = function () {
+	$scope.imageClick = function (name) {
 		$gallery.showBy(function (obj) {
-			var value = obj.resources.name || null;
-			return value === $scope.name;
+			return $scope.gridelement.Id === obj.Id;
 		});
 	};
 }];
@@ -1471,7 +1474,16 @@ var simplehtml = ["$scope", "$markdown", function ($scope, $markdown) {
 	$location.hashPrefix('!');
 }]);
 
-var module = angular.module("defaultClient", ["ngRoute", "galleryBrowser", "repo", "ui.keypress", "ui.event", "ui.bootstrap", "HashBangURLs", "stringutils"]);
+var module = angular.module("defaultClient", [
+	"ngRoute",
+	"galleryBrowser",
+	"repo",
+	"ui.keypress",
+	"ui.event",
+	"ui.bootstrap",
+	"HashBangURLs",
+	"stringutils"
+]);
 
 module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
@@ -1529,7 +1541,6 @@ module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
 
-
 module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify",
 	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify) {
 		$scope.showContent = false;
@@ -1538,6 +1549,8 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 			.css("width", $(window).width());
 
 		var timeout;
+
+
 		$(window).resize(function () {
 			if (timeout) {
 				$timeout.cancel(timeout);
@@ -1558,6 +1571,7 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 				});
 			}, 500);
 		});
+
 
 
 		$notify.addEventListener("content-loaded", function () {

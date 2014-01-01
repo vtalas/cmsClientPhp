@@ -10,3 +10,5 @@ type ^
 ..\libs\js\showdown%MINIFY%.js,^
 ..\libs\js\angular-bootstrap\ui-bootstrap-custom-tpls-0.3.0.min.js^
  > ..\build\app.libs.js
+
+ pause

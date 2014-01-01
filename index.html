@@ -10,6 +10,8 @@
 	<meta name="fragment" content="!"/>
 
 	<title>BOOS</title>
+	<!--<script src="http://maps.googleapis.com/maps/api/js?libraries=weather&sensor=false&language=en&v=3.13"></script>-->
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNC6LIzTQj51MXJg4hSopBak9cqhPGazY&sensor=false"></script>-->
 
 	<script type="text/javascript" src="build/app.libs.js"></script>
 	<script type="text/javascript" src="build/app.js"></script>
@@ -20,30 +22,12 @@
 
 </head>
 
-
 <body ng-controller="appController" class="boos">
-<script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNC6LIzTQj51MXJg4hSopBak9cqhPGazY&sensor=false">
-    </script>
-    
-    <script type="text/javascript">
-      function initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-     <div id="map-canvaxs"/>
-
-
 <div class="loader-wrap" ng-show="showLoader">
 	<div class="centered-container">
 		<div class="centered-content">
 			<img src="resources/booswhite.png"/>
+
 			<div>
 				<img src="resources/loaders/loader.gif"/>
 			</div>
@@ -63,10 +47,11 @@
 	<div class="container_12 maincontent">
 		<div class="border-bottom">
 			<div class="grid_5">
-				<div class="xxx">kansdklnalks </div>
 				<div class="main-logo">
 					<img src="resources/logo_transparent.png" alt="BOOS"/>
-					<img  class="rotate" src="resources/logo_o.png" alt="BOOS"/>
+					<img class="rotate" src="resources/logo_o.png" alt="BOOS"/>
+					<img class="scale" src="resources/logo_o.png" alt="BOOS"/>
+					<img class="flip" src="resources/logo_o.png" alt="BOOS"/>
 				</div>
 			</div>
 			<div class="grid_4">
@@ -94,8 +79,7 @@
 	<div class="clear"></div>
 
 
-	<div class="dumbBoxWrap gallery-image-viewer page-overlay" ng-show="overlayGalleryShow"
-		 ng-controller="galleryBrowser">
+	<div class="dumbBoxWrap gallery-image-viewer page-overlay" ng-show="overlayGalleryShow" ng-controller="galleryBrowser">
 
 		<div class="dumbBoxOverlay">
 			<div ng-show="loading" class="loader">
@@ -106,17 +90,11 @@
 		<div class="vertical-offset">
 
 			<div class="full-height">
-				<div class="container_12 full-height">
-					<div class="grid_2 full-height preview-previous">
+				<div class="container_12 full-height previous" >
+					<div class="grid_2 full-height preview-previous"
+						 ng-click="prev()">
 						<div class="full-height-content">
-							<div gridelement="prevItem" skin="album-overlay-preview" class="full-height preview-content"
-								 ng-show="prevItem"></div>
-							<button ng-click="prev()" class="btn btn-link navigation-action"
-									tooltip="předchozí (page-up)"
-									tooltip-popup-delay="500"
-									tooltip-placement="right">
-								<i class="icon-chevron-left icon-3x-responsive"></i>
-							</button>
+							<div gridelement="prevItem" skin="album-overlay-preview" class="full-height preview-content" ng-show="prevItem"></div>
 						</div>
 					</div>
 					<div class="grid_8 full-height">
@@ -124,17 +102,9 @@
 							<div gridelement="currentItem" skin="album-overlay" class="full-height"></div>
 						</div>
 					</div>
-					<div class="grid_2 full-height">
+					<div class="grid_2 full-height preview-next" ng-click="next()">
 						<div class="full-height-content">
-							<div gridelement="nextItem" skin="album-overlay-preview" class="full-height preview-content"
-								 ng-show="nextItem"></div>
-							<button ng-click="next()" class="btn btn-link navigation-action"
-									tooltip="další (page-down)"
-									tooltip-popup-delay="500"
-									tooltip-placement="bottom"
-									>
-								<i class="icon-chevron-right icon-3x-responsive"></i>
-							</button>
+							<div gridelement="nextItem" skin="album-overlay-preview" class="full-height preview-content" ng-show="nextItem"></div>
 						</div>
 					</div>
 				</div>
@@ -154,8 +124,7 @@
 
 <script id="simplehtml.thtml" type="text/ng-template">
 	<div ng-controller="simplehtml">
-
-			<div ng-bind-html-unsafe="ContentToHtml()"></div>
+		<div ng-bind-html-unsafe="ContentToHtml()"></div>
 	</div>
 </script>
 
@@ -175,10 +144,12 @@
 		<div class="gdata-album-list" ng-controller="gridelementAlbumCtrl">
 			<div class="aspect-ratio-box" ng-class="cssRatio" ng-click="imageClick(name)">
 				<div class="aspect-ratio-content album-image-wrap">
-					<div ngc-fit-to-box-image="album.Thumbnail.Thumbnails[0].PhotoUri" style="width: 100%;height: 100%;">.</div>
+					<div ngc-fit-to-box-image="album.Thumbnail.Thumbnails[0].PhotoUri"
+						 style="width: 100%;height: 100%;">.
+					</div>
 				</div>
 			</div>
-			<div class="album-name" ><a ng-click="imageClick(name)">{{ name }} &nbsp;</a></div>
+			<div class="album-name"><a ng-click="imageClick(name)">{{ name }} &nbsp;</a></div>
 			<div class="clear"></div>
 		</div>
 
@@ -228,6 +199,7 @@
 
 		<div class="grid_12 " style="height: 10%;max-height: 90px">
 			<div class="header">
+				<h1 class="header-content">{{ name }}</h1>
 			</div>
 		</div>
 		<div class="grid_12" style="height: 70%;overflow: hidden">

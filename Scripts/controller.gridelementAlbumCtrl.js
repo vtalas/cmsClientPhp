@@ -21,6 +21,7 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 	$scope.year = getResource("year");
 	$scope.text = getResource("text");
 
+
 	$scope.cssRatio = getContentProperty("ratio", "ratio16_9");
 
 	$api.getAlbum($scope.gdataAlbumId, {size: 417, isSquare: false, type: 0})
@@ -30,10 +31,9 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 			}
 		});
 
-	$scope.imageClick = function () {
+	$scope.imageClick = function (name) {
 		$gallery.showBy(function (obj) {
-			var value = obj.resources.name || null;
-			return value === $scope.name;
+			return $scope.gridelement.Id === obj.Id;
 		});
 	};
 }];

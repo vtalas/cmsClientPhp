@@ -2,7 +2,16 @@ angular.module('HashBangURLs', []).config(['$locationProvider', function ($locat
 	$location.hashPrefix('!');
 }]);
 
-var module = angular.module("defaultClient", ["ngRoute", "galleryBrowser", "repo", "ui.keypress", "ui.event", "ui.bootstrap", "HashBangURLs", "stringutils"]);
+var module = angular.module("defaultClient", [
+	"ngRoute",
+	"galleryBrowser",
+	"repo",
+	"ui.keypress",
+	"ui.event",
+	"ui.bootstrap",
+	"HashBangURLs",
+	"stringutils"
+]);
 
 module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
@@ -60,7 +69,6 @@ module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
 
-
 module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify",
 	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify) {
 		$scope.showContent = false;
@@ -69,6 +77,8 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 			.css("width", $(window).width());
 
 		var timeout;
+
+
 		$(window).resize(function () {
 			if (timeout) {
 				$timeout.cancel(timeout);
@@ -89,6 +99,7 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 				});
 			}, 500);
 		});
+
 
 
 		$notify.addEventListener("content-loaded", function () {

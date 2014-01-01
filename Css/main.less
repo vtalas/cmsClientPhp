@@ -5,6 +5,7 @@
 @import "src/albumOverlay";
 @import "src/pageOverlay";
 @import "src/aspectRatio";
+@import "src/animations";
 
 @import "album_thtml";
 
@@ -517,14 +518,32 @@ button {
 
 	.full-height {
 		height: 100%;
+		&.previous {
+		//	opacity: 0.1;
+			&:hover {
+				//opacity: 0.5;
+			}
+		}
 		.full-height-content {
 			height: 100%;
 		}
 	}
 
-	.preview-previous {
-		padding-right: 30px;
+	.preview-previous, .preview-next {
+		opacity: 0.1;
+		.Animate(500ms);
+		cursor: pointer;
+			&:hover{
+			opacity: 0.7;
+		}
 	}
+
+	.preview-previous {
+		.full-height-content {
+			margin-right: 5em;
+		}
+	}
+
 
 }
 
@@ -791,36 +810,12 @@ button {
 		padding-bottom: 21px;
 
 
-		img {
-			transition:all 2s ease-in-out;
-		}
-
-		@-webkit-keyframes resize {
-			0% {
-			}
-			50% {
-				-webkit-transform: rotateX(90deg);;
-			}
-			100% {
-				-webkit-transform: rotateX(0deg);;
-			}
-		}
-
-
-		.rotate{
-			.AnimateEasing(1s, linear);
-		}
-		.rotate:hover {
-	//		-webkit-animation:resize 1s; /* Safari and Chrome */
-			-webkit-transform: rotateX(180deg);;
-			.AnimateEasing(500ms, linear);
-		}
+//		img {
+//			transition:all 1s ease-in-out;
+//		}
 	}
 }
 
-.xxx {
-	width:100%;
-}
 
 
 
