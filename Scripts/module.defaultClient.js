@@ -10,7 +10,8 @@ var module = angular.module("defaultClient", [
 	"ui.event",
 	"ui.bootstrap",
 	"HashBangURLs",
-	"stringutils"
+	"stringutils",
+	"ngAnimate"
 ]);
 
 module.config(['$routeProvider', function ($routeProvider) {
@@ -69,8 +70,8 @@ module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
 
-module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify",
-	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify) {
+module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify", "$animate",
+	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify, $animate) {
 		$scope.showContent = false;
 		$(".centered-container")
 			.css("height", $(window).height())

@@ -4,6 +4,7 @@ type ^
 ..\libs\js\jquery%MINIFY%.js,^
 ..\libs\js\angular%MINIFY%.js,^
 ..\libs\js\angular-route%MINIFY%.js,^
+..\libs\js\angular-animate%MINIFY%.js,^
 ..\libs\js\angular-resource%MINIFY%.js,^
 ..\libs\js\angular-ui\event%MINIFY%.js,^
 ..\libs\js\angular-ui\angular.keypress%MINIFY%.js,^

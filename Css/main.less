@@ -14,11 +14,11 @@ body, html {
 	padding: 0;
 	height: 100%;
 }
-body {
-	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJnz56tZ4TxQRxjY+NGsACMA2IzInNAAgDZSw7r4ocGigAAAABJRU5ErkJggg==);
-}
 
 body {
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJnz56tZ4TxQRxjY+NGsACMA2IzInNAAgDZSw7r4ocGigAAAABJRU5ErkJggg==);
+	overflow-y: scroll;
+
 	-webkit-font-smoothing: subpixel-antialiased;
 	font-family: 'texgyreadventorregular', sans-serif;
 	font-weight: 400;
@@ -782,40 +782,62 @@ button {
 	width: 90%;
 
 	.xxx{
-		@-webkit-keyframes resizexx {
-			0% {
-				padding: 0;
-			}
-			50% {
-				padding: 0 20px;
-				background-color:rgba(255,0,0,0.2);
-			}
-			100% {
-				padding: 0 100px;
-				background-color:blue;
-			}
+		img {
+			.AnimateEasingWithType(300ms, ease-out, opacity);
+			opacity: 0.7;
 		}
-
-		&:hover {
-			-webkit-animation-name: resize 5s; /* Safari and Chrome */
-			.Animate(2s);
-
-			background-color: royalblue;
-			//-webkit-transform: rotateX(180deg);
+		img:hover {
+			opacity: 0.9;
 		}
-
 	}
 	.main-logo {
 		padding-top: 10px;
 		padding-bottom: 21px;
+		cursor: pointer;
 
+		.ocko {
+			margin-left:-58px;
+		}
 
-//		img {
-//			transition:all 1s ease-in-out;
-//		}
+		&:hover .ocko {	.rotateAnimate;	}
 	}
 }
 
 
+
+.animate-repeat {
+	.Animate(1000ms);
+	position: relative;
+}
+
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave
+{
+	.grid_3{
+		.AnimateEasingWithType(1000ms, ease, width);
+	}
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+	opacity:0;
+}
+
+.animate-repeat.ng-leave.ng-leave-active{
+	.grid_3{
+		width: 0px;
+	}
+	opacity: 0;
+}
+
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+	opacity: 1;
+}
 
 

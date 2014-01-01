@@ -20,6 +20,26 @@
 		.ImagePadding;
 	}
 
+	.preview.ng-move,
+	.preview.ng-enter,
+	.preview.ng-leave {
+		.Animate(1000ms);
+	}
+
+	.preview.ng-leave.ng-leave-active,
+	.preview.ng-move,
+	.preview.ng-enter {
+		opacity:0;
+		max-height:0;
+	}
+
+	.preview.ng-leave,
+	.preview.ng-move.ng-move-active,
+	.preview.ng-enter.ng-enter-active {
+		opacity:1;
+		max-height:40px;
+	}
+
 	.preview:hover {
 		opacity: 1;
 	}

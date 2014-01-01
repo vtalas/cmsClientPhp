@@ -18,6 +18,13 @@
   padding-left: 0px;
   padding-bottom: 0px;
 }
+.gdata-album-list a {
+  -webkit-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1400ms;
+  -moz-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1400ms;
+  -ms-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1400ms;
+  -o-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1400ms;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1400ms;
+}
 .gdata-album-list:hover a {
   color: red;
 }
