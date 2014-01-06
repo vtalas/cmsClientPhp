@@ -25,6 +25,7 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 	$scope.cssRatio = getContentProperty("ratio", "ratio16_9");
 
 	$api.getAlbum($scope.gdataAlbumId, {size: 417, isSquare: false, type: 0})
+//	$api.getAlbum($scope.gdataAlbumId)
 		.then(function (data) {
 			if (data) {
 				$scope.album = data.data;

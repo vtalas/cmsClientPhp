@@ -24,12 +24,16 @@
 			.TextOverflowElipsies;
 		}
 	}
+
 	.album-image {
-		.AnimateEasing(300ms, ease-out);
+		.AnimateEasing(1300ms, ease-out);
 		position: relative;
 		z-index: 10;
-		max-height:100%;
 		opacity: 0.8;
+		&:hover {
+			opacity: 0.1;
+			max-height: 40%;
+		}
 	}
 	.album-image-wrap {
 		background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJnz56tZ4TxQRxjY+NGsACMA2IzInNAAgDZSw7r4ocGigAAAABJRU5ErkJggg==);

@@ -29,7 +29,12 @@
 	@ease: cubic-bezier(0.075, 0.820, 0.165, 1.000);
 	.AnimateEasing(@duration, @ease);
 }
-
+.Transform(@type) {
+	-webkit-transform: @type;
+	-moz-transform: @type;
+	-o-transform: @type;
+	transform: @type;
+}
 .centered-container {
 	display: table;
 	width: 100%;

@@ -1,8 +1,38 @@
+@import "utils";
+
 .image-envelope {
 	overflow: hidden;
 
 	.album-image {
 		max-height: 100%;
+		.AnimateEasing(300ms, ease-out);
+		position: relative;
+		&:hover {
+		}
+	}
+}
+
+.preview-next {
+	.image-envelope {
+		.album-image {
+			.AnimateEasing(1300ms, ease-out);
+			&:hover {
+				.AnimateEasing(4300ms, ease-out);
+				left: -50%;
+			}
+		}
+	}
+}
+.preview-previous {
+	.image-envelope {
+		.album-image {
+			left:-50%;
+			.AnimateEasing(1300ms, ease-out);
+			&:hover {
+				.AnimateEasing(4300ms, ease-out);
+				left: 0px;
+			}
+		}
 	}
 }
 

@@ -15,30 +15,27 @@
 	.preview {
 		display: inline-block;
 		cursor: pointer;
-		opacity:0.6;
-		.Animate(1000ms);
+		opacity: 0.6;
+		position: relative;
 		.ImagePadding;
 	}
 
-	.preview.ng-move,
-	.preview.ng-enter,
-	.preview.ng-leave {
-		.Animate(1000ms);
-	}
+
 
 	.preview.ng-leave.ng-leave-active,
 	.preview.ng-move,
 	.preview.ng-enter {
-		opacity:0;
-		max-height:0;
+		.Animate(2000ms);
+		.Transform(rotateX(180deg));
 	}
+
 
 	.preview.ng-leave,
 	.preview.ng-move.ng-move-active,
 	.preview.ng-enter.ng-enter-active {
-		opacity:1;
-		max-height:40px;
+		.Transform(rotateX(0deg));
 	}
+
 
 	.preview:hover {
 		opacity: 1;
