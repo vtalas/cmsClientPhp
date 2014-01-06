@@ -17,7 +17,7 @@ galleryModule.factory("$gallery", ["$notify", function ($notify) {
 
 galleryModule.directive("ngcFitToBoxImage", [function () {
 	return {
-		template: '<div class="xxx" ><img src="{{imageSrc}}" /></div>',
+		template: '<div ><img class="fit-image" src="{{imageSrc}}" /></div>',
 		replace: true,
 		scope: {ngcFitToBoxImage: "="},
 		link: function (scope, element, attrs) {

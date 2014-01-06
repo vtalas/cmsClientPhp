@@ -10,8 +10,8 @@
 	<meta name="fragment" content="!"/>
 
 	<title>BOOS</title>
-	<!--<script src="http://maps.googleapis.com/maps/api/js?libraries=weather&sensor=false&language=en&v=3.13"></script>-->
-	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNC6LIzTQj51MXJg4hSopBak9cqhPGazY&sensor=false"></script>-->
+	<script src="http://maps.googleapis.com/maps/api/js?libraries=weather&sensor=false&language=en&v=3.13"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNC6LIzTQj51MXJg4hSopBak9cqhPGazY&sensor=false"></script>
 
 	<script type="text/javascript" src="build/app.libs.js"></script>
 	<script type="text/javascript" src="build/app.js"></script>
@@ -65,7 +65,7 @@
 					<div><a href="#!/page/projekty" ng-class="isSelectedLink('projekty')">Projekty</a></div>
 					<div><a href="#!/page/historie" ng-class="isSelectedLink('historie')">Historie</a></div>
 					<div><a href="#!/page/cinnost" ng-class="isSelectedLink('cinnost')">Činnost</a></div>
-					<div><a href="#!/p/kontakt" ng-class="isSelectedLink('kontakt')">Kontakt</a></div>
+					<div><a href="#!/page/kontakt" ng-class="isSelectedLink('kontakt')">Kontakt</a></div>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -235,6 +235,21 @@
 			</div>
 		</div>
 		<div class="clear"></div>
+	</div>
+</script>
+<script id="kontakt.thtml" type="text/ng-template">
+	<div class="grid_3 kontakt-default" ng-controller="gridelementKontaktCtrl">
+		<h3 ng-show="header">{{header}}</h3>
+
+		<div class="kontakt-content">
+			<h4 ng-show="subHeader">{{subHeader}}</h4>
+			<div ng-show="valueA">{{valueA}}</div>
+			<div ng-show="valueB">{{valueB}}</div>
+			<div ng-show="valueC">{{valueC}}</div>
+			<div ng-show="valueD">{{valueD}}</div>
+			<div ng-show="valueE">{{valueE}}</div>
+			<div ng-show="valueF">{{valueF}}</div>
+		</div>
 	</div>
 </script>
 

@@ -47,7 +47,6 @@ module.directive("gridelement", ["$compile", "$templateCache", "$timeout", funct
 					skinStr = skin ? "_" + skin : "";
 				var template = $templateCache.get(scope.gridelement.Type + skinStr + ".thtml");
 				var compiled = $compile(template)(scope);
-
 				if (timeout) {
 					$timeout.cancel(timeout);
 				}
