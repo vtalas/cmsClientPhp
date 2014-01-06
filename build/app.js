@@ -115,6 +115,61 @@ stringUtils.directive("ngBindHtmlUnsafe", ['$sce', '$parse', function($sce, $par
 		});
 	};
 }]);
+var ItemBrowser = (function () {
+	"use strict";
+
+	var defaults = function () {
+		return {
+
+		};
+	};
+
+	function ItemBrowser(items, settings) {
+		this.settings = angular.extend(defaults(), settings);
+		this.items = items || [];
+		this.currentIndex = 0;
+	}
+
+	ItemBrowser.prototype.next = function () {
+		if (this.currentIndex < this.items.length - 1) {
+			console.log("xx");
+			this.currentIndex++;
+		}
+		return this.getCurrent();
+	};
+
+	ItemBrowser.prototype.previous = function () {
+		if (this.currentIndex > 0) {
+			this.currentIndex--;
+		}
+		return this.getCurrent();
+	};
+
+	ItemBrowser.prototype.selectByIndex = function (index) {
+		if (index > 0 && index < this.items.length)  {
+			this.currentIndex = index;
+		}
+		return this.getCurrent();
+	};
+
+	ItemBrowser.prototype.getNext = function () {
+		if (this.currentIndex === -1) {
+			return null;
+		}
+		return this.items[this.currentIndex + 1] || null;
+	};
+
+	ItemBrowser.prototype.getPrevious = function () {
+		return this.items[this.currentIndex - 1] || null;
+	};
+
+	ItemBrowser.prototype.getCurrent = function () {
+		return this.items[this.currentIndex] || null;
+	};
+
+	return ItemBrowser;
+
+}());
 var FitImage = (function () {
 	"use strict";
 
@@ -156,8 +211,7 @@ var Gallery = (function () {
 	};
 
 	function Gallery(settings) {
-		var x = defaults();
-		this.settings = angular.extend(x, settings);
+		this.settings = angular.extend(defaults(), settings);
 		this.data = [];
 		this.currentIndex = -1;
 	}
@@ -330,8 +384,6 @@ galleryModule.controller("galleryBrowser", [
 		};
 
 		$scope.prev = function () {
-			console.log("prev");
-
 			$scope.currentItem = $gallery.prev();
 			$scope.nextItem = $gallery.getNext();
 			$scope.prevItem = $gallery.getPrevious();
@@ -798,7 +850,7 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 	};
 }];
 
-var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$markdown", function ($scope, $api, $routeParams, $location, $notify, $gallery, $markdown) {
+var gridelementAlbumOverlayCtrlPreview = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$markdown", function ($scope, $api, $routeParams, $location, $notify, $gallery, $markdown) {
 	$scope.gdataAlbumId = getAlbumId();
 	$scope.route = {
 		link: $routeParams.link
@@ -838,36 +890,93 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 		$scope.currentImage = $scope.albumPhotos[index];
 		$scope.currentImageIndex = index;
 	};
+}];
 
-	$scope.prevImage = function () {
-		if ($scope.currentImageIndex >= 1) {
-			$scope.currentImageIndex--;
-			$scope.currentImage = $scope.albumPhotos[$scope.currentImageIndex];
+
+/*global ItemBrowser*/
+var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$markdown",
+	function ($scope, $api, $routeParams, $location, $notify, $gallery, $markdown) {
+		$scope.gdataAlbumId = getAlbumId();
+		$scope.route = {
+			link: $routeParams.link
+		};
+
+		function getAlbumId() {
+			var x = $scope.gridelement.Content;
+			return x !== null ? x.gdataAlbumId : null;
 		}
-	};
 
-	$scope.nextImage = function () {
-		if ($scope.currentImageIndex < $scope.albumPhotos.length - 1 ) {
-			$scope.currentImageIndex++;
-			$scope.currentImage = $scope.albumPhotos[$scope.currentImageIndex];
+		var resources = $scope.gridelement.resources || {};
+
+		function getResource(key) {
+			return resources[key] || "";
 		}
-	};
 
-	$scope.$on("global-keydown", function (e, $event) {
-		var key = $event.keyCode;
+		$scope.name = getResource("name");
+		$scope.type = getResource("type");
+		$scope.services = getResource("services");
+		$scope.year = getResource("year");
+		$scope.text = $markdown.toHtml(getResource("text"));
 
-		switch (key) {
-			case 37:
-				$scope.prevImage();
-				break;
-			case 39:
-				$scope.nextImage();
-				break;
-		}
-	});
+		$scope.toHtml = function (value) {
+			return $markdown.toHtml(value);
+		};
+
+		var itemBrowser;
+		$api.getAlbumPhotos($scope.gdataAlbumId)
+			.then(function (data) {
+				if (data) {
+					$scope.albumPhotos = data.data;
+
+					itemBrowser = new ItemBrowser(data.data);
+					$scope.currentImage = itemBrowser.getCurrent();
+					$scope.currentImageIndex = itemBrowser.currentIndex;
+
+					$scope.previousImage = itemBrowser.getPrevious();
+					$scope.nextImg = itemBrowser.getNext();
+					console.log($scope.nextImage);
+				}
+			});
+
+		$scope.showImagePreview = function (index) {
+			$scope.currentImage = itemBrowser.selectByIndex(index);
+			$scope.currentImageIndex = itemBrowser.currentIndex;
+
+			$scope.previousImage = itemBrowser.getPrevious();
+			$scope.nextImg = itemBrowser.getNext();
+		};
+
+		$scope.prevImage = function () {
+			$scope.currentImage = itemBrowser.previous();
+			$scope.currentImageIndex = itemBrowser.currentIndex;
+
+			$scope.previousImage = itemBrowser.getPrevious();
+			$scope.nextImg = itemBrowser.getNext();
+		};
+
+		$scope.nextImage = function () {
+			$scope.currentImage = itemBrowser.next();
+			$scope.currentImageIndex = itemBrowser.currentIndex;
+
+			$scope.previousImage = itemBrowser.getPrevious();
+			$scope.nextImg = itemBrowser.getNext();
+		};
+
+		$scope.$on("global-keydown", function (e, $event) {
+			var key = $event.keyCode;
+
+			switch (key) {
+				case 37:
+					$scope.prevImage();
+					break;
+				case 39:
+					$scope.nextImage();
+					break;
+			}
+		});
 
 
-}];var gridelementGdataAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$rootScope", function ($scope, $api, $routeParams, $location) {
+	}];var gridelementGdataAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$rootScope", function ($scope, $api, $routeParams, $location) {
 	$scope.gdataAlbumId = getAlbumId();
 	$scope.route = {
 		link: $routeParams.link

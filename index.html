@@ -166,7 +166,9 @@
 		<div class="grid_12" style="height: 70%;overflow: hidden">
 			<div class="grid_8">
 				<div class="image-envelope preview-current">
+					<img class="album-image" ng-src="{{previousImage.Thumbnails[2].PhotoUri}}" style="display:none" />
 					<img class="album-image" ng-src="{{currentImage.Thumbnails[2].PhotoUri}}"/>
+					<img class="album-image" ng-src="{{nextImg.Thumbnails[2].PhotoUri}}" style="display:none" />
 				</div>
 
 			</div>
@@ -194,7 +196,7 @@
 </script>
 
 <script id="album_album-overlay-preview.thtml" type="text/ng-template">
-	<div class="album-overlay" ng-controller="gridelementAlbumOverlayCtrl">
+	<div class="album-overlay" ng-controller="gridelementAlbumOverlayCtrlPreview">
 
 		<div class="grid_12 " style="height: 10%;max-height: 90px">
 			<div class="header">

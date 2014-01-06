@@ -26,7 +26,7 @@
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1400ms;
 }
 .gdata-album-list:hover a {
-  color: red;
+  color: #990000;
 }
 .gdata-album-list:hover .album-image {
   opacity: 1;
@@ -896,7 +896,7 @@
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1400ms;
 }
 .gdata-album-list:hover a {
-  color: red;
+  color: #990000;
 }
 .gdata-album-list:hover .album-image {
   opacity: 1;
@@ -962,11 +962,11 @@ button {
 }
 .boos a.selected,
 .boos .link.selected {
-  color: #333333;
+  color: #515455;
 }
 .boos a:hover,
 .boos .link:hover {
-  color: #ff0000;
+  color: #990000;
 }
 .boos .main-menu a {
   display: block;
@@ -984,7 +984,7 @@ button {
   text-align: right;
   padding-right: 20px;
   font-size: 70%;
-  color: #ff0000;
+  color: #990000;
 }
 .boos .groups h3 {
   border-bottom: 1px solid #bbbbbb;
@@ -1694,21 +1694,21 @@ fade-out-linear {
   transition: all cubic-bezier(0.23, 1.04, 0.32, 0.94) 1s;
 }
 .animate-repeat {
-  -webkit-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
-  -moz-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
-  -ms-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
-  -o-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
-  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
+  -webkit-transition: all ease 3000ms;
+  -moz-transition: all ease 3000ms;
+  -ms-transition: all ease 3000ms;
+  -o-transition: all ease 3000ms;
+  transition: all ease 3000ms;
   position: relative;
 }
 .animate-repeat.ng-move .grid_3,
 .animate-repeat.ng-enter .grid_3,
 .animate-repeat.ng-leave .grid_3 {
-  -webkit-transition: width ease 1000ms;
-  -moz-transition: width ease 1000ms;
-  -ms-transition: width ease 1000ms;
-  -o-transition: width ease 1000ms;
-  transition: width ease 1000ms;
+  -webkit-transition: all ease 3000ms;
+  -moz-transition: all ease 3000ms;
+  -ms-transition: all ease 3000ms;
+  -o-transition: all ease 3000ms;
+  transition: all ease 3000ms;
 }
 .animate-repeat.ng-leave.ng-leave-active,
 .animate-repeat.ng-move,
@@ -1720,9 +1720,4 @@ fade-out-linear {
 }
 .animate-repeat.ng-leave.ng-leave-active .grid_3 {
   width: 0px;
-}
-.animate-repeat.ng-leave,
-.animate-repeat.ng-move.ng-move-active,
-.animate-repeat.ng-enter.ng-enter-active {
-  opacity: 1;
 }

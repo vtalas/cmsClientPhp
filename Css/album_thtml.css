@@ -26,7 +26,7 @@
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1400ms;
 }
 .gdata-album-list:hover a {
-  color: red;
+  color: #990000;
 }
 .gdata-album-list:hover .album-image {
   opacity: 1;
