@@ -545,37 +545,6 @@
   transition: all ease-out 300ms;
   position: relative;
 }
-.preview-next .image-envelope .album-image {
-  -webkit-transition: all ease-out 1300ms;
-  -moz-transition: all ease-out 1300ms;
-  -ms-transition: all ease-out 1300ms;
-  -o-transition: all ease-out 1300ms;
-  transition: all ease-out 1300ms;
-}
-.preview-next .image-envelope .album-image:hover {
-  -webkit-transition: all ease-out 4300ms;
-  -moz-transition: all ease-out 4300ms;
-  -ms-transition: all ease-out 4300ms;
-  -o-transition: all ease-out 4300ms;
-  transition: all ease-out 4300ms;
-  left: -50%;
-}
-.preview-previous .image-envelope .album-image {
-  left: -50%;
-  -webkit-transition: all ease-out 1300ms;
-  -moz-transition: all ease-out 1300ms;
-  -ms-transition: all ease-out 1300ms;
-  -o-transition: all ease-out 1300ms;
-  transition: all ease-out 1300ms;
-}
-.preview-previous .image-envelope .album-image:hover {
-  -webkit-transition: all ease-out 4300ms;
-  -moz-transition: all ease-out 4300ms;
-  -ms-transition: all ease-out 4300ms;
-  -o-transition: all ease-out 4300ms;
-  transition: all ease-out 4300ms;
-  left: 0px;
-}
 .TextOverflowElipsies {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -1461,11 +1430,11 @@ button {
 .gallery-image-viewer .preview-previous,
 .gallery-image-viewer .preview-next {
   opacity: 0.1;
-  -webkit-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 500ms;
-  -moz-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 500ms;
-  -ms-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 500ms;
-  -o-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 500ms;
-  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 500ms;
+  -webkit-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1500ms;
+  -moz-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1500ms;
+  -ms-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1500ms;
+  -o-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1500ms;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1500ms;
   cursor: pointer;
 }
 .gallery-image-viewer .preview-previous:hover,
@@ -1707,13 +1676,18 @@ fade-out-linear {
   width: 90%;
 }
 .container_12.maincontent .xxx img {
+  -webkit-transition: opacity ease-out 300ms;
+  -moz-transition: opacity ease-out 300ms;
+  -ms-transition: opacity ease-out 300ms;
+  -o-transition: opacity ease-out 300ms;
+  transition: opacity ease-out 300ms;
   opacity: 0.7;
 }
 .container_12.maincontent .xxx img:hover {
   opacity: 0.9;
 }
 .container_12.maincontent .main-logo {
-  padding-top: 10px;
+  padding-top: 60px;
   padding-bottom: 21px;
   cursor: pointer;
 }
