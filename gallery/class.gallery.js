@@ -11,8 +11,7 @@ var Gallery = (function () {
 	};
 
 	function Gallery(settings) {
-		var x = defaults();
-		this.settings = angular.extend(x, settings);
+		this.settings = angular.extend(defaults(), settings);
 		this.data = [];
 		this.currentIndex = -1;
 	}

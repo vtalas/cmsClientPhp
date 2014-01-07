@@ -2,7 +2,17 @@ angular.module('HashBangURLs', []).config(['$locationProvider', function ($locat
 	$location.hashPrefix('!');
 }]);
 
-var module = angular.module("defaultClient", ["ngRoute", "galleryBrowser", "repo", "ui.keypress", "ui.event", "ui.bootstrap", "HashBangURLs", "stringutils"]);
+var module = angular.module("defaultClient", [
+	"ngRoute",
+	"galleryBrowser",
+	"repo",
+	"ui.keypress",
+	"ui.event",
+	"ui.bootstrap",
+	"HashBangURLs",
+	"stringutils",
+	"ngAnimate"
+]);
 
 module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
@@ -37,7 +47,6 @@ module.directive("gridelement", ["$compile", "$templateCache", "$timeout", funct
 					skinStr = skin ? "_" + skin : "";
 				var template = $templateCache.get(scope.gridelement.Type + skinStr + ".thtml");
 				var compiled = $compile(template)(scope);
-
 				if (timeout) {
 					$timeout.cancel(timeout);
 				}
@@ -60,15 +69,16 @@ module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
 
-
-module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify",
-	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify) {
+module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify", "$animate",
+	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify, $animate) {
 		$scope.showContent = false;
 		$(".centered-container")
 			.css("height", $(window).height())
 			.css("width", $(window).width());
 
 		var timeout;
+
+
 		$(window).resize(function () {
 			if (timeout) {
 				$timeout.cancel(timeout);
@@ -89,6 +99,7 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 				});
 			}, 500);
 		});
+
 
 
 		$notify.addEventListener("content-loaded", function () {

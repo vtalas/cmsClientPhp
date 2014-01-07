@@ -12,12 +12,30 @@ describe("Gallery browser module test", function () {
 		expect($gallery.settings.onLoad).toHaveBeenCalled();
 	}));
 
+	it("show by index", inject(function ($gallery) {
+		spyOn($gallery.settings, "onLoad");
+		$gallery.loadData(["a", "b", "c"]);
+
+		$gallery.showByIndex(1);
+		expect($gallery.currentIndex).toBe(1);
+		expect($gallery.getPrevious()).toBe("a");
+		expect($gallery.getNext()).toBe("c");
+	}));
+	it("show by index - END", inject(function ($gallery) {
+		spyOn($gallery.settings, "onLoad");
+		$gallery.loadData(["a", "b", "c"]);
+
+		$gallery.showByIndex(2);
+		expect($gallery.getCurrent()).toBe("c");
+		expect($gallery.getPrevious()).toBe("b");
+		expect($gallery.getNext()).toBeNull();
+	}));
+
 	it("initialization", inject(function ($gallery) {
 		spyOn($gallery.settings, "onLoad");
 		$gallery.loadData();
 		expect($gallery.data.length).toBe(0);
 		expect($gallery.settings.onLoad).toHaveBeenCalled();
-
 	}));
 
 	it("initialization", inject(function ($gallery) {

@@ -15,32 +15,31 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 		link: $routeParams.link
 	};
 
-
 	$scope.name = getResource("name", " ");
 	$scope.type = getResource("type");
 	$scope.services = getResource("services");
 	$scope.year = getResource("year");
 	$scope.text = getResource("text");
 
+
 	$scope.cssRatio = getContentProperty("ratio", "ratio16_9");
-console.log($scope.cssRatio);
 
 	$api.getAlbum($scope.gdataAlbumId, {size: 417, isSquare: false, type: 0})
+//	$api.getAlbum($scope.gdataAlbumId)
 		.then(function (data) {
 			if (data) {
 				$scope.album = data.data;
 			}
 		});
 
-	$scope.imageClick = function () {
+	$scope.imageClick = function (name) {
 		$gallery.showBy(function (obj) {
-			var value = obj.resources.name || null;
-			return value === $scope.name;
+			return $scope.gridelement.Id === obj.Id;
 		});
 	};
 }];
 
-var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$markdown", function ($scope, $api, $routeParams, $location, $notify, $gallery, $markdown) {
+var gridelementAlbumOverlayCtrlPreview = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$markdown", function ($scope, $api, $routeParams, $location, $notify, $gallery, $markdown) {
 	$scope.gdataAlbumId = getAlbumId();
 	$scope.route = {
 		link: $routeParams.link
@@ -80,33 +79,6 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 		$scope.currentImage = $scope.albumPhotos[index];
 		$scope.currentImageIndex = index;
 	};
-
-	$scope.prevImage = function () {
-		if ($scope.currentImageIndex >= 1) {
-			$scope.currentImageIndex--;
-			$scope.currentImage = $scope.albumPhotos[$scope.currentImageIndex];
-		}
-	};
-
-	$scope.nextImage = function () {
-		if ($scope.currentImageIndex < $scope.albumPhotos.length - 1 ) {
-			$scope.currentImageIndex++;
-			$scope.currentImage = $scope.albumPhotos[$scope.currentImageIndex];
-		}
-	};
-
-	$scope.$on("global-keydown", function (e, $event) {
-		var key = $event.keyCode;
-
-		switch (key) {
-			case 37:
-				$scope.prevImage();
-				break;
-			case 39:
-				$scope.nextImage();
-				break;
-		}
-	});
-
-
 }];
+
+

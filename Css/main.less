@@ -5,20 +5,21 @@
 @import "src/albumOverlay";
 @import "src/pageOverlay";
 @import "src/aspectRatio";
+@import "src/animations";
 
 @import "album_thtml";
+@import "kontakt";
 
 body, html {
 	margin: 0;
 	padding: 0;
 	height: 100%;
 }
+
 body {
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJnz56tZ4TxQRxjY+NGsACMA2IzInNAAgDZSw7r4ocGigAAAABJRU5ErkJggg==);
+	overflow-y: scroll;
 
-}
-
-body {
 	-webkit-font-smoothing: subpixel-antialiased;
 	font-family: 'texgyreadventorregular', sans-serif;
 	font-weight: 400;
@@ -47,8 +48,6 @@ button {
 
 .boos {
 	@linkColor : #bbb;
-	@selectedColor : #333;
-	@bcolor: red;
 
 	a, .link {
 		color: @linkColor;
@@ -56,7 +55,7 @@ button {
 			color: @selectedColor;
 		}
 		&:hover {
-			color: @bcolor;
+			color: @red;
 		}
 	}
 	.main-menu {
@@ -79,7 +78,7 @@ button {
 		text-align: right;
 		padding-right: 20px;
 		font-size: 70%;
-		color: @bcolor;
+		color: @red;
 	}
 	.groups {
 		h3 {
@@ -518,14 +517,33 @@ button {
 
 	.full-height {
 		height: 100%;
+		&.previous {
+		//	opacity: 0.1;
+			&:hover {
+				//opacity: 0.5;
+			}
+		}
 		.full-height-content {
 			height: 100%;
 		}
 	}
 
-	.preview-previous {
-		padding-right: 30px;
+
+	.preview-previous, .preview-next {
+		opacity: 0.1;
+		.Animate(1500ms);
+		cursor: pointer;
+			&:hover{
+			opacity: 0.7;
+		}
 	}
+
+	.preview-previous {
+		.full-height-content {
+			margin-right: 5em;
+		}
+	}
+
 
 }
 
@@ -763,19 +781,52 @@ button {
 .container_12.maincontent {
 	width: 90%;
 
+
+//	.xxx{
+
+		.fit-image {
+			.AnimateEasingWithType(300ms, ease-out, opacity);
+			opacity: 0.7;
+		}
+		img:hover {
+			opacity: 0.9;
+		}
+//	}
+
 	.main-logo {
 		padding-top: 60px;
 		padding-bottom: 21px;
-		width: 220px;
-		img {
-			width: 100%;
+		cursor: pointer;
+
+		.ocko {
+			margin-left:-58px;
 		}
+
+		&:hover .ocko {	.rotateAnimate;	}
 	}
 }
 
-.xxx {
-	width:100%;
+.animate-repeat {
+	position: relative;
 }
 
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave.ng-leave-active
+{
+
+	.AnimateEasing(300ms, linear);
+//	.Transform(rotateY(180deg));
+	.Transform(scale(0.5, 0.5));
+	opacity: 0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-enter.ng-enter-active {
+	.AnimateEasing(300ms, linear);
+
+	//.Transform(rotateY(0deg));
+	.Transform(scale(1, 1));
+	opacity: 1;
+}
 
 
