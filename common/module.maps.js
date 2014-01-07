@@ -2,7 +2,7 @@
 "use strict";
 var moduleMaps = angular.module("maps", []);
 
-moduleMaps.directive("ngcGoogleMap", ['$sce', '$parse', function ($sce, $parse) {
+moduleMaps.directive("ngcGoogleMap", ['$sce', '$parse',"$timeout", function ($sce, $parse, $timeout) {
 
 	var defaults = {
 		zoom: 18,
@@ -24,9 +24,9 @@ moduleMaps.directive("ngcGoogleMap", ['$sce', '$parse', function ($sce, $parse) 
 				var map = new google.maps.Map(element[0], mapOptions);
 				scope.map = map;
 			};
-
-			init();
-//			google.maps.event.addDomListener(window, 'load', init);
+			$timeout(function () {
+				init();
+			},500);
 		}
 	};
 

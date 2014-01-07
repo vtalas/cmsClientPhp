@@ -11,6 +11,7 @@ var module = angular.module("defaultClient", [
 	"ui.bootstrap",
 	"HashBangURLs",
 	"stringutils",
+	"maps",
 	"ngAnimate"
 ]);
 

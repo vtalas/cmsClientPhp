@@ -95,7 +95,6 @@ galleryModule.controller("galleryBrowser", [
 		};
 
 		$scope.next = function () {
-			console.log("next");
 			$scope.currentItem = $gallery.next();
 			$scope.nextItem = $gallery.getNext();
 			$scope.prevItem = $gallery.getPrevious();

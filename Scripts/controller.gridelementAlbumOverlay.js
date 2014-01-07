@@ -8,13 +8,13 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 
 		function getAlbumId() {
 			var x = $scope.gridelement.Content;
-			return x !== null ? x.gdataAlbumId : null;
+			return x !== null ? x.gdataAlbumId : "";
 		}
 
 		var resources = $scope.gridelement.resources || {};
 
 		function getResource(key) {
-			return resources[key] || "";
+			return resources[key] || null;
 		}
 
 		$scope.name = getResource("name");
@@ -22,6 +22,9 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 		$scope.services = getResource("services");
 		$scope.year = getResource("year");
 		$scope.text = $markdown.toHtml(getResource("text"));
+
+		$scope.map = getResource("map");
+		$scope.hasMap = $scope.map !== null;
 
 		$scope.toHtml = function (value) {
 			return $markdown.toHtml(value);
@@ -39,7 +42,6 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 
 					$scope.previousImage = itemBrowser.getPrevious();
 					$scope.nextImg = itemBrowser.getNext();
-					console.log($scope.nextImage);
 				}
 			});
 
