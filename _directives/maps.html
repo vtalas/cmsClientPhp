@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cs" ng-app="maps">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="google-site-verification" content=""/>
+	<meta name="fragment" content="!"/>
+
+	<title>BOOS</title>
+
+	<script type="text/javascript" src="../build/app.libs.js"></script>
+	<script type="text/javascript" src="../build/app.js"></script>
+
+</head>
+
+
+<body class="boos">
+<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNC6LIzTQj51MXJg4hSopBak9cqhPGazY&sensor=false">
+</script>
+
+<script type="text/javascript">
+	var ctrl = function ($scope) {
+		$scope.aaa = {
+			zoom: 19,
+			lat: 49.214807,
+			lng: 16.570445
+		}
+	};
+</script>
+
+
+<div ng-controller="ctrl">
+	<input ng-model="aaa.zoom"/>
+	{{aaa.zoom}}
+
+	<div ngc-google-map="aaa" style="height: 600px;border: 1px solid red">
+	</div>
+</div>
+
+</body>
+</html>
