@@ -149,6 +149,61 @@ stringUtils.directive("ngBindHtmlUnsafe", ['$sce', '$parse', function($sce, $par
 		});
 	};
 }]);
+var ItemBrowser = (function () {
+	"use strict";
+
+	var defaults = function () {
+		return {
+
+		};
+	};
+
+	function ItemBrowser(items, settings) {
+		this.settings = angular.extend(defaults(), settings);
+		this.items = items || [];
+		this.currentIndex = 0;
+	}
+
+	ItemBrowser.prototype.next = function () {
+		if (this.currentIndex < this.items.length - 1) {
+			console.log("xx");
+			this.currentIndex++;
+		}
+		return this.getCurrent();
+	};
+
+	ItemBrowser.prototype.previous = function () {
+		if (this.currentIndex > 0) {
+			this.currentIndex--;
+		}
+		return this.getCurrent();
+	};
+
+	ItemBrowser.prototype.selectByIndex = function (index) {
+		if (index > 0 && index < this.items.length)  {
+			this.currentIndex = index;
+		}
+		return this.getCurrent();
+	};
+
+	ItemBrowser.prototype.getNext = function () {
+		if (this.currentIndex === -1) {
+			return null;
+		}
+		return this.items[this.currentIndex + 1] || null;
+	};
+
+	ItemBrowser.prototype.getPrevious = function () {
+		return this.items[this.currentIndex - 1] || null;
+	};
+
+	ItemBrowser.prototype.getCurrent = function () {
+		return this.items[this.currentIndex] || null;
+	};
+
+	return ItemBrowser;
+
+}());
 var FitImage = (function () {
 	"use strict";
 
@@ -190,8 +245,7 @@ var Gallery = (function () {
 	};
 
 	function Gallery(settings) {
-		var x = defaults();
-		this.settings = angular.extend(x, settings);
+		this.settings = angular.extend(defaults(), settings);
 		this.data = [];
 		this.currentIndex = -1;
 	}
@@ -293,7 +347,7 @@ galleryModule.factory("$gallery", ["$notify", function ($notify) {
 
 galleryModule.directive("ngcFitToBoxImage", [function () {
 	return {
-		template: '<div class="xxx" ><img src="{{imageSrc}}" /></div>',
+		template: '<div ><img class="fit-image" src="{{imageSrc}}" /></div>',
 		replace: true,
 		scope: {ngcFitToBoxImage: "="},
 		link: function (scope, element, attrs) {
@@ -371,6 +425,7 @@ galleryModule.controller("galleryBrowser", [
 		};
 
 		$scope.next = function () {
+			console.log("next");
 			$scope.currentItem = $gallery.next();
 			$scope.nextItem = $gallery.getNext();
 			$scope.prevItem = $gallery.getPrevious();
@@ -632,8 +687,7 @@ var GridElementsList = (function () {
 
 		for (i = 0; i < this.data.length; i++) {
 			resources = this.data[i].resources;
-
-			if (resources[key] === value ) {
+			if (resources && resources[key] === value ) {
 				result.push(this.data[i]);
 			}
 		}
@@ -790,7 +844,24 @@ var  galleryImageViewerController = ["$scope", "$routeParams", "$api", "$locatio
 
 
 
-var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", function ($scope, $api, $routeParams, $location, $notify, $gallery) {
+var gridelementKontaktCtrl =  ["$scope", "$api", "$routeParams", "$location", "$rootScope", function ($scope, $api, $routeParams, $location) {
+	function getResource(key) {
+		return resources[key] || "";
+	}
+	var resources = $scope.gridelement.resources || {};
+
+	$scope.header = getResource("header");
+	$scope.subHeader = getResource("subheader");
+	$scope.valueA = getResource("valuea");
+	$scope.valueB = getResource("valueb");
+	$scope.valueC = getResource("valuec");
+	$scope.valueD = getResource("valued");
+	$scope.valueE = getResource("valuee");
+	$scope.valueF = getResource("valuef");
+
+
+
+}];var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", function ($scope, $api, $routeParams, $location, $notify, $gallery) {
 	var resources = $scope.gridelement.resources || {},
 		content = $scope.gridelement.Content || {};
 
@@ -807,32 +878,31 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 		link: $routeParams.link
 	};
 
-
 	$scope.name = getResource("name", " ");
 	$scope.type = getResource("type");
 	$scope.services = getResource("services");
 	$scope.year = getResource("year");
 	$scope.text = getResource("text");
 
+
 	$scope.cssRatio = getContentProperty("ratio", "ratio16_9");
-console.log($scope.cssRatio);
 
 	$api.getAlbum($scope.gdataAlbumId, {size: 417, isSquare: false, type: 0})
+//	$api.getAlbum($scope.gdataAlbumId)
 		.then(function (data) {
 			if (data) {
 				$scope.album = data.data;
 			}
 		});
 
-	$scope.imageClick = function () {
+	$scope.imageClick = function (name) {
 		$gallery.showBy(function (obj) {
-			var value = obj.resources.name || null;
-			return value === $scope.name;
+			return $scope.gridelement.Id === obj.Id;
 		});
 	};
 }];
 
-var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$markdown", function ($scope, $api, $routeParams, $location, $notify, $gallery, $markdown) {
+var gridelementAlbumOverlayCtrlPreview = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$markdown", function ($scope, $api, $routeParams, $location, $notify, $gallery, $markdown) {
 	$scope.gdataAlbumId = getAlbumId();
 	$scope.route = {
 		link: $routeParams.link
@@ -872,36 +942,93 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 		$scope.currentImage = $scope.albumPhotos[index];
 		$scope.currentImageIndex = index;
 	};
+}];
 
-	$scope.prevImage = function () {
-		if ($scope.currentImageIndex >= 1) {
-			$scope.currentImageIndex--;
-			$scope.currentImage = $scope.albumPhotos[$scope.currentImageIndex];
+
+/*global ItemBrowser*/
+var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$markdown",
+	function ($scope, $api, $routeParams, $location, $notify, $gallery, $markdown) {
+		$scope.gdataAlbumId = getAlbumId();
+		$scope.route = {
+			link: $routeParams.link
+		};
+
+		function getAlbumId() {
+			var x = $scope.gridelement.Content;
+			return x !== null ? x.gdataAlbumId : null;
 		}
-	};
 
-	$scope.nextImage = function () {
-		if ($scope.currentImageIndex < $scope.albumPhotos.length - 1 ) {
-			$scope.currentImageIndex++;
-			$scope.currentImage = $scope.albumPhotos[$scope.currentImageIndex];
+		var resources = $scope.gridelement.resources || {};
+
+		function getResource(key) {
+			return resources[key] || "";
 		}
-	};
 
-	$scope.$on("global-keydown", function (e, $event) {
-		var key = $event.keyCode;
+		$scope.name = getResource("name");
+		$scope.type = getResource("type");
+		$scope.services = getResource("services");
+		$scope.year = getResource("year");
+		$scope.text = $markdown.toHtml(getResource("text"));
 
-		switch (key) {
-			case 37:
-				$scope.prevImage();
-				break;
-			case 39:
-				$scope.nextImage();
-				break;
-		}
-	});
+		$scope.toHtml = function (value) {
+			return $markdown.toHtml(value);
+		};
+
+		var itemBrowser;
+		$api.getAlbumPhotos($scope.gdataAlbumId)
+			.then(function (data) {
+				if (data) {
+					$scope.albumPhotos = data.data;
+
+					itemBrowser = new ItemBrowser(data.data);
+					$scope.currentImage = itemBrowser.getCurrent();
+					$scope.currentImageIndex = itemBrowser.currentIndex;
+
+					$scope.previousImage = itemBrowser.getPrevious();
+					$scope.nextImg = itemBrowser.getNext();
+					console.log($scope.nextImage);
+				}
+			});
+
+		$scope.showImagePreview = function (index) {
+			$scope.currentImage = itemBrowser.selectByIndex(index);
+			$scope.currentImageIndex = itemBrowser.currentIndex;
+
+			$scope.previousImage = itemBrowser.getPrevious();
+			$scope.nextImg = itemBrowser.getNext();
+		};
+
+		$scope.prevImage = function () {
+			$scope.currentImage = itemBrowser.previous();
+			$scope.currentImageIndex = itemBrowser.currentIndex;
+
+			$scope.previousImage = itemBrowser.getPrevious();
+			$scope.nextImg = itemBrowser.getNext();
+		};
+
+		$scope.nextImage = function () {
+			$scope.currentImage = itemBrowser.next();
+			$scope.currentImageIndex = itemBrowser.currentIndex;
+
+			$scope.previousImage = itemBrowser.getPrevious();
+			$scope.nextImg = itemBrowser.getNext();
+		};
+
+		$scope.$on("global-keydown", function (e, $event) {
+			var key = $event.keyCode;
+
+			switch (key) {
+				case 37:
+					$scope.prevImage();
+					break;
+				case 39:
+					$scope.nextImage();
+					break;
+			}
+		});
 
 
-}];var gridelementGdataAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$rootScope", function ($scope, $api, $routeParams, $location) {
+	}];var gridelementGdataAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$rootScope", function ($scope, $api, $routeParams, $location) {
 	$scope.gdataAlbumId = getAlbumId();
 	$scope.route = {
 		link: $routeParams.link
@@ -1507,7 +1634,17 @@ var simplehtml = ["$scope", "$markdown", function ($scope, $markdown) {
 	$location.hashPrefix('!');
 }]);
 
-var module = angular.module("defaultClient", ["ngRoute", "galleryBrowser", "repo", "ui.keypress", "ui.event", "ui.bootstrap", "HashBangURLs", "stringutils"]);
+var module = angular.module("defaultClient", [
+	"ngRoute",
+	"galleryBrowser",
+	"repo",
+	"ui.keypress",
+	"ui.event",
+	"ui.bootstrap",
+	"HashBangURLs",
+	"stringutils",
+	"ngAnimate"
+]);
 
 module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
@@ -1542,7 +1679,6 @@ module.directive("gridelement", ["$compile", "$templateCache", "$timeout", funct
 					skinStr = skin ? "_" + skin : "";
 				var template = $templateCache.get(scope.gridelement.Type + skinStr + ".thtml");
 				var compiled = $compile(template)(scope);
-
 				if (timeout) {
 					$timeout.cancel(timeout);
 				}
@@ -1565,15 +1701,16 @@ module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
 
-
-module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify",
-	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify) {
+module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify", "$animate",
+	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify, $animate) {
 		$scope.showContent = false;
 		$(".centered-container")
 			.css("height", $(window).height())
 			.css("width", $(window).width());
 
 		var timeout;
+
+
 		$(window).resize(function () {
 			if (timeout) {
 				$timeout.cancel(timeout);
@@ -1594,6 +1731,7 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 				});
 			}, 500);
 		});
+
 
 
 		$notify.addEventListener("content-loaded", function () {
