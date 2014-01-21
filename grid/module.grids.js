@@ -24,7 +24,6 @@ gridModule.directive("ngcAspectRatio", [function () {
 			}
 
 			scope.$watch("ratioWidth", function (a) {
-				console.log("...",a );
 				scope.ratioCalculated = {
 					"padding-top": getRatioPercent(scope.ratioWidth, scope.ratioHeight) + "%"
 				};

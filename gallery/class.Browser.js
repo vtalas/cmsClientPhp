@@ -15,7 +15,6 @@ var ItemBrowser = (function () {
 
 	ItemBrowser.prototype.next = function () {
 		if (this.currentIndex < this.items.length - 1) {
-			console.log("xx");
 			this.currentIndex++;
 		}
 		return this.getCurrent();

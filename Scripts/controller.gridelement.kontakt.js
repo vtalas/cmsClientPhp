@@ -18,7 +18,6 @@ var gridelementKontaktCtrl =  ["$scope", "$api", "$routeParams", "$location", "$
 	}
 
 	$scope.map = getMapFromResource("map");
-	console.log($scope.map);
 
 	$scope.hasMap = $scope.map !== null;
 	$scope.blockSize = $scope.map ? "grid_12" : "grid_3";

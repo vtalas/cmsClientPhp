@@ -166,7 +166,6 @@ var ItemBrowser = (function () {
 
 	ItemBrowser.prototype.next = function () {
 		if (this.currentIndex < this.items.length - 1) {
-			console.log("xx");
 			this.currentIndex++;
 		}
 		return this.getCurrent();
@@ -631,17 +630,8 @@ repository.factory("loadFromCache", ['cmsApi', '$cacheFactory', "$q", function (
 }]);
 
 
-repository.factory("db", ['$api', '$cacheFactory', "$q", function ($api, $cacheFactory, $q) {
-
-	var data = [
-		[0, 1, 2],
-		["a", "b", "c"]
-	];
-
-	return function (id) {
-		return data[id];
-	};
-
+repository.factory("loadGridList", ['$api', '$cacheFactory', "$q", function ($api, $cacheFactory, $q) {
+	return $api.getJsonData();
 }]);
 
 var gridModule = angular.module("grids", []);
@@ -670,7 +660,6 @@ gridModule.directive("ngcAspectRatio", [function () {
 			}
 
 			scope.$watch("ratioWidth", function (a) {
-				console.log("...",a );
 				scope.ratioCalculated = {
 					"padding-top": getRatioPercent(scope.ratioWidth, scope.ratioHeight) + "%"
 				};
@@ -692,10 +681,10 @@ var Grid  = (function () {
 		data = data || {};
 		this.GridElements = data.GridElements || [];
 		this.Link = data.Link || null;
+		this.Name = data.Name || "";
 		this.id = data.id || null;
 		this.resources = data.resources || [];
 		this.groups = data.groups || null;
-		this.Name = data.Name = "";
 	}
 	return Grid;
 }());
@@ -707,7 +696,6 @@ var GridElementsList = (function () {
 
 	GridElementsList.prototype.getGroups = function () {
 		for (var i = 0; i < this.data.length; i++) {
-			console.log(this.data[i])
 		}
 		return "";
 	};
@@ -740,6 +728,7 @@ var GridElementsList = (function () {
 var GridList = (function(){
 
 	function GridList(jsonData, repository) {
+		console.log("1111111111");
 		this.data = jsonData || [];
 		this.repo = repository;
 	}
@@ -781,10 +770,24 @@ var GridList = (function(){
 		for (var i = 0; i < this.data.length; i++) {
 			var obj = this.data[i];
 			if (obj.Link === link ) {
-				return new Grid (obj)
+				return new Grid (obj);
 			}
 		}
 		return new Grid();
+	};
+
+	/*
+		@returns Array<Grid>
+	 */
+	GridList.prototype.getGridsByCategory  = function (category) {
+		var result = [];
+		for (var i = 0; i < this.data.length; i++) {
+			var obj = this.data[i];
+			if (obj.Category === category ) {
+				result.push(new Grid (obj));
+			}
+		}
+		return result;
 	};
 
 	return GridList;
@@ -905,7 +908,6 @@ var gridelementKontaktCtrl =  ["$scope", "$api", "$routeParams", "$location", "$
 	}
 
 	$scope.map = getMapFromResource("map");
-	console.log($scope.map);
 
 	$scope.hasMap = $scope.map !== null;
 	$scope.blockSize = $scope.map ? "grid_12" : "grid_3";
@@ -927,7 +929,6 @@ var gridelementKontaktCtrl =  ["$scope", "$api", "$routeParams", "$location", "$
 	$scope.route = {
 		link: $routeParams.link
 	};
-console.log(resources);
 	$scope.name = getResource("name", " ");
 	$scope.type = getResource("type");
 	$scope.services = getResource("services");
@@ -1754,14 +1755,21 @@ module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
 
-module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify", "$animate",
-	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify, $animate) {
+module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify", "$animate", "loadGridList",
+	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify, $animate, loadGridList) {
 		$scope.showContent = false;
+		var gridlist = {};
 		$(".centered-container")
 			.css("height", $(window).height())
 			.css("width", $(window).width());
 
 		var timeout;
+
+		loadGridList.then(function (data) {
+			gridlist = data;
+			$scope.mainMenu = data.getGridsByCategory("Page");
+			console.log($scope.mainMenu);
+		});
 
 
 		$(window).resize(function () {

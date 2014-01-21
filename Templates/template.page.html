@@ -11,8 +11,8 @@
 <div class="grid_3 groups" ng-show="groups">
 	<h3 ng-click="filter()">{{groups.groupName}}</h3>
 	<ul class="group-list">
-		<li ng-repeat="group in groups.items" class="link group-item" ng-click="filter(group)"
-			ng-class="isSelectedFilter(group)">{{group}}
+		<li ng-repeat="group in groups.items" class="link group-item" ng-click="filter(group.id)"
+			ng-class="isSelectedFilter(group.id)">{{group.name}}
 		</li>
 	</ul>
 </div>

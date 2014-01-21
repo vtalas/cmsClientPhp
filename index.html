@@ -65,10 +65,9 @@
 			</div>
 			<div class="grid_3 main-menu">
 				<div class="border-top">
-					<div><a href="#!/page/projekty" ng-class="isSelectedLink('projekty')">Projekty</a></div>
-					<div><a href="#!/page/historie" ng-class="isSelectedLink('historie')">Historie</a></div>
-					<div><a href="#!/page/cinnost" ng-class="isSelectedLink('cinnost')">Činnost</a></div>
-					<div><a href="#!/page/kontakt" ng-class="isSelectedLink('kontakt')">Kontakt</a></div>
+					<div ng-repeat="menuItem in mainMenu">
+						<a href="#!/page/{{menuItem.Link}}" ng-class="isSelectedLink('{{menuItem.Link}}')">{{menuItem.Name}}</a>
+					</div>
 				</div>
 			</div>
 			<div class="clearfix"></div>
