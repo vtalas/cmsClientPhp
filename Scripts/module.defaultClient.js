@@ -83,7 +83,6 @@ module.controller("appController", ["$scope", "$api", "$location", "$rootScope",
 		loadGridList.then(function (data) {
 			gridlist = data;
 			$scope.mainMenu = data.getGridsByCategory("Page");
-			console.log($scope.mainMenu);
 		});
 
 

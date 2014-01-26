@@ -2,7 +2,6 @@
 var GridList = (function(){
 
 	function GridList(jsonData, repository) {
-		console.log("1111111111");
 		this.data = jsonData || [];
 		this.repo = repository;
 	}

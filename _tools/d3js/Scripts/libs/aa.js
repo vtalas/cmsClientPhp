@@ -35,7 +35,6 @@ var Animator = (function () {
 				self.timer = -1;
 			})
 			.on("mouseout", function () {
-				console.log("mouseout");
 				self.setTimer();
 			});
 	}
@@ -61,7 +60,6 @@ var Animator = (function () {
 		var self = this;
 
 		if (this.timer > 0) {
-			console.log("clear");
 			clearTimeout(this.timer);
 		}
 
