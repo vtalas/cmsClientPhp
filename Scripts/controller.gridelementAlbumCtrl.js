@@ -1,42 +1,58 @@
-var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", function ($scope, $api, $routeParams, $location, $notify, $gallery) {
-	var resources = $scope.gridelement.resources || {},
-		content = $scope.gridelement.Content || {};
+var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$element",
+	function ($scope, $api, $routeParams, $location, $notify, $gallery, $element) {
+		var resources = $scope.gridelement.resources || {},
+			content = $scope.gridelement.Content || {};
 
-	function getResource(key, defaultValue) {
-		return resources[key] || defaultValue || "";
-	}
+		function getResource(key, defaultValue) {
+			return resources[key] || defaultValue || "";
+		}
 
-	function getContentProperty(key, defaultValue) {
-		return content[key] || defaultValue || "";
-	}
+		function getContentProperty(key, defaultValue) {
+			return content[key] || defaultValue || "";
+		}
 
-	$scope.gdataAlbumId = getContentProperty("gdataAlbumId", null);
-	$scope.route = {
-		link: $routeParams.link
-	};
-	$scope.name = getResource("name", " ");
-	$scope.type = getResource("type");
-	$scope.services = getResource("services");
-	$scope.year = getResource("year");
-	$scope.text = getResource("text");
+		$scope.gdataAlbumId = getContentProperty("gdataAlbumId", null);
+		$scope.route = {
+			link: $routeParams.link
+		};
+		$scope.name = getResource("name", " ");
+		$scope.type = getResource("type");
+		$scope.services = getResource("services");
+		$scope.year = getResource("year");
+		$scope.text = getResource("text");
 
 
-	$scope.cssRatio = getContentProperty("ratio", "ratio16_9");
+		$scope.cssRatio = getContentProperty("ratio", "ratio16_9");
 
-	$api.getAlbum($scope.gdataAlbumId, {size: 417, isSquare: false, type: 0})
-//	$api.getAlbum($scope.gdataAlbumId)
-		.then(function (data) {
-			if (data) {
-				$scope.album = data.data;
+
+		setTimeout(function () {
+			var height = $element.height() - 44, //bottom offset magic
+				size,
+				type = 0, //width wins
+				width = $element.width();
+
+			size = Math.max(width, height);
+
+			if (height > width) {
+				type = 1; //height wins
 			}
-		});
+			if ($scope.gdataAlbumId) {
+				$api.getAlbum($scope.gdataAlbumId, {size: size, isSquare: false, type: type})
+					.then(function (data) {
+						if (data) {
+							$scope.album = data.data;
+						}
+					});
+			}
 
-	$scope.imageClick = function (name) {
-		$gallery.showBy(function (obj) {
-			return $scope.gridelement.Id === obj.Id;
-		});
-	};
-}];
+		}, 1);
+
+		$scope.imageClick = function (name) {
+			$gallery.showBy(function (obj) {
+				return $scope.gridelement.Id === obj.Id;
+			});
+		};
+	}];
 
 var gridelementAlbumOverlayCtrlPreview = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$markdown", function ($scope, $api, $routeParams, $location, $notify, $gallery, $markdown) {
 	$scope.gdataAlbumId = getAlbumId();
@@ -67,7 +83,7 @@ var gridelementAlbumOverlayCtrlPreview = ["$scope", "$api", "$routeParams", "$lo
 
 	$api.getAlbumPhotos($scope.gdataAlbumId)
 		.then(function (data) {
-			if (data) {
+			if (data && data.data) {
 				$scope.albumPhotos = data.data;
 				$scope.currentImage = $scope.albumPhotos[0];
 				$scope.currentImageIndex = 0;

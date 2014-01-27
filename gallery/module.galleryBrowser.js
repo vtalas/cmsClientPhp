@@ -70,6 +70,7 @@ galleryModule.controller("galleryBrowser", [
 		});
 
 		$notify.addEventListener("gallery-changed", function () {
+			angular.element("body").css("overflow", "hidden");
 			$scope.overlayGalleryShow = true;
 			$scope.currentItem = $gallery.getCurrent();
 			$scope.nextItem = $gallery.getNext();
@@ -83,6 +84,7 @@ galleryModule.controller("galleryBrowser", [
 		};
 
 		$scope.close = function () {
+			angular.element("body").css("overflow", "auto");
 			$scope.overlayGalleryShow = false;
 			$location.search("galleryIndex", null);
 		};
