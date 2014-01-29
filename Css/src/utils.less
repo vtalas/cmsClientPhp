@@ -16,6 +16,13 @@
 	-o-transition: all @ease @duration;
 	transition: all @ease @duration;
 }
+.AnimateEasingInfinite(@duration, @ease) {
+	-webkit-transition: all @ease @duration infinite;
+	-moz-transition: all @ease @duration infinite;
+	-ms-transition: all @ease @duration infinite;
+	-o-transition: all @ease @duration infinite;
+	transition: all @ease @duration infinite;
+}
 
 .AnimateEasingWithType(@duration, @ease, @type) {
 	-webkit-transition: @type @ease @duration;

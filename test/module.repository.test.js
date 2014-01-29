@@ -4,7 +4,7 @@ describe('myApp', function () {
 
 	}));
 
-	it('should alert on $window', inject(function (db) {
+	it('should alert on $window', inject(function () {
 
 	}));
 });

@@ -10,16 +10,7 @@ repository.factory("loadFromCache", ['cmsApi', '$cacheFactory', "$q", function (
 }]);
 
 
-repository.factory("db", ['$api', '$cacheFactory', "$q", function ($api, $cacheFactory, $q) {
-
-	var data = [
-		[0, 1, 2],
-		["a", "b", "c"]
-	];
-
-	return function (id) {
-		return data[id];
-	};
-
+repository.factory("loadGridList", ['$api', '$cacheFactory', "$q", function ($api, $cacheFactory, $q) {
+	return $api.getJsonData();
 }]);
 

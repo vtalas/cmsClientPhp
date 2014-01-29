@@ -6,7 +6,6 @@
 @import "src/pageOverlay";
 @import "src/aspectRatio";
 @import "src/animations";
-
 @import "album_thtml";
 @import "kontakt";
 
@@ -42,10 +41,14 @@ a:hover {
 a img {
 	border: none;
 }
+
 button {
 	outline: none;
 }
 
+.clickable {
+	cursor: pointer;
+}
 .boos {
 	@linkColor : #bbb;
 
@@ -74,7 +77,7 @@ button {
 	}
 
 	.logo-home {
-		padding-top: 115px;
+		margin-top: -2.5em;
 		text-align: right;
 		padding-right: 20px;
 		font-size: 70%;
@@ -374,7 +377,6 @@ button {
 
 }
 
-
 .template-p {
 	//display:table;
 	min-height: 100%;
@@ -442,7 +444,6 @@ button {
 	}
 }
 
-
 .view-enter {
 	.AnimateEasing(400ms, linear);
 }
@@ -463,8 +464,17 @@ button {
 .view-leave-active {
 }
 
-
 .gallery-image-viewer {
+	.overlay-close {
+		position: absolute;
+		top:0;
+		opacity: 0.5;
+		right: 0;
+		.Animate(500ms);
+		&:hover {
+			opacity: 1;
+		}
+	}
 	.loader {
 		width: 220px;
 		top: 35%;
@@ -518,7 +528,7 @@ button {
 	.full-height {
 		height: 100%;
 		&.previous {
-		//	opacity: 0.1;
+			//	opacity: 0.1;
 			&:hover {
 				//opacity: 0.5;
 			}
@@ -528,12 +538,11 @@ button {
 		}
 	}
 
-
 	.preview-previous, .preview-next {
 		opacity: 0.1;
 		.Animate(1500ms);
 		cursor: pointer;
-			&:hover{
+		&:hover {
 			opacity: 0.7;
 		}
 	}
@@ -543,7 +552,6 @@ button {
 			margin-right: 5em;
 		}
 	}
-
 
 }
 
@@ -732,7 +740,6 @@ button {
 
 }
 
-
 .home-loader {
 	h2, h5 {
 		margin: 0;
@@ -754,55 +761,84 @@ button {
 	.Animate(500ms);
 }
 
-
 .fade-out-active {
 	opacity: 0;
 }
 
-.loader-wrap{
+.loader-wrap {
 	height: 100%;
 	width: 100%;
-	opacity: 0.9;
+	opacity: 0.98;
 	z-index: 10001;
 	position: absolute;
 	background-color: #fff;
+
+	.ocko {
+		margin-left: -55px;
+		width: 55px;
+	}
 }
+
 .background-wrap {
 	height: 100%;
-	background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.74) 20%, rgba(255,255,255,0) 76%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(20%,rgba(255,255,255,0.74)), color-stop(76%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(255,255,255,0.74) 20%,rgba(255,255,255,0) 76%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(255,255,255,0.74) 20%,rgba(255,255,255,0) 76%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(255,255,255,0.74) 20%,rgba(255,255,255,0) 76%); /* IE10+ */
-	background: linear-gradient(135deg, rgba(255,255,255,1) 0%,rgba(255,255,255,0.74) 20%,rgba(255,255,255,0) 76%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.74) 20%, rgba(255, 255, 255, 0) 76%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(20%, rgba(255, 255, 255, 0.74)), color-stop(76%, rgba(255, 255, 255, 0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.74) 20%, rgba(255, 255, 255, 0) 76%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.74) 20%, rgba(255, 255, 255, 0) 76%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.74) 20%, rgba(255, 255, 255, 0) 76%); /* IE10+ */
+	background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.74) 20%, rgba(255, 255, 255, 0) 76%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+}
+
+.container_12.container_12-overlay {
+	width: 100%;
 }
 
 .container_12.maincontent {
-	width: 90%;
+
+	.fit-image {
+		.AnimateEasingWithType(300ms, ease-out, opacity);
+		opacity: 0.7;
+	}
+	img:hover {
+		opacity: 0.9;
+	}
 
 
-//	.xxx{
-
-		.fit-image {
-			.AnimateEasingWithType(300ms, ease-out, opacity);
-			opacity: 0.7;
+	.myAnimation {
+		5% {
+			.Transformation(scale(1.150,1.150));
 		}
-		img:hover {
-			opacity: 0.9;
+		15% {
+			.Transformation(scale(1,1));
 		}
-//	}
+	}
+	@-webkit-keyframes NAME-YOUR-ANIMATION {
+		.myAnimation;
+	}
+	@-moz-keyframes NAME-YOUR-ANIMATION {
+		.myAnimation;
+	}
+	@-o-keyframes NAME-YOUR-ANIMATION {
+		.myAnimation;
+	}
+	@keyframes NAME-YOUR-ANIMATION {
+		.myAnimation;
+	}
 
 	.main-logo {
-		padding-top: 60px;
-		padding-bottom: 21px;
 		cursor: pointer;
-
+		margin-top: -93px;
+		padding-bottom: 20px;
 		.ocko {
-			margin-left:-58px;
-		}
+			max-width: 55px;
+			margin-left: -58px;
 
-		&:hover .ocko {	.scaleAnimate;	}
+			-webkit-animation: NAME-YOUR-ANIMATION 15s infinite; /* Safari 4+ */
+			-moz-animation: NAME-YOUR-ANIMATION 15s infinite; /* Fx 5+ */
+			-o-animation: NAME-YOUR-ANIMATION 15s infinite; /* Opera 12+ */
+			animation: NAME-YOUR-ANIMATION 15s infinite; /* IE 10+ */
+		}
 	}
 }
 
@@ -811,11 +847,10 @@ button {
 }
 
 .animate-repeat.ng-enter,
-.animate-repeat.ng-leave.ng-leave-active
-{
+.animate-repeat.ng-leave.ng-leave-active {
 
 	.AnimateEasing(300ms, linear);
-//	.Transform(rotateY(180deg));
+	//	.Transform(rotateY(180deg));
 	.Transform(scale(0.5, 0.5));
 	opacity: 0;
 }

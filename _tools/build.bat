@@ -3,6 +3,7 @@ type ^
 ..\gallery\*.js,^
 ..\api\*.js,^
 ..\data\*.js,^
+..\grid\*.js,^
 ..\Scripts\*.js >..\build\app.js
 
 type ^

@@ -11,6 +11,7 @@ var module = angular.module("defaultClient", [
 	"ui.bootstrap",
 	"HashBangURLs",
 	"stringutils",
+	"maps",
 	"ngAnimate"
 ]);
 
@@ -69,14 +70,20 @@ module.directive("ngcLazyImage", ngcLazyImage);
 module.directive("ngcSimpleDrag", simpleDragDirective);
 module.directive("ngcResponsiveImage", ngcResponsiveImage);
 
-module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify", "$animate",
-	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify, $animate) {
+module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify", "$animate", "loadGridList",
+	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify, $animate, loadGridList) {
 		$scope.showContent = false;
+		var gridlist = {};
 		$(".centered-container")
 			.css("height", $(window).height())
 			.css("width", $(window).width());
 
 		var timeout;
+
+		loadGridList.then(function (data) {
+			gridlist = data;
+			$scope.mainMenu = data.getGridsByCategory("Page");
+		});
 
 
 		$(window).resize(function () {

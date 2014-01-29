@@ -43,10 +43,24 @@ var GridList = (function(){
 		for (var i = 0; i < this.data.length; i++) {
 			var obj = this.data[i];
 			if (obj.Link === link ) {
-				return new Grid (obj)
+				return new Grid (obj);
 			}
 		}
 		return new Grid();
+	};
+
+	/*
+		@returns Array<Grid>
+	 */
+	GridList.prototype.getGridsByCategory  = function (category) {
+		var result = [];
+		for (var i = 0; i < this.data.length; i++) {
+			var obj = this.data[i];
+			if (obj.Category === category ) {
+				result.push(new Grid (obj));
+			}
+		}
+		return result;
 	};
 
 	return GridList;

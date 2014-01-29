@@ -1,4 +1,4 @@
-<div class="grid_9">
+<div class="grid_10">
 	<div ng-show="gridElements.length === 0" style="width: 100%">&nbsp;</div>
 	<div ng-show="gridElements === undefined" style="width: 100%">
 		<img src="resources/loaders/loader.gif" alt="loading..."/>
@@ -8,11 +8,11 @@
 	</div>
 </div>
 
-<div class="grid_3 groups" ng-show="groups">
+<div class="grid_2 groups" ng-show="groups">
 	<h3 ng-click="filter()">{{groups.groupName}}</h3>
 	<ul class="group-list">
-		<li ng-repeat="group in groups.items" class="link group-item" ng-click="filter(group)"
-			ng-class="isSelectedFilter(group)">{{group}}
+		<li ng-repeat="group in groups.items" class="link group-item" ng-click="filter(group.id)"
+			ng-class="isSelectedFilter(group.id)">{{group.name}}
 		</li>
 	</ul>
 </div>

@@ -13,6 +13,14 @@ var gridelementKontaktCtrl =  ["$scope", "$api", "$routeParams", "$location", "$
 	$scope.valueE = getResource("valuee");
 	$scope.valueF = getResource("valuef");
 
+	function getMapFromResource(key) {
+		return resources[key] || null;
+	}
+
+	$scope.map = getMapFromResource("map");
+
+	$scope.hasMap = $scope.map !== null;
+	$scope.blockSize = $scope.map ? "grid_12" : "grid_3";
 
 
 }];

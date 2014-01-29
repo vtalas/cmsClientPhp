@@ -10,8 +10,8 @@
 	<meta name="fragment" content="!"/>
 
 	<title>BOOS</title>
-	<script src="http://maps.googleapis.com/maps/api/js?libraries=weather&sensor=false&language=en&v=3.13"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNC6LIzTQj51MXJg4hSopBak9cqhPGazY&sensor=false"></script>
+	<script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNC6LIzTQj51MXJg4hSopBak9cqhPGazY&sensor=false"></script>
 
 	<script type="text/javascript" src="build/app.libs.js"></script>
 	<script type="text/javascript" src="build/app.js"></script>
@@ -23,15 +23,14 @@
 </head>
 
 <body ng-controller="appController" class="boos">
-<script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNC6LIzTQj51MXJg4hSopBak9cqhPGazY&sensor=false">
-    </script>
-    
+
 <div class="loader-wrap" ng-show="showLoader">
 	<div class="centered-container">
 		<div class="centered-content">
-			<img src="resources/booswhite.png"/>
-
+			<div class="main-logo">
+				<img src="resources/logo_transparent.png" alt="BOOS"/>
+				<img class="ocko scale" src="resources/logo_o.png" alt="BOOS"/>
+			</div>
 			<div>
 				<img src="resources/loaders/loader.gif"/>
 			</div>
@@ -49,26 +48,38 @@
 	</div>
 
 	<div class="container_12 maincontent">
+		<div>
+			<div class="grid_5">&nbsp;
+			</div>
+			<div class="grid_5">
+				<div class="border-top">&nbsp;
+				</div>
+			</div>
+			<div class="grid_2 main-menu">
+				<div class="border-top">
+					<div ng-repeat="menuItem in mainMenu">
+						<a href="#!/page/{{menuItem.Link}}" ng-class="isSelectedLink('{{menuItem.Link}}')">{{menuItem.Name}}</a>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
 		<div class="border-bottom">
 			<div class="grid_5">
 				<div class="main-logo">
-					<img src="resources/logo_transparent.png" alt="BOOS"/>
-					<img class="ocko scale" src="resources/logo_o.png" alt="BOOS"/>
+					<a href="#!/page/projekty">
+						<img src="resources/logo_transparent.png" alt="BOOS"/>
+						<img class="ocko scale" src="resources/logo_o.png" alt="BOOS"/>
+					</a>
 				</div>
 			</div>
-			<div class="grid_4">
-				<div class="border-top">
+			<div class="grid_5">
+				<div>
 					<div class="logo-home"> architektura &#8226; design &#8226; project management &#8226; inženýring
 					</div>
 				</div>
 			</div>
-			<div class="grid_3 main-menu">
-				<div class="border-top">
-					<div><a href="#!/page/projekty" ng-class="isSelectedLink('projekty')">Projekty</a></div>
-					<div><a href="#!/page/historie" ng-class="isSelectedLink('historie')">Historie</a></div>
-					<div><a href="#!/page/cinnost" ng-class="isSelectedLink('cinnost')">Činnost</a></div>
-					<div><a href="#!/page/kontakt" ng-class="isSelectedLink('kontakt')">Kontakt</a></div>
-				</div>
+			<div class="grid_2 main-menu">
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -76,12 +87,12 @@
 		<div class="grid_12 index-content">
 			<div ng-view class="view"></div>
 		</div>
+		<div class="clearfix"></div>
 	</div>
 
 	<div class="clear"></div>
-
-
-	<div class="dumbBoxWrap gallery-image-viewer page-overlay" ng-show="overlayGalleryShow" ng-controller="galleryBrowser">
+	<div class="dumbBoxWrap gallery-image-viewer page-overlay" ng-show="overlayGalleryShow"
+		 ng-controller="galleryBrowser">
 
 		<div class="dumbBoxOverlay">
 			<div ng-show="loading" class="loader">
@@ -92,21 +103,24 @@
 		<div class="vertical-offset">
 
 			<div class="full-height">
-				<div class="container_12 full-height previous" >
+				<div class="container_12 full-height previous container_12-overlay">
 					<div class="grid_2 full-height preview-previous"
 						 ng-click="prev()">
 						<div class="full-height-content">
-							<div gridelement="prevItem" skin="album-overlay-preview" class="full-height preview-content" ng-show="prevItem"></div>
+							<div gridelement="prevItem" skin="album-overlay-preview" class="full-height preview-content"
+								 ng-show="prevItem"></div>
 						</div>
 					</div>
 					<div class="grid_8 full-height">
 						<div class="full-height-content">
 							<div gridelement="currentItem" skin="album-overlay" class="full-height"></div>
+							<span ng-click="close()" class="overlay-close clickable"  ><img src="resources/cross.png"></span>
 						</div>
 					</div>
 					<div class="grid_2 full-height preview-next" ng-click="next()">
 						<div class="full-height-content">
-							<div gridelement="nextItem" skin="album-overlay-preview" class="full-height preview-content" ng-show="nextItem"></div>
+							<div gridelement="nextItem" skin="album-overlay-preview" class="full-height preview-content"
+								 ng-show="nextItem"></div>
 						</div>
 					</div>
 				</div>
@@ -142,7 +156,7 @@
 </script>
 
 <script id="album.thtml" type="text/ng-template">
-	<div class="grid_3">
+	<div class="grid_4">
 		<div class="gdata-album-list" ng-controller="gridelementAlbumCtrl">
 			<div class="aspect-ratio-box" ng-class="cssRatio" ng-click="imageClick(name)">
 				<div class="aspect-ratio-content album-image-wrap">
@@ -151,7 +165,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="album-name"><a ng-click="imageClick(name)">{{ name }} &nbsp;</a></div>
+			<div class="album-name"><a ng-click="imageClick(name)">{{ name }} &nbsp;..</a></div>
 			<div class="clear"></div>
 		</div>
 
@@ -165,12 +179,12 @@
 				<h1 class="header-content">{{ name }}</h1>
 			</div>
 		</div>
-		<div class="grid_12" style="height: 70%;overflow: hidden">
+		<div class="grid_12" style="height: 55%;overflow: hidden">
 			<div class="grid_8">
 				<div class="image-envelope preview-current">
-					<img class="album-image" ng-src="{{previousImage.Thumbnails[2].PhotoUri}}" style="display:none" />
-					<img class="album-image" ng-src="{{currentImage.Thumbnails[2].PhotoUri}}" />
-					<img class="album-image" ng-src="{{nextImg.Thumbnails[2].PhotoUri}}" style="display:none" />
+					<img class="album-image" ng-src="{{previousImage.Thumbnails[2].PhotoUri}}" style="display:none"/>
+					<img class="album-image" ng-src="{{currentImage.Thumbnails[2].PhotoUri}}"/>
+					<img class="album-image" ng-src="{{nextImg.Thumbnails[2].PhotoUri}}" style="display:none"/>
 				</div>
 
 			</div>
@@ -178,7 +192,8 @@
 				<div class="">
 					<div ng-repeat="image in albumPhotos" class="preview"
 						 ng-class="currentImageIndex == $index ? 'selected' : null">
-						<img class="xx" ng-click="showImagePreview($index)" ng-src="{{image.Thumbnails[0].PhotoUri}}" src="" /></div>
+						<img class="xx" ng-click="showImagePreview($index)" ng-src="{{image.Thumbnails[0].PhotoUri}}"
+							 src=""/></div>
 				</div>
 				<div class="">
 					<div class="details">
@@ -189,9 +204,17 @@
 				</div>
 			</div>
 		</div>
-		<div class="grid_12" style="height: 20%">
-			<div class="more-details">
-				<div class="more-details-content" ng-bind-html-unsafe="text"></div>
+		<div class="grid_12" style="height: 35%">
+			<div class="grid_8">
+				<div class="more-details">
+					<div class="more-details-content" ng-bind-html-unsafe="text"></div>
+				</div>
+			</div>
+			<div class="grid_4 map">
+				<div class="map-content" ng-show="hasMap">
+					<div ngc-google-map="map" style="height: 90%">
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -205,13 +228,9 @@
 				<h1 class="header-content">{{ name }}</h1>
 			</div>
 		</div>
-		<div class="grid_12" style="height: 70%;overflow: hidden">
+		<div class="grid_12" style="height: 55%;overflow: hidden">
 			<div class="image-envelope preview-current">
 				<img class="album-image" ng-src="{{currentImage.Thumbnails[2].PhotoUri}}"/>
-			</div>
-		</div>
-		<div class="grid_12" style="height: 20%">
-			<div class="more-details">
 			</div>
 		</div>
 	</div>
@@ -240,19 +259,42 @@
 	</div>
 </script>
 <script id="kontakt.thtml" type="text/ng-template">
-	<div class="grid_3 kontakt-default" ng-controller="gridelementKontaktCtrl">
-		<h3 ng-show="header">{{header}}</h3>
+	<div class="{{blockSize}} kontakt-default" ng-controller="gridelementKontaktCtrl">
+		<div ng-if="hasMap" class="has-map">
+			<div class="grid_3">
+				<h3 ng-show="header">{{header}}</h3>
 
-		<div class="kontakt-content">
-			<h4 ng-show="subHeader">{{subHeader}}</h4>
-			<div ng-show="valueA">{{valueA}}</div>
-			<div ng-show="valueB">{{valueB}}</div>
-			<div ng-show="valueC">{{valueC}}</div>
-			<div ng-show="valueD">{{valueD}}</div>
-			<div ng-show="valueE">{{valueE}}</div>
-			<div ng-show="valueF">{{valueF}}</div>
+				<div class="kontakt-content">
+					<h4 ng-show="subHeader">{{subHeader}}</h4>
+
+					<div ng-show="valueA">{{valueA}}</div>
+					<div ng-show="valueB">{{valueB}}</div>
+					<div ng-show="valueC">{{valueC}}</div>
+					<div ng-show="valueD">{{valueD}}</div>
+					<div ng-show="valueE">{{valueE}}</div>
+					<div ng-show="valueF">{{valueF}}</div>
+				</div>
+			</div>
+			<div class="grid_9">
+				<div ng-show="map" ngc-google-map="map" style="height: 300px;margin-left:18px">
+				</div>
+			</div>
+			<div class="clearfix"></div>
 		</div>
-	</div>
+		<div ng-if="!hasMap">
+			<h3 ng-show="header">{{header}}</h3>
+
+			<div class="kontakt-content">
+				<h4 ng-show="subHeader">{{subHeader}}</h4>
+
+				<div ng-show="valueA">{{valueA}}</div>
+				<div ng-show="valueB">{{valueB}}</div>
+				<div ng-show="valueC">{{valueC}}</div>
+				<div ng-show="valueD">{{valueD}}</div>
+				<div ng-show="valueE">{{valueE}}</div>
+				<div ng-show="valueF">{{valueF}}</div>
+			</div>
+		</div>
 </script>
 
 </body>
