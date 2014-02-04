@@ -12,3 +12,4 @@ Service/cmsClientPHPService
 Service/cron/*
 css/src/*.css
 xxx/*
+build/*

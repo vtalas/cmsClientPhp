@@ -260,7 +260,7 @@
 </script>
 <script id="kontakt.thtml" type="text/ng-template">
 	<div class="{{blockSize}} kontakt-default" ng-controller="gridelementKontaktCtrl">
-		<div ng-if="hasMap" class="has-map">
+		<div ng-if="hasMap" class="has-map kontakt-wrap">
 			<div class="grid_3">
 				<h3 ng-show="header">{{header}}</h3>
 
@@ -281,7 +281,7 @@
 			</div>
 			<div class="clearfix"></div>
 		</div>
-		<div ng-if="!hasMap">
+		<div ng-if="!hasMap" class="kontakt-wrap">
 			<h3 ng-show="header">{{header}}</h3>
 
 			<div class="kontakt-content">
