@@ -104,7 +104,7 @@ moduleMaps.directive("ngcGoogleMap", ['$sce', '$parse',"$timeout", function ($sc
 			};
 			$timeout(function () {
 				init();
-			},500);
+			}, 1500);
 		}
 	};
 
@@ -546,7 +546,6 @@ var ApiWrapper = (function () {
 			deferred.resolve([]);
 			return deferred.promise;
 		}
-
 		this.loadFromCache(key, deferred, function () {
 
 			self.cmsApi.getAlbumPhotos({id: albumId }, function (data, xhr) {
@@ -784,7 +783,7 @@ var GridList = (function(){
 		var result = [];
 		for (var i = 0; i < this.data.length; i++) {
 			var obj = this.data[i];
-			if (obj.Category === category ) {
+			if (obj.Category === category && obj.visible) {
 				result.push(new Grid (obj));
 			}
 		}
@@ -963,9 +962,11 @@ var gridelementKontaktCtrl =  ["$scope", "$api", "$routeParams", "$location", "$
 
 		}, 1);
 
-		$scope.imageClick = function (name) {
+		$scope.imageClick = function () {
+			$scope.gridelement.Id;
 			$gallery.showBy(function (obj) {
-				return $scope.gridelement.Id === obj.Id;
+
+					return $scope.gridelement.Id === obj.Id;
 			});
 		};
 	}];
@@ -1050,11 +1051,9 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 			.then(function (data) {
 				if (data) {
 					$scope.albumPhotos = data.data;
-
 					itemBrowser = new ItemBrowser(data.data);
 					$scope.currentImage = itemBrowser.getCurrent();
 					$scope.currentImageIndex = itemBrowser.currentIndex;
-
 					$scope.previousImage = itemBrowser.getPrevious();
 					$scope.nextImg = itemBrowser.getNext();
 				}
@@ -1335,7 +1334,7 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 	});
 }];var pageController = ["$scope", "$api", "$routeParams", "$gallery", "$notify", "$timeout", function ($scope, $api, $routeParams, $gallery, $notify, $timeout) {
 	var source = null;
-	$scope.layoutSize = 12;
+
 	$scope.link = $routeParams.link;
 
 	$notify.trigger("content-loading");
@@ -1345,6 +1344,8 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 			$scope.page = data;
 			$scope.gridElements = $scope.page.GridElements || [];
 			$scope.groups = $scope.page.groups;
+
+			$scope.layoutClass = $scope.groups ? "grid_10" : "grid_12";
 			$notify.trigger("content-loaded");
 			source = new GridElementsList($scope.page.GridElements);
 			$gallery.loadData(data.GridElements || []);
@@ -1383,8 +1384,6 @@ var simplehtml = ["$scope", "$markdown", function ($scope, $markdown) {
 	function getResource(key) {
 		return resources[key] || "";
 	}
-	//console.log("xx",getResource("text"), $markdown.toHtml(getResource("text")));
-
 	$scope.ContentToHtml = function () {
 		return $markdown.toHtml(getResource("text"));
 	};
@@ -1721,7 +1720,7 @@ module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 		.when('/page/:link', {reloadOnSearch: false, controller: pageController, templateUrl: 'Templates/template.page.html', resolve: {api: "$api"}})
 		.when('/p/:link', {reloadOnSearch: false, controller: pController, templateUrl: 'Templates/template.p.html'})
-		.otherwise({redirectTo: '/page/projekty'});
+		.otherwise({redirectTo: '/page/home'});
 }]);
 
 module.directive('shortcut', function () {

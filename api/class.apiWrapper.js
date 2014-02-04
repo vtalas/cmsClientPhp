@@ -91,7 +91,6 @@ var ApiWrapper = (function () {
 			deferred.resolve([]);
 			return deferred.promise;
 		}
-
 		this.loadFromCache(key, deferred, function () {
 
 			self.cmsApi.getAlbumPhotos({id: albumId }, function (data, xhr) {

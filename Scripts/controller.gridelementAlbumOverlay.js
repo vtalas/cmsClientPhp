@@ -35,11 +35,9 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 			.then(function (data) {
 				if (data) {
 					$scope.albumPhotos = data.data;
-
 					itemBrowser = new ItemBrowser(data.data);
 					$scope.currentImage = itemBrowser.getCurrent();
 					$scope.currentImageIndex = itemBrowser.currentIndex;
-
 					$scope.previousImage = itemBrowser.getPrevious();
 					$scope.nextImg = itemBrowser.getNext();
 				}

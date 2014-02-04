@@ -10,6 +10,8 @@ var pageController = ["$scope", "$api", "$routeParams", "$gallery", "$notify", "
 			$scope.page = data;
 			$scope.gridElements = $scope.page.GridElements || [];
 			$scope.groups = $scope.page.groups;
+
+			$scope.layoutClass = $scope.groups ? "grid_10" : "grid_12";
 			$notify.trigger("content-loaded");
 			source = new GridElementsList($scope.page.GridElements);
 			$gallery.loadData(data.GridElements || []);

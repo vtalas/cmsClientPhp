@@ -19,7 +19,7 @@ module.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 		.when('/page/:link', {reloadOnSearch: false, controller: pageController, templateUrl: 'Templates/template.page.html', resolve: {api: "$api"}})
 		.when('/p/:link', {reloadOnSearch: false, controller: pController, templateUrl: 'Templates/template.p.html'})
-		.otherwise({redirectTo: '/page/projekty'});
+		.otherwise({redirectTo: '/page/home'});
 }]);
 
 module.directive('shortcut', function () {

@@ -1,0 +1,465 @@
+[
+  {
+    "Category": "Page",
+    "Name": "projekty",
+    "Link": "projekty",
+    "id": "grid_1",
+    "groups": {
+      "groupName": "Typy Projektů",
+      "items": [
+        {
+          "id": 1,
+          "name": "Bankovní provozy"
+        },
+        {
+          "id": 2,
+          "name": "Průmyslová výstaba"
+        },
+        {
+          "id": 3,
+          "name": "Ostatní"
+        }
+      ]
+    },
+    "GridElements": [
+      {
+        "Id": "el_412312",
+        "Type": "album",
+        "Edit": 0,
+        "Width": 12,
+        "Resources": {
+          "name": {
+            "Value": "xxxx"
+          }
+        },
+        "Content": {
+          "gdataAlbumId": "5971398842149463297",
+          "name": "ČS Jánská, Brno",
+          "updated": 1390325430366,
+          "ratio": "ratio3_4",
+          "thumbnail": "https://lh4.googleusercontent.com:443/-Ile7l2-KdnU/Ut6rm-5_ZQE/AAAAAAAAAE0/CCC3KJfBKpQ/h480-c/CSJanskaBrno.jpg"
+        },
+        "resources": {
+          "name": "ČS Jánská, Brno",
+          "group": 1,
+          "services": "Generální projektant, autorský dozor, inženýring",
+          "size": "2000 m2",
+          "year": "2012",
+          "type": "logistické centrum",
+          "map": {
+            "lat": "49.214807",
+            "lnt": "16.570445"
+          }
+        }
+      },
+      {
+        "Id": "el_112323",
+        "Type": "album",
+        "Edit": 0,
+        "Width": 12,
+        "Resources": {
+          "name": {
+            "Value": "sadsd"
+          }
+        },
+        "Content": {
+          "gdataAlbumId": "5971401207398756033",
+          "name": "VUB Bratislava",
+          "updated": 1390325462469,
+          "ratio": "ratio3_4",
+          "thumbnail": "https://lh3.googleusercontent.com:443/-ukPBOYtYaj8/Ut6twqJXbsE/AAAAAAAAAOU/ib_Sx-6LEE8/h480-c/VUBBratislava.jpg"
+        },
+        "resources": {
+          "name": "VUB Bratislava",
+          "type": "Velkodistribuce léčiv",
+          "services": "Generální projektant, inženýring, projekt management",
+          "size": "5000 m2",
+          "year": "2007",
+          "text": "Movianto je předním distributorem léčiv po celé evropě.",
+          "group": 1,
+          "map": {
+            "lat": "49.214807",
+            "lnt": "16.570445"
+          }
+        }
+      },
+      {
+        "Id": "el_42323",
+        "Type": "album",
+        "Edit": 0,
+        "Width": 12,
+        "Content": {
+          "ratio": "ratio3_4",
+          "gdataAlbumId": "5971399499499201041",
+          "name": "E-gate, Praha",
+          "thumbnail": "https://lh6.googleusercontent.com:443/-l2dTo6Na-xQ/Ut6sNPuYYhE/AAAAAAAAAL4/duRRnmv_UJc/h480-c/EGatePraha.jpg",
+          "updated": 1390599041640
+        },
+        "resources": {
+          "name": "E- gate",
+          "map": {
+            "lat": "49.214807",
+            "lnt": "16.570445"
+          },
+          "group": 3
+        }
+      },
+      {
+        "Id": "el_6",
+        "Type": "album",
+        "Edit": 0,
+        "Width": 12,
+        "Content": {
+          "ratio": "ratio16_9",
+          "gdataAlbumId": "5971400856903433329",
+          "name": "ČS Nový Jičín",
+          "thumbnail": "https://lh4.googleusercontent.com:443/-N6T9zfKzdCY/Ut6tcQcxPHE/AAAAAAAAAM8/fwNMMk2zsCo/h480-c/CSNovyJicin.jpg",
+          "updated": 1391540783905
+        },
+        "resources": {
+          "name": "ČS Nový Jičín",
+          "map": {
+            "lat": "49.214807",
+            "lnt": "16.570445"
+          },
+          "group": 1
+        }
+      },
+      {
+        "Id": "el_62323",
+        "Type": "album",
+        "Edit": 0,
+        "Width": 12,
+        "Content": {
+          "ratio": "ratio16_9",
+          "gdataAlbumId": "5976588185949897441",
+          "name": "AVG Brno",
+          "thumbnail": "https://lh6.googleusercontent.com:443/-8kX3HJU-NdQ/UvEbSjBXAuE/AAAAAAAAASM/RhAQ9IWboNY/h480-c/AVGBrno.jpg",
+          "updated": 1391540807846
+        },
+        "resources": {
+          "name": "AVG Brno",
+          "map": {
+            "lat": "49.214807",
+            "lnt": "16.570445"
+          },
+          "group": 3
+        }
+      },
+      {
+        "Id": "el_7",
+        "Type": "album",
+        "Edit": 0,
+        "Width": 12,
+        "Content": {
+          "ratio": "ratio16_9",
+          "gdataAlbumId": "5976588700773331761",
+          "name": "Gehe pharma",
+          "thumbnail": "https://lh4.googleusercontent.com:443/-OomA01MZlNk/UvEbwg41MzE/AAAAAAAAA00/DyaVYwnlpg8/h480-c/GehePharma.jpg",
+          "updated": 1391540824689
+        },
+        "resources": {
+          "name": "Gehe pharma",
+          "group": 2
+        }
+      },
+      {
+        "Width": 12,
+        "Id": "a58fc74c-e248-0f55-8f74-e78a459a8727",
+        "Content": {
+          "ratio": "ratio3_4",
+          "gdataAlbumId": "5976589727846900321",
+          "name": "Omniplast",
+          "thumbnail": "https://lh6.googleusercontent.com:443/-wqyy1BqbbaA/UvEcsTCQImE/AAAAAAAAAZI/Ci-8xEEp4Nk/h480-c/Omniplast.jpg",
+          "updated": 1391540903120
+        },
+        "resources": {
+          "name": "Omniplast"
+        },
+        "Name": "",
+        "Type": "album"
+      },
+      {
+        "Width": 12,
+        "Id": "88592848-677a-47b5-654b-1441ac2fbaa0",
+        "Content": {
+          "ratio": "ratio3_4",
+          "gdataAlbumId": "5976617075643441617",
+          "name": "ČS Znojmo",
+          "thumbnail": "https://lh3.googleusercontent.com:443/-oa03HI-8Ies/UvE1kJhC4dE/AAAAAAAAAz8/fhjmNDKm2qI/h480-c/CSZnojmo.jpg",
+          "updated": 1391540930051
+        },
+        "resources": {
+          "name": "ČS Znojmo"
+        },
+        "Name": "",
+        "Type": "album"
+      },
+      {
+        "Width": 12,
+        "Id": "97483a05-773d-2502-f0b9-d599e7457b6b",
+        "Content": {
+          "ratio": "ratio3_4",
+          "gdataAlbumId": "5976590710241838465",
+          "name": "Movianto",
+          "thumbnail": "https://lh3.googleusercontent.com:443/-_5ojEW0wTCU/UvEdlevdRYE/AAAAAAAAAd4/dTwcApnUkn0/h480-c/Movianto.jpg",
+          "updated": 1391540973747
+        },
+        "resources": {
+          "name": "Movianto",
+          "group": 2
+        },
+        "Name": "",
+        "Type": "album"
+      },
+      {
+        "Width": 12,
+        "Id": "538382d4-66dc-64ee-7c44-f7c7b1c38288",
+        "Content": {
+          "ratio": "ratio3_4",
+          "gdataAlbumId": "5976591502463416945",
+          "name": "ČS Zlín",
+          "thumbnail": "https://lh6.googleusercontent.com:443/-Qq0_DxjT0fY/UvEeTl_zOnE/AAAAAAAAAhE/2u4tdMKcw5Q/h480-c/CSZlin.jpg",
+          "updated": 1391540989146
+        },
+        "resources": {
+          "name": "ČS Zlín",
+          "group": 1
+        },
+        "Name": "",
+        "Type": "album"
+      }
+    ],
+    "Edit": 0,
+    "visible": true
+  },
+  {
+    "Category": "Page",
+    "Name": "představení společnosti",
+    "Link": "představení společnosti",
+    "id": "grid_2",
+    "GridElements": [
+      {
+        "Id": "el_2",
+        "Type": "simplehtml",
+        "Edit": 0,
+        "Width": 12,
+        "resources": {
+          "text": "199020 Založení akciové společnosti BOOS, a.s--  - projekční činnost- inženýrská činnost- generální dodávky staveb a interiérů- realitní činnost- dodávky a montáže bankovních technologií"
+        }
+      },
+      {
+        "Id": "el_3",
+        "Type": "simplehtml",
+        "Edit": 0,
+        "Width": 12,
+        "resources": {
+          "text": "1990 - 1999\n--\n- vytvoření samostatných kanceláří pro oblast Praha a Zlín"
+        }
+      },
+      {
+        "Id": "el_3ssd",
+        "Type": "simplehtml",
+        "Edit": 0,
+        "Width": 12,
+        "resources": {
+          "text": "1999 založení společnosti BOOS Trade, s.r.o. \n--\n- společnost plně přebírá aktivity v oblasti dodávek a montáži bankovních technologií"
+        }
+      },
+      {
+        "Id": "el_5",
+        "Type": "simplehtml",
+        "Edit": 0,
+        "Width": 12,
+        "resources": {
+          "text": "2004 vytvoření samostatné sekce pro developerské projekty\n--"
+        }
+      },
+      {
+        "Id": "el_sdsd5",
+        "Type": "simplehtml",
+        "Edit": 0,
+        "Width": 12,
+        "resources": {
+          "text": "2009 vybudování samostatné pobočky v Uničově \n--\n  - **BOOS, a.s. – atelier Severní Morava**"
+        }
+      },
+      {
+        "Id": "el_6",
+        "Type": "simplehtml",
+        "Edit": 0,
+        "Width": 12,
+        "Content": "",
+        "resources": {
+          "text": "2013 vytvoření nové organizační struktury\t\n--\n  - **BOOS plan, a.s.**"
+        }
+      }
+    ],
+    "Edit": 0,
+    "visible": true
+  },
+  {
+    "Category": "Page",
+    "Name": "Činnost",
+    "Link": "cinnost",
+    "id": "grid_3",
+    "GridElements": [
+      {
+        "Id": "el_1",
+        "Type": "simplehtml",
+        "Edit": 0,
+        "Width": 12,
+        "resources": {
+          "text": "Více než dvacet let  zkušeností a činnosti v oboru navrhování staveb, realizace, developerské činnosti a činnosti realitní vyústilo v rozhodnutí managementu  k rozdělení firmy BOOS, a.s. na samostatné společnosti BOOS PLAN, a.s.  a  BOOS development s.r.o.\n\nCílem tohoto rozhodnutí je jednodušší a čitelnější forma zejména pro naše klienty a vytvoření platformy umožňující další rozvoj všech samostatných činností, kterými se naši    pracovníci zabývají a které našim klientům nabízíme. Neustále se rozšiřující portfolio poskytovaných služeb a jejich úroveň zajistilo společnosti BOOS, a.s. významnou pozici v oblasti navrhování staveb, stavebního managementu, inženýringu, odborných konzultací a dále též v oblasti dodavatelské či developerské činnosti.  K vytvoření nové organizační struktury přispěly výrazným způsobem skutečnosti, vyplývající z potřeb bank, finančních institucí a pojišťoven, které mají specifické požadavky vzájemné spolupráce v těchto zcela rozdílných činnostech obou, aktuálně nově vytvořených společností.   \n\nPřejeme si, aby dosavadní forma spolupráce s našimi klienty byla tímto rozhodnutím ještě více umocněna v daných odbornostech, vedoucí k maximální profesionalitě námi nabízených činností a přispěla k maximálnímu zhodnocení finančních prostředků našich klientů v jejich investičních záměrech.\n\n\n- ![BOOS a.s.](http://www.boosplan.cz/image/BOOS.png \"BOOS, a.s.\")\n\n- ![BOOS plan, a.s.](http://www.boosplan.cz/image/BOOSplan.png \"BOOS plan, a.s.\")\n\n- ![BOOS developlemt, s.r.o.](http://www.boosplan.cz/image/boos_development.png \"BOOS development, s.r.o.\")\n\n\n#  Dobrá stavba se nedá realizovat bez špičkového projektu, připraveného s uvědoměním a péčí, odvahou i pokorou a odpovědností za čas, prostor a člověka. \n\n\n<image>\n  <dt>Definition list</dt>\n  <dd>Is something people use sometimes.</dd>\n\n  <dt>Markdown in HTML</dt>\n  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>\n</image>\n\n--------"
+        },
+        "help": true
+      },
+      {
+        "Width": 12,
+        "Id": "eda43d20-bca1-57d5-6753-87084c6581b3",
+        "Content": {},
+        "resources": {},
+        "Name": "",
+        "Type": "text"
+      }
+    ],
+    "visible": true,
+    "Edit": 0
+  },
+  {
+    "Category": "Page",
+    "Name": "kontakt",
+    "Link": "kontakt",
+    "id": "grid_4",
+    "GridElements": [
+      {
+        "Id": "4c68c0a0-b1ef-a5fb-a3f6-9d6b00456f38",
+        "Type": "kontakt",
+        "Name": "Kontakt",
+        "Edit": 0,
+        "Width": 12,
+        "resources": {
+          "header": "Boos plan, a.s.",
+          "subheader": "Horova 68/3121",
+          "valuea": "PSČ: 616 00",
+          "valued": "tel: +420 541 427 510",
+          "map": {
+            "lat": "49.214807",
+            "lnt": "16.570445"
+          },
+          "valueb": "IČ:",
+          "valuec": "DIČ:",
+          "valuee": "boosplan@boosplan.cz"
+        }
+      },
+      {
+        "Id": "acce9535-1622-480c-9096-682cd0b47547",
+        "Type": "kontakt",
+        "Name": "Kontakt",
+        "Edit": 0,
+        "Width": 12,
+        "resources": {
+          "header": "Ředitel společnosti",
+          "valueb": "mobil: +420 603 979 240",
+          "subheader": "Ing. Richard Strnad",
+          "valuea": "ředitel společnosti a člen představenstva",
+          "valuec": "mobil: +420 547 427 313",
+          "valued": "email: strnad@boosplan.cz"
+        }
+      },
+      {
+        "Id": "acce9535-1622-480c-9096-682cd0b47547",
+        "Type": "kontakt",
+        "Name": "Kontakt",
+        "Edit": 0,
+        "Width": 12,
+        "resources": {
+          "header": "Předseda představenstva",
+          "valueb": "mobil: +420 603 979 240",
+          "subheader": "Ing. Martin Mrlík",
+          "valuec": "mobil: +420 547 427 313",
+          "valued": "email: mrlik@boosplan.cz"
+        }
+      },
+      {
+        "Width": 12,
+        "Id": "1acd153c-f2ed-486d-7a83-77525950c4e5",
+        "Content": {},
+        "resources": {
+          "header": "Místopředseda představenstva",
+          "subheader": "Ing. Antonín Pospíšil",
+          "valueb": "mobil: +420 777 638 277",
+          "valuec": "tel.: +420 581 111 302",
+          "valued": "email: pospisil@boosplan.cz"
+        },
+        "Name": "",
+        "Type": "kontakt"
+      },
+      {
+        "Width": 12,
+        "Id": "1d73fd1a-c478-580e-1264-de49e17c9f85",
+        "Content": {},
+        "resources": {
+          "header": "Člen představenstva",
+          "subheader": "Ing. Jan Čutek",
+          "valueb": "tel.: +420",
+          "valuec": "tel.: +420 541 427 322",
+          "valued": "cutek@boosplan.cz"
+        },
+        "Name": "",
+        "Type": "kontakt"
+      }
+    ],
+    "Edit": 0,
+    "visible": true
+  },
+  {
+    "Category": "Page",
+    "Name": "domovská stránka",
+    "Link": "home",
+    "id": "grid_5",
+    "Edit": 0,
+    "GridElements": [
+      {
+        "Id": "8c9a82bb-ef5c-f797-c230-c9e541de043e",
+        "Type": "text",
+        "Name": "Text",
+        "Edit": 0,
+        "Width": 12,
+        "Content": {
+          "ratio": "ratio3_4",
+          "gdataAlbumId": "5936930792879643473",
+          "name": "Profile Photos",
+          "thumbnail": "https://lh4.googleusercontent.com:443/-RFTOMqX9ZGc/UmQ3GdWrW1E/AAAAAAAAALY/Li2-GEEtvfc/h480-c/ProfilePhotos.jpg",
+          "updated": 1389195804768
+        },
+        "resources": {
+          "name": "Aktuální projekt",
+          "text": "Vítejte na stránkách společnosti BOOS plan, a.s."
+        },
+        "help": true
+      },
+      {
+        "Width": 12,
+        "Id": "48a24c3c-96b2-e903-2ff1-369d49da40d7",
+        "Content": {},
+        "resources": {
+          "text": "Právě probíhající projekt:"
+        },
+        "Name": "",
+        "Type": "simplehtml"
+      },
+      {
+        "Width": 12,
+        "Id": "30eed9f6-418a-f460-551f-2b7267a32230",
+        "Content": {},
+        "resources": {
+          "text": "Siemens Drásov - nová obrobna, termín dokončení 04/2014 <br>náklad 100 mil. Kč"
+        },
+        "Name": "",
+        "Type": "text"
+      }
+    ],
+    "Authorize": false
+  }
+]

@@ -56,7 +56,7 @@ var GridList = (function(){
 		var result = [];
 		for (var i = 0; i < this.data.length; i++) {
 			var obj = this.data[i];
-			if (obj.Category === category ) {
+			if (obj.Category === category && obj.visible) {
 				result.push(new Grid (obj));
 			}
 		}

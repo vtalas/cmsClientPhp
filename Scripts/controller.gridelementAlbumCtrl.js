@@ -47,9 +47,11 @@ var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$not
 
 		}, 1);
 
-		$scope.imageClick = function (name) {
+		$scope.imageClick = function () {
+			$scope.gridelement.Id;
 			$gallery.showBy(function (obj) {
-				return $scope.gridelement.Id === obj.Id;
+
+					return $scope.gridelement.Id === obj.Id;
 			});
 		};
 	}];

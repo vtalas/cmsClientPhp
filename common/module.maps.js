@@ -26,7 +26,7 @@ moduleMaps.directive("ngcGoogleMap", ['$sce', '$parse',"$timeout", function ($sc
 			};
 			$timeout(function () {
 				init();
-			},500);
+			}, 1500);
 		}
 	};
 
