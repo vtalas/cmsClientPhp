@@ -1349,7 +1349,6 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 
 	$scope.link = $routeParams.link;
 
-
 	loadGridList
 		.then(function (data) {
 			gridList = data;
@@ -1377,28 +1376,6 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 
 
 	$notify.trigger("content-loading");
-	$api.getPage($scope.link)
-		.then(function (data) {
-//$timeout(function () {
-			$scope.page = data;
-			$scope.gridElements = $scope.page.GridElements || [];
-			$scope.groups = $scope.page.groups;
-
-			$scope.layoutClass = $scope.groups ? "grid_10" : "grid_12";
-			$notify.trigger("content-loaded");
-			source = new GridElementsList($scope.page.GridElements);
-			$gallery.loadData(data.GridElements || []);
-			return data;
-//},2000)
-		}, function (err) {
-			console.log("ERROR!!", err.status);
-		})
-
-		.then(function (data) {
-			setTimeout(function () {
-				$api.checkForSnapshot($scope, data);
-			}, 3000);
-		});
 
 	$scope.filter = function (value) {
 		if (value === undefined) {
