@@ -2,7 +2,7 @@
 
 
 .rotateAnimate{
-	.Transformation(rotate(180deg));
+	.Transform(rotate(180deg));
 	.AnimateEasing(1s, cubic-bezier(.23,1.04,.32,.94));
 }
 
@@ -15,14 +15,13 @@
 }
 
 .scaleAnimate {
-	.Transformation(scale(1.150,1.150));
+	.Transform(scale(1.150,1.150));
 	.AnimateEasing(1s, cubic-bezier(.23,1.04,.32,.94));
 }
 
 .flip {
 }
 .flip:hover {
-	.Transformation(rotateX(180deg) rotateY(180deg));
-	//.AnimateEasing(1200ms, cubic-bezier(.23,1.04,.32,.94));
+	.Transform(rotateX(180deg) rotateY(180deg));
 	.AnimateEasing(1s, ease-out);
 }

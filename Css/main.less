@@ -805,31 +805,27 @@ button {
 		}
 	}
 
-
-	.myAnimation {
-		5% {
-			.Transformation(scale(1.150,1.150));
-		}
-		15% {
-			.Transformation(scale(1,1));
-		}
-	}
-	@-webkit-keyframes NAME-YOUR-ANIMATION {
-		.myAnimation;
-	}
-	@-moz-keyframes NAME-YOUR-ANIMATION {
-		.myAnimation;
-	}
-	@-o-keyframes NAME-YOUR-ANIMATION {
-		.myAnimation;
-	}
-	@keyframes NAME-YOUR-ANIMATION {
-		.myAnimation;
-	}
-
-
-
 	.main-logo {
+		.chujAnimation {
+			5% {
+				.Transform(scale(1.150,1.150));
+			}
+			15% {
+				.Transform(scale(1,1));
+			}
+		}
+		@-webkit-keyframes chuj {
+			.chujAnimation;
+		}
+		@-moz-keyframes chuj {
+			.chujAnimation;
+		}
+		@-o-keyframes chuj {
+			.chujAnimation;
+		}
+		@keyframes chuj {
+			.chujAnimation;
+		}
 		cursor: pointer;
 		margin-top: -93px;
 		padding-bottom: 20px;
@@ -837,10 +833,10 @@ button {
 			max-width: 55px;
 			margin-left: -58px;
 
-			-webkit-animation: NAME-YOUR-ANIMATION 15s infinite; /* Safari 4+ */
-			-moz-animation: NAME-YOUR-ANIMATION 15s infinite; /* Fx 5+ */
-			-o-animation: NAME-YOUR-ANIMATION 15s infinite; /* Opera 12+ */
-			animation: NAME-YOUR-ANIMATION 15s infinite; /* IE 10+ */
+			-webkit-animation: chuj 15s infinite; /* Safari 4+ */
+			-moz-animation: chuj 15s infinite; /* Fx 5+ */
+			-o-animation: chuj 15s infinite; /* Opera 12+ */
+			animation: chuj 15s infinite; /* IE 10+ */
 		}
 	}
 }
@@ -861,7 +857,6 @@ button {
 .animate-repeat.ng-leave,
 .animate-repeat.ng-enter.ng-enter-active {
 	.AnimateEasing(300ms, linear);
-
 	//.Transform(rotateY(0deg));
 	.Transform(scale(1, 1));
 	opacity: 1;

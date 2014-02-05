@@ -1,13 +1,11 @@
 @selectedColor : #515455;
 @red: #990000;
 
-
 .TextOverflowElipsies {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
 }
-
 
 .AnimateEasing(@duration, @ease) {
 	-webkit-transition: all @ease @duration;
@@ -16,6 +14,7 @@
 	-o-transition: all @ease @duration;
 	transition: all @ease @duration;
 }
+
 .AnimateEasingInfinite(@duration, @ease) {
 	-webkit-transition: all @ease @duration infinite;
 	-moz-transition: all @ease @duration infinite;
@@ -36,12 +35,15 @@
 	@ease: cubic-bezier(0.075, 0.820, 0.165, 1.000);
 	.AnimateEasing(@duration, @ease);
 }
+
 .Transform(@type) {
 	-webkit-transform: @type;
-	-moz-transform: @type;
-	-o-transform: @type;
-	transform: @type;
+	   -moz-transform: @type;
+	    -ms-transform: @type; /* IE 9*/
+	     -o-transform: @type;
+	        transform: @type;
 }
+
 .centered-container {
 	display: table;
 	width: 100%;
@@ -54,11 +56,3 @@
 	text-align: center;
 }
 
-.Transformation(@type) {
-//	-webkit-transform: @type;  /* Chrome, Safari 3.1+ */
-//     -moz-transform: @type;  /* Firefox 3.5-15*/
-//      -ms-transform: @type;  /* IE 9*/
-//       -o-transform: @type;  /* Opera 10.50-12.00*/
-//          transform: @type;  /* Firefox 16+, IE 10+, Opera 12.10+*/
-
-}
