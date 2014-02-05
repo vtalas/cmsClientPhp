@@ -474,6 +474,12 @@ var ApiWrapper = (function () {
 		return deferred;
 	};
 
+	/**
+	 *
+	 * @param link
+	 * @returns {Function|promise}
+	 * @deprecated use getJsonData
+	 */
 	ApiWrapper.prototype.getPage = function (link) {
 		var deferred = this.q.defer(),
 			key = "getPage_" + link,
@@ -499,7 +505,11 @@ var ApiWrapper = (function () {
 		return deferred.promise;
 	};
 
-	
+	/**
+	 *
+	 * @returns {Function|promise}
+	 * @deprecated use getJsonData
+	 */
 	ApiWrapper.prototype.getPages = function () {
 		var deferred = this.q.defer();
 		this.cmsApi.getPages(function (data) {
@@ -591,7 +601,7 @@ var ApiWrapper = (function () {
 	};
 
 	ApiWrapper.prototype.checkForSnapshot = function (scope, data) {
-		if (data && data.snapshot) {
+		if (data) {
 			scope.$emit("page-loaded");
 		}
 	};
@@ -1332,10 +1342,39 @@ var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location"
 			el.removeClass("scrolled");
 		}
 	});
-}];var pageController = ["$scope", "$api", "$routeParams", "$gallery", "$notify", "$timeout", function ($scope, $api, $routeParams, $gallery, $notify, $timeout) {
-	var source = null;
+}];var pageController = ["$scope", "$api", "$routeParams", "$gallery", "$notify", "$timeout", "loadGridList", function ($scope, $api, $routeParams, $gallery, $notify, $timeout, loadGridList) {
+	var source = null,
+		/** type GridList */
+			gridList;
 
 	$scope.link = $routeParams.link;
+
+
+	loadGridList
+		.then(function (data) {
+			gridList = data;
+
+	//$timeout(function () {
+			$scope.page = gridList.getGridByLink($scope.link);
+			$scope.gridElements = $scope.page.GridElements;
+			$scope.groups = $scope.page.groups;
+
+			$scope.layoutClass = $scope.groups ? "grid_10" : "grid_12";
+			$notify.trigger("content-loaded");
+			source = new GridElementsList($scope.page.GridElements);
+			$gallery.loadData($scope.gridElements || []);
+			return $scope.page;
+//},2000)
+
+		}, function (err) {
+			console.log("ERROR!!", err.status);
+		})
+		.then(function (data) {
+			setTimeout(function () {
+				$api.checkForSnapshot($scope, data);
+			}, 3000);
+		});
+
 
 	$notify.trigger("content-loading");
 	$api.getPage($scope.link)

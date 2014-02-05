@@ -19,6 +19,12 @@ var ApiWrapper = (function () {
 		return deferred;
 	};
 
+	/**
+	 *
+	 * @param link
+	 * @returns {Function|promise}
+	 * @deprecated use getJsonData
+	 */
 	ApiWrapper.prototype.getPage = function (link) {
 		var deferred = this.q.defer(),
 			key = "getPage_" + link,
@@ -44,7 +50,11 @@ var ApiWrapper = (function () {
 		return deferred.promise;
 	};
 
-	
+	/**
+	 *
+	 * @returns {Function|promise}
+	 * @deprecated use getJsonData
+	 */
 	ApiWrapper.prototype.getPages = function () {
 		var deferred = this.q.defer();
 		this.cmsApi.getPages(function (data) {
@@ -136,7 +146,7 @@ var ApiWrapper = (function () {
 	};
 
 	ApiWrapper.prototype.checkForSnapshot = function (scope, data) {
-		if (data && data.snapshot) {
+		if (data) {
 			scope.$emit("page-loaded");
 		}
 	};
