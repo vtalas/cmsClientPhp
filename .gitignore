@@ -13,3 +13,4 @@ Service/cron/*
 css/src/*.css
 xxx/*
 build/*
+_tools/node_modules/*
