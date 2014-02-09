@@ -87,7 +87,7 @@
       <option name="workingDir" value="C:\wamp\www\ClientPhp\_tools" />
       <envs />
     </TaskOptions>
-    <TaskOptions isEnabled="true">
+    <TaskOptions isEnabled="false">
       <option name="arguments" value="" />
       <option name="checkSyntaxErrors" value="true" />
       <option name="description" value="" />
