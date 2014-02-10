@@ -7,9 +7,9 @@ var gulp = require("gulp"),
 	less = require('gulp-less'),
 	path = require('path'),
 	uglify = require('gulp-uglify'),
+	minifyCSS = require('gulp-minify-css'),
 	concat = require("gulp-concat"),
-	buildType = gulp.env.type || "",
-	isMin = buildType === "release";
+	isMin;
 
 function getLibs() {
 	var min = isMin ? ".min" : "";
@@ -36,19 +36,26 @@ var paths = {
 		'../Scripts/*.js'
 	],
 	jsLibs: getLibs(),
+	cssLibs: [
+		"../libs/css/font-awesome/css/font-awesome.min.css",
+		"../libs/css/font/stylesheet.css",
+		"../libs/css/960/fluid_grid.css"
+	],
 	less: [
-	//	'../Css/fluid_grid.css',
-		'../Css/main.less'
+		'../Css/*.less'
 	]
 };
 
 
 gulp.task("scripts", function () {
-	gulp.src(paths.scripts)
-		.pipe(uglify({compress: false}))
+	var src = gulp.src(paths.scripts);
+	if (isMin) {
+		src = src.pipe(uglify());
+	}
+
+	src
 		.pipe(concat("app.js"))
-		.pipe(gulp.dest("../build"))
-	;
+		.pipe(gulp.dest("../build"));
 });
 
 gulp.task("js-libs", function () {
@@ -58,18 +65,30 @@ gulp.task("js-libs", function () {
 	;
 });
 
-gulp.task("css", function () {
-	gulp.src(paths.less)
+gulp.task("css-libs", function () {
+	gulp.src(paths.cssLibs)
+		.pipe(concat("app.libs.css"))
+		.pipe(gulp.dest("../build"))
+	;
+});
+
+gulp.task("less", function () {
+	var src = gulp.src(paths.less)
 		.pipe(less({
 			paths: [ path.join(__dirname, 'less', 'includes') ]
-		}))
+		}));
+
+	if (isMin) {
+		src = src.pipe(minifyCSS());
+	}
+	src
 		.pipe(concat("app.css"))
 		.pipe(gulp.dest('../build'));
 });
 
 gulp.task('watch', function () {
 	gulp.watch(paths.scripts, ['scripts']);
-	gulp.watch(paths.less, ['css']);
+	gulp.watch(paths.less, ['less']);
 });
 
 gulp.task('setup-min', function () {
@@ -78,9 +97,8 @@ gulp.task('setup-min', function () {
 });
 
 
-
-gulp.task('run', ['scripts', 'css', 'js-libs']);
-//gulp.task('x', ['setup-min', 'run', 'minify']);
+gulp.task('run', ['scripts', 'less', 'js-libs']);
+gulp.task('min', ['setup-min', 'run']);
 gulp.task('default', ['run', 'watch']);
 
 
