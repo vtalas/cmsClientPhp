@@ -1,33 +1,1899 @@
-var EventDispatcher=function(){"use strict";function t(){this._listeners={}}return t.prototype.addEventListener=function(t,e){this._listeners[t]||(this._listeners[t]=[]),this._listeners[t].push(e)},t.prototype.removeEventListener=function(t,e){if(this._listeners[t]){var s=this._listeners[t].indexOf(e);-1!==s&&this._listeners[t].splice(s,1)}},t.prototype.dispatchEvent=function(){var t;if("string"!=typeof arguments[0])console.warn("EventDispatcher","First params must be an event type (String)");else{t=this._listeners[arguments[0]];for(var e in t)t[e](arguments[0],arguments[1],arguments[2],arguments[3],arguments[4],arguments[5],arguments[6])}},t}();
-angular.module("appConfigModule",[]).value("appConfig",{});
-"use strict";var moduleMaps=angular.module("maps",[]);moduleMaps.directive("ngcGoogleMap",["$sce","$parse","$timeout",function(o,a,e){var n={zoom:18,lat:49.214807,lng:16.570445};return{scope:{ngcGoogleMap:"="},link:function(o,a){var g=function(){var e=angular.extend(n,o.ngcGoogleMap),g={center:new google.maps.LatLng(e.lat,e.lng),zoom:e.zoom},l=new google.maps.Map(a[0],g);o.map=l};e(function(){g()},1500)}}}]);
-angular.module("notifications",[]).provider("$notify",function(){var n=new EventDispatcher;return{$get:function(){return n.trigger=n.dispatchEvent,n}}});
-var stringUtils=angular.module("stringutils",[]);stringUtils.factory("$markdown",function(){var n=new Showdown.converter;return{toHtml:function(t){return t?n.makeHtml(t):""}}}),stringUtils.directive("ngBindHtmlUnsafe",["$sce","$parse",function(n,t){return function(n,i,r){function a(){return(e(n)||"").toString()}i.addClass("ng-binding").data("$binding",r.ngBindHtmlUnsafe);var e=t(r.ngBindHtmlUnsafe);n.$watch(a,function(n){i.html(n)})}}]);
-var ItemBrowser=function(){"use strict";function t(t,n){this.settings=angular.extend(e(),n),this.items=t||[],this.currentIndex=0}var e=function(){return{}};return t.prototype.next=function(){return this.currentIndex<this.items.length-1&&this.currentIndex++,this.getCurrent()},t.prototype.previous=function(){return this.currentIndex>0&&this.currentIndex--,this.getCurrent()},t.prototype.selectByIndex=function(t){return t>0&&t<this.items.length&&(this.currentIndex=t),this.getCurrent()},t.prototype.getNext=function(){return-1===this.currentIndex?null:this.items[this.currentIndex+1]||null},t.prototype.getPrevious=function(){return this.items[this.currentIndex-1]||null},t.prototype.getCurrent=function(){return this.items[this.currentIndex]||null},t}();
-var FitImage=function(){"use strict";var t=function(t,i,e,h){this.iWidth=t||0,this.iHeight=i||0,this.cWidth=e||0,this.cHeight=h||0};return t.prototype.imageWidthCss=function(){return this.boxScale()>=this.imageScale()?"100%":"auto"},t.prototype.imageHeightCss=function(){return this.boxScale()<this.imageScale()?"100%":"auto"},t.prototype.imageScale=function(){return this.iWidth/this.iHeight},t.prototype.boxScale=function(){return this.cWidth/this.cHeight},t}();
-var Gallery=function(){"use strict";function t(t){this.settings=angular.extend(n(),t),this.data=[],this.currentIndex=-1}var n=function(){return{onLoad:function(){},onChange:function(){}}};return t.prototype.loadData=function(t){void 0===t&&(t=[]),this.isArray(t)?this.data=t:this.data.push(t),this.settings.onLoad()},t.prototype.showByIndex=function(t){this.currentIndex=this.data[t]?Number(t):-1,-1!==this.currentIndex&&this.settings.onChange()},t.prototype.showBy=function(t){for(var n=0;n<this.data.length;n++){var e=this.data[n];if(t(e))return this.currentIndex=n,void this.settings.onChange()}},t.prototype.close=function(){},t.prototype.next=function(){return this.currentIndex<this.data.length-1&&(this.currentIndex++,this.settings.onChange()),this.getCurrent()},t.prototype.prev=function(){return this.currentIndex>0&&(this.currentIndex--,this.settings.onChange()),this.getCurrent()},t.prototype.getPrevious=function(){return this.data[this.currentIndex-1]||null},t.prototype.getNext=function(){return-1===this.currentIndex?null:this.data[this.currentIndex+1]||null},t.prototype.getCurrent=function(){return this.data[this.currentIndex]||null},t.prototype.isArray=function(t){return"[object Array]"===Object.prototype.toString.call(t)},t}();
-var galleryModule=angular.module("galleryBrowser",["notifications"]);galleryModule.factory("$gallery",["$notify",function(e){var r={onChange:function(){e.trigger("gallery-changed")},onLoad:function(){e.trigger("gallery-loaded")}};return new Gallery(r)}]),galleryModule.directive("ngcFitToBoxImage",[function(){return{template:'<div ><img class="fit-image" src="{{imageSrc}}" /></div>',replace:!0,scope:{ngcFitToBoxImage:"="},link:function(e,r){e.$watch("ngcFitToBoxImage",function(t){var n,a,o;if(t)if(a=r.find("img"),n=r.width(),o=r.height(),t.Width)console.log("not implemented");else{var l=new Image;l.onload=function(){var e=new FitImage(this.width,this.height,n,o);a.css("height",e.imageHeightCss()),a.css("width",e.imageWidthCss())},l.src=t,e.imageSrc=t}})}}}]),galleryModule.controller("galleryBrowser",["$scope","$api","$location","$rootScope","$timeout","$routeParams","$gallery","$notify",function(e,r,t,n,a,o,l,i){i.addEventListener("gallery-loaded",function(){var r=t.search().galleryIndex;r&&(l.showByIndex(r),e.overlayGalleryShow=l.currentIndex>-1),e.currentItem=l.getCurrent(),e.prevItem=l.getPrevious(),e.nextItem=l.getNext()}),i.addEventListener("gallery-changed",function(){angular.element("body").css("overflow","hidden"),e.overlayGalleryShow=!0,e.currentItem=l.getCurrent(),e.nextItem=l.getNext(),e.prevItem=l.getPrevious(),t.search("galleryIndex",l.currentIndex)});var c=function(){return e.overlayGalleryShow};e.close=function(){angular.element("body").css("overflow","auto"),e.overlayGalleryShow=!1,t.search("galleryIndex",null)},e.prev=function(){e.currentItem=l.prev(),e.nextItem=l.getNext(),e.prevItem=l.getPrevious(),t.search("galleryIndex",l.currentIndex)},e.next=function(){e.currentItem=l.next(),e.nextItem=l.getNext(),e.prevItem=l.getPrevious(),t.search("galleryIndex",l.currentIndex)},e.$on("global-keydown",function(r,t){if(c()){var n=t.keyCode;switch(n){case 27:e.close();break;case 33:e.prev();break;case 34:e.next()}}})}]);
-var ApiWrapper=function(){function t(t,e,o){this.cmsApi=t,this.cache=e,this.q=o}return t.prototype.loadFromCache=function(t,e,o){var i=this.cache.get(t);return i?(e.resolve(i),e):(o(),e)},t.prototype.getPage=function(t){var e=this.q.defer(),o="getPage_"+t,i=this;return this.loadFromCache(o,e,function(){i.cmsApi.getJsonData({},function(r){var n=new GridList(r.data).getGridByLink(t);i.cache.put(o,n),e.resolve(n)},function(t){window.location,window.location.hash;403===t.status&&(window.location.hash="!login"),e.reject(t)})}),e.promise},t.prototype.getPages=function(){var t=this.q.defer();return this.cmsApi.getPages(function(e){t.resolve(e)}),t.promise},t.prototype.getJsonData=function(){var t=this.q.defer();return this.cmsApi.getJsonData(function(e){t.resolve(new GridList(e.data))}),t.promise},t.prototype.getAlbum=function(t,e){var o=this.q.defer(),i=e||{};return null===t?(o.resolve(null),o.promise):(i.id=t,this.cmsApi.getAlbum(i,function(t){o.resolve(t)}),o.promise)},t.prototype.getAlbumPhotos=function(t){var e=this.q.defer(),o=t+"getAlbumPhotos",i=this;return t?(this.loadFromCache(o,e,function(){i.cmsApi.getAlbumPhotos({id:t},function(t){i.cache.put(o,t),e.resolve(t)})}),e.promise):(e.resolve([]),e.promise)},t.prototype.getPhotos=function(){var t=this.q.defer(),e="getAlbumPhotosStream",o=this;return this.loadFromCache(e,t,function(){o.cmsApi.getPhotos(function(i){o.cache.put(e,i),t.resolve(i)})}),t.promise},t.prototype.getAlbums=function(){var t=this.q.defer();return this.cmsApi.getAlbums(function(e){t.resolve(e)}),t.promise},t.prototype.snapshot=function(t,e){var o=this.q.defer();return this.cmsApi.putSnapshot({data:t,path:e},function(t){o.resolve(t)}),o.promise},t.prototype.checkForSnapshot=function(t,e){e&&t.$emit("page-loaded")},t}();
-angular.module("apiModule",["ngResource","appConfigModule"]).factory("cmsApi",["$resource",function(a){var e=a("Service/cmsClientPHPService/:service",{service:"serverProxy.php"},{getJsonData:{method:"GET",isArray:!1,params:{action:"getJson"}},getPage:{method:"GET",isArray:!1,params:{action:"getPage"}},getRequestToken:{method:"GET",isArray:!1,params:{action:"getLogin"}},login:{method:"POST",isArray:!1,params:{action:"PostLogin",service:"login.php"}},post:{method:"POST",isArray:!1,params:{action:"getLogin"}},getPages:{method:"GET",isArray:!1,params:{action:"getPages"}},getAlbums:{method:"GET",isArray:!1,params:{action:"getAlbums"}},getAlbum:{method:"GET",isArray:!1,params:{action:"getAlbum"}},getAlbumPhotos:{method:"GET",isArray:!1,params:{action:"getAlbumPhotos"}},getPhotos:{method:"GET",isArray:!1,params:{action:"getPhotos"}},putUserData:{method:"PUT",isArray:!1,params:{service:"postData.php"}},putSnapshot:{method:"PUT",isArray:!1,params:{service:"snapshot.php"}}});return e}]);
-var repository=angular.module("repo",["apiModule"]);repository.factory("$api",["cmsApi","$cacheFactory","$q",function(r,a,o){return new ApiWrapper(r,a("cmsCache"),o)}]),repository.factory("loadFromCache",["cmsApi","$cacheFactory","$q",function(){return":ashdvjad"}]),repository.factory("loadGridList",["$api","$cacheFactory","$q",function(r){return r.getJsonData()}]);
-var gridModule=angular.module("grids",[]);gridModule.directive("ngcAspectRatio",[function(){return{templateUrl:"aspectRatio.html",transclude:!0,link:function(t,i,a){function r(t,i){return i/t*100}t.ratioWidth=Number(a.w)||4,t.ratioHeight=Number(a.h)||3,t.$watch("ratioWidth",function(){t.ratioCalculated={"padding-top":r(t.ratioWidth,t.ratioHeight)+"%"}}),t.$watch("ratioHeight",function(){t.ratioCalculated={"padding-top":r(t.ratioWidth,t.ratioHeight)+"%"}})}}}]);
-var Grid=function(){function i(i){i=i||{},this.GridElements=i.GridElements||[],this.Link=i.Link||null,this.Name=i.Name||"",this.id=i.id||null,this.resources=i.resources||[],this.groups=i.groups||null}return i}();
-var GridElementsList=function(){function t(t){this.data=t||[]}return t.prototype.getGroups=function(){for(var t=0;t<this.data.length;t++);return""},t.prototype.findById=function(t){for(var r=0;r<this.data.length;r++)if(t===this.data[r].Id)return this.data[r];return null},t.prototype.filter=function(t,r){var n,a,i=[];for(n=0;n<this.data.length;n++)a=this.data[n].resources,a&&a[t]===r&&i.push(this.data[n]);return i},t}();
-var GridList=function(){function t(t,i){this.data=t||[],this.repo=i}return t.prototype.addGrid=function(t){t.id="grid_"+(this.data.length+1),this.data.push(t),this.repo.set(this.data)},t.prototype.save=function(){this.repo.set(this.data)},t.prototype.update=function(t){var i=this.data.indexOf(t);this.data[i]=t,this.repo.set(this.data)},t.prototype.remove=function(t){this.data.splice(this.data.indexOf(t),1),this.repo.set(this.data)},t.prototype.getGrid=function(t){for(var i=0;i<this.data.length;i++){var r=this.data[i];if(r.id===t)return new Grid(r)}return new Grid},t.prototype.getGridByLink=function(t){for(var i=0;i<this.data.length;i++){var r=this.data[i];if(r.Link===t)return new Grid(r)}return new Grid},t.prototype.getGridsByCategory=function(t){for(var i=[],r=0;r<this.data.length;r++){var a=this.data[r];a.Category===t&&a.visible&&i.push(new Grid(a))}return i},t}();
-var galleryImageViewerController=["$scope","$routeParams","$api","$location",function(e,n,a,i){function l(){return null!==e.gallery&&void 0!==e.gallery}function g(n,i){return e.gallery?void(e.image=e.gallery[i]):(e.newindex=i,void a.getAlbumPhotos(n).then(function(n){e.gallery=n.data,e.image=e.gallery[i]}))}e.$on("galleryImageViewer-display-image",function(n,a,i){e.imageIndex=i,e.galleryId=a,g(a,i)}),e.$on("global-keydown",function(n,a){if(l()){var i=a.keyCode;switch(i){case 27:e.close();break;case 37:e.prev();break;case 32:case 39:e.next()}}}),e.$on("ngc-responsive-image-loading",function(n,a){e.loading=a,"$digest"!==e.$$phase&&e.$digest()}),e.$on("ngc-responsive-image-skipping",function(n,a){e.skipping=a,"$digest"!==e.$$phase&&e.$digest()}),e.close=function(){i.search("gid",null),i.search("i",null),e.gallery=null},e.next=function(){var n=e.gallery.length,a=e.imageIndex;a++,a>=n&&(a=0),i.search("i",a)},e.prev=function(){var n=e.gallery.length,a=e.imageIndex;a--,0>=a&&(a=n-1),i.search("i",a)}}];
-var gridelementKontaktCtrl=["$scope","$api","$routeParams","$location","$rootScope",function(e){function a(e){return l[e]||""}function u(e){return l[e]||null}var l=e.gridelement.resources||{};e.header=a("header"),e.subHeader=a("subheader"),e.valueA=a("valuea"),e.valueB=a("valueb"),e.valueC=a("valuec"),e.valueD=a("valued"),e.valueE=a("valuee"),e.valueF=a("valuef"),e.map=u("map"),e.hasMap=null!==e.map,e.blockSize=e.map?"grid_12":"grid_3"}];
-var gridelementAlbumCtrl=["$scope","$api","$routeParams","$location","$notify","$gallery","$element",function(e,t,n,r,a,u,i){function l(e,t){return m[e]||t||""}function o(e,t){return d[e]||t||""}var m=e.gridelement.resources||{},d=e.gridelement.Content||{};e.gdataAlbumId=o("gdataAlbumId",null),e.route={link:n.link},e.name=l("name"," "),e.type=l("type"),e.services=l("services"),e.year=l("year"),e.text=l("text"),e.cssRatio=o("ratio","ratio16_9"),setTimeout(function(){var n,r=i.height()-44,a=0,u=i.width();n=Math.max(u,r),r>u&&(a=1),e.gdataAlbumId&&t.getAlbum(e.gdataAlbumId,{size:n,isSquare:!1,type:a}).then(function(t){t&&(e.album=t.data)})},1),e.imageClick=function(){e.gridelement.Id,u.showBy(function(t){return e.gridelement.Id===t.Id})}}],gridelementAlbumOverlayCtrlPreview=["$scope","$api","$routeParams","$location","$notify","$gallery","$markdown",function(e,t,n,r,a,u,i){function l(){var t=e.gridelement.Content;return null!==t?t.gdataAlbumId:null}function o(e){return m[e]||""}e.gdataAlbumId=l(),e.route={link:n.link};var m=e.gridelement.resources||{};e.name=o("name"),e.type=o("type"),e.services=o("services"),e.year=o("year"),e.text=i.toHtml(o("text")),e.toHtml=function(e){return i.toHtml(e)},t.getAlbumPhotos(e.gdataAlbumId).then(function(t){t&&t.data&&(e.albumPhotos=t.data,e.currentImage=e.albumPhotos[0],e.currentImageIndex=0)}),e.showImagePreview=function(t){e.currentImage=e.albumPhotos[t],e.currentImageIndex=t}}];
-var gridelementAlbumOverlayCtrl=["$scope","$api","$routeParams","$location","$notify","$gallery","$markdown",function(e,t,n,r,a,u,m){function o(){var t=e.gridelement.Content;return null!==t?t.gdataAlbumId:""}function g(e){return I[e]||null}e.gdataAlbumId=o(),e.route={link:n.link};var I=e.gridelement.resources||{};e.name=g("name"),e.type=g("type"),e.services=g("services"),e.year=g("year"),e.text=m.toHtml(g("text")),e.map=g("map"),e.hasMap=null!==e.map,e.toHtml=function(e){return m.toHtml(e)};var c;t.getAlbumPhotos(e.gdataAlbumId).then(function(t){t&&(e.albumPhotos=t.data,c=new ItemBrowser(t.data),e.currentImage=c.getCurrent(),e.currentImageIndex=c.currentIndex,e.previousImage=c.getPrevious(),e.nextImg=c.getNext())}),e.showImagePreview=function(t){e.currentImage=c.selectByIndex(t),e.currentImageIndex=c.currentIndex,e.previousImage=c.getPrevious(),e.nextImg=c.getNext()},e.prevImage=function(){e.currentImage=c.previous(),e.currentImageIndex=c.currentIndex,e.previousImage=c.getPrevious(),e.nextImg=c.getNext()},e.nextImage=function(){e.currentImage=c.next(),e.currentImageIndex=c.currentIndex,e.previousImage=c.getPrevious(),e.nextImg=c.getNext()},e.$on("global-keydown",function(t,n){var r=n.keyCode;switch(r){case 37:e.prevImage();break;case 39:e.nextImage()}})}];
-var gridelementGdataAlbumCtrl=["$scope","$api","$routeParams","$location","$rootScope",function(e,t,a,n){function l(){var t=e.gridelement.Content;return null!==t?t.gdataAlbumId:null}e.gdataAlbumId=l(),e.route={link:a.link},e.header=e.gridelement.Resources.header.Value,e.text=e.gridelement.Resources.text.Value,t.getAlbum(e.gdataAlbumId,{size:100,isSquare:!0,type:2}).then(function(t){e.album=t.data}),e.showImage=function(e,t){n.search("i",t),n.search("gid",e)}}];
-var homeController=["$scope","$api",function(t,e){function a(a,o){return e.getAlbumPhotos(o).then(function(e){t.homeData[a].images=e.data[0],t.tempLength++,t.tempLength>t.homeData.length&&(t.loadedImages=!0)})}function o(e,a,o){var n,d,h=e.width(),i=e.height();t.disableAutoFormat||a>h&&(n=h/i,d=Math.floor(n*o-50),e.css("max-width",d))}t.homeData=[],t.nextWorkData=[],t.pageLink="projekty",t.loadedData=!1,t.loadedImages=!1,t.showLoader=!0,t.tempLength=0;var n=$(".page-home");n.hide(),t.$on("windowChanged",function(t,e){o(n,e.width,e.height)}),e.getPage(t.pageLink).then(function(e){return t.homeData=e.data.GridElements,setTimeout(function(){t.loadedData=!0,t.$digest()},1e3),o(n,$(window).width(),$(window).height()),t.$emit("data-loaded"),e.data}).then(function(t){for(var e=[],o=0;o<t.GridElements.length;o++){var n=t.GridElements[o].Content;e.push(a(o,n.gdataAlbumId))}}),t.showNextWork=function(){t.nextWork=!0,t.disableAutoFormat=!0,$("html, body").animate({scrollTop:$(document).height()},1e3)}}];
-var loginController=["$scope","cmsApi",function(e,n){var s=(new ApiWrapper(n),function(n){n&&(e.message=null),e.loading=null===n||"undefined"==typeof n?!0:n});s(),n.getRequestToken(function(n){e.RequestToken=n.RequestToken,s(!1)},function(){e.message="Přihlašovací službe je nedostupná."});var o=function(e){var n;switch(e){case 401:n="Špatné heslo nebo login";break;case 400:case 500:n=".";break;default:n="Vyskytla se neznámá chyba ".status}return n};e.submit=function(){s();var a={};a.UserName=e.UserName,a.Password=e.Password,a.RequestToken=e.RequestToken,n.login(a,function(){window.location.hash="home",s(!1)},function(n){e.message=o(n.status),s(!1)})}}];
-var pController=["$scope","$api","$routeParams","$location","$notify",function(e,n,r,l,t){e.link=r.link;var i=function(){var e,n=l.search().elindex,t=r.elementIndex;return e=isNaN(t)?0:t,isNaN(n)||(e=n),Number(e,10)||0},a=function(n){var r=e.page.GridElements.length;e.isFirst=0===n,e.isLast=n===r-1};e.loading=!0;var o=n.getPage(e.link).then(function(n){var r=i();return e.page=n,a(r),e.currentGridElement=e.page.GridElements[r],t.trigger("content-loaded"),n}),s=function(n){l.search("elindex",n),o.then(function(){e.currentGridElement=e.page.GridElements[n],a(n)})};e.next=function(){var n=i(),r=e.page.GridElements.length;n++,n>r-1||s(n)},e.prev=function(){var e=i();0>=e||(e--,s(e))};var c=angular.element(".navigation");angular.element(window).scroll(function(){var n=$(this).scrollTop(),r=50;n>r&&!e.isScrolled&&(e.isScrolled=!0,c.addClass("scrolled")),r>n&&e.isScrolled&&(e.isScrolled=!1,c.removeClass("scrolled"))})}];
-var pageController=["$scope","$api","$routeParams","$gallery","$notify","$timeout","loadGridList",function(e,t,n,i,l,r,o){var a,u=null;e.link=n.link,o.then(function(t){return a=t,e.page=a.getGridByLink(e.link),e.gridElements=e.page.GridElements,e.groups=e.page.groups,e.layoutClass=e.groups?"grid_10":"grid_12",l.trigger("content-loaded"),u=new GridElementsList(e.page.GridElements),i.loadData(e.gridElements||[]),e.page},function(e){console.log("ERROR!!",e.status)}).then(function(n){setTimeout(function(){t.checkForSnapshot(e,n)},3e3)}),l.trigger("content-loading"),e.filter=function(t){return void 0===t?(e.filterValue=null,void(e.gridElements=u.data)):(e.filterValue=t,void(e.gridElements=u.filter("group",t)))},e.isSelectedFilter=function(t){return e.filterValue===t?"selected":null}}];
-var simplehtml=["$scope","$markdown",function(t,n){function e(t){return o[t]||""}var r=t.getGridElement(),o=r.resources||{};t.ContentToHtml=function(){return n.toHtml(e("text"))}}];
-var userDataForm=["$scope","cmsApi","$routeParams",function(a,t,e){a.link=e.link;var s=function(a){var t;switch(a){case 401:t="Pro odeslání formuláře je potřeba se přihásit. ";break;case 400:case 500:t=".";break;default:t="Vyskytla se neznámá chyba ".status}return t};a.post=function(){t.putUserData({data:a.data,key:a.key},function(){},function(t){a.$emit("set-message",s(t.status))})},a.serialized=function(){JSON.stringify(a.data)}}];
-var ngcGdataAlbumDirective=["cmsApi",function(n){var t=new ApiWrapper(n);return{scope:{ngcGdataAlbum:"="},compile:function(){return function(n){t.getAlbum(n.ngcGdataAlbum).then(function(){})}}}}];
-function ngcLazyImage(){var a="resources/loaders/loader16.gif";return{scope:{ngcLazyImage:"="},link:function(e,n,o){void 0!==o.loader&&(a=o.loader),e.$watch("ngcLazyImage",function(a){void 0!==a&&n.attr("src",a)})}}}
-function ngcOverlay(){return{restrict:"E",transclude:!0,templateUrl:"Templates/template.ngcOverlay.html",compile:function(){return function(){}}}}
-var ngcResponsiveImage=function(){var i=function(i){return i.windowWidth},e=function(i){return i.windowHeight},n=function(i,e){var n=e.FullSize.PhotoUri;return i>=768&&1200>i&&(n=e.Large.PhotoUri),i>=480&&768>i&&(n=e.Medium.PhotoUri),480>i&&(n=e.Small.PhotoUri),n},t=function(i){var e,n=new Image;return n.src=i,e=$.Deferred(),$(n).load(function(){var i=this;setTimeout(function(){e.resolve(i)},10)}),e},o=function(n){var t=i(n)<n.imageWidth,o=e(n)<n.imageWidth;if(n.containerWidth=t?null:n.imageWidth,o){var a=e(n);n.containerWidth=Math.round(n.imageWidth/n.imageHeight*a)}},a=function(i){i.containerWidth=i.imageWidth},r=function(e,a,r){var s,u=i(e),g=n(u,a);e.loading=!0,s=setTimeout(function(){e.showLoader=e.loading,e.$emit("ngc-responsive-image-loading",e.loading),e.$digest()},200),e.imagePromise=t(g).done(function(i){e.imageWidth=i.width,e.imageHeight=i.height,o(e),e.source=g,e.loading=!1,e.showLoader=!1,clearTimeout(s),e.$emit("ngc-responsive-image-loading",!1),e.$emit("ngc-responsive-image-skipping",!1),e.skipping=!1,l(r),e.$apply()})},l=function(i){i.css("position","relative"),i.css("margin","0 auto"),i.css("left","auto"),i.css("top","auto")};return{scope:{galleryImage:"="},controller:["$scope",function(i){i.containerWidth="16",i.windowWidth=$(window).width(),i.windowHeight=$(window).height(),i.isFullSize=function(){return i.imageWidth<=i.containerWidth},i.isFullSizeCssClass=function(){return i.isFullSize()?"icon-resize-small":"icon-resize-full"},i.showFullSize=function(){i.isFullSize()?o(i):a(i)},i.isMovable=function(){return i.isOverFlowable()&&i.isFullSize()?"movable":""},i.fullSizeTooltip=function(){return i.isFullSize()?"Přizpůsobit na stránku":"Zobrazit původní velikost"},i.isOverFlowable=function(){return i.windowHeight<i.imageHeight||i.windowWidth<i.imageWidth},i.getCssWidth=function(i){return null===i?"auto":i+"px"},i.getCssHeight=function(i){return null===i?"auto":i+"px"}}],restrict:"E",replace:!0,templateUrl:"Templates/template.ngcResponsiveImage.html",compile:function(){return function(i,e){var n=e.find(".draggable");i.source=null,i.$watch("galleryImage",function(e){void 0!==e&&(i.imagePromise&&"pending"===i.imagePromise.state()&&(i.imagePromise.reject(),i.skipping=!0,i.$emit("ngc-responsive-image-skipping",!0)),r(i,e,n))}),i.$watch("containerWidth",function(i,e){var t=e>i;n.css("width",i),t&&l(n)}),i.$on("windowChanged",function(e,t){i.windowWidth=t.width,i.windowHeight=t.height,i.galleryImage&&r(i,i.galleryImage,n)})}}}};
-function simpleDragDirective(){var e=function(e,n,t,a){var r,o;e.pageX&&e.pageY&&(r=e.pageX-t,o=e.pageY-a,n.css("left",r),n.css("top",o))};return{link:function(n,t){var a=0,r=0;t.bind({dragstart:function(n){var o=n.originalEvent;a=o.offsetX,r=o.offsetY,e(o,t,a,r),t.css("position","absolute")},dragover:function(n){var o=n.originalEvent;n.stopPropagation(),n.preventDefault();var f=n.originalEvent.dataTransfer;f.effectAllowed=f.dropEffect="none",e(o,t,a,r)},dragenter:function(e){e.stopPropagation(),e.preventDefault();var n=e.originalEvent.dataTransfer;n.effectAllowed=n.dropEffect="none"}})}}}
-angular.module("HashBangURLs",[]).config(["$locationProvider",function(e){e.hashPrefix("!")}]);var module=angular.module("defaultClient",["ngRoute","galleryBrowser","repo","ui.keypress","ui.event","ui.bootstrap","HashBangURLs","stringutils","maps","ngAnimate"]);module.config(["$routeProvider",function(e){e.when("/page/:link",{reloadOnSearch:!1,controller:pageController,templateUrl:"Templates/template.page.html",resolve:{api:"$api"}}).when("/p/:link",{reloadOnSearch:!1,controller:pController,templateUrl:"Templates/template.p.html"}).otherwise({redirectTo:"/page/home"})}]),module.directive("shortcut",function(){return{restrict:"E",replace:!0,scope:!0,link:function(e){jQuery(document).on("keydown",function(n){e.$apply(e.keyPressed(n))})}}}),module.directive("gridelement",["$compile","$templateCache","$timeout",function(e,n,t){var i;return{scope:{grid:"=",gridelement:"="},link:function(o,a,r){o.$watch("gridelement",function(l){if(l){var c=o.gridelement.Skin||r.skin||null,d=c?"_"+c:"",u=n.get(o.gridelement.Type+d+".thtml"),s=e(u)(o);i&&t.cancel(i),i=t(function(){o.$emit("page-loaded")},500),a.html(s)}}),o.getGridElement=function(){return o.gridelement}}}}]),module.directive("ngcOverlay",ngcOverlay),module.directive("ngcGdataAlbum",ngcGdataAlbumDirective),module.directive("ngcLazyImage",ngcLazyImage),module.directive("ngcSimpleDrag",simpleDragDirective),module.directive("ngcResponsiveImage",ngcResponsiveImage),module.controller("appController",["$scope","$api","$location","$rootScope","$timeout","$routeParams","$notify","$animate","loadGridList",function(e,n,t,i,o,a,r,l,c){e.showContent=!1;var d={};$(".centered-container").css("height",$(window).height()).css("width",$(window).width());var u;c.then(function(n){d=n,e.mainMenu=n.getGridsByCategory("Page")}),$(window).resize(function(){u&&o.cancel(u),u=o(function(){e.$broadcast("windowChanged",{width:$(window).width(),height:$(window).height()})},200)});var s;r.addEventListener("content-loading",function(){s=setTimeout(function(){e.$apply(function(){e.showLoader=!0})},500)}),r.addEventListener("content-loaded",function(){clearTimeout(s),e.showLoader=!1,e.showContent=!0}),e.globalKeydown=function(n){e.$broadcast("global-keydown",n)},e.$on("set-message",function(n,t){e.message=t}),e.$on("page-loaded",function(){var e=$("html").html();n.snapshot(e,t.path())});var g=function(){var e=t.search();e.gid&&void 0!==e.i&&i.$broadcast("galleryImageViewer-display-image",e.gid,e.i)};e.$watch("resourcesLoaded",function(e){e&&g()}),e.isSelectedLink=function(e){return a.link===e?"selected":null}}]);
+/**
+ * Event dispatcher class,
+ * add ability to dispatch event
+ * on native classes.
+ *
+ * Use of Class.js
+ *
+ * @author universalmind.com
+ */
+
+var EventDispatcher = (function () {
+	'use strict';
+
+	function EventDispatcher() {
+		this._listeners = {};
+	}
+
+	/**
+	 * Add a listener on the object
+	 * @param type : Event type
+	 * @param listener : Listener callback
+	 */
+	EventDispatcher.prototype.addEventListener = function (type, listener) {
+		if (!this._listeners[type]) {
+			this._listeners[type] = [];
+		}
+		this._listeners[type].push(listener);
+	};
+
+
+	/**
+	 * Remove a listener on the object
+	 * @param type : Event type
+	 * @param listener : Listener callback
+	 */
+	EventDispatcher.prototype.removeEventListener = function (type, listener) {
+		if (this._listeners[type]) {
+			var index = this._listeners[type].indexOf(listener);
+
+			if (index !== -1) {
+				this._listeners[type].splice(index, 1);
+			}
+		}
+	};
+
+
+	/**
+	 * Dispatch an event to all registered listener
+	 * @param Mutiple params available, first must be string
+	 */
+	EventDispatcher.prototype.dispatchEvent = function () {
+		var listeners;
+
+		if (typeof arguments[0] !== 'string') {
+			console.warn('EventDispatcher', 'First params must be an event type (String)')
+		} else {
+			listeners = this._listeners[arguments[0]];
+
+			for (var key in listeners) {
+				//This could use .apply(arguments) instead, but there is currently a bug with it.
+				listeners[key](arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
+			}
+		}
+	};
+
+	return EventDispatcher;
+}());
+
+
+
+
+
+
+
+﻿angular.module('appConfigModule', [])
+	.value("appConfig", {
+
+	})
+;
+
+/*global Showdown, angular*/
+"use strict";
+var moduleMaps = angular.module("maps", []);
+
+moduleMaps.directive("ngcGoogleMap", ['$sce', '$parse',"$timeout", function ($sce, $parse, $timeout) {
+
+	var defaults = {
+		zoom: 18,
+		lat: 49.214807,
+		lng: 16.570445
+	};
+
+	return {
+		scope: {
+			ngcGoogleMap: "="
+		},
+		link: function (scope, element, attr) {
+			var init = function () {
+				var options = angular.extend(defaults, scope.ngcGoogleMap),
+					mapOptions = {
+						center: new google.maps.LatLng(options.lat, options.lng),
+						zoom: options.zoom
+					};
+				var map = new google.maps.Map(element[0], mapOptions);
+				scope.map = map;
+			};
+			$timeout(function () {
+				init();
+			}, 1500);
+		}
+	};
+
+
+}]);
+
+angular.module('notifications', [])
+	.provider('$notify', function () {
+		var instance = new EventDispatcher();
+		return {
+			$get: function () {
+				instance.trigger = instance.dispatchEvent;
+				return instance;
+			}
+		};
+	});
+
+/*global Showdown, angular*/
+var stringUtils = angular.module("stringutils", []);
+
+	stringUtils.factory("$markdown", function () {
+	var converter = new Showdown.converter();
+
+	return {
+		toHtml: function (markdownText) {
+			if (markdownText) {
+				return converter.makeHtml(markdownText);
+			}
+			return "";
+		}
+	};
+});
+
+stringUtils.directive("ngBindHtmlUnsafe", ['$sce', '$parse', function($sce, $parse) {
+	return function(scope, element, attr) {
+		element.addClass('ng-binding').data('$binding', attr.ngBindHtmlUnsafe);
+
+		var parsed = $parse(attr.ngBindHtmlUnsafe);
+		function getStringValue() { return (parsed(scope) || '').toString(); }
+
+
+		scope.$watch(getStringValue, function(value) {
+			element.html(value);
+		});
+	};
+}]);
+
+var ItemBrowser = (function () {
+	"use strict";
+
+	var defaults = function () {
+		return {
+
+		};
+	};
+
+	function ItemBrowser(items, settings) {
+		this.settings = angular.extend(defaults(), settings);
+		this.items = items || [];
+		this.currentIndex = 0;
+	}
+
+	ItemBrowser.prototype.next = function () {
+		if (this.currentIndex < this.items.length - 1) {
+			this.currentIndex++;
+		}
+		return this.getCurrent();
+	};
+
+	ItemBrowser.prototype.previous = function () {
+		if (this.currentIndex > 0) {
+			this.currentIndex--;
+		}
+		return this.getCurrent();
+	};
+
+	ItemBrowser.prototype.selectByIndex = function (index) {
+		if (index > 0 && index < this.items.length)  {
+			this.currentIndex = index;
+		}
+		return this.getCurrent();
+	};
+
+	ItemBrowser.prototype.getNext = function () {
+		if (this.currentIndex === -1) {
+			return null;
+		}
+		return this.items[this.currentIndex + 1] || null;
+	};
+
+	ItemBrowser.prototype.getPrevious = function () {
+		return this.items[this.currentIndex - 1] || null;
+	};
+
+	ItemBrowser.prototype.getCurrent = function () {
+		return this.items[this.currentIndex] || null;
+	};
+
+	return ItemBrowser;
+
+}());
+
+var FitImage = (function () {
+	"use strict";
+
+	var fitImage = function (imageWidth, imageHeight, cWidth, cHeight) {
+		this.iWidth = imageWidth || 0;
+		this.iHeight = imageHeight || 0;
+		this.cWidth = cWidth || 0;
+		this.cHeight= cHeight || 0;
+	};
+
+	fitImage.prototype.imageWidthCss = function () {
+		return this.boxScale() >= this.imageScale() ? "100%" : "auto";
+	};
+
+	fitImage.prototype.imageHeightCss = function () {
+		return this.boxScale() < this.imageScale() ? "100%" : "auto";
+	};
+
+	fitImage.prototype.imageScale = function () {
+		return this.iWidth / this.iHeight;
+	};
+
+	fitImage.prototype.boxScale = function () {
+		return this.cWidth / this.cHeight;
+	};
+
+	return fitImage;
+}());
+
+var Gallery = (function () {
+	"use strict";
+
+	var defaults = function () {
+		return {
+			onLoad: function () {
+			},
+			onChange: function () {
+			}
+		};
+	};
+
+	function Gallery(settings) {
+		this.settings = angular.extend(defaults(), settings);
+		this.data = [];
+		this.currentIndex = -1;
+	}
+
+	Gallery.prototype.loadData = function (data) {
+		if (data === undefined) {
+			data = [];
+		}
+
+		if (this.isArray(data)) {
+			this.data = data;
+		} else {
+			this.data.push(data);
+		}
+		this.settings.onLoad();
+	};
+
+	Gallery.prototype.showByIndex = function (index) {
+		this.currentIndex = this.data[index] ? Number(index) : -1;
+		if (this.currentIndex !== -1) {
+			this.settings.onChange();
+		}
+	};
+
+	Gallery.prototype.showBy = function (comparator) {
+		for (var i = 0; i < this.data.length; i++) {
+			var obj = this.data[i];
+			if (comparator(obj)) {
+				this.currentIndex = i;
+				this.settings.onChange();
+				return;
+			}
+		}
+	};
+
+
+	Gallery.prototype.close = function () {
+
+	};
+
+	Gallery.prototype.next = function () {
+		if (this.currentIndex < this.data.length - 1) {
+			this.currentIndex++;
+			this.settings.onChange();
+		}
+		return this.getCurrent();
+	};
+
+	Gallery.prototype.prev = function () {
+		if (this.currentIndex > 0) {
+			this.currentIndex--;
+			this.settings.onChange();
+		}
+		return this.getCurrent();
+	};
+
+	Gallery.prototype.getPrevious = function () {
+		return this.data[this.currentIndex - 1] || null;
+	};
+
+	Gallery.prototype.getNext = function () {
+		if (this.currentIndex === -1) {
+			return null;
+		}
+		return this.data[this.currentIndex + 1] || null;
+	};
+
+	Gallery.prototype.getCurrent = function () {
+		return this.data[this.currentIndex] || null;
+	};
+
+	/**
+	 *
+	 * @returns {*}
+	 * @private
+	 */
+	Gallery.prototype.isArray = function (variable) {
+		return Object.prototype.toString.call(variable) === '[object Array]';
+	};
+
+
+	return Gallery;
+}());
+/*global Gallery, angular */
+var galleryModule = angular.module("galleryBrowser", ["notifications"]);
+
+galleryModule.factory("$gallery", ["$notify", function ($notify) {
+	var settings = {
+		onChange: function () {
+			$notify.trigger("gallery-changed");
+		},
+		onLoad: function () {
+			$notify.trigger("gallery-loaded");
+		}
+	};
+	return new Gallery(settings);
+}]);
+
+
+
+galleryModule.directive("ngcFitToBoxImage", [function () {
+	return {
+		template: '<div ><img class="fit-image" src="{{imageSrc}}" /></div>',
+		replace: true,
+		scope: {ngcFitToBoxImage: "="},
+		link: function (scope, element, attrs) {
+
+			scope.$watch("ngcFitToBoxImage", function (image, xxx) {
+				var width,
+					imageElement,
+					height;
+
+				if (image) {
+					imageElement = element.find("img");
+					width = element.width();
+					height = element.height();
+
+					if (image.Width) {
+						console.log("not implemented");
+					} else {
+						var img = new Image();
+						img.onload = function () {
+							var fit = new FitImage(this.width, this.height, width, height);
+							imageElement.css("height", fit.imageHeightCss());
+							imageElement.css("width", fit.imageWidthCss());
+						};
+						img.src = image;
+						scope.imageSrc = image;
+					}
+				}
+			});
+		}
+	};
+}])
+;
+
+galleryModule.controller("galleryBrowser", [
+	"$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$gallery", "$notify",
+	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $gallery, $notify) {
+
+//todo takhle by to mohlo byt
+//		$gallery.addEventListener($gallery.events.loaded, function () {	} )
+
+		$notify.addEventListener("gallery-loaded", function () {
+			var index = $location.search().galleryIndex
+			if (index) {
+				$gallery.showByIndex(index);
+				$scope.overlayGalleryShow = $gallery.currentIndex > -1;
+			}
+			$scope.currentItem = $gallery.getCurrent();
+			$scope.prevItem = $gallery.getPrevious();
+			$scope.nextItem = $gallery.getNext();
+		});
+
+		$notify.addEventListener("gallery-changed", function () {
+			angular.element("body").css("overflow", "hidden");
+
+			$scope.overlayGalleryShow = true;
+			$scope.currentItem = $gallery.getCurrent();
+			$scope.nextItem = $gallery.getNext();
+			$scope.prevItem = $gallery.getPrevious();
+
+			$location.search("galleryIndex", $gallery.currentIndex);
+		});
+
+		var visible = function () {
+			return $scope.overlayGalleryShow;
+		};
+
+		$scope.close = function () {
+			angular.element("body").css("overflow", "auto");
+			$scope.overlayGalleryShow = false;
+			$location.search("galleryIndex", null);
+		};
+
+		$scope.prev = function () {
+			$scope.currentItem = $gallery.prev();
+			$scope.nextItem = $gallery.getNext();
+			$scope.prevItem = $gallery.getPrevious();
+			$location.search("galleryIndex", $gallery.currentIndex);
+		};
+
+		$scope.next = function () {
+			$scope.currentItem = $gallery.next();
+			$scope.nextItem = $gallery.getNext();
+			$scope.prevItem = $gallery.getPrevious();
+			$location.search("galleryIndex", $gallery.currentIndex);
+		};
+
+
+		$scope.$on("global-keydown", function (e, $event) {
+			if (!visible()) {
+				return;
+			}
+			var key = $event.keyCode;
+			switch (key) {
+				case 27:
+					$scope.close();
+					break;
+				case 33:
+					$scope.prev();
+					break;
+				case 34:
+					$scope.next();
+					break;
+			}
+		});
+	}]);
+
+
+
+/*global MenuItemList, RawDataConverter, GalleryList*/
+
+var ApiWrapper = (function () {
+
+	function ApiWrapper(cmsApiImpl, cache, $q) {
+		this.cmsApi = cmsApiImpl;
+		this.cache = cache;
+		this.q = $q;
+	}
+
+	ApiWrapper.prototype.loadFromCache = function (key, deferred, callback) {
+		var response = this.cache.get(key);
+
+		if (response) {
+			deferred.resolve(response);
+			return deferred;
+		}
+		callback();
+		return deferred;
+	};
+
+	/**
+	 *
+	 * @param link
+	 * @returns {Function|promise}
+	 * @deprecated use getJsonData
+	 */
+	ApiWrapper.prototype.getPage = function (link) {
+		var deferred = this.q.defer(),
+			key = "getPage_" + link,
+			self = this;
+
+		this.loadFromCache(key, deferred, function () {
+			self.cmsApi.getJsonData({}, function (data) {
+					var x = new GridList(data.data)
+						.getGridByLink(link);
+					self.cache.put(key, x);
+					deferred.resolve(x);
+				},
+				function (err) {
+					var returnUrl = (window.location);
+					var hash = (window.location.hash);
+					if (err.status === 403) {
+						window.location.hash = "!login";//?returnuccrl=" + hash;
+					}
+					deferred.reject(err);
+				});
+		});
+
+		return deferred.promise;
+	};
+
+	/**
+	 *
+	 * @returns {Function|promise}
+	 * @deprecated use getJsonData
+	 */
+	ApiWrapper.prototype.getPages = function () {
+		var deferred = this.q.defer();
+		this.cmsApi.getPages(function (data) {
+			deferred.resolve(data);
+		});
+
+		return deferred.promise;
+	};
+	ApiWrapper.prototype.getJsonData = function () {
+		var deferred = this.q.defer();
+
+		this.cmsApi.getJsonData(function (data) {
+			deferred.resolve(new GridList(data.data));
+		});
+
+		return deferred.promise;
+	};
+
+	ApiWrapper.prototype.getAlbum = function (albumId, imageParams) {
+		var deferred = this.q.defer(),
+			albumParams = imageParams || {};
+
+
+		if (albumId === null) {
+			deferred.resolve(null);
+			return deferred.promise;
+		}
+
+		albumParams.id = albumId;
+
+		this.cmsApi.getAlbum(albumParams, function (data) {
+
+			deferred.resolve(data);
+		});
+		return deferred.promise;
+	};
+
+	ApiWrapper.prototype.getAlbumPhotos = function (albumId) {
+		var deferred = this.q.defer(),
+			key = albumId + "getAlbumPhotos",
+			self = this;
+
+		if (!albumId) {
+			deferred.resolve([]);
+			return deferred.promise;
+		}
+		this.loadFromCache(key, deferred, function () {
+
+			self.cmsApi.getAlbumPhotos({id: albumId }, function (data, xhr) {
+				self.cache.put(key, data);
+				deferred.resolve(data);
+			});
+		});
+
+		return deferred.promise;
+	};
+
+	ApiWrapper.prototype.getPhotos = function () {
+		var deferred = this.q.defer(),
+			key = "getAlbumPhotosStream",
+			self = this;
+
+		this.loadFromCache(key, deferred, function () {
+			self.cmsApi.getPhotos(function (data) {
+				self.cache.put(key, data);
+				deferred.resolve(data);
+			});
+		});
+		return deferred.promise;
+	};
+
+	ApiWrapper.prototype.getAlbums = function () {
+		var deferred = this.q.defer();
+
+		this.cmsApi.getAlbums(function (data) {
+			deferred.resolve(data);
+		});
+		return deferred.promise;
+	};
+
+	ApiWrapper.prototype.snapshot = function (pageContent, path) {
+		var deferred = this.q.defer();
+
+		this.cmsApi.putSnapshot({data: pageContent, path: path}, function (data) {
+			deferred.resolve(data);
+		});
+
+		return deferred.promise;
+	};
+
+	ApiWrapper.prototype.checkForSnapshot = function (scope, data) {
+		if (data) {
+			scope.$emit("page-loaded");
+		}
+	};
+
+	return ApiWrapper;
+}());
+﻿angular.module('apiModule', ['ngResource', 'appConfigModule'])
+	.factory('cmsApi', ['$resource', function ($resource) {
+		var api = $resource('Service/cmsClientPHPService/:service',
+			{ service: "serverProxy.php" },
+			{
+				getJsonData: { method: 'GET', isArray: false, params: {action: "getJson"} },
+				getPage: { method: 'GET', isArray: false, params: {action: "getPage"} },
+				getRequestToken: { method: 'GET', isArray: false, params: {action: "getLogin"} },
+				login: { method: 'POST', isArray: false, params: {action: "PostLogin", service: "login.php"} },
+				post: { method: 'POST', isArray: false, params: {action: "getLogin"} },
+				getPages: { method: 'GET', isArray: false, params: {action: "getPages"} },
+				getAlbums: { method: 'GET', isArray: false, params: {action: "getAlbums"} },
+				getAlbum: { method: 'GET', isArray: false, params: {action: "getAlbum"} },
+				getAlbumPhotos: { method: 'GET', isArray: false, params: {action: "getAlbumPhotos"} },
+				getPhotos: { method: 'GET', isArray: false, params: {action: "getPhotos"} },
+				putUserData: { method: 'PUT', isArray: false, params: {service: "postData.php"} },
+				putSnapshot: { method: 'PUT', isArray: false, params: {service: "snapshot.php"} }
+			});
+
+		return api;
+	}]);
+
+
+/*global ApiWrapper*/
+var repository = angular.module("repo", ["apiModule"]);
+
+repository.factory("$api", ['cmsApi', '$cacheFactory', "$q", function (cmsApi, $cacheFactory, $q) {
+	return new ApiWrapper(cmsApi, $cacheFactory("cmsCache"), $q);
+}]);
+
+repository.factory("loadFromCache", ['cmsApi', '$cacheFactory', "$q", function (cmsApi, $cacheFactory, $q) {
+	return ":ashdvjad";
+}]);
+
+
+repository.factory("loadGridList", ['$api', '$cacheFactory', "$q", function ($api, $cacheFactory, $q) {
+	return $api.getJsonData();
+}]);
+
+
+var gridModule = angular.module("grids", []);
+
+
+gridModule.directive("ngcAspectRatio", [function () {
+
+	return {
+//		template:
+//			'<div class="aspect-ratio-box" ng-style="ratioCalculated">' +
+//				'<div class="aspect-ratio-content album-image-wrap">' +
+//					'<div style="width: 100%;height: 100%; background-color: red">' +
+//
+//				'</div>' +
+//				'</div>' +
+//			'</div>',
+		templateUrl: "aspectRatio.html",
+		transclude: true,
+		link: function (scope, element, attr) {
+
+			scope.ratioWidth = Number(attr.w) || 4;
+			scope.ratioHeight = Number(attr.h) || 3;
+
+			function getRatioPercent(width, height) {
+				return (height / width) * 100;
+			}
+
+			scope.$watch("ratioWidth", function (a) {
+				scope.ratioCalculated = {
+					"padding-top": getRatioPercent(scope.ratioWidth, scope.ratioHeight) + "%"
+				};
+			});
+
+			scope.$watch("ratioHeight", function () {
+				scope.ratioCalculated = {
+					"padding-top": getRatioPercent(scope.ratioWidth, scope.ratioHeight) + "%"
+				};
+			});
+		}
+	};
+
+
+}]);
+
+var Grid  = (function () {
+
+	function Grid (data) {
+		data = data || {};
+		this.GridElements = data.GridElements || [];
+		this.Link = data.Link || null;
+		this.Name = data.Name || "";
+		this.id = data.id || null;
+		this.resources = data.resources || [];
+		this.groups = data.groups || null;
+	}
+	return Grid;
+}());
+
+var GridElementsList = (function () {
+
+	function GridElementsList(gridElements){
+		this.data = gridElements || [];
+	}
+
+	GridElementsList.prototype.getGroups = function () {
+		for (var i = 0; i < this.data.length; i++) {
+		}
+		return "";
+	};
+
+	GridElementsList.prototype.findById = function (id) {
+		for (var i = 0; i < this.data.length; i++) {
+			if (id === this.data[i].Id){
+				return this.data[i];
+			}
+		}
+		return null;
+	};
+
+	GridElementsList.prototype.filter = function (key, value) {
+		var i,
+			resources,
+			result = [];
+
+		for (i = 0; i < this.data.length; i++) {
+			resources = this.data[i].resources;
+			if (resources && resources[key] === value ) {
+				result.push(this.data[i]);
+			}
+		}
+		return result;
+	};
+
+	return GridElementsList;
+}());
+
+var GridList = (function(){
+
+	function GridList(jsonData, repository) {
+		this.data = jsonData || [];
+		this.repo = repository;
+	}
+
+	GridList.prototype.addGrid  = function (newitem) {
+		newitem.id = "grid_" + (this.data.length + 1);
+		this.data.push(newitem);
+		this.repo.set(this.data);
+	};
+
+
+
+	GridList.prototype.save  = function () {
+		this.repo.set(this.data);
+	};
+
+	GridList.prototype.update  = function (item) {
+		var index = this.data.indexOf(item);
+		this.data[index] = item;
+		this.repo.set(this.data);
+	};
+
+	GridList.prototype.remove  = function (item) {
+		this.data.splice(this.data.indexOf(item), 1);
+		this.repo.set(this.data);
+	};
+
+	GridList.prototype.getGrid  = function (gridId) {
+		for (var i = 0; i < this.data.length; i++) {
+			var obj = this.data[i];
+			if (obj.id === gridId ) {
+				return new Grid (obj);
+			}
+		}
+		return new Grid();
+	};
+
+	GridList.prototype.getGridByLink  = function (link) {
+		for (var i = 0; i < this.data.length; i++) {
+			var obj = this.data[i];
+			if (obj.Link === link ) {
+				return new Grid (obj);
+			}
+		}
+		return new Grid();
+	};
+
+	/*
+		@returns Array<Grid>
+	 */
+	GridList.prototype.getGridsByCategory  = function (category) {
+		var result = [];
+		for (var i = 0; i < this.data.length; i++) {
+			var obj = this.data[i];
+			if (obj.Category === category && obj.visible) {
+				result.push(new Grid (obj));
+			}
+		}
+		return result;
+	};
+
+	return GridList;
+}());
+
+
+
+/*global MaspartiData, ApiWrapper*/
+var  galleryImageViewerController = ["$scope", "$routeParams", "$api", "$location", function($scope, $routeParams, $api, $location) {
+
+	$scope.$on("galleryImageViewer-display-image", function (e, galleryId, imageIndex) {
+		$scope.imageIndex = imageIndex;
+		$scope.galleryId = galleryId;
+		getImage(galleryId, imageIndex);
+	});
+
+
+	$scope.$on("global-keydown", function (e, $event) {
+		if (!visible()) {
+			return;
+		}
+		var key = $event.keyCode;
+		switch (key) {
+			case 27 :
+				$scope.close();
+				break;
+			case 37 :
+				$scope.prev();
+				break;
+			case 32 :
+			case 39 :
+				$scope.next();
+				break;
+		}
+	});
+
+	$scope.$on("ngc-responsive-image-loading", function (e, data) {
+		$scope.loading = data;
+		if ($scope.$$phase !== "$digest"){
+			$scope.$digest();
+		}
+	});
+
+	$scope.$on("ngc-responsive-image-skipping", function (e, data) {
+		$scope.skipping = data;
+		if ($scope.$$phase !== "$digest") {
+			$scope.$digest();
+		}
+	});
+
+	function visible() {
+		return $scope.gallery !== null && $scope.gallery !== undefined;
+	}
+
+	function getImage(galleryId, index) {
+		if (!$scope.gallery) {
+			$scope.newindex = index;
+			$api.getAlbumPhotos(galleryId).then(function (data) {
+				$scope.gallery = data.data;
+				$scope.image = $scope.gallery[index];
+			});
+			return;
+		}
+		$scope.image = $scope.gallery[index];
+	}
+
+	$scope.close = function () {
+		$location.search("gid", null);
+		$location.search("i", null);
+		$scope.gallery = null;
+	};
+
+	$scope.next = function () {
+		var length = $scope.gallery.length,
+			imageIndex = $scope.imageIndex;
+
+		imageIndex++;
+		if (imageIndex >= length) {
+			imageIndex = 0;
+		}
+
+		$location.search("i", imageIndex);
+	};
+
+	$scope.prev = function () {
+		var length = $scope.gallery.length,
+			imageIndex = $scope.imageIndex;
+
+		imageIndex--;
+		if (imageIndex <= 0) {
+			imageIndex = length - 1;
+		}
+		$location.search("i", imageIndex);
+	};
+
+}];
+
+
+
+
+
+
+var gridelementKontaktCtrl =  ["$scope", "$api", "$routeParams", "$location", "$rootScope", function ($scope, $api, $routeParams, $location) {
+	function getResource(key) {
+		return resources[key] || "";
+	}
+	var resources = $scope.gridelement.resources || {};
+
+	$scope.header = getResource("header");
+	$scope.subHeader = getResource("subheader");
+	$scope.valueA = getResource("valuea");
+	$scope.valueB = getResource("valueb");
+	$scope.valueC = getResource("valuec");
+	$scope.valueD = getResource("valued");
+	$scope.valueE = getResource("valuee");
+	$scope.valueF = getResource("valuef");
+
+	function getMapFromResource(key) {
+		return resources[key] || null;
+	}
+
+	$scope.map = getMapFromResource("map");
+
+	$scope.hasMap = $scope.map !== null;
+	$scope.blockSize = $scope.map ? "grid_12" : "grid_3";
+
+
+}];
+var gridelementAlbumCtrl = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$element",
+	function ($scope, $api, $routeParams, $location, $notify, $gallery, $element) {
+		var resources = $scope.gridelement.resources || {},
+			content = $scope.gridelement.Content || {};
+
+		function getResource(key, defaultValue) {
+			return resources[key] || defaultValue || "";
+		}
+
+		function getContentProperty(key, defaultValue) {
+			return content[key] || defaultValue || "";
+		}
+
+		$scope.gdataAlbumId = getContentProperty("gdataAlbumId", null);
+		$scope.route = {
+			link: $routeParams.link
+		};
+		$scope.name = getResource("name", " ");
+		$scope.type = getResource("type");
+		$scope.services = getResource("services");
+		$scope.year = getResource("year");
+		$scope.text = getResource("text");
+
+
+		$scope.cssRatio = getContentProperty("ratio", "ratio16_9");
+
+
+		setTimeout(function () {
+			var height = $element.height() - 44, //bottom offset magic
+				size,
+				type = 0, //width wins
+				width = $element.width();
+
+			size = Math.max(width, height);
+
+			if (height > width) {
+				type = 1; //height wins
+			}
+			if ($scope.gdataAlbumId) {
+				$api.getAlbum($scope.gdataAlbumId, {size: size, isSquare: false, type: type})
+					.then(function (data) {
+						if (data) {
+							$scope.album = data.data;
+						}
+					});
+			}
+
+		}, 1);
+
+		$scope.imageClick = function () {
+			$scope.gridelement.Id;
+			$gallery.showBy(function (obj) {
+
+					return $scope.gridelement.Id === obj.Id;
+			});
+		};
+	}];
+
+var gridelementAlbumOverlayCtrlPreview = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$markdown", function ($scope, $api, $routeParams, $location, $notify, $gallery, $markdown) {
+	$scope.gdataAlbumId = getAlbumId();
+	$scope.route = {
+		link: $routeParams.link
+	};
+
+	function getAlbumId() {
+		var x = $scope.gridelement.Content;
+		return x !== null ? x.gdataAlbumId : null;
+	}
+
+	var resources = $scope.gridelement.resources || {};
+
+	function getResource(key) {
+		return resources[key] || "";
+	}
+
+	$scope.name = getResource("name");
+	$scope.type = getResource("type");
+	$scope.services = getResource("services");
+	$scope.year = getResource("year");
+	$scope.text = $markdown.toHtml(getResource("text"));
+
+	$scope.toHtml = function (value) {
+		return $markdown.toHtml(value);
+	};
+
+	$api.getAlbumPhotos($scope.gdataAlbumId)
+		.then(function (data) {
+			if (data && data.data) {
+				$scope.albumPhotos = data.data;
+				$scope.currentImage = $scope.albumPhotos[0];
+				$scope.currentImageIndex = 0;
+			}
+		});
+
+	$scope.showImagePreview = function (index) {
+		$scope.currentImage = $scope.albumPhotos[index];
+		$scope.currentImageIndex = index;
+	};
+}];
+
+
+
+/*global ItemBrowser*/
+var gridelementAlbumOverlayCtrl = ["$scope", "$api", "$routeParams", "$location", "$notify", "$gallery", "$markdown",
+	function ($scope, $api, $routeParams, $location, $notify, $gallery, $markdown) {
+		$scope.gdataAlbumId = getAlbumId();
+		$scope.route = {
+			link: $routeParams.link
+		};
+
+		function getAlbumId() {
+			var x = $scope.gridelement.Content;
+			return x !== null ? x.gdataAlbumId : "";
+		}
+
+		var resources = $scope.gridelement.resources || {};
+
+		function getResource(key) {
+			return resources[key] || null;
+		}
+
+		$scope.name = getResource("name");
+		$scope.type = getResource("type");
+		$scope.services = getResource("services");
+		$scope.year = getResource("year");
+		$scope.text = $markdown.toHtml(getResource("text"));
+
+		$scope.map = getResource("map");
+		$scope.hasMap = $scope.map !== null;
+
+		$scope.toHtml = function (value) {
+			return $markdown.toHtml(value);
+		};
+
+		var itemBrowser;
+		$api.getAlbumPhotos($scope.gdataAlbumId)
+			.then(function (data) {
+				if (data) {
+					$scope.albumPhotos = data.data;
+					itemBrowser = new ItemBrowser(data.data);
+					$scope.currentImage = itemBrowser.getCurrent();
+					$scope.currentImageIndex = itemBrowser.currentIndex;
+					$scope.previousImage = itemBrowser.getPrevious();
+					$scope.nextImg = itemBrowser.getNext();
+				}
+			});
+
+		$scope.showImagePreview = function (index) {
+			$scope.currentImage = itemBrowser.selectByIndex(index);
+			$scope.currentImageIndex = itemBrowser.currentIndex;
+
+			$scope.previousImage = itemBrowser.getPrevious();
+			$scope.nextImg = itemBrowser.getNext();
+		};
+
+		$scope.prevImage = function () {
+			$scope.currentImage = itemBrowser.previous();
+			$scope.currentImageIndex = itemBrowser.currentIndex;
+
+			$scope.previousImage = itemBrowser.getPrevious();
+			$scope.nextImg = itemBrowser.getNext();
+		};
+
+		$scope.nextImage = function () {
+			$scope.currentImage = itemBrowser.next();
+			$scope.currentImageIndex = itemBrowser.currentIndex;
+
+			$scope.previousImage = itemBrowser.getPrevious();
+			$scope.nextImg = itemBrowser.getNext();
+		};
+
+		$scope.$on("global-keydown", function (e, $event) {
+			var key = $event.keyCode;
+
+			switch (key) {
+				case 37:
+					$scope.prevImage();
+					break;
+				case 39:
+					$scope.nextImage();
+					break;
+			}
+		});
+
+
+	}];
+var gridelementGdataAlbumCtrl =  ["$scope", "$api", "$routeParams", "$location", "$rootScope", function ($scope, $api, $routeParams, $location) {
+	$scope.gdataAlbumId = getAlbumId();
+	$scope.route = {
+		link: $routeParams.link
+	};
+
+	function getAlbumId() {
+		var x = $scope.gridelement.Content;
+		return x !== null ? x.gdataAlbumId : null;
+	}
+
+	$scope.header = $scope.gridelement.Resources.header.Value;
+	$scope.text = $scope.gridelement.Resources.text.Value;
+
+	$api.getAlbum($scope.gdataAlbumId, {size:100, isSquare: true, type: 2})
+	//$api.getAlbum($scope.gdataAlbumId)
+		.then(function (data) {
+			$scope.album = data.data;
+		});
+
+	$scope.showImage = function (galleryId, imageIndex) {
+		$location.search("i", imageIndex);
+		$location.search("gid", galleryId);
+	};
+
+}];
+var homeController = ["$scope", "$api", function ($scope, $api) {
+
+	$scope.homeData = [];
+	$scope.nextWorkData = [];
+	$scope.pageLink = "projekty";
+	$scope.loadedData = false;
+	$scope.loadedImages = false;
+	$scope.showLoader = true;
+
+	$scope.tempLength = 0;
+	function getPhotos(index, gdataAlbumId) {
+		return $api.getAlbumPhotos(gdataAlbumId)
+			.then(function (photos) {
+				$scope.homeData[index].images = photos.data[0];
+				$scope.tempLength ++ ;
+				if ($scope.tempLength > $scope.homeData.length) {
+					$scope.loadedImages = true;
+				}
+			})
+	}
+	var container = $(".page-home");
+	container.hide();
+
+	function updateContainerDimensions(container, windowWidth, windowHeight) {
+		var width = container.width(),
+			height = container.height(),
+			ratio,
+			newWidth;
+		if ($scope.disableAutoFormat) {
+			return;
+		}
+		if (windowWidth > width  ){
+			ratio = width / height;
+			newWidth = Math.floor(ratio * windowHeight - 50);
+			container.css("max-width", newWidth );
+		}
+	}
+	$scope.$on("windowChanged", function (e, data) {
+		updateContainerDimensions(container, data.width, data.height);
+	});
+
+
+	$api.getPage($scope.pageLink)
+		.then(function (data) {
+			$scope.homeData = data.data.GridElements;
+			setTimeout(function () {
+				$scope.loadedData = true;
+				$scope.$digest();
+			},1000);
+
+			updateContainerDimensions(container, $(window).width(), $(window).height());
+
+			$scope.$emit("data-loaded");
+
+			return data.data;
+		})
+		.then(function (data) {
+			var x = [];
+			for (var i = 0; i < data.GridElements.length; i++) {
+				var content = data.GridElements[i].Content;
+				x.push(getPhotos(i, content.gdataAlbumId));
+			}
+		});
+
+	$scope.showNextWork = function () {
+		$scope.nextWork = true;
+		$scope.disableAutoFormat = true;
+		$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+	}
+}];
+var loginController = ["$scope", "cmsApi",  function($scope, cmsApi) {
+	var api = new ApiWrapper(cmsApi);
+
+	var loading = function (type) {
+		if (type) {
+			$scope.message = null;
+		}
+		$scope.loading = type === null || typeof type === "undefined" ? true : type;
+	};
+	loading();
+
+	cmsApi.getRequestToken(function (data) {
+		$scope.RequestToken = data.RequestToken;
+		loading(false);
+	}, function () {
+		$scope.message = "Přihlašovací službe je nedostupná.";
+	});
+
+//	function getQueryStrings() {
+//		var assoc  = {};
+//		var decode = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); };
+//		var queryString = location.search.substring(1);
+//		var keyValues = queryString.split('&');
+//
+//		for(var i in keyValues) {
+//			var key = keyValues[i].split('=');
+//			if (key.length > 1) {
+//				assoc[decode(key[0])] = decode(key[1]);
+//			}
+//		}
+//		return assoc;
+//	}
+
+	var parserStatus = function (status) {
+		var message;
+
+		switch (status) {
+			case 401:
+				message = "Špatné heslo nebo login";
+				break;
+			case 400:
+			case 500:
+				message = ".";
+				break;
+			default :
+				message = "Vyskytla se neznámá chyba ".status;
+		}
+		return message;
+	};
+
+	$scope.submit = function () {
+		loading();
+		var x = {};
+		x.UserName = $scope.UserName;
+		x.Password = $scope.Password;
+		x.RequestToken = $scope.RequestToken;
+
+		cmsApi.login(x, function (data) {
+				window.location.hash = "home";
+				loading(false);
+			},
+			function (err) {
+				$scope.message = parserStatus(err.status);
+				loading(false);
+			});
+	}
+}];
+var pController =  [ "$scope", "$api", "$routeParams", "$location", "$notify",
+	function($scope, $api, $routeParams, $location, $notify) {
+	$scope.link = $routeParams.link;
+	var getIndex = function () {
+		var search = $location.search().elindex,
+			elemIndex = $routeParams.elementIndex,
+			index;
+		index = !isNaN(elemIndex) ? elemIndex : 0;
+		if (!isNaN(search)) {
+			index = search;
+		}
+		return Number(index, 10) || 0 ;
+	};
+
+	var setBoundaries = function (index) {
+		var length = $scope.page.GridElements.length;
+		$scope.isFirst = index === 0;
+		$scope.isLast = index === length - 1;
+	};
+
+
+	$scope.loading = true;
+	var getPagePromise = $api.getPage($scope.link)
+		.then(function (response) {
+			var index = getIndex();
+			$scope.page = response;
+			setBoundaries(index);
+			$scope.currentGridElement = $scope.page.GridElements[index];
+			$notify.trigger("content-loaded");
+			return response;
+		});
+
+	var setNewLocation = function (index) {
+		$location.search("elindex", index);
+		getPagePromise.then(function () {
+			$scope.currentGridElement = $scope.page.GridElements[index];
+			setBoundaries(index);
+		});
+	};
+
+	$scope.next = function () {
+		var galleryIndex = getIndex(),
+			length = $scope.page.GridElements.length;
+
+		galleryIndex++;
+		if (galleryIndex > length - 1) {
+			return;
+		}
+		setNewLocation(galleryIndex);
+	};
+
+	$scope.prev = function () {
+		var galleryIndex = getIndex();
+
+		if (galleryIndex <= 0) {
+			return;
+		}
+		galleryIndex--;
+		setNewLocation(galleryIndex);
+	};
+
+	var el = angular.element(".navigation");
+	angular.element(window).scroll(function () {
+		var fromTop = $(this).scrollTop(),
+			threshold = 50;
+
+		if (fromTop > threshold && !$scope.isScrolled) {
+			$scope.isScrolled = true;
+			el.addClass("scrolled");
+		}
+		if (fromTop < threshold && $scope.isScrolled) {
+			$scope.isScrolled = false;
+			el.removeClass("scrolled");
+		}
+	});
+}];
+var pageController = ["$scope", "$api", "$routeParams", "$gallery", "$notify", "$timeout", "loadGridList", function ($scope, $api, $routeParams, $gallery, $notify, $timeout, loadGridList) {
+	var source = null,
+		/** type GridList */
+			gridList;
+
+	$scope.link = $routeParams.link;
+
+	loadGridList
+		.then(function (data) {
+			gridList = data;
+
+	//$timeout(function () {
+			$scope.page = gridList.getGridByLink($scope.link);
+			$scope.gridElements = $scope.page.GridElements;
+			$scope.groups = $scope.page.groups;
+
+			$scope.layoutClass = $scope.groups ? "grid_10" : "grid_12";
+			$notify.trigger("content-loaded");
+			source = new GridElementsList($scope.page.GridElements);
+			$gallery.loadData($scope.gridElements || []);
+			return $scope.page;
+//},2000)
+
+		}, function (err) {
+			console.log("ERROR!!", err.status);
+		})
+		.then(function (data) {
+			setTimeout(function () {
+				$api.checkForSnapshot($scope, data);
+			}, 3000);
+		});
+
+
+	$notify.trigger("content-loading");
+
+	$scope.filter = function (value) {
+		if (value === undefined) {
+			$scope.filterValue = null;
+			$scope.gridElements = source.data;
+			return;
+		}
+		$scope.filterValue = value;
+		$scope.gridElements = source.filter("group", value);
+	};
+
+	$scope.isSelectedFilter = function (value) {
+		return $scope.filterValue === value ? "selected" : null;
+	};
+
+}];
+
+
+var simplehtml = ["$scope", "$markdown", function ($scope, $markdown) {
+	var gridElement = $scope.getGridElement(),
+		resources = gridElement.resources || {};
+
+	function getResource(key) {
+		return resources[key] || "";
+	}
+	$scope.ContentToHtml = function () {
+		return $markdown.toHtml(getResource("text"));
+	};
+}];
+var userDataForm = ["$scope", "cmsApi", "$routeParams", function($scope, cmsApi, $routeParams) {
+	$scope.link = $routeParams.link;
+
+	var parserStatus = function (status) {
+		var message;
+
+		switch (status) {
+			case 401:
+				message = "Pro odeslání formuláře je potřeba se přihásit. ";
+				break;
+			case 400:
+			case 500:
+				message = ".";
+				break;
+			default :
+				message = "Vyskytla se neznámá chyba ".status;
+		}
+		return message;
+	};
+
+	$scope.post = function () {
+		cmsApi.putUserData({data: $scope.data, key: $scope.key}, function (data) {
+		}, function (err) {
+			$scope.$emit("set-message", parserStatus(err.status));
+
+		});
+	};
+
+	$scope.serialized = function () {
+		JSON.stringify($scope.data);
+	}
+}];
+var ngcGdataAlbumDirective = ["cmsApi", function(cmsApi) {
+	var api = new ApiWrapper(cmsApi);
+
+	return {
+		scope: { ngcGdataAlbum: "=" },
+		compile: function (iElement, iAttrs, transclude) {
+			return function (scope, element, attrs) {
+
+				api.getAlbum(scope.ngcGdataAlbum).then(function (data) {
+				});
+			};
+		}
+	};
+}];
+function ngcLazyImage() {
+	var loader = "resources/loaders/loader16.gif";
+
+	return {
+		scope: {
+			ngcLazyImage: "="
+		},
+		link: function (scope, element, attrs) {
+			if (attrs.loader !== undefined ){
+				loader = attrs.loader;
+			}
+			//element.attr("src", loader);
+
+			scope.$watch("ngcLazyImage", function (url, oldValue) {
+				if (url !== undefined){
+					element.attr("src", url);
+				}
+			});
+		}
+	}
+}
+function ngcOverlay() {
+	return {
+		restrict: "E",
+		transclude: true,
+		templateUrl: "Templates/template.ngcOverlay.html",
+		compile: function (x) {
+			return function (scope, element, attrs) {
+			}
+		}
+
+	}
+}
+var ngcResponsiveImage = function () {
+	var getWidth = function (scope) {
+		return scope.windowWidth;
+	};
+	var getWindowHeight = function (scope) {
+		return scope.windowHeight;
+	};
+
+	var imageByWindowSize = function (windowWidth, galleryImage) {
+		var imageUrl = galleryImage.FullSize.PhotoUri;
+
+		if (windowWidth >= 768 && windowWidth < 1200) {
+			imageUrl = galleryImage.Large.PhotoUri;
+		}
+		if (windowWidth >= 480 && windowWidth < 768) {
+			imageUrl = galleryImage.Medium.PhotoUri;
+		}
+
+		if (windowWidth < 480) {
+			imageUrl = galleryImage.Small.PhotoUri;
+		}
+
+		return imageUrl;
+	};
+
+	var getImage = function (url) {
+		var image = new Image(),
+			promise;
+
+		image.src = url;
+		promise = $.Deferred();
+
+
+		$(image).load(function () {
+			var loadimage = this;
+			setTimeout(function () {
+				promise.resolve(loadimage);
+			}, 10)
+		});
+
+		return promise;
+	};
+
+	var renderImage = function (scope) {
+		var overflowWidth = getWidth(scope) < scope.imageWidth;
+		var overflowHeight = getWindowHeight(scope) < scope.imageWidth;
+
+		if (overflowWidth) {
+			scope.containerWidth = null;
+		} else {
+			scope.containerWidth = scope.imageWidth;
+		}
+
+		if (overflowHeight) {
+			var windowHeight = getWindowHeight(scope);
+			scope.containerWidth = Math.round(scope.imageWidth / scope.imageHeight * (windowHeight));
+		}
+	};
+
+	var renderImageFullSize = function (scope) {
+		scope.containerWidth = scope.imageWidth;
+	};
+
+	var refreshImage = function (scope, galleryImage, element) {
+		var windowWidth = getWidth(scope),
+			timeout,
+			url = imageByWindowSize(windowWidth, galleryImage);
+
+		scope.loading = true;
+		timeout = setTimeout(function () {
+			scope.showLoader = scope.loading;
+			scope.$emit("ngc-responsive-image-loading", scope.loading);
+			scope.$digest();
+		}, 200);
+
+		scope.imagePromise = getImage(url).done(function (image) {
+			scope.imageWidth = image.width;
+			scope.imageHeight = image.height;
+			renderImage(scope);
+			scope.source = url;
+			scope.loading = false;
+			scope.showLoader = false;
+			clearTimeout(timeout);
+			scope.$emit("ngc-responsive-image-loading", false);
+			scope.$emit("ngc-responsive-image-skipping", false);
+			scope.skipping = false;
+			resetPosition(element);
+			scope.$apply();
+
+		});
+	};
+
+	var resetPosition = function (element) {
+		element.css("position", "relative");
+		element.css("margin", "0 auto");
+		element.css("left", "auto");
+		element.css("top", "auto");
+	};
+
+	return {
+		scope: {
+			galleryImage: "="
+		},
+		controller: [ "$scope", function ($scope) {
+
+			$scope.containerWidth = "16";
+			$scope.windowWidth = $(window).width();
+			$scope.windowHeight = $(window).height();
+
+			$scope.isFullSize = function () {
+				return $scope.imageWidth <= $scope.containerWidth;
+			};
+
+			$scope.isFullSizeCssClass = function () {
+				if (!$scope.isFullSize()) {
+					return "icon-resize-full";
+				}
+				return "icon-resize-small";
+			};
+
+			$scope.showFullSize = function () {
+				if (!$scope.isFullSize()) {
+					renderImageFullSize($scope);
+				}
+				else {
+					renderImage($scope);
+				}
+			};
+
+			$scope.isMovable = function () {
+				return $scope.isOverFlowable() && $scope.isFullSize() ? "movable" : "";
+			};
+
+			$scope.fullSizeTooltip = function () {
+				return $scope.isFullSize() ? "Přizpůsobit na stránku" : "Zobrazit původní velikost";
+			};
+
+			$scope.isOverFlowable = function () {
+				return $scope.windowHeight < $scope.imageHeight || $scope.windowWidth < $scope.imageWidth;
+			};
+
+			$scope.getCssWidth = function (width, a) {
+				return width === null ? "auto" : width + "px";
+			};
+			$scope.getCssHeight = function (height) {
+				return height === null ? "auto" : height + "px";
+			};
+		}],
+		restrict: "E",
+		replace: true,
+		templateUrl: "Templates/template.ngcResponsiveImage.html",
+		compile: function () {
+			return function (scope, el) {
+				var element = el.find(".draggable");
+
+				scope.source = null;
+				scope.$watch("galleryImage", function (galleryImage, oldValue) {
+					if (galleryImage === undefined) {
+						return;
+					}
+					if (scope.imagePromise) {
+						if (scope.imagePromise.state() === "pending") {
+							scope.imagePromise.reject();
+							scope.skipping = true;
+							scope.$emit("ngc-responsive-image-skipping", true);
+						}
+					}
+					refreshImage(scope, galleryImage, element);
+				});
+
+				scope.$watch("containerWidth", function (value, oldValue) {
+					var isShrinking = oldValue > value;
+					element.css("width", value);
+
+					if (isShrinking) {
+						resetPosition(element);
+					}
+				});
+
+				scope.$on("windowChanged", function (x, data) {
+					scope.windowWidth = data.width;
+					scope.windowHeight = data.height;
+					if (scope.galleryImage){
+						refreshImage(scope, scope.galleryImage, element)
+					}
+				});
+			}
+		}
+
+	};
+};
+function simpleDragDirective() {
+	
+	var setPosition = function (event, element, offsetX, offsetY) {
+		var newLeft,
+			newTop;
+
+		if (event.pageX && event.pageY) {
+			newLeft = event.pageX - offsetX;
+			newTop = event.pageY - offsetY;
+			
+			element.css("left", newLeft);
+			element.css("top", newTop);
+		}
+	};
+	
+	return  {
+		link: function (scope, element, attr) {
+			var offsetX = 0;
+			var offsetY = 0;
+			element.bind({
+				dragstart: function (e) {
+					var event = e.originalEvent;
+					offsetX = event.offsetX;
+					offsetY = event.offsetY;
+
+					setPosition(event, element, offsetX, offsetY);
+
+					element.css("position", "absolute");
+				},
+				dragover: function (e) {
+					var event = e.originalEvent;
+					e.stopPropagation();
+					e.preventDefault();
+					var dt = e.originalEvent.dataTransfer;
+					dt.effectAllowed = dt.dropEffect = 'none';
+
+					setPosition(event, element, offsetX, offsetY);
+				},
+				dragenter: function (e) {
+					e.stopPropagation();
+					e.preventDefault();
+					var dt = e.originalEvent.dataTransfer;
+					dt.effectAllowed = dt.dropEffect = 'none';
+				}
+			});
+		}
+	}
+}
+angular.module('HashBangURLs', []).config(['$locationProvider', function ($location) {
+	$location.hashPrefix('!');
+}]);
+
+var module = angular.module("defaultClient", [
+	"ngRoute",
+	"galleryBrowser",
+	"repo",
+	"ui.keypress",
+	"ui.event",
+	"ui.bootstrap",
+	"HashBangURLs",
+	"stringutils",
+	"maps",
+	"ngAnimate"
+]);
+
+module.config(['$routeProvider', function ($routeProvider) {
+	$routeProvider
+		.when('/page/:link', {reloadOnSearch: false, controller: pageController, templateUrl: 'Templates/template.page.html', resolve: {api: "$api"}})
+		.when('/p/:link', {reloadOnSearch: false, controller: pController, templateUrl: 'Templates/template.p.html'})
+		.otherwise({redirectTo: '/page/home'});
+}]);
+
+module.directive('shortcut', function () {
+	return {
+		restrict: 'E',
+		replace: true,
+		scope: true,
+		link: function (scope) {
+			jQuery(document).on('keydown', function (e) {
+				scope.$apply(scope.keyPressed(e));
+			});
+		}
+	};
+});
+
+module.directive("gridelement", ["$compile", "$templateCache", "$timeout", function ($compile, $templateCache, $timeout) {
+	var timeout;
+	return {
+		scope: { grid: "=", gridelement: "="},
+		link: function (scope, iElement, tAttrs, controller) {
+			scope.$watch("gridelement", function (val) {
+				if (!val) {
+					return;
+				}
+				var skin = scope.gridelement.Skin || tAttrs.skin || null,
+					skinStr = skin ? "_" + skin : "";
+				var template = $templateCache.get(scope.gridelement.Type + skinStr + ".thtml");
+				var compiled = $compile(template)(scope);
+				if (timeout) {
+					$timeout.cancel(timeout);
+				}
+				timeout = $timeout(function () {
+					scope.$emit("page-loaded");
+				}, 500);
+
+				iElement.html(compiled);
+			});
+			scope.getGridElement = function () {
+				return scope.gridelement;
+			};
+		}
+	};
+}]);
+
+module.directive("ngcOverlay", ngcOverlay);
+module.directive("ngcGdataAlbum", ngcGdataAlbumDirective);
+module.directive("ngcLazyImage", ngcLazyImage);
+module.directive("ngcSimpleDrag", simpleDragDirective);
+module.directive("ngcResponsiveImage", ngcResponsiveImage);
+
+module.controller("appController", ["$scope", "$api", "$location", "$rootScope", "$timeout", "$routeParams", "$notify", "$animate", "loadGridList",
+	function ($scope, $api, $location, $rootScope, $timeout, $routeParams, $notify, $animate, loadGridList) {
+		$scope.showContent = false;
+		var gridlist = {};
+		$(".centered-container")
+			.css("height", $(window).height())
+			.css("width", $(window).width());
+
+		var timeout;
+
+		loadGridList.then(function (data) {
+			gridlist = data;
+			$scope.mainMenu = data.getGridsByCategory("Page");
+		});
+
+
+		$(window).resize(function () {
+			if (timeout) {
+				$timeout.cancel(timeout);
+			}
+			timeout = $timeout(function () {
+				$scope.$broadcast("windowChanged", {
+					width: $(window).width(),
+					height: $(window).height()
+				})
+			}, 200);
+		});
+
+		var loaderTimeout;
+		$notify.addEventListener("content-loading", function () {
+			loaderTimeout = setTimeout(function () {
+				$scope.$apply(function () {
+					$scope.showLoader = true;
+				});
+			}, 500);
+		});
+
+
+
+		$notify.addEventListener("content-loaded", function () {
+			clearTimeout(loaderTimeout);
+			$scope.showLoader = false;
+			$scope.showContent = true;
+		});
+
+		$scope.globalKeydown = function (event) {
+			$scope.$broadcast("global-keydown", event);
+		};
+
+		$scope.$on("set-message", function (e, message) {
+			$scope.message = message;
+		});
+
+		$scope.$on("page-loaded", function () {
+			var pageContent = $("html").html();
+			$api.snapshot(pageContent, $location.path());
+		});
+
+		var processShowImageEvent = function () {
+			var search = $location.search();
+			if (search.gid && search.i !== undefined) {
+				$rootScope.$broadcast("galleryImageViewer-display-image", search.gid, search.i);
+			}
+		};
+
+		$scope.$watch("resourcesLoaded", function (value) {
+			if (value) {
+				processShowImageEvent();
+			}
+		});
+
+		$scope.isSelectedLink = function (value) {
+			return $routeParams.link === value ? "selected" : null;
+		};
+	}]);
+
+
