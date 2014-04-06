@@ -100,8 +100,10 @@ moduleMaps.directive("ngcGoogleMap", ['$sce', '$parse',"$timeout", function ($sc
 					mapOptions = {
 						center: new google.maps.LatLng(options.lat, options.lng),
 						zoom: options.zoom
-					};
-				var map = new google.maps.Map(element[0], mapOptions);
+					},
+					map;
+
+				map = new google.maps.Map(element[0], mapOptions);
 				scope.map = map;
 			};
 			$timeout(function () {
